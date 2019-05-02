@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Magaly'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
+    //'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -92,8 +93,8 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pt-BR',
+    //'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
