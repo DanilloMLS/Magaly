@@ -29,3 +29,12 @@ Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('/forneced
 Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('/fornecedor/editar')->middleware('auth');
 Route::post('/fornecedor/salvar', 'FornecedorController@salvar')->name('/fornecedor/salvar')->middleware('auth');
 Route::get('/fornecedor/remover/{id}', 'FornecedorController@remover')->name('/fornecedor/remover')->middleware('auth');
+//escola
+Route::get('/escola/cadastrar', function(Request $request) {
+    return view('CadastrarEscola');
+})->name('/escola/cadastrar')->middleware('auth');
+Route::post('/escola/cadastrar', 'EscolaController@cadastrar')->name('/escola/cadastrar')->middleware('auth');
+Route::get('/escola/listar', 'EscolaController@listar')->name('/escola/listar')->middleware('auth');
+Route::get('/escola/editar/{id}', 'EscolaController@editar')->name('/escola/editar')->middleware('auth');
+Route::post('/escola/salvar', 'EscolaController@salvar')->name('/escola/salvar')->middleware('auth');
+Route::get('/escola/remover/{id}', 'EscolaController@remover')->name('/escola/remover')->middleware('auth');
