@@ -4,8 +4,8 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir esta escola? ')) {
-    location.href="/escola/remover/"+id;
+  if(confirm (' Deseja realmente excluir esta distribuição? ')) {
+    location.href="/distribuicao/remover/"+id;
   }
   else {
     return false;
@@ -17,7 +17,7 @@ function avisoDeletar(id){
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Escolas') }}</div>
+                <div class="card-header">{{ __('Distribuições') }}</div>
 
                 <div class="card-body">
 
@@ -28,39 +28,33 @@ function avisoDeletar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($escolas) == 0 and count($escolas) == 0)
+                      @if(count($distribuicoes) == 0 and count($distribuicoes) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhuma escola cadastrada no sistema.
+                              Não há nenhuma distribuição cadastrada no sistema.
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Nome</th>
-                                  <th>Modalidade de Ensino</th>
-                                  <th>Rota</th>
-                                  <th>Endereco</th>
+                                  <th>Observação</th>
+                                  <th>Escola</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($escolas as $escola)
+                              @foreach ($distribuicoes as $distribuicao)
                                 <tr>
-                                    <td data-title="Nome">{{ $escola->nome }}</td>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
-                                    <td data-title="Rota">{{ $escola->rota }}</td>
-                                    <td data-title="Endereco">Rua: {{ $escola->endereco->rua }}<br>
-                                                              Bairro: {{ $escola->endereco->bairro }}<br>
-                                                              CEP: {{ $escola->endereco->cep }}<br>
-                                                              Número: {{ $escola->endereco->numero }}<br>
+                                    <td data-title="Observação">{{ $distribuicao->observacao }}</td>
+                                    <td data-title="Modalidade de Ensino">{{ $distribuicao->escola_id }}</td>
+
                                     </td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
+                                      <a class="btn btn-primary" href="/distribuicao/editar/{{$distribuicao->id}}">Editar</a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});"> Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});"> Excluir</a>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -74,7 +68,7 @@ function avisoDeletar(id){
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
-                      <a class="btn btn-primary" href="{{ route("/escola/cadastrar") }}">Nova</a>
+                      <a class="btn btn-primary" href="{{ route("/distribuicao/telaCadastrar") }}">Nova</a>
                   </div>
                 </div>
             </div>
