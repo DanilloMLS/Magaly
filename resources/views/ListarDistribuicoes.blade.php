@@ -46,7 +46,8 @@ function avisoDeletar(id){
                               @foreach ($distribuicoes as $distribuicao)
                                 <tr>
                                     <td data-title="Observação">{{ $distribuicao->observacao }}</td>
-                                    <td data-title="Modalidade de Ensino">{{ $distribuicao->escola_id }}</td>
+                                    <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
+                                    <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
 
                                     </td>
 

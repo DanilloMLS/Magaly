@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDistribuicaosTable extends Migration
+class CreateContratosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDistribuicaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('distribuicaos', function (Blueprint $table) {
+        Schema::create('contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('observacao')->nullable();
-            $table->integer('escola_id')->unsigned();
-            $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
+            $table->decimal('valor_total');
+            $table->decimal('valor_restante')->default(0.0);
+            $table->integer('fornecedor_id')->unsigned();
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateDistribuicaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distribuicaos');
+        Schema::dropIfExists('contratos');
     }
 }

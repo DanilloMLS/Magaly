@@ -48,3 +48,10 @@ Route::get('/distribuicao/listar', 'DistribuicaoController@listar')->name('/dist
 Route::get('/distribuicao/editar/{id}', 'DistribuicaoController@editar')->name('/distribuicao/editar')->middleware('auth');
 Route::post('/distribuicao/salvar', 'DistribuicaoController@salvar')->name('/distribuicao/salvar')->middleware('auth');
 Route::get('/distribuicao/remover/{id}', 'DistribuicaoController@remover')->name('/distribuicao/remover')->middleware('auth');
+//Contrato
+Route::get('/contrato/telaCadastrar', 'ContratoController@telaCadastrar')->name('/contrato/telaCadastrar')->middleware('auth');
+Route::get('/contrato/cadastrar', function(Request $request) {
+    return view('CadastrarDistribuicao');
+})->name('/contrato/cadastrar')->middleware('auth');
+Route::post('/contrato/cadastrar', 'ContratoController@cadastrar')->name('/contrato/cadastrar')->middleware('auth');
+Route::get('/contrato/listar', 'ContratoController@listar')->name('/contrato/listar')->middleware('auth');
