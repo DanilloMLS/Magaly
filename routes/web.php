@@ -29,6 +29,7 @@ Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('/forneced
 Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('/fornecedor/editar')->middleware('auth');
 Route::post('/fornecedor/salvar', 'FornecedorController@salvar')->name('/fornecedor/salvar')->middleware('auth');
 Route::get('/fornecedor/remover/{id}', 'FornecedorController@remover')->name('/fornecedor/remover')->middleware('auth');
+
 //Escola
 Route::get('/escola/cadastrar', function(Request $request) {
     return view('CadastrarEscola');
@@ -48,6 +49,7 @@ Route::get('/distribuicao/listar', 'DistribuicaoController@listar')->name('/dist
 Route::get('/distribuicao/editar/{id}', 'DistribuicaoController@editar')->name('/distribuicao/editar')->middleware('auth');
 Route::post('/distribuicao/salvar', 'DistribuicaoController@salvar')->name('/distribuicao/salvar')->middleware('auth');
 Route::get('/distribuicao/remover/{id}', 'DistribuicaoController@remover')->name('/distribuicao/remover')->middleware('auth');
+
 //Contrato
 Route::get('/contrato/telaCadastrar', 'ContratoController@telaCadastrar')->name('/contrato/telaCadastrar')->middleware('auth');
 Route::get('/contrato/cadastrar', function(Request $request) {
@@ -55,3 +57,14 @@ Route::get('/contrato/cadastrar', function(Request $request) {
 })->name('/contrato/cadastrar')->middleware('auth');
 Route::post('/contrato/cadastrar', 'ContratoController@cadastrar')->name('/contrato/cadastrar')->middleware('auth');
 Route::get('/contrato/listar', 'ContratoController@listar')->name('/contrato/listar')->middleware('auth');
+
+//Item
+Route::get('/item/telaCadastrar', 'ItemController@telaCadastrar')->name('/item/telaCadastrar')->middleware('auth');
+Route::get('/item/cadastrar', function(Request $request) {
+    return view('CadastrarItem');
+})->name('/item/cadastrar')->middleware('auth');
+Route::post('/item/cadastrar', 'ItemController@cadastrar')->name('/item/cadastrar')->middleware('auth');
+Route::get('/item/listar', 'ItemController@listar')->name('/item/listar')->middleware('auth');
+Route::get('/item/editar/{id}', 'ItemController@editar')->name('/item/editar')->middleware('auth');
+Route::post('/item/salvar', 'ItemController@salvar')->name('/item/salvar')->middleware('auth');
+Route::get('/item/remover/{id}', 'ItemController@remover')->name('/item/remover')->middleware('auth');
