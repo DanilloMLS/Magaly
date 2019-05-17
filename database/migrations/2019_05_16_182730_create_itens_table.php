@@ -22,7 +22,7 @@ class CreateItensTable extends Migration
             $table->string('descricao');
             $table->string('unidade');
             $table->integer('contrato_id')->unsigned();
-            $table->foreign('contrato_id')->references('id')->on('contratos');
+            $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateItensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itens');
+        Schema::dropIfExists('items');
     }
 }
