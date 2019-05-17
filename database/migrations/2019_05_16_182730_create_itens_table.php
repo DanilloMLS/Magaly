@@ -16,7 +16,6 @@ class CreateItensTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('valor_unitario');
-            //$table->date(dd/mm/aaaa)('data_validade');
             $table->string('data_validade');
             $table->string('n_lote');
             $table->string('descricao');

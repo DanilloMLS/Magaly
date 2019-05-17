@@ -23,6 +23,9 @@ class ItemController extends Controller
         $item->unidade = $request->unidade;
         $item->contrato_id = $request->contrato_id;
         $item->save();
+
+        session()->flash('success', 'Item cadastrado com sucesso.');
+        return redirect()->route('/item/listar');
     }
 
     public function listar() {
