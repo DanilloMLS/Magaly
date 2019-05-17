@@ -28,8 +28,8 @@
                             <label for="id_escola" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
                             @if(count($escolas) != 0 and count($escolas) != 0)
                             <div class="col-md-6">
-                              <select class="form-control" id="escolas" name="escola_id" required="required">
-      								              <option value="0">Selecione uma Escola</option>
+                              <select class="form-control" id="escolas" name="escola_id" required>
+      								              <option value="">Selecione uma Escola</option>
       								              @foreach($escolas as $escola)
       									            <option value="{{$escola->id}}">{{$escola->nome}}</option>
       								              @endforeach
@@ -37,8 +37,8 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="escolas" name="escola_id" >
-      								              <option value="0">Não há escolas cadastradas</option>
+                              <select class="form-control" id="escolas" name="escola_id" required>
+      								              <option value="">Não há escolas cadastradas</option>
                               </select>
                             </div>
                             @endif

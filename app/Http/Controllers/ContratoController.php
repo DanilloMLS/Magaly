@@ -22,7 +22,7 @@ class ContratoController extends Controller
 
 
     session()->flash('success', 'Contrato cadastrado com sucesso.');
-    return redirect()->route('/fornecedor/listar');
+    return redirect()->route('/contrato/listar');
   }
 
   public function listar(){
