@@ -18,18 +18,18 @@
                             <label for="valor_total" class="col-md-4 col-form-label text-md-right">{{ __('Valor Total ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="valor_total" id="valor_total" type="text" class="form-control" required value= {{ old('valor_total')}}> {{ $errors->first('valor_total')}}
+                              <input name="valor_total" id="valor_total" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor_total')}}> {{ $errors->first('valor_total')}}
 
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="fornecedor_id" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
+                            <label for="fornecedor_id" class="col-md-4 col-form-label text-md-right">{{ __('Fornecedor') }}</label>
                             @if(count($fornecedores) != 0 and count($fornecedores) != 0)
                             <div class="col-md-6">
-                              <select class="form-control" id="fornecedores" name="fornecedor_id" required="required">
-      								              <option value="0">Selecione um Fornecedor</option>
+                              <select class="form-control" id="fornecedores" name="fornecedor_id" required>
+      								              <option value="">Selecione um Fornecedor</option>
       								              @foreach($fornecedores as $fornecedor)
       									            <option value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
       								              @endforeach
@@ -37,8 +37,8 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="fornecedores" name="fornecedor_id" >
-      								              <option value="0">Não há fornecedores cadastradas</option>
+                              <select class="form-control" id="fornecedores" name="fornecedor_id" required>
+      								              <option value="">Não há fornecedores cadastrados</option>
                               </select>
                             </div>
                             @endif
