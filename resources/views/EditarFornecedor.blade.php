@@ -33,28 +33,6 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group row">
-                            <label for="n_contrato" class="col-md-4 col-form-label text-md-right">{{ __('Nº Contrato') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="n_contrato" id="n_contrato" type="text" class="form-control" value="{{ $fornecedor->n_contrato}}" required value= {{ old('n_contrato')}}> {{ $errors->first('n_contrato')}}
-
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="n_processo_licitatorio" class="col-md-4 col-form-label text-md-right">{{ __('Nº Processo Licitatório') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" class="form-control" value="{{ $fornecedor->n_processo_licitatorio}}"> {{ $errors->first('n_processo_licitatorio')}}
-
-
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

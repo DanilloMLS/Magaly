@@ -39,8 +39,6 @@ function avisoDeletar(id){
                               <tr>
                                   <th>Nome</th>
                                   <th>CNPJ</th>
-                                  <th>Nº contrato</th>
-                                  <th>Nº Processo Licitatório</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -49,9 +47,7 @@ function avisoDeletar(id){
                                 <tr>
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
                                     <td data-title="Descrição">{{ $fornecedor->cnpj }}</td>
-                                    <td data-title="Ano">{{ $fornecedor->n_contrato }}</td>
-                                    <td data-title="Carga Horária">{{ $fornecedor->n_processo_licitatorio }}</td>
-
+                                    
                                     <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
                                     </td>
