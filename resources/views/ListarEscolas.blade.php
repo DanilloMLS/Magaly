@@ -41,6 +41,8 @@ function avisoDeletar(id){
                                   <th>Modalidade de Ensino</th>
                                   <th>Rota</th>
                                   <th>Endereco</th>
+                                  <th>Período de Atendimento</th>
+                                  <th>Quantidade de Alunos</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -55,6 +57,8 @@ function avisoDeletar(id){
                                                               CEP: {{ $escola->endereco->cep }}<br>
                                                               Número: {{ $escola->endereco->numero }}<br>
                                     </td>
+                                    <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
+                                    <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
