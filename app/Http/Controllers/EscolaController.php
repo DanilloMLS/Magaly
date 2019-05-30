@@ -11,6 +11,8 @@ class EscolaController extends Controller
     $escola->nome = $request->nome;
     $escola->modalidade_ensino = $request->modalidade_ensino;
     $escola->rota = $request->rota;
+    $escola->periodo_atendimento = $request->periodo_atendimento;
+    $escola->qtde_alunos = $request->qtde_alunos;
     $escola->save();
 
     $endereco = new \App\Endereco();
@@ -50,6 +52,8 @@ class EscolaController extends Controller
       $escola->nome = $request->nome;
       $escola->modalidade_ensino = $request->modalidade_ensino;
       $escola->rota = $request->rota;
+      $escola->periodo_atendimento = $request->periodo_atendimento;
+      $escola->qtde_alunos = $request->qtde_alunos;
       $escola->save();
       //disciplina
       $endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
