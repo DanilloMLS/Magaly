@@ -17,8 +17,6 @@ class CreateFornecedorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('cnpj')->unique();
-            $table->string('n_contrato');
-            $table->string('n_processo_licitatorio');
             $table->timestamps();
         });
     }
