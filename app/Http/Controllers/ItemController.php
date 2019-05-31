@@ -16,12 +16,12 @@ class ItemController extends Controller
 
     public function cadastrar(Request $request) {
         $item = new \App\Item();
-        $item->valor_unitario = $request->valor_unitario;
+        $item->nome = $request->nome;
         $item->data_validade = $request->data_validade;
         $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
-        $item->contrato_id = $request->contrato_id;
+        $item->gramatura = $request->gramatura;
         $item->save();
 
         session()->flash('success', 'Item cadastrado com sucesso.');
@@ -42,21 +42,19 @@ class ItemController extends Controller
 
     public function editar(Request $request) {
         $item = \App\Item::find($request->id);
-        $contratos = \App\Contrato::all();
         return view("EditarItem", [
             "item" => $item,
-            "contratos" => $contratos,
         ]);
     }
 
     public function salvar(Request $request) {
         $item = \App\Item::find($request->id);
-        $item->valor_unitario = $request->valor_unitario;
+        $item->nome = $request->nome;
         $item->data_validade = $request->data_validade;
         $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
-        $item->contrato_id = $request->contrato_id;
+        $item->gramatura = $request->gramatura;
         $item->save();
 
         session()->flash('success', 'Item modificado com sucesso.');

@@ -57,6 +57,7 @@ Route::get('/contrato/cadastrar', function(Request $request) {
 })->name('/contrato/cadastrar')->middleware('auth');
 Route::post('/contrato/cadastrar', 'ContratoController@cadastrar')->name('/contrato/cadastrar')->middleware('auth');
 Route::get('/contrato/listar', 'ContratoController@listar')->name('/contrato/listar')->middleware('auth');
+Route::post('/contrato/inserirItem', 'ContratoController@inserirItemContrato')->name('/contrato/inserirItem')->middleware('auth');
 
 //Item
 Route::get('/item/telaCadastrar', 'ItemController@telaCadastrar')->name('/item/telaCadastrar')->middleware('auth');
