@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,82 +35,62 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <!-- USer ADM -->
-
-                      @if (Auth::guard()->check() && Auth::user()->is_adm)
-                      <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              Fornecedores <span class="caret"></span>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{route('/fornecedor/cadastrar')}}">
-                                  Cadastrar Fornecedor
-                              </a>
-                              <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
-                                  Listar Fornecedores
-                              </a>
-                          </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Contratos <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('/contrato/telaCadastrar')}}">
-                                  Novo Contrato
-                                </a>
-                                <a class="dropdown-item" href="{{route('/contrato/listar')}}">
-                                    Listar Contratos
-                                </a>
-                            </div>
-                          </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Escolas <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
-                                    Cadastrar Escola
-                                </a>
-                                <a class="dropdown-item" href="{{route('/escola/listar')}}">
-                                    Listar Escolas
-                                </a>
-                            </div>
-                          </li>
-
-                          <li class="nav-item dropdown">
-                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  Distribuições <span class="caret"></span>
-                              </a>
-
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
-                                      Nova Distribuição
-                                  </a>
-                                  <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
-                                      Listar Distribuições
-                                  </a>
-                              </div>
-                            </li>
-
-                          <li class="nav-item dropdown">
-                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  Itens <span class="caret"></span>
-                              </a>
-
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
-                                      Novo Item
-                                  </a>
-                                  <a class="dropdown-item" href="{{route('/item/listar')}}">
-                                      Listar Itens
-                                  </a>
-                              </div>
-                            </li>
+                        @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                <div class="dropdown">
+                                    <button class="dropbtn">Fornecedor</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/fornecedor/cadastrar')}}">
+                                            Novo Fornecedor
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
+                                            Listar Fornecedores
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Contrato</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/contrato/telaCadastrar')}}">
+                                            Novo Contrato
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/contrato/listar')}}">
+                                            Listar Contratos
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Escola</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
+                                            Nova Escola
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/escola/listar')}}">
+                                            Listar Escolas
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Distribuição</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
+                                            Nova Distribuição
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
+                                            Listar Distribuições
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Item</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
+                                            Novo Item
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/item/listar')}}">
+                                            Listar Itens
+                                        </a>
+                                    </div>
+                                </div>
                       @endif
 
                     </ul>
