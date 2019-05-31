@@ -15,8 +15,11 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('data');
             $table->decimal('valor_total');
-            $table->decimal('valor_restante')->default(0.0);
+            $table->string('n_contrato');
+            $table->string('n_processo_licitatorio');
+            $table->string('descricao');
             $table->integer('fornecedor_id')->unsigned();
             $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
             $table->timestamps();
