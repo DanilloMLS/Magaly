@@ -4,8 +4,8 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir esta escola? ')) {
-    location.href="/escola/remover/"+id;
+  if(confirm (' Deseja realmente excluir este estoque? ')) {
+    location.href="/estoque/remover/"+id;
   }
   else {
     return false;
@@ -17,7 +17,7 @@ function avisoDeletar(id){
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Escolas') }}</div>
+                <div class="card-header">{{ __('Estoques') }}</div>
 
                 <div class="card-body">
 
@@ -28,9 +28,9 @@ function avisoDeletar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($escolas) == 0 and count($escolas) == 0)
+                      @if(count($estoques) == 0 and count($estoques) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhuma escola cadastrada no sistema.
+                              Não há nenhum estoque cadastrado no sistema.
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
@@ -38,29 +38,19 @@ function avisoDeletar(id){
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th>Modalidade de Ensino</th>
-                                  <th>Rota</th>
-                                  <th>Endereço</th>
-                                  <th>Período de Atendimento</th>
-                                  <th>Quantidade de Alunos</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($escolas as $escola)
+                              @foreach ($estoques as $estoque)
                                 <tr>
-                                    <td data-title="Nome">{{ $escola->nome }}</td>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
-                                    <td data-title="Rota">{{ $escola->rota }}</td>
-                                    <td data-title="Endereco">{{ $escola->endereco }}</td>
-                                    <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
-                                    <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
-
+                                    <td data-title="Nome">{{ $estoque->nome }}</td>
+                                    
                                     <td>
-                                      <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
+                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Editar</a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});"> Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});"> Excluir</a>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -74,7 +64,7 @@ function avisoDeletar(id){
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
-                      <a class="btn btn-primary" href="{{ route("/escola/cadastrar") }}">Nova</a>
+                      <a class="btn btn-primary" href="{{ route("/estoque/cadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>

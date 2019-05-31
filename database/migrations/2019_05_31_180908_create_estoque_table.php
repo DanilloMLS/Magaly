@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscolasTable extends Migration
+class CreateEstoqueTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateEscolasTable extends Migration
      */
     public function up()
     {
-        Schema::create('escolas', function (Blueprint $table) {
+        Schema::create('estoques', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('modalidade_ensino');
-            $table->string('rota');
-            $table->string('periodo_atendimento');
-            $table->integer('qtde_alunos');
-            $table->string('endereco');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateEscolasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escolas');
+        Schema::dropIfExists('estoques');
     }
 }

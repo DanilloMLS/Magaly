@@ -13,15 +13,16 @@ class EscolaController extends Controller
     $escola->rota = $request->rota;
     $escola->periodo_atendimento = $request->periodo_atendimento;
     $escola->qtde_alunos = $request->qtde_alunos;
+    $escola->endereco = $request->endereco;
     $escola->save();
 
-    $endereco = new \App\Endereco();
+    /*$endereco = new \App\Endereco();
     $endereco->rua = $request->rua;
     $endereco->bairro = $request->bairro;
     $endereco->cep = $request->cep;
-    $endereco->numero = $request->numero;
+    $endereco->numero = $request->numero;*/
 
-    $escola->endereco()->save($endereco);
+    // $escola->endereco()->save($endereco);
 
     session()->flash('success', 'Escola cadastrada com sucesso.');
     return redirect()->route('/escola/listar');
@@ -54,14 +55,15 @@ class EscolaController extends Controller
       $escola->rota = $request->rota;
       $escola->periodo_atendimento = $request->periodo_atendimento;
       $escola->qtde_alunos = $request->qtde_alunos;
+      $escola->endereco = $request->endereco;
       $escola->save();
       //disciplina
-      $endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
+      /*$endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
       $endereco->rua = $request->rua;
       $endereco->bairro = $request->bairro;
       $endereco->cep = $request->cep;
       $endereco->numero = $request->numero;
-      $endereco->save();
+      $endereco->save();*/
       session()->flash('success', 'Escola modificada com sucesso.');
       return redirect()->route('/escola/listar');
       }

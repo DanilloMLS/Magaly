@@ -91,6 +91,17 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Estoque</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/estoque/cadastrar')}}">
+                                            Novo Estoque
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/estoque/listar')}}">
+                                            Listar Estoque
+                                        </a>
+                                    </div>
+                                </div>
                       @endif
 
                     </ul>

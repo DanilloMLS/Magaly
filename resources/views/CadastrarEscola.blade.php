@@ -31,34 +31,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="bairro" class="col-md-4 col-form-label text-md-right">{{ __('Bairro') }}</label>
+                            <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <input name="bairro" id="bairro" type="text" class="form-control" required value= {{ old('bairro')}}> {{ $errors->first('bairro')}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="rua" class="col-md-4 col-form-label text-md-right">{{ __('Rua') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="rua" id="rua" type="text" class="form-control" required value= {{ old('rua')}}> {{ $errors->first('rua')}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="numero" class="col-md-4 col-form-label text-md-right">{{ __('Número') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="numero" id="numero" type="text" class="form-control" required value= {{ old('numero')}}> {{ $errors->first('numero')}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="cep" class="col-md-4 col-form-label text-md-right">{{ __('CEP') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="cep" id="cep" type="text" class="form-control" required value= {{ old('cep')}}> {{ $errors->first('cep')}}
+                              <input name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}
                             </div>
                         </div>
 
