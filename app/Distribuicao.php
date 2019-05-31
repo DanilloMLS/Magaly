@@ -13,4 +13,8 @@ class Distribuicao extends Model
   public function escola(){
     return $this->belongsTo(\App\Escola::class);
   }
+
+  public function itens(){
+    return $this->hasMany(\App\Item::class);
+  }
 }

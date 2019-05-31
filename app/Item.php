@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
   protected $fillable = [
-    'valor_unitario', 'data_validade','n_lote','descricao','unidade'
+    'data_validade','n_lote','descricao','unidade','gramatura'
    ];
 
-  public function Contrato(){
-    return $this->belongsTo(\App\Contrato::class);
+
+  public function escolas(){
+    return $this->belongsToMany(\App\Escola::class);
+  }
+
+  public function distribuicoes(){
+    return $this->belongsToMany(\App\Distribuicao::class);
   }
 }

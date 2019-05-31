@@ -9,4 +9,8 @@ class Fornecedor extends Model
   protected $fillable = [
       'nome', 'cnpj'
   ];
+
+  public function contratos(){
+    return $this->hasMany(\App\Contrato::class);
+  }
 }
