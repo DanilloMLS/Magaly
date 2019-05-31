@@ -1,80 +1,66 @@
-.nav-menu{
-    background: transparent;
-    border: transparent;
-    border-radius: 5px;
+.dropbtn {
+    background-color: #f3f3f3;
+    color: #3f3f3f;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
 }
 
-.nav-menu:hover{
-    color: #fff;
-}
-
-.nav-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    width: 150px;
-    border-radius: 5px;
-}
-
-.nav-menu  ul li {
+.dropdown {
     position: relative;
-    background: #d3d3d3;
-    border-radius: 5px;
-    margin-bottom: 1px;
-    margin-right: 2px;
+    display: inline-block;
 }
 
-.nav-menu ul li:hover{
-    font-weight: bold;
-    background: rgb(187,187,187);
-    color: #3f3f3f;
-    width: 165px;
-}
-
-.nav-menu ul li:hover ul{
-    left: 164px;
-}
-
-.nav-menu  li ul {
-    position: absolute;
-    left: 149px;
-    top: 0;
+.dropdown-content {
     display: none;
+    position: absolute;
+    min-width: 200px;
+    z-index: 1;
+    background:transparent;
 }
 
-.nav-menu  ul li a {
+.dropdown-content a {
+    color: #3f3f3f;
+    text-decoration: none;
     display: block;
-    text-decoration: #3f3f3f;
-    border: 1px #3f3f3f;
-    color: #3f3f3f;
-    padding: 5px;
+    border-radius: 20px;
+    background:gray;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(63,63,63,.2);
+    background-color: rgba(220,220,220,1);
+    margin-bottom: 2px;
 }
 
-/* Fix IE. Hide from IE Mac \*/
-* html ul li { float: left; }
-* html ul li a { height: 1%; }
-/* End */
+.dropdown-content a:hover {
+    background-color: rgba(250,250,250,1);
+    color: #3f3f3f;
+    border-radius: 15px;
+    font: 16px bold;
+}
 
-.nav-menu li:hover ul {
+
+.dropdown-content:hover a:hover {
+    background-color: rgba(240,240,240,1);
+    color: #3f3f3f;
+    border-radius: 15px;
+    font: 16px bold;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(63,63,63,.2);
+    margin-bottom: 2px;
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-    color: #3f3f3f;
-    border-radius: 5px;
+    border-radius: 15px;
 }
-
-.nav-menu li:hover ul li:hover{
-    background: #3f3f3f;
-    font-size: 16px;
-    width: 180px;
-}
-
-.nav-menu li:hover ul li:hover a{
-    color: rgba(63,63,63,1);
-    font-size: 16px;
-}
-
-.nav-menu ul li a:hover{
-    font-weight: bold;
-    background: rgba(187,187,187,.8);
-    color: #3f3f3f;
-    border-radius: 5px;
+.dropdown:hover .dropbtn {
+    font: 16px bolder;
+    border-radius: 10px;
+    background-color: rgba(250,250,250,1);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(63,63,63,.2);
+    margin-bottom: 5px;
 }
