@@ -15,7 +15,7 @@ class CreateEstoqueItemsTable extends Migration
     {
         Schema::create('estoque_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('quantidade_danificado')->unsigned()->default(0.0);
+            $table->integer('quantidade_danificados')->unsigned()->default(0.0);
             $table->integer('quantidade')->unsigned()->default(0.0);
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
