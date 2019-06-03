@@ -27,16 +27,22 @@
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>Nº Contrato</th>
+                                  <th>Nº Processo</th>
+                                  <th>Descrição</th>
+                                  <th>Data</th>
                                   <th>Valor Total</th>
-                                  <th>Valor Restante</th>
                                   <th>Fornecedor</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($contratos as $contrato)
                                 <tr>
-                                    <td data-title="Valor Total">{{ $contrato->valor_total }}</td>
-                                    <td data-title="Valor Restante">{{ $contrato->valor_restante }}</td>
+                                    <td data-title="N_contrato">{{ $contrato->n_contrato }}</td>
+                                    <td data-title="N_processo">{{ $contrato->n_processo_licitatorio }}</td>
+                                    <td data-title="Descricao">{{ $contrato->descricao }}</td>
+                                    <td data-title="Data">{{ $contrato->data }}</td>
+                                    <td data-title="valor_total">{{ $contrato->valor_total }}</td>
                                     <?php $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id)?>
                                     <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
 

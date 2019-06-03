@@ -15,14 +15,44 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data ') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="data" id="data" type="date" class="form-control" required value= {{ old('data')}}> {{ $errors->first('data')}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="n_contrato" class="col-md-4 col-form-label text-md-right">{{ __('Nº Contrato ') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="n_contrato" id="n_contrato" type="text" class="form-control" required value= {{ old('n_contrato')}}> {{ $errors->first('n_contrato')}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="n_processo_licitatorio" class="col-md-4 col-form-label text-md-right">{{ __('Nº Processo Licitatório ') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" class="form-control" required value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('n_processo_licitatorio')}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
+
+                            <div class="col-md-6">
+                              <textarea name="descricao" id="descricao" type="date" class="form-control" required value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row">
                             <label for="valor_total" class="col-md-4 col-form-label text-md-right">{{ __('Valor Total ') }}</label>
 
                             <div class="col-md-6">
                               <input name="valor_total" id="valor_total" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor_total')}}> {{ $errors->first('valor_total')}}
-
-
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label for="fornecedor_id" class="col-md-4 col-form-label text-md-right">{{ __('Fornecedor') }}</label>
@@ -43,6 +73,8 @@
                             </div>
                             @endif
                          </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

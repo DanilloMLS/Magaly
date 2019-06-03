@@ -22,8 +22,10 @@ class DistribuicaoController extends Controller
     $distribuicao->save();
 
 
-    session()->flash('success', 'Distribuicao cadastrada com sucesso.');
-    return redirect()->route('/distribuicao/listar');
+    $itens = \App\Item::all();
+
+    session()->flash('success', 'Distribuição cadastrada com sucesso. Insira seus itens.');
+    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }
 
   public function listar(){
@@ -56,5 +58,41 @@ class DistribuicaoController extends Controller
 
       session()->flash('success', 'Distribuicao modificada com sucesso.');
       return redirect()->route('/distribuicao/listar');
-      }
+  }
+
+  public function inserirItemDistribuicao(Request $request) {
+    $distribuicao_item = new \App\Distribuicao_item();
+    $distribuicao_item->quantidade = $request->quantidade;
+    $distribuicao_item->quantidade_falta = $request->quantidade_falta;
+    $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
+    $distribuicao_item->item_id = $request->item_id;
+    $distribuicao_item->distribuicao_id = $request->distribuicao_id;
+
+    $distribuicao_item->save();
+
+    $itens = \App\Item::all();
+    $distribuicao = \App\Distribuicao::find($request->distribuicao_id);
+    session()->flash('success', 'Item adicionado.');
+    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+  }
+
+  public function removerItemDistribuicao(Request $request) {
+    $distribuicao_item = \App\Distribuicao_item::find($request->id);
+    $itens = \App\Item::all();
+    $distribuicao = \App\Distribuicao::find($distribuicao_item->distribuicao_id);
+
+    $distribuicao_item->delete();
+
+    session()->flash('success', 'Item adicionado.');
+    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+  }
+
+  public function finalizarDistribuicao(Request $request) {
+
+    $distribuicoes = \App\Distribuicao::all();
+
+    session()->flash('success', 'Distribuicao cadastrada.');
+    return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
+  }
+
 }

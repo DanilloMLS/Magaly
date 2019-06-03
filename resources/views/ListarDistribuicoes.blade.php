@@ -51,9 +51,7 @@ function avisoDeletar(id){
 
                                     </td>
 
-                                    <td>
-                                      <a class="btn btn-primary" href="/distribuicao/editar/{{$distribuicao->id}}">Editar</a>
-                                    </td>
+                                    
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});"> Excluir</a>
                                     </td>
