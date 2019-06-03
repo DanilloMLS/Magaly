@@ -16,7 +16,7 @@ class CreateContratosTable extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('data');
-            $table->decimal('valor_total');
+            $table->decimal('valor_total')->nullable();
             $table->string('n_contrato');
             $table->string('n_processo_licitatorio');
             $table->string('descricao')->nullable();

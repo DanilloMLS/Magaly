@@ -23,61 +23,75 @@
                               Você ainda não cadastrou nenhum item.
                       </div>
                       @else
-                        <div id="tabela" class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>Nome</th>
-                                <th>Data de validade</th>
-                                <th>Nº lote</th>
-                                <th>Descrição</th>
-                                <th>Gramatura</th>
-                                <th>Valor</th>
-                                <th>Quantidade</th>
-
-                                  <th colspan="2">Ações</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                              <div class="form-group row">
+                                <div class="col-md-3">
+                                  <center>Nome</center>
+                                </div>
+                                <div class="col-md-2">
+                                  Gramatura
+                                </div>
+                                <div class="col-md-2">
+                                  <center>N° lote</center>
+                                </div>
+                                <div class="col-md-2">
+                                  <center>Valor</center>
+                                </div>
+                                <div class="col-md-2">
+                                  <center>Quantidade</center>
+                                </div>
+                              </div>
                               @foreach ($itens as $item)
-                                <tr>
-                                    <td data-title="Nome">{{ $item->nome }}</td>
-                                    <td data-title="Data de Validade">{{ $item->data_validade }}</td>
-                                    <td data-title="N lote">{{ $item->n_lote }}</td>
-                                    <td data-title="Descricao">{{ $item->descricao }}</td>
-                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
-                                    <td data-title="Valor">
-                                      <form method="POST" action="/lista/inserirAtividade">
-                                        {{ csrf_field() }}
-                                          @csrf
-                                      <input type="hidden" name="contrato_id" value="{{ $contrato->id}}" />
-                                      <input name="valor" id="valor" type="number"  class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
-                                    </td>
-                                    <td data-title="Quantidade">
-                                      <input name="valor" id="quantidade" type="text"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
-                                    </td>
+                              <form method="POST" action="/contrato/inserirItem">
+                                {{ csrf_field() }}
+                                  @csrf
+                              <input type="hidden" name="contrato_id" value="{{ $contrato->id}}" />
+                              <input type="hidden" name="item_id" value="{{ $item->id}}" />
+
+                              <div class="form-group row">
+
+                                  <div class="col-md-3">
+                                    {{ $item->nome }}
+                                  </div>
+                                  <div class="col-md-2">
+                                    {{ $item->gramatura }}
+                                  </div>
+                                  <div class="col-md-2">
+                                    {{ $item->n_lote }}
+                                  </div>
+
+                                  <div class="col-md-2">
+                                    <input name="valor" id="valor" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
+                                  </div>
+                                  <div class="col-md-2">
+                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                                  </div>
+                                  <div class="col-md-1">
+                                    <?php
+                                        $contrato_item = \App\Contrato_item::where('contrato_id', '=', $contrato->id)
+                                                                                ->where('item_id', '=', $item->id)
+                                                                                ->first();
+                                        if(empty($contrato_item)){ ?>
+                                          <button class="btn btn-success" type="submit">+</button>
+                                      <?php } else { ?>
+                                        <a class="btn btn-danger" href="/contrato/removerItem/{{$contrato_item->id}}">
+                                        -
+                                        </a>
+                                    <?php } ?>
+
+                                  </div>
+                              </div>
+
+                            </form>
 
 
-                                    <td>
-
-                                    <button class="btn btn-primary" type="submit">+</button>
-
-                                    </form>
-
-                                    </td>
-
-                                </tr>
                               @endforeach
 
-                            </tbody>
-                          </table>
                         </div>
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
+                      <center><a class="btn btn-primary" href="/contrato/finalizarContrato/{{$contrato->id}}">Concluir</a></center>
                   </div>
-                </div>
             </div>
         </div>
     </div>

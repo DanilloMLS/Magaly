@@ -46,13 +46,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="valor_total" class="col-md-4 col-form-label text-md-right">{{ __('Valor Total ') }}</label>
 
                             <div class="col-md-6">
                               <input name="valor_total" id="valor_total" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor_total')}}> {{ $errors->first('valor_total')}}
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label for="fornecedor_id" class="col-md-4 col-form-label text-md-right">{{ __('Fornecedor') }}</label>
@@ -74,7 +74,7 @@
                             @endif
                          </div>
 
-                         
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
