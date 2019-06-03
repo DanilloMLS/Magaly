@@ -4,6 +4,7 @@ html, body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
+    background: url("../img/BACKGROUND-PNG1.png");
 }
 .full-height {
     height: 100vh;
@@ -25,24 +26,48 @@ html, body {
     top: 18px;
 }
 
+.top-left {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+
+.logo-garanhuns {
+    width: 15%;
+}
+
 .content {
     text-align: center;
 }
 
 .title {
     font-size: 84px;
+    color: #00aabb;
+    text-shadow: 3px 3px #3f3f3f;
 }
 
 .links > a {
-    color: #636b6f;
+    font: 16px bold;
+    color: rgba(65,65,65,.5);
     padding: 0 25px;
-    font-size: 13px;
     font-weight: 600;
-    letter-spacing: .1rem;
     text-decoration: none;
-    text-transform: uppercase;
+    text-shadow: 1px 1px rgba(65,65,65,.5);
+    background: rgba(255,255,255,.7);
+    border-style: solid;
+    border-color: rgba(63,63,63,.15);
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+.links > a:hover{
+    background: rgba(200,200,200,.7);
 }
 
 .m-b-md {
     margin-bottom: 30px;
+}
+
+.logo {
+    background-image: url("../img/BACKGROUND-PNG1.png");
 }
