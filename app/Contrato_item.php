@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contrato_item extends Model
 {
   protected $fillable = [
-    'quantidade', 'valor_unitario',
+    'item_id', 'contrato_id', 'quantidade', 'valor_unitario',
    ];
 
   public function item(){
