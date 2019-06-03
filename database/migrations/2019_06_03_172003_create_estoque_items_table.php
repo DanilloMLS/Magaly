@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstoqueItem extends Migration
+class CreateEstoqueItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class CreateEstoqueItem extends Migration
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->integer('estoque_id')->unsigned();
-            $table->integer('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+            $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->timestamps();
         });
     }
