@@ -47,10 +47,13 @@ function avisoDeletar(id){
                                     <td data-title="Nome">{{ $estoque->nome }}</td>
                                     
                                     <td>
-                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Editar</a>
+                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Renomear</a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});"> Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Itens</a>
                                     </td>
                                     <td></td>
                                 </tr>
