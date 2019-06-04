@@ -20,6 +20,7 @@ class CreateEscolasTable extends Migration
             $table->string('rota');
             $table->string('periodo_atendimento');
             $table->integer('qtde_alunos');
+            $table->string('endereco');
             $table->timestamps();
         });
     }

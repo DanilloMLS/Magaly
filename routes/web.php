@@ -74,3 +74,16 @@ Route::get('/item/listar', 'ItemController@listar')->name('/item/listar')->middl
 Route::get('/item/editar/{id}', 'ItemController@editar')->name('/item/editar')->middleware('auth');
 Route::post('/item/salvar', 'ItemController@salvar')->name('/item/salvar')->middleware('auth');
 Route::get('/item/remover/{id}', 'ItemController@remover')->name('/item/remover')->middleware('auth');
+
+//Estoque
+Route::get('/estoque/cadastrar', function(Request $request) {
+    return view('CadastrarEstoque');
+})->name('/estoque/cadastrar')->middleware('auth');
+Route::post('/estoque/cadastrar', 'EstoqueController@cadastrar')->name('/estoque/cadastrar')->middleware('auth');
+Route::get('/estoque/listar', 'EstoqueController@listar')->name('/estoque/listar')->middleware('auth');
+Route::get('/estoque/editar/{id}', 'EstoqueController@editar')->name('/estoque/editar')->middleware('auth');
+Route::post('/estoque/salvar', 'EstoqueController@salvar')->name('/estoque/salvar')->middleware('auth');
+Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque/remover')->middleware('auth');
+Route::post('/estoque/inserirItem', 'EstoqueController@inserirItemEstoque')->name('/estoque/inserirItem')->middleware('auth');
+Route::get('/estoque/removerItem/{id}', 'EstoqueController@removerItemEstoque')->name('/estoque/removerItem')->middleware('auth');
+Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('auth');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDistribuicaoItemsTable extends Migration
+class CreateEstoqueItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateDistribuicaoItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('distribuicao_items', function (Blueprint $table) {
+        Schema::create('estoque_items', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('quantidade_danificados')->unsigned()->default(0.0);
+            $table->integer('quantidade')->unsigned()->default(0.0);
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->integer('distribuicao_id')->unsigned();
-            $table->foreign('distribuicao_id')->references('id')->on('distribuicaos')->onDelete('cascade');
-            $table->integer('quantidade_danificados')->unsigned()->nullable();
-            $table->integer('quantidade_falta')->unsigned()->nullable();
-            $table->integer('quantidade')->unsigned();
+            $table->integer('estoque_id')->unsigned();
+            $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateDistribuicaoItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distribuicao_items');
+        Schema::dropIfExists('estoque_items');
     }
 }

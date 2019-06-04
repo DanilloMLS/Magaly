@@ -15,7 +15,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Valor unitário ') }}</label>
+                            <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
                               <input name="nome" id="nome" type="text" class="form-control" value="{{ $item->nome}}" > {{ $errors->first('nome')}}

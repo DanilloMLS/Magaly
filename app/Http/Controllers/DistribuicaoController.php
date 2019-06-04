@@ -83,8 +83,8 @@ class DistribuicaoController extends Controller
 
     $distribuicao_item->delete();
 
-    session()->flash('success', 'Item adicionado.');
-    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+    session()->flash('success', 'Item removido.');
+    return view("InserirItensEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
 
   public function finalizarDistribuicao(Request $request) {
