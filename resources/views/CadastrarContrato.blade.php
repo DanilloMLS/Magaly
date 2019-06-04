@@ -42,7 +42,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="date" class="form-control" required value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
+                              <textarea name="descricao" id="descricao" type="date" class="form-control" value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
                             </div>
                         </div>
 

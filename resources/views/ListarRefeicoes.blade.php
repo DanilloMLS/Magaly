@@ -2,22 +2,12 @@
 
 @section('content')
 
-<script language= 'javascript'>
-function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir esta distribuição? ')) {
-    location.href="/distribuicao/remover/"+id;
-  }
-  else {
-    return false;
-  }
-}
-</script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Distribuições') }}</div>
+                <div class="card-header">{{ __('Refeições') }}</div>
 
                 <div class="card-body">
 
@@ -28,36 +18,32 @@ function avisoDeletar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($distribuicoes) == 0 and count($distribuicoes) == 0)
+                      @if(count($refeicoes) == 0 and count($refeicoes) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhuma distribuição cadastrada no sistema.
+                              Não há nenhuma refeição cadastrada no sistema.
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Observação</th>
-                                  <th>Escola</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Nome</th>
+                                  <th>Descrição</th>
+                                  <th>Peso líquido</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($distribuicoes as $distribuicao)
+                              @foreach ($refeicoes as $refeicao)
                                 <tr>
-                                    <td data-title="Observação">{{ $distribuicao->observacao }}</td>
-                                    <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
+                                    <td data-title="Nome">{{ $refeicao->nome }}</td>
+                                    <td data-title="Descricao">{{ $refeicao->descricao }}</td>
+                                    <td data-title="Peso_liquido">{{ $refeicao->peso_liquido }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/distribuicao/exibirItensDistribuicao/{{$distribuicao->id}}">Itens</a>
+                                      <a class="btn btn-primary" href="/refeicao/exibirItensRefeicao/{{$refeicao->id}}">Itens</a>
                                     </td>
 
 
-                                    <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});"> Excluir</a>
-                                    </td>
-                                    <td></td>
                                 </tr>
                               @endforeach
 
@@ -69,7 +55,7 @@ function avisoDeletar(id){
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
-                      <a class="btn btn-primary" href="{{ route("/distribuicao/telaCadastrar") }}">Nova</a>
+                      <a class="btn btn-primary" href="{{ route("/refeicao/cadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>

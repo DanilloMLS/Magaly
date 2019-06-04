@@ -98,7 +98,19 @@
                                             Novo Estoque
                                         </a>
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
-                                            Listar Estoque
+                                            Listar Estoques
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">Refeicao</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/refeicao/cadastrar')}}">
+                                            Nova Refeição
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/refeicao/listar')}}">
+                                            Listar Refeições
                                         </a>
                                     </div>
                                 </div>
