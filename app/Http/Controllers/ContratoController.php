@@ -77,4 +77,9 @@ class ContratoController extends Controller
     session()->flash('success', 'Contrato cadastrado.');
     return view("ListarContratos", ["contratos" => $contratos]);
   }
+
+  public function exibirItensContrato(Request $request){
+    $itens = \App\Contrato_item::where('contrato_id', '=', $request->id)->get();
+    return view("VisualizarItensContrato", ["itens" => $itens]);
+  }
 }

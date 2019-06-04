@@ -95,4 +95,9 @@ class DistribuicaoController extends Controller
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
+  public function exibirItensDistribuicao(Request $request){
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $request->id)->get();
+    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+  }
+
 }

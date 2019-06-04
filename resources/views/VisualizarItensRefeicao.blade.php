@@ -2,22 +2,12 @@
 
 @section('content')
 
-<script language= 'javascript'>
-function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir esta distribuição? ')) {
-    location.href="/distribuicao/remover/"+id;
-  }
-  else {
-    return false;
-  }
-}
-</script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Distribuições') }}</div>
+                <div class="card-header">{{ __('Itens desta refeição') }}</div>
 
                 <div class="card-body">
 
@@ -28,35 +18,41 @@ function avisoDeletar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($distribuicoes) == 0 and count($distribuicoes) == 0)
+                      @if(count($itens) == 0 and count($itens) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhuma distribuição cadastrada no sistema.
+                              Não há nenhum item nesta refeição.
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Observação</th>
-                                  <th>Escola</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Nome</th>
+                                  <th>Data de validade</th>
+                                  <th>Nº lote</th>
+                                  <th>Descrição</th>
+                                  <th>Unidade</th>
+                                  <th>Gramatura</th>
+                                  <th>Quantidade</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($distribuicoes as $distribuicao)
+                              @foreach ($itens as $item_refeicao)
                                 <tr>
-                                    <td data-title="Observação">{{ $distribuicao->observacao }}</td>
-                                    <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
+                                    @php
+                                      $item = \App\Item::find($item_refeicao->item_id);
+                                    @endphp
+                                    <td data-title="Valor unitário">{{ $item->nome }}</td>
+                                    <td data-title="Data de validade">{{ $item->data_validade }}</td>
+                                    <td data-title="Nº lote">{{ $item->n_lote }}</td>
+                                    <td data-title="Descrição">{{ $item->descricao }}</td>
+                                    <td data-title="Unidade">{{ $item->unidade }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
+                                    <td data-title="Quantidade">{{ $item_refeicao->quantidade }}</td>
 
-                                    <td>
-                                      <a class="btn btn-primary" href="/distribuicao/exibirItensDistribuicao/{{$distribuicao->id}}">Itens</a>
                                     </td>
 
 
-                                    <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});"> Excluir</a>
-                                    </td>
                                     <td></td>
                                 </tr>
                               @endforeach
@@ -69,7 +65,6 @@ function avisoDeletar(id){
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
-                      <a class="btn btn-primary" href="{{ route("/distribuicao/telaCadastrar") }}">Nova</a>
                   </div>
                 </div>
             </div>
