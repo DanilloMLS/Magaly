@@ -114,6 +114,18 @@
                                         </a>
                                     </div>
                                 </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">Cardápio</button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/cardapio/cadastrar')}}">
+                                            Novo Cardápio
+                                        </a>
+                                        <a class="dropdown-item" href="">
+                                            Ver Cardápios
+                                        </a>
+                                    </div>
+                                </div>
                       @endif
 
                     </ul>
