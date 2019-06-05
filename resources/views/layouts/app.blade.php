@@ -37,7 +37,7 @@
                       <!-- USer ADM -->
                         @if (Auth::guard()->check() && Auth::user()->is_adm)
                                 <div class="dropdown">
-                                    <button class="dropbtn">Fornecedor</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/fornecedor/cadastrar')}}">
                                             Novo Fornecedor
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Contrato</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/contra.png"><div class="titulo-botao">Contrato</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/contrato/telaCadastrar')}}">
                                             Novo Contrato
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Escola</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
                                             Nova Escola
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Distribuição</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
                                             Nova Distribuição
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Item</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
                                             Novo Item
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Estoque</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/estoq.png"><div class="titulo-botao">Estoque</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/estoque/cadastrar')}}">
                                             Novo Estoque
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="dropdown">
-                                    <button class="dropbtn">Refeicao</button>
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/refeic.png"><div class="titulo-botao">Refeição</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/refeicao/cadastrar')}}">
                                             Nova Refeição
@@ -158,5 +158,6 @@
             @yield('content')
         </main>
     </div>
+    <img class=" logo-garanhuns top-left" src="/img/logo.png">
 </body>
 </html>
