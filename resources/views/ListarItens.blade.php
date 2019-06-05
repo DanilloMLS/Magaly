@@ -57,10 +57,10 @@ function avisoDeletar(id){
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
 
                                     </td>
-
-                                    <td>
+                                    <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
+                                    <!-- <td>
                                       <a class="btn btn-primary" href="/item/editar/{{$item->id}}">Editar</a>
-                                    </td>
+                                    </td> -->
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$item->id}});"> Excluir</a>
                                     </td>
