@@ -25,16 +25,24 @@
                         <div class="form-group row">
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
 
-                            <div class="col-md-6">
-                              <input name="modalidade_ensino" id="modalidade_ensino" type="text" class="form-control" required value= {{ old('modalidade_ensino')}}> {{ $errors->first('modalidade_ensino')}}
-                            </div>
+                              <div class="col-md-6">
+                                <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
+        								              <option value="">Selecione uma Modalidade de ensino</option>
+        									            <option value="1">Creche Infantil Integral</option>
+                                      <option value="2">Creche Infantil Parcial</option>
+                                      <option value="3">Infantil (pré-escola)</option>
+                                      <option value="4">Ensino Fundamental</option>
+                                      <option value="5">EJA</option>
+                                      <option value="6">Quilombola</option>
+                                </select>
+                              </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <input name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
                             </div>
                         </div>
 
@@ -61,7 +69,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
 
                             </div>
                         </div>

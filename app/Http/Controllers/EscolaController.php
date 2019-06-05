@@ -9,7 +9,28 @@ class EscolaController extends Controller
   public function cadastrar(Request $request) {
     $escola = new \App\Escola();
     $escola->nome = $request->nome;
-    $escola->modalidade_ensino = $request->modalidade_ensino;
+
+    switch ($request->modalidade_ensino) {
+  		case "1":
+  			$escola->modalidade_ensino = "Creche Infantil Integral";
+   			break;
+  		case "2":
+  			$escola->modalidade_ensino = "Creche Infantil Parcial";
+   			break;
+      case "3":
+    		$escola->modalidade_ensino = "Infantil (Pré-escola)";
+   			break;
+      case "4":
+      	$escola->modalidade_ensino = "Ensino Fundamental";
+     		break;
+      case "5":
+        $escola->modalidade_ensino = "EJA";
+       	break;
+      case "6":
+        $escola->modalidade_ensino = "Quilombola";
+        break;
+   	}
+
     $escola->rota = $request->rota;
     $escola->periodo_atendimento = $request->periodo_atendimento;
     $escola->qtde_alunos = $request->qtde_alunos;
