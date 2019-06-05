@@ -38,6 +38,17 @@ class EstoqueController extends Controller
       return view("ItensEntradaEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
 
+  public function saida(Request $request){
+      $estoque = \App\Estoque::find($request->id);
+      /*return view("EditarEstoque", [
+          "estoque" => $estoque,
+      ]);*/
+      $estoque_itens = \App\Estoque_item::find($estoque->id);
+
+      $itens = \App\Item::all();
+      return view("ItensSaidaEstoque", ["estoque" => $estoque_itens, "itens" => $itens]);
+  }
+
   public function salvar(Request $request){
       $estoque = \App\Estoque::find($request->id);
 
@@ -50,20 +61,13 @@ class EstoqueController extends Controller
   public function inserirItemEstoque(Request $request) {
     $estoque_item = \App\Estoque_item::find($request->id);
 
-    if (empty($estoque_item)) {
-      $estoque_item = new \App\Estoque_item();
-      $estoque_item->quantidade = $request->quantidade;
-      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_item->item_id = $request->item_id;
-      $estoque_item->estoque_id = $request->estoque_id;
+    $estoque_item = new \App\Estoque_item();
+    $estoque_item->quantidade = $request->quantidade;
+    $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+    $estoque_item->item_id = $request->item_id;
+    $estoque_item->estoque_id = $request->estoque_id;
       
-      $estoque_item->save();
-    } else {
-      $estoque_item->quantidade = $estoque_item->quantidade + $request->quantidade;
-      $estoque_item->quantidade_danificados = $estoque_item->quantidade_danificados + $request->quantidade_danificados;
-
-      $estoque_item->save();
-    }
+    $estoque_item->save();
 
     $itens = \App\Item::all();
     $estoque = \App\Estoque::find($request->estoque_id);
@@ -72,11 +76,11 @@ class EstoqueController extends Controller
   }
 
   public function removerItemEstoque(Request $request) {
-    $estoque_item = \App\Estoque_item::find($request->id);
+    $estoque_item = \App\Estoque_item::find($estoque->id);
     
-    //colocar condicao
-    $estoque_item->quantidade = $estoque_item->quantidade - $request->quantidade;
-    $estoque_item->quantidade_danificados = $estoque_item->quantidade_danificados - $request->quantidade_danificados;
+    
+    $estoque_item->quantidade -= $request->quantidade;
+    $estoque_item->quantidade_danificados -= $request->quantidade_danificados;
 
     $estoque_item->save();
 

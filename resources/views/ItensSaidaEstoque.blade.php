@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Entrada de itens') }}</div>
+                <div class="card-header">{{ __('Saída de itens') }}</div>
 
                 <div class="card-body">
 
@@ -20,7 +20,7 @@
                   <div class="panel-body">
                       @if(count($itens) == 0 and count($itens) == 0)
                       <div class="alert alert-danger">
-                              Não há itens cadastrados no banco de dados.
+                              Não há itens.
                       </div>
                       @else
                               <div class="form-group row">
@@ -41,7 +41,7 @@
                                 </div>
                               </div>
                               @foreach ($itens as $item)
-                              <form method="POST" action="/estoque/inserirEntrada">
+                              <form method="POST" action="/estoque/inserirSaida">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="estoque_id" value="{{ $estoque->id}}" />
