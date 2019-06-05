@@ -11,9 +11,10 @@ class EstoqueController extends Controller
     $estoque->nome = $request->nome;
     $estoque->save();
 
-    $estoques = \App\Estoque::all();
+    $itens = \App\Item::all();
+
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return view("ItensEntradaEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
 
   public function listar(){
@@ -56,7 +57,7 @@ class EstoqueController extends Controller
     $itens = \App\Item::all();
     $estoque = \App\Estoque::find($request->estoque_id);
     session()->flash('success', 'Item adicionado.');
-    return view("InserirItensEstoque", ["estoque" => $estoque, "itens" => $itens]);
+    return view("ItensEntradaEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
 
   public function removerItemEstoque(Request $request) {
@@ -67,7 +68,7 @@ class EstoqueController extends Controller
     $estoque_item->delete();
 
     session()->flash('success', 'Item adicionado.');
-    return view("InserirItensEstoque", ["estoque" => $estoque, "itens" => $itens]);
+    return view("ItensEntradaEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
 
   public function finalizarEstoque(Request $request) {
@@ -83,7 +84,7 @@ class EstoqueController extends Controller
     return view("VisualizarItensEstoque", ["itens" => $itens]);
   }
 
-  public function entradaItensEstoque(Request $request){
+  /*public function entradaItensEstoque(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
 
     $estoque_item->quantidade = $estoque_item->quantidade;
@@ -106,5 +107,5 @@ class EstoqueController extends Controller
 
     session()->flash('success', 'Entrada desfeita.');
     return view("VisualizarItensEstoque", ["estoque" => $estoque, "itens" => $itens]);
-  }
+  }*/
 }

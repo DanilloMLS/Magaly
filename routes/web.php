@@ -86,8 +86,10 @@ Route::get('/estoque/listar', 'EstoqueController@listar')->name('/estoque/listar
 Route::get('/estoque/editar/{id}', 'EstoqueController@editar')->name('/estoque/editar')->middleware('auth');
 Route::post('/estoque/salvar', 'EstoqueController@salvar')->name('/estoque/salvar')->middleware('auth');
 Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque/remover')->middleware('auth');
-Route::get('/estoque/inserirEntrada', 'EstoqueController@entradaItensEstoque')->name('/estoque/inserirEntrada')->middleware('auth');
-Route::get('/estoque/removerEntrada/{id}', 'EstoqueController@desfazerEntradaEstoque')->name('/estoque/removerEntrada')->middleware('auth');
+Route::post('/estoque/inserirEntrada', 'EstoqueController@inserirItemEstoque')->name('/estoque/inserirEntrada')->middleware('auth');
+Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@inserirItemEstoque')->name('/estoque/inserirEntrada')->middleware('auth');
+Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@removerItemEstoque')->name('/estoque/inserirSaida')->middleware('auth');
+Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('auth');
 Route::get('/estoque/exibirItensEstoque/{id}', 'EstoqueController@exibirItensEstoque')->name('/estoque/exibirItensEstoque')->middleware('auth');
 
 //Refeicao
