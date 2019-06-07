@@ -2,22 +2,12 @@
 
 @section('content')
 
-<script language= 'javascript'>
-function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir este item? ')) {
-    location.href="/item/remover/"+id;
-  }
-  else {
-    return false;
-  }
-}
-</script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Itens') }}</div>
+                <div class="card-header">{{ __('Itens deste estoque') }}</div>
 
                 <div class="card-body">
 
@@ -30,7 +20,7 @@ function avisoDeletar(id){
                   <div class="panel-body">
                       @if(count($itens) == 0 and count($itens) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhum item cadastrado no sistema.
+                              Não há nenhum item neste estoque.
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
@@ -43,27 +33,28 @@ function avisoDeletar(id){
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Danificados</th>
+                                  <th>Quantidade disponível</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($itens as $item)
+                              @foreach ($itens as $item_estoque)
                                 <tr>
+                                    @php
+                                      $item = \App\Item::find($item_estoque->item_id);
+                                    @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
                                     <td data-title="Data de validade">{{ $item->data_validade }}</td>
                                     <td data-title="Nº lote">{{ $item->n_lote }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
+                                    <td data-title="Danificados">{{ $item_estoque->quantidade_danificados}}</td>
+                                    <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     </td>
-                                    <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
-                                    <!-- <td>
-                                      <a class="btn btn-primary" href="/item/editar/{{$item->id}}">Editar</a>
-                                    </td> -->
-                                    <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$item->id}});"> Excluir</a>
-                                    </td>
+
+
                                     <td></td>
                                 </tr>
                               @endforeach
@@ -75,8 +66,8 @@ function avisoDeletar(id){
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
-
-                      <a class="btn btn-primary" href="{{ route("/item/telaCadastrar") }}">Novo</a>
+                      <a class="btn btn-primary" href="{{route("/estoque/inserirEntrada")}}" >Entrada</a>
+                      <a class="btn btn-primary" href="{{route("/item/telaCadastrar")}}">Saída</a>
                   </div>
                 </div>
             </div>

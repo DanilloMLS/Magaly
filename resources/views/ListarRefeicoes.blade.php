@@ -30,6 +30,7 @@
                                   <th>Nome</th>
                                   <th>Descrição</th>
                                   <th>Peso líquido</th>
+                                  <th>Itens</th>
                               </tr>
                             </thead>
                             <tbody>

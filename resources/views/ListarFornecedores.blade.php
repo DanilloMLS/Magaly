@@ -4,7 +4,7 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir este fornecedor? ')) {
+  if(confirm ('Esta ação removerá do sistema todos os contratos deste fornecedor. Deseja realmente excluí-lo? ')) {
     location.href="/fornecedor/remover/"+id;
   }
   else {
@@ -47,7 +47,7 @@ function avisoDeletar(id){
                                 <tr>
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
                                     <td data-title="Descrição">{{ $fornecedor->cnpj }}</td>
-                                    
+
                                     <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
                                     </td>

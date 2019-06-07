@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Inserir Itens') }}</div>
+                <div class="card-header">{{ __('Saída de itens') }}</div>
 
                 <div class="card-body">
 
@@ -20,7 +20,7 @@
                   <div class="panel-body">
                       @if(count($itens) == 0 and count($itens) == 0)
                       <div class="alert alert-danger">
-                              Você ainda não cadastrou nenhum item.
+                              Não há itens.
                       </div>
                       @else
                               <div class="form-group row">
@@ -41,7 +41,7 @@
                                 </div>
                               </div>
                               @foreach ($itens as $item)
-                              <form method="POST" action="/estoque/inserirItem">
+                              <form method="POST" action="/estoque/inserirSaida">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="estoque_id" value="{{ $estoque->id}}" />
@@ -70,13 +70,13 @@
                                         $estoque_item = \App\Estoque_item::where('estoque_id', '=', $estoque->id)
                                                                                 ->where('item_id', '=', $item->id)
                                                                                 ->first();
-                                        if(empty($estoque_item)){ ?>
+                                        /*if(empty($estoque_item)){*/ ?>
                                           <button class="btn btn-success" type="submit">+</button>
-                                      <?php } else { ?>
-                                        <a class="btn btn-danger" href="/estoque/removerItem/{{$estoque_item->id}}">
-                                        -
-                                        </a>
-                                    <?php } ?>
+                                      <?php /*} else {*/ ?>
+                                        <!-- <a class="btn btn-danger" href="/estoque/inserirSaida/{{$estoque_item->id}}"> -->
+                                        
+                                       
+                                    <?php /*}*/ ?>
 
                                   </div>
                               </div>

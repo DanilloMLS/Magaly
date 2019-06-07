@@ -4,7 +4,7 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm (' Deseja realmente excluir esta escola? ')) {
+  if(confirm ('Esta ação removerá do sistema todas as distribuições dessa escola. Deseja realmente excluí-la? ')) {
     location.href="/escola/remover/"+id;
   }
   else {

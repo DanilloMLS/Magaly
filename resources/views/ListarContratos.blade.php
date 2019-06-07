@@ -33,6 +33,7 @@
                                   <th>Data</th>
                                   <th>Valor Total</th>
                                   <th>Fornecedor</th>
+                                  <th>Itens</th>
                               </tr>
                             </thead>
                             <tbody>
