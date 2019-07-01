@@ -70,15 +70,9 @@
                                         $estoque_item = \App\Estoque_item::where('estoque_id', '=', $estoque->id)
                                                                                 ->where('item_id', '=', $item->id)
                                                                                 ->first();
-                                        /*if(empty($estoque_item)){*/ ?>
+                                        ?>
                                           <button class="btn btn-success" type="submit">+</button>
-                                      <?php /*} else {*/ ?>
-                                        <!-- <a class="btn btn-danger" href="/estoque/inserirSaida/{{$estoque_item->id}}"> -->
-                                        
-                                       
-                                    <?php /*}*/ ?>
-
-                                  </div>
+                                 </div>
                               </div>
 
                             </form>
