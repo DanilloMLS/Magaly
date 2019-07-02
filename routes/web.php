@@ -110,3 +110,5 @@ Route::get('/refeicao/exibirItensRefeicao/{id}', 'RefeicaoController@exibirItens
 Route::get('/cardapio/cadastrar', function(Request $request) {
     return view('CadastrarCardapio');
 })->name('/cardapio/cadastrar')->middleware('auth');
+Route::post('/cardapio/salvar', 'CardapioController@cadastrar')->name('/cardapio/salvar')->middleware('auth');
+Route::get('/cardapio/listar', 'CardapioController@listar')->name('/cardapio/listar')->middleware('auth');
