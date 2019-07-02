@@ -100,6 +100,7 @@
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
                                             Listar Estoques
                                         </a>
+                                        
                                     </div>
                                 </div>
 
