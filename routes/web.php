@@ -88,9 +88,10 @@ Route::get('/estoque/saida/{id}', 'EstoqueController@saida')->name('/estoque/sai
 Route::post('/estoque/salvar', 'EstoqueController@salvar')->name('/estoque/salvar')->middleware('auth');
 Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque/remover')->middleware('auth');
 Route::post('/estoque/inserirEntrada', 'EstoqueController@inserirItemEstoque')->name('/estoque/inserirEntrada')->middleware('auth');
-Route::post('/estoque/inserirSaida', 'EstoqueController@removerItemEstoque')->name('/estoque/inserirSaida')->middleware('auth');
+Route::post('/estoque/inserirSaida', 'EstoqueController@saida')->name('/estoque/inserirSaida')->middleware('auth');
 Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('auth');
 Route::get('/estoque/exibirItensEstoque/{id}', 'EstoqueController@exibirItensEstoque')->name('/estoque/exibirItensEstoque')->middleware('auth');
+Route::post('/estoque/inserirSaida/{id}', 'EstoqueController@removerItemEstoque')->name('/estoque/inserirSaida')->middleware('auth');
 
 //Refeicao
 Route::get('/refeicao/cadastrar', function(Request $request) {

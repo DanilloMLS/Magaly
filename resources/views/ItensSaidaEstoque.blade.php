@@ -41,7 +41,7 @@
                                 </div>
                               </div>
                               @foreach ($itens as $item)
-                              <form method="POST" action="/estoque/inserirSaida">
+                            <form method="POST" action="/estoque/inserirSaida/{{$item->id}}">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="estoque_id" value="{{ $estoque->id}}" />

@@ -47,18 +47,23 @@ function avisoDeletar(id){
                                     <td data-title="Nome">{{ $estoque->nome }}</td>
                                     
                                     <td>
-                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}"> Entradas</a>
+                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Entrada</a>
                                     </td>
-                                    <!--td>
-                                      <a class="btn btn-primary" href="/estoque/saida/{{$estoque->id}}">Saídas</a>
-                                    </td-->
+                                    <td>
+                                      <a class="btn btn-primary" href="/estoque/saida/{{$estoque->id}}">Saída</a>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-primary" href="">Histórico</a>
+                                    </td>
                                     <td>
                                       <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Itens</a>
                                     </td>
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>
                                     </td>
-                                    <td></td>
+                                    {{-- <td>
+                                      <button class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});" title="Excluir"><img class="btn-img" src="/img/wastebin.png" alt=""><div class="titulo-botao">Excluir</div></button>
+                                    </td> --}}
                                 </tr>
                               @endforeach
 
