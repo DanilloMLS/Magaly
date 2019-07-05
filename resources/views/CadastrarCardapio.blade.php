@@ -123,7 +123,7 @@
                                  <tbody>
                                      <tr>
                                          <td data-title="Segunda">
-                                         <a class="btn btn-primary" href="">Refeição 1</a>
+                                         <a class="btn btn-primary" href="/cardapio/inserirItens">Refeição 1</a>
                                          </td>
                                          <td data-title="Terça">
                                          <a class="btn btn-primary" href="">Refeição 1</a>

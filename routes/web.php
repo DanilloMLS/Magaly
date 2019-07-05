@@ -112,3 +112,4 @@ Route::get('/cardapio/cadastrar', function(Request $request) {
 })->name('/cardapio/cadastrar')->middleware('auth');
 Route::post('/cardapio/salvar', 'CardapioController@cadastrar')->name('/cardapio/salvar')->middleware('auth');
 Route::get('/cardapio/listar', 'CardapioController@listar')->name('/cardapio/listar')->middleware('auth');
+Route::get('/cardapio/inserirItens/{id}', 'CardapioController@inserirItens')->name('/cardapio/inserirItens')->middleware('auth');
