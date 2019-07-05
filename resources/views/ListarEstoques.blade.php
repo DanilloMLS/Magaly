@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/estoque/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -43,7 +47,7 @@ function avisoDeletar(id){
                             </thead>
                             <tbody>
                               @foreach ($estoques as $estoque)
-                                <tr>
+                                <tr onclick="editar({{$estoque->id}});">
                                     <td data-title="Nome">{{ $estoque->nome }}</td>
                                     
                                     <td>

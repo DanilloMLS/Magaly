@@ -65,10 +65,8 @@ class EstoqueController extends Controller
     $estoque_item->quantidade_danificados = $request->quantidade_danificados;
     $estoque_item->item_id = $request->item_id;
     $estoque_item->estoque_id = $request->estoque_id;
-    
-     
     $estoque_item->save();
-
+    
     $itens = \App\Item::all();
     $estoque = \App\Estoque::find($request->estoque_id);
     session()->flash('success', 'Entrada de item.');
@@ -78,10 +76,10 @@ class EstoqueController extends Controller
   public function removerItemEstoque(Request $request) {
     $estoque_item = \App\Estoque_item::find($request->id);
     
-    $estoque_item->item_id = $request->item_id;
-    $estoque_item->estoque_id = $request->estoque_id;
     $estoque_item->quantidade -= $request->quantidade;
     $estoque_item->quantidade_danificados -= $request->quantidade_danificados;
+    $estoque_item->item_id = $request->item_id;
+    $estoque_item->estoque_id = $request->estoque_id;
 
     $estoque_item->save();
 
