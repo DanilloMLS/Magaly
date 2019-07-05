@@ -12,8 +12,12 @@ function avisoDeletar(id){
   }
 }
 
-function editar(id){
+function renomear(id){
   location.href="/estoque/editar/"+id;
+}
+
+function listarItens(id){
+  location.href="/estoque/exibirItensEstoque/"+id;
 }
 </script>
 
@@ -47,10 +51,10 @@ function editar(id){
                             </thead>
                             <tbody>
                               @foreach ($estoques as $estoque)
-                                <tr onclick="editar({{$estoque->id}});">
-                                    <td data-title="Nome">{{ $estoque->nome }}</td>
+                                <tr>
+                                    <td data-title="Nome" onclick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Entrada</a>
                                     </td>
                                     <td>
@@ -61,6 +65,15 @@ function editar(id){
                                     </td>
                                     <td>
                                       <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Itens</a>
+                                    </td> --}}
+                                    <td>
+                                      <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-primary" href="">Ver Histórico</a>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">Renomear</a>
                                     </td>
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>

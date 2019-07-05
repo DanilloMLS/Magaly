@@ -65,9 +65,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
-                      <!--a class="btn btn-primary" href="{{route("/estoque/inserirEntrada")}}" >Entrada</a>
-                      <a class="btn btn-primary" href="{{route("/item/telaCadastrar")}}">Saída</a-->
+                      <a class="btn btn-primary" href="/estoque/listar">Voltar</a>
                   </div>
                 </div>
             </div>
