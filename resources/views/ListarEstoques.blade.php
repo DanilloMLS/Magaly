@@ -53,19 +53,6 @@ function listarItens(id){
                               @foreach ($estoques as $estoque)
                                 <tr>
                                     <td data-title="Nome" onclick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
-                                    
-                                    {{-- <td>
-                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}">Entrada</a>
-                                    </td>
-                                    <td>
-                                      <a class="btn btn-primary" href="/estoque/saida/{{$estoque->id}}">Saída</a>
-                                    </td>
-                                    <td>
-                                      <a class="btn btn-primary" href="">Histórico</a>
-                                    </td>
-                                    <td>
-                                      <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Itens</a>
-                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
                                     </td>
@@ -78,9 +65,6 @@ function listarItens(id){
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>
                                     </td>
-                                    {{-- <td>
-                                      <button class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});" title="Excluir"><img class="btn-img" src="/img/wastebin.png" alt=""><div class="titulo-botao">Excluir</div></button>
-                                    </td> --}}
                                 </tr>
                               @endforeach
 

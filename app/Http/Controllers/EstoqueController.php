@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Estoque_item;
 
 class EstoqueController extends Controller
 {
-    public function cadastrar(Request $request) {
+  public function cadastrar(Request $request) {
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();
@@ -27,7 +28,7 @@ class EstoqueController extends Controller
       $estoque->delete();
       session()->flash('success', 'Estoque removido com sucesso.');
       return redirect()->route('/estoque/listar');
-    }
+  }
 
   public function editar(Request $request){
       $estoque = \App\Estoque::find($request->id);
@@ -58,6 +59,7 @@ class EstoqueController extends Controller
     return view("VisualizarItensEstoque", ["itens" => $itens]);
   }
 
+  //usado quando se insere itens no Estoque atráves do botão 'Inserir Itens'
   public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
     $itens = \App\Item::all();
@@ -75,13 +77,44 @@ class EstoqueController extends Controller
     $estoque_item->item_id = $request->item_id;
     $estoque_item->estoque_id = $request->estoque_id;
     $estoque_item->save();
-    
+
     $itens = \App\Item::all();
     $estoque = \App\Estoque::find($request->estoque_id);
-    session()->flash('success', 'Entrada de item.');
+    session()->flash('success', 'Inserção de novo item.');
     return view("InserirNovoItemEstoque", ["estoque" => $estoque, "itens" => $itens]);
   }
-  
+
+  public function removerItem(Request $request){
+    $estoque_item = \App\Estoque_item::find($request->id);
+    $estoque_item->delete();
+    $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+    
+    session()->flash('success', 'Remoção de item.');
+    return view("VisualizarItensEstoque", ["itens" => $itens]);
+  }
+
+  public function abrirEntradaItem(Request $request){
+    $estoque_item = \App\Estoque_item::find($request->id);
+    
+    return view("EntradaItemEstoque", [
+        "estoque_item" => $estoque_item
+    ]);
+  }
+
+  public function entradaItem(Request $request){
+    $estoque_item = \App\Estoque_item::find($request->id);
+
+    $estoque_item->quantidade = $request->quantidade;
+    $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+    $estoque_item->item_id = $request->item_id;
+    $estoque_item->estoque_id = $request->estoque_id;
+    $estoque_item->save();
+    $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+    
+    session()->flash('success', 'Entrada de item.');
+    return view("VisualizarItensEstoque", ["itens" => $itens]);
+  }
+
   //remover
   public function saida(Request $request){
       $estoque = \App\Estoque::find($request->id);
@@ -105,6 +138,8 @@ class EstoqueController extends Controller
     $estoque_item->item_id = $request->item_id;
     $estoque_item->estoque_id = $request->estoque_id;
     $estoque_item->save();
+
+    
     
     $itens = \App\Item::all();
     $estoque = \App\Estoque::find($request->estoque_id);

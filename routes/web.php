@@ -84,16 +84,15 @@ Route::get('/estoque/cadastrar', function(Request $request) {
 Route::post('/estoque/cadastrar', 'EstoqueController@cadastrar')->name('/estoque/cadastrar')->middleware('auth');
 Route::get('/estoque/listar', 'EstoqueController@listar')->name('/estoque/listar')->middleware('auth');
 Route::get('/estoque/editar/{id}', 'EstoqueController@editar')->name('/estoque/editar')->middleware('auth');
-//Route::get('/estoque/saida/{id}', 'EstoqueController@saida')->name('/estoque/saida')->middleware('auth');
 Route::post('/estoque/salvar', 'EstoqueController@salvar')->name('/estoque/salvar')->middleware('auth');
 Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque/remover')->middleware('auth');
-//Route::post('/estoque/inserirEntrada', 'EstoqueController@inserirItemEstoque')->name('/estoque/inserirEntrada')->middleware('auth');
-//Route::post('/estoque/inserirSaida', 'EstoqueController@saida')->name('/estoque/inserirSaida')->middleware('auth');
 Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('auth');
 Route::get('/estoque/exibirItensEstoque/{id}', 'EstoqueController@exibirItensEstoque')->name('/estoque/exibirItensEstoque')->middleware('auth');
-//Route::post('/estoque/inserirSaida/{id}', 'EstoqueController@removerItemEstoque')->name('/estoque/inserirSaida')->middleware('auth');
 Route::post('/estoque/novoItem', 'EstoqueController@novoItem')->name('/estoque/novoItem')->middleware('auth');
 Route::get('/estoque/novoItemEstoque/{id}', 'EstoqueController@buscarEstoque')->name('/estoque/novoItemEstoque')->middleware('auth');
+Route::get('/estoque/removerItem/{id}', 'EstoqueController@removerItem')->name('/estoque/removerItem')->middleware('auth');
+Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')->name('/estoque/inserirEntrada')->middleware('auth');
+Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('auth');
 
 //Refeicao
 Route::get('/refeicao/cadastrar', function(Request $request) {

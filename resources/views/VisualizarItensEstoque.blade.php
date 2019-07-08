@@ -2,6 +2,16 @@
 
 @section('content')
 
+<script language= 'javascript'>
+  function avisoDeletar(id){
+    if(confirm (' Deseja realmente excluir este item? ')) {
+      location.href="/estoque/removerItem/"+id;
+    }
+    else {
+      return false;
+    }
+  }
+</script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -35,6 +45,7 @@
                                   <th>Gramatura</th>
                                   <th>Danificados</th>
                                   <th>Quantidade disponível</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -52,10 +63,15 @@
                                     <td data-title="Danificados">{{ $item_estoque->quantidade_danificados}}</td>
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
+                                    <td>
+                                        <a class="btn btn-primary" href="/estoque/inserirEntrada/{{$item_estoque->id}}">Entrada</a>
                                     </td>
-
-
-                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-primary" href="">Saída</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">Excluir</a>
+                                    </td>
                                 </tr>
                               @endforeach
 
