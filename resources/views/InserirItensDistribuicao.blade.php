@@ -66,7 +66,7 @@
                                     <input name="quantidade_falta" id="quantidade_falta" type="number"  class="form-control" value= {{ old('quantidade_falta')}}> {{ $errors->first('quantidade_falta')}}
                                   </div>
                                   <div class="col-md-2">
-                                    <input name="quantidade_danificado" id="quantidade_danificado" type="number"  class="form-control" value= {{ old('quantidade_danificado')}}> {{ $errors->first('quantidade_danificado')}}
+                                    <input name="quantidade_danificados" id="quantidade_danificados" type="number"  class="form-control" value= {{ old('quantidade_danificado')}}> {{ $errors->first('quantidade_danificados')}}
                                   </div>
                                   <div class="col-md-2">
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
