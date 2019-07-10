@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\EstoqueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,8 @@ Route::get('/estoque/novoItemEstoque/{id}', 'EstoqueController@buscarEstoque')->
 Route::get('/estoque/removerItem/{id}', 'EstoqueController@removerItem')->name('/estoque/removerItem')->middleware('auth');
 Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')->name('/estoque/inserirEntrada')->middleware('auth');
 Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('auth');
+Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@abrirSaidaItem')->name('/estoque/inserirSaida')->middleware('auth');
+Route::post('/estoque/abrirSaida', 'EstoqueController@saidaItem')->name('/estoque/abrirSaida')->middleware('auth');
 
 //Refeicao
 Route::get('/refeicao/cadastrar', function(Request $request) {

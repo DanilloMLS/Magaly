@@ -67,7 +67,7 @@
                                         <a class="btn btn-primary" href="/estoque/inserirEntrada/{{$item_estoque->id}}">Entrada</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="">Saída</a>
+                                        <a class="btn btn-primary" href="/estoque/inserirSaida/{{$item_estoque->id}}">Saída</a>
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">Excluir</a>

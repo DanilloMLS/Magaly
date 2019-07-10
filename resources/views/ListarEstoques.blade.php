@@ -54,6 +54,9 @@ function listarItens(id){
                                 <tr>
                                     <td data-title="Nome" title="Clique para listar os itens" click="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     <td>
+                                      <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Listar Itens</a>
+                                    </td>
+                                    <td>
                                       <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
                                     </td>
                                     <td>
