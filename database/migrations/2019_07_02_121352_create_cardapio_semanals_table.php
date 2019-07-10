@@ -15,7 +15,7 @@ class CreateCardapioSemanalsTable extends Migration
     {
         Schema::create('cardapio_semanals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('semana');
+            $table->integer('semana');
             $table->integer('cardapio_mensal_id')->unsigned();
             $table->foreign('cardapio_mensal_id')->references('id')->on('cardapio_mensals')->onDelete('cascade');
             $table->timestamps();

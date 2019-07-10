@@ -110,6 +110,12 @@ Route::get('/refeicao/exibirItensRefeicao/{id}', 'RefeicaoController@exibirItens
 Route::get('/cardapio/cadastrar', function(Request $request) {
     return view('CadastrarCardapio');
 })->name('/cardapio/cadastrar')->middleware('auth');
+Route::get('/cardapioSemanal/cadastrar', function(Request $request) {
+    return view('CadastrarCardapioSemanal');
+})->name('/cardapioSemanal/cadastrar')->middleware('auth');
 Route::post('/cardapio/salvar', 'CardapioController@cadastrar')->name('/cardapio/salvar')->middleware('auth');
 Route::get('/cardapio/listar', 'CardapioController@listar')->name('/cardapio/listar')->middleware('auth');
-Route::get('/cardapio/inserirItens/{id}', 'CardapioController@inserirItens')->name('/cardapio/inserirItens')->middleware('auth');
+Route::get('/cardapio/inserirRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}', 'CardapioController@inserirRefeicaoCardapio')->name('/cardapio/inserirRefeicao')->middleware('auth');
+Route::post('/cardapio/inserirItem', 'CardapioController@inserirItemCardapio')->name('/cardapio/inserirItem')->middleware('auth');
+Route::get('/cardapioDiario/finalizarCardapio/{id}', 'CardapioController@finalizarCardapioDiario')->name('/cardapioDiario/finalizarCardapio')->middleware('auth');
+Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('auth');
