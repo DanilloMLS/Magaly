@@ -96,6 +96,7 @@ Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')
 Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('auth');
 Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@abrirSaidaItem')->name('/estoque/inserirSaida')->middleware('auth');
 Route::post('/estoque/abrirSaida', 'EstoqueController@saidaItem')->name('/estoque/abrirSaida')->middleware('auth');
+Route::get('/estoque/historicoEstoque/{id}', 'EstoqueController@mostrarHistorico')->name('/estoque/historicoEstoque')->middleware('auth');
 
 //Refeicao
 Route::get('/refeicao/cadastrar', function(Request $request) {

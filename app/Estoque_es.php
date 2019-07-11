@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EstoqueES extends Model
+class Estoque_es extends Model
 {
   protected $fillable = [
       'quantidade_danificados', 'quantidade', 'operacao', 'item_id', 'estoque_id',

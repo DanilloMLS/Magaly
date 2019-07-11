@@ -60,7 +60,7 @@ function listarItens(id){
                                       <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" href="">Ver Histórico</a>
+                                      <a class="btn btn-primary" href="/estoque/historicoEstoque/{{$estoque->id}}">Ver Histórico</a>
                                     </td>
                                     <td>
                                       <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">Renomear</a>
