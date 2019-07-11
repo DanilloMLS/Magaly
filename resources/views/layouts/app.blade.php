@@ -121,8 +121,8 @@
                                         <a class="dropdown-item" href="{{route('/cardapio/cadastrar')}}">
                                             Novo Cardápio
                                         </a>
-                                        <a class="dropdown-item" href="">
-                                            Ver Cardápios
+                                        <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
+                                            Ver Fornecedores
                                         </a>
                                     </div>
                                 </div>
