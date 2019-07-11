@@ -73,7 +73,7 @@ function avisoDeletar(id){
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
-
+                      <a class="btn btn-primary" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/escola/cadastrar") }}">Nova</a>
                   </div>
                 </div>

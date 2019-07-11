@@ -33,6 +33,15 @@ class ItemController extends Controller
         return view("ListarItens", ["itens" => $itens]);
     }
 
+    public function gerarRelatorio(){
+        $itens = \App\Item::All();
+        //return view("RelatorioItens", ["itens" => $itens]);
+
+        return  \PDF::loadView('RelatorioItens', compact('itens'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Itens.pdf');
+    }
+
     public function remover(Request $request) {
         $item = \App\Item::find($request->id);
         $item->delete();

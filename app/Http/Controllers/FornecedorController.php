@@ -25,6 +25,15 @@ class FornecedorController extends Controller
     return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
   }
 
+    public function gerarRelatorio(){
+        $fornecedores = \App\Fornecedor::all();
+        //return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
+
+        return  \PDF::loadView('RelatorioFornecedores', compact('fornecedores'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Fornecedor.pdf');
+    }
+
   public function remover(Request $request){
 			$fornecedor = \App\Fornecedor::find($request->id);
 			$fornecedor->delete();

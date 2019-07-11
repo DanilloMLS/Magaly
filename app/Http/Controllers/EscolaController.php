@@ -54,6 +54,15 @@ class EscolaController extends Controller
     return view("ListarEscolas", ["escolas" => $escolas]);
   }
 
+    public function gerarRelatorio(){
+        $escolas = \App\Escola::all();
+        //return view("ListarEscolas", ["escolas" => $escolas]);
+
+        return  \PDF::loadView('RelatorioEscolas', compact('escolas'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Escolas.pdf');
+    }
+
   public function remover(Request $request){
       $escola = \App\Escola::find($request->id);
       $escola->delete();

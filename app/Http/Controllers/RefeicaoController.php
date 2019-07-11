@@ -24,6 +24,15 @@ class RefeicaoController extends Controller
     return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
   }
 
+    public function gerarRelatorio(){
+        $refeicoes = \App\Refeicao::all();
+        //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
+
+        return  \PDF::loadView('RelatorioRefeicoes', compact('refeicoes'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Refeicao.pdf');
+    }
+
   public function inserirItemRefeicao(Request $request) {
     $refeicao_item = new \App\Refeicao_item();
     $refeicao_item->quantidade = $request->quantidade;

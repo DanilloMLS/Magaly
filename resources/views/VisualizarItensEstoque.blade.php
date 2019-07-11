@@ -51,10 +51,7 @@
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Danificados">{{ $item_estoque->quantidade_danificados}}</td>
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
-
                                     </td>
-
-
                                     <td></td>
                                 </tr>
                               @endforeach
