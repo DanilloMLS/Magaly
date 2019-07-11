@@ -18,9 +18,7 @@ function avisoDeletar(id){
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Itens') }}</div>
-
                 <div class="card-body">
-
                   @if (\Session::has('success'))
                   <br>
                       <div class="alert alert-success">
@@ -75,7 +73,7 @@ function avisoDeletar(id){
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
-
+                      <a class="btn btn-primary" target="_blank" href="{{ route("/item/RelatorioItens") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/item/telaCadastrar") }}">Novo</a>
                   </div>
                 </div>
