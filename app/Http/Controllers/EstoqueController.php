@@ -23,6 +23,16 @@ class EstoqueController extends Controller
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
 
+    public function gerarRelatorio(){
+        $estoques = \App\Estoque::all();
+        //return view("VisualizarItensEstoque", ["itens" => $itens]);
+        //return view("ListarEstoques", ["estoques" => $estoques]);
+
+        return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Estoque.pdf');
+    }
+
   public function remover(Request $request){
       $estoque = \App\Estoque::find($request->id);
       $estoque->delete();

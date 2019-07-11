@@ -36,6 +36,14 @@ class ContratoController extends Controller
     $contratos = \App\Contrato::all();
     return view("ListarContratos", ["contratos" => $contratos]);
   }
+  public function gerarRelatorio(){
+    $contratos = \App\Contrato::all();
+    //return view("RelatorioContratos", ["contratos" => $contratos]);
+
+    return  \PDF::loadView('RelatorioContratos', compact('contratos'))
+          // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+          ->stream('relatorio_Contrato.pdf');
+  }
 
   public function inserirItemContrato(Request $request) {
     $contrato_item = new \App\Contrato_item();

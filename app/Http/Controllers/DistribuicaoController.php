@@ -33,6 +33,15 @@ class DistribuicaoController extends Controller
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
+    public function gerarRelatorio(){
+        $distribuicoes = \App\Distribuicao::All();
+        //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
+
+        return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->stream('relatorio_Distribuicao.pdf');
+    }
+
   public function remover(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
       $distribuicao->delete();

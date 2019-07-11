@@ -46,7 +46,6 @@ function listarItens(id){
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -75,6 +74,7 @@ function listarItens(id){
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
+                      <a class="btn btn-primary" target="_blank" href="{{ route("/estoque/RelatorioEstoques") }}">Relatório</a>
 
                       <a class="btn btn-primary" href="{{ route("/estoque/cadastrar") }}">Novo</a>
                   </div>

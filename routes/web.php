@@ -30,6 +30,7 @@ Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('/forneced
 Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('/fornecedor/editar')->middleware('auth');
 Route::post('/fornecedor/salvar', 'FornecedorController@salvar')->name('/fornecedor/salvar')->middleware('auth');
 Route::get('/fornecedor/remover/{id}', 'FornecedorController@remover')->name('/fornecedor/remover')->middleware('auth');
+Route::get('/fornecedor/Relatorio_Fornecedores', 'FornecedorController@gerarRelatorio')->name('/fornecedor/RelatorioFornecedores')->middleware('auth');
 
 //Escola
 Route::get('/escola/cadastrar', function(Request $request) {
@@ -40,6 +41,8 @@ Route::get('/escola/listar', 'EscolaController@listar')->name('/escola/listar')-
 Route::get('/escola/editar/{id}', 'EscolaController@editar')->name('/escola/editar')->middleware('auth');
 Route::post('/escola/salvar', 'EscolaController@salvar')->name('/escola/salvar')->middleware('auth');
 Route::get('/escola/remover/{id}', 'EscolaController@remover')->name('/escola/remover')->middleware('auth');
+Route::get('/escola/Relatorio_Escolas', 'EscolaController@gerarRelatorio')->name('/escola/RelatorioEscolas')->middleware('auth');
+
 //Distribuição
 Route::get('/distribuicao/telaCadastrar', 'DistribuicaoController@telaCadastrar')->name('/distribuicao/telaCadastrar')->middleware('auth');
 Route::get('/distribuicao/cadastrar', function(Request $request) {
@@ -54,6 +57,7 @@ Route::post('/distribuicao/inserirItem', 'DistribuicaoController@inserirItemDist
 Route::get('/distribuicao/removerItem/{id}', 'DistribuicaoController@removerItemDistribuicao')->name('/distribuicao/removerItem')->middleware('auth');
 Route::get('/distribuicao/finalizarDistribuicao/{id}', 'DistribuicaoController@finalizarDistribuicao')->name('/distribuicao/finalizarContrato')->middleware('auth');
 Route::get('/distribuicao/exibirItensDistribuicao/{id}', 'DistribuicaoController@exibirItensDistribuicao')->name('/distribuicao/exibirItensDistribuicao')->middleware('auth');
+Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes')->middleware('auth');
 
 //Contrato
 Route::get('/contrato/telaCadastrar', 'ContratoController@telaCadastrar')->name('/contrato/telaCadastrar')->middleware('auth');
@@ -66,6 +70,7 @@ Route::post('/contrato/inserirItem', 'ContratoController@inserirItemContrato')->
 Route::get('/contrato/removerItem/{id}', 'ContratoController@removerItemContrato')->name('/contrato/removerItem')->middleware('auth');
 Route::get('/contrato/finalizarContrato/{id}', 'ContratoController@finalizarContrato')->name('/contrato/finalizarContrato')->middleware('auth');
 Route::get('/contrato/exibirItensContrato/{id}', 'ContratoController@exibirItensContrato')->name('/contrato/exibirItensContrato')->middleware('auth');
+Route::get('/contrato/Relatorio_Contratos', 'ContratoController@gerarRelatorio')->name('/contrato/RelatorioContratos')->middleware('auth');
 
 //Item
 Route::get('/item/telaCadastrar', 'ItemController@telaCadastrar')->name('/item/telaCadastrar')->middleware('auth');
@@ -77,6 +82,7 @@ Route::get('/item/listar', 'ItemController@listar')->name('/item/listar')->middl
 Route::get('/item/editar/{id}', 'ItemController@editar')->name('/item/editar')->middleware('auth');
 Route::post('/item/salvar', 'ItemController@salvar')->name('/item/salvar')->middleware('auth');
 Route::get('/item/remover/{id}', 'ItemController@remover')->name('/item/remover')->middleware('auth');
+Route::get('/item/Relatorio_Itens', 'ItemController@gerarRelatorio')->name('/item/RelatorioItens')->middleware('auth');
 
 //Estoque
 Route::get('/estoque/cadastrar', function(Request $request) {
@@ -97,6 +103,7 @@ Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/es
 Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@abrirSaidaItem')->name('/estoque/inserirSaida')->middleware('auth');
 Route::post('/estoque/abrirSaida', 'EstoqueController@saidaItem')->name('/estoque/abrirSaida')->middleware('auth');
 Route::get('/estoque/historicoEstoque/{id}', 'EstoqueController@mostrarHistorico')->name('/estoque/historicoEstoque')->middleware('auth');
+Route::get('/estoque/Relatorio_Estoques', 'EstoqueController@gerarRelatorio')->name('/estoque/RelatorioEstoques')->middleware('auth');
 
 //Refeicao
 Route::get('/refeicao/cadastrar', function(Request $request) {
@@ -111,8 +118,18 @@ Route::post('/refeicao/inserirItem', 'RefeicaoController@inserirItemRefeicao')->
 Route::get('/refeicao/removerItem/{id}', 'RefeicaoController@removerItemRefeicao')->name('/refeicao/removerItem')->middleware('auth');
 Route::get('/refeicao/finalizarRefeicao/{id}', 'RefeicaoController@finalizarRefeicao')->name('/refeicao/finalizarRefeicao')->middleware('auth');
 Route::get('/refeicao/exibirItensRefeicao/{id}', 'RefeicaoController@exibirItensRefeicao')->name('/refeicao/exibirItensRefeicao')->middleware('auth');
+Route::get('/refeicao/Relatorio_Refeicoes', 'RefeicaoController@gerarRelatorio')->name('/refeicao/RelatorioRefeicoes')->middleware('auth');
 
 //Cardapio
 Route::get('/cardapio/cadastrar', function(Request $request) {
     return view('CadastrarCardapio');
 })->name('/cardapio/cadastrar')->middleware('auth');
+Route::get('/cardapioSemanal/cadastrar', function(Request $request) {
+    return view('CadastrarCardapioSemanal');
+})->name('/cardapioSemanal/cadastrar')->middleware('auth');
+Route::post('/cardapio/salvar', 'CardapioController@cadastrar')->name('/cardapio/salvar')->middleware('auth');
+Route::get('/cardapio/listar', 'CardapioController@listar')->name('/cardapio/listar')->middleware('auth');
+Route::get('/cardapio/inserirRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}', 'CardapioController@inserirRefeicaoCardapio')->name('/cardapio/inserirRefeicao')->middleware('auth');
+Route::post('/cardapio/inserirItem', 'CardapioController@inserirItemCardapio')->name('/cardapio/inserirItem')->middleware('auth');
+Route::get('/cardapioDiario/finalizarCardapio/{id}', 'CardapioController@finalizarCardapioDiario')->name('/cardapioDiario/finalizarCardapio')->middleware('auth');
+Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('auth');
