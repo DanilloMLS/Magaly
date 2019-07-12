@@ -93,7 +93,7 @@ class EstoqueController extends Controller
     $estoque_es->operacao = "inserção";
     $estoque_es->item_id = $request->item_id;
     $estoque_es->estoque_id = $request->estoque_id;
-
+    
     $estoque_item->save();
     $estoque_es->save();
 
