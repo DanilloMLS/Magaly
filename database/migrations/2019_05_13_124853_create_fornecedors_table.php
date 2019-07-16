@@ -17,6 +17,7 @@ class CreateFornecedorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('cnpj')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

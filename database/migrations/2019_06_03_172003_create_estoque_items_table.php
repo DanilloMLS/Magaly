@@ -21,6 +21,7 @@ class CreateEstoqueItemsTable extends Migration
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->integer('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

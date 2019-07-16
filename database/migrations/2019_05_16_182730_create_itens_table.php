@@ -21,6 +21,7 @@ class CreateItensTable extends Migration
             $table->string('descricao')->nullable();
             $table->string('unidade');
             $table->string('gramatura');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

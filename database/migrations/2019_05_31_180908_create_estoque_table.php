@@ -16,6 +16,7 @@ class CreateEstoqueTable extends Migration
         Schema::create('estoques', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
