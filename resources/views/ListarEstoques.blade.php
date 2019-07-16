@@ -11,6 +11,14 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function renomear(id){
+  location.href="/estoque/editar/"+id;
+}
+
+function listarItens(id){
+  location.href="/estoque/exibirItensEstoque/"+id;
+}
 </script>
 
 <div class="container">
@@ -43,21 +51,19 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($estoques as $estoque)
                                 <tr>
-                                    <td data-title="Nome">{{ $estoque->nome }}</td>
-                                    
+                                    <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     <td>
-                                      <a class="btn btn-primary" href="/estoque/editar/{{$estoque->id}}"> Entradas</a>
+                                      <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
                                     </td>
-                                    <!--td>
-                                      <a class="btn btn-primary" href="/estoque/saida/{{$estoque->id}}">Saídas</a>
-                                    </td-->
                                     <td>
-                                      <a class="btn btn-primary" href="/estoque/exibirItensEstoque/{{$estoque->id}}">Itens</a>
+                                      <a class="btn btn-primary" href="/estoque/historicoEstoque/{{$estoque->id}}">Ver Histórico</a>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">Renomear</a>
                                     </td>
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>
                                     </td>
-                                    <td></td>
                                 </tr>
                               @endforeach
 
