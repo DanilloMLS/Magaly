@@ -22,6 +22,7 @@ class CreateContratosTable extends Migration
             $table->string('descricao')->nullable();
             $table->integer('fornecedor_id')->unsigned();
             $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Estoque_item extends Model
 {
+  use SoftDeletes;
+  protected $dates = ['deleted_at'];
   protected $fillable = [
     'item_id', 'estoque_id', 'quantidade_danificados', 'quantidade',
   ];

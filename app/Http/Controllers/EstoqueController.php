@@ -107,16 +107,16 @@ class EstoqueController extends Controller
     $estoque_item = \App\Estoque_item::find($request->id);
 
     $estoque_es = new \App\Estoque_es();
-    $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-    $estoque_es->quantidade = $request->quantidade;
+    $estoque_es->quantidade_danificados = 0;
+    $estoque_es->quantidade = 0;
     $estoque_es->operacao = "removido";
-    $estoque_es->item_id = $request->item_id;
-    $estoque_es->estoque_id = $request->estoque_id;
+    $estoque_es->item_id = $estoque_item->item_id;
+    $estoque_es->estoque_id = $estoque_item->estoque_id;
     
     $estoque_es->save();
     $estoque_item->delete();
     
-    $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+    $itens = \App\Estoque_item::where('estoque_id', '=', $request->estoque_id)->get();
     
     session()->flash('success', 'Remoção de item.');
     return view("VisualizarItensEstoque", ["itens" => $itens]);

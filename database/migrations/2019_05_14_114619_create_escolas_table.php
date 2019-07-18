@@ -21,6 +21,7 @@ class CreateEscolasTable extends Migration
             $table->string('periodo_atendimento');
             $table->integer('qtde_alunos');
             $table->string('endereco');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
