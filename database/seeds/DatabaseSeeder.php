@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //É possível executar um seeder mais de uma vez
+        //É necessário referenciar aqui cada seeder que será executado
+        $this->call(ItensTableSeeder::class);
+        $this->call(ItensTableSeeder::class);
+        $this->call(EstoqueTableSeeder::class);
+        $this->call(FornecedorTableSeeder::class);
+        $this->call(ContratoTableSeeder::class);
     }
 }
