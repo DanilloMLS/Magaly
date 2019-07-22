@@ -26,7 +26,7 @@
                             <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de validade ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="data_validade" id="data_validade" type="date" class="form-control" value="{{ $item->data_validade}}" > {{ $errors->first('data_validade')}}
+                              <input name="data_validade" id="data_validade" type="date" class="form-control" value="<?= $item->data_validade  ?>" > {{ $errors->first('data_validade')}}
                             </div>
                         </div>
 

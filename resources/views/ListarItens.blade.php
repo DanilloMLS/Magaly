@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/item/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -47,7 +51,7 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($itens as $item)
                                 <tr>
-                                    <td data-title="Valor unitário">{{ $item->nome }}</td>
+                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
                                     <td data-title="Data de validade">{{ $item->data_validade }}</td>
                                     <td data-title="Nº lote">{{ $item->n_lote }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
