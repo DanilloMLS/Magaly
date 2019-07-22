@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 
 class ItemController extends Controller
 {
@@ -59,7 +60,11 @@ class ItemController extends Controller
     public function salvar(Request $request) {
         $item = \App\Item::find($request->id);
         $item->nome = $request->nome;
-        $item->data_validade = $request->data_validade;
+
+        $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
+        $item->data_validade = $dateObj->format('d/m/Y');
+
+        //$item->data_validade = $request->data_validade;
         $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
