@@ -40,6 +40,7 @@ function editar(id){
                             <thead>
                               <tr>
                                   <th>Nome</th>
+                                  <th>Marca</th>
                                   <th>Data de validade</th>
                                   <th>Nº lote</th>
                                   <th>Descrição</th>
@@ -52,6 +53,7 @@ function editar(id){
                               @foreach ($itens as $item)
                                 <tr>
                                     <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
+                                    <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Data de validade">{{ $item->data_validade }}</td>
                                     <td data-title="Nº lote">{{ $item->n_lote }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>

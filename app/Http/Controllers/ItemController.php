@@ -18,6 +18,7 @@ class ItemController extends Controller
     public function cadastrar(Request $request) {
         $item = new \App\Item();
         $item->nome = $request->nome;
+        $item->marca = $request->marca;
         $item->data_validade = $request->data_validade;
         $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
@@ -60,6 +61,7 @@ class ItemController extends Controller
     public function salvar(Request $request) {
         $item = \App\Item::find($request->id);
         $item->nome = $request->nome;
+        $item->marca = $request->marca;
 
         $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
         $item->data_validade = $dateObj->format('d/m/Y');
