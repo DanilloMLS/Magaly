@@ -44,45 +44,65 @@ class DistribuicaoController extends Controller
 
   public function remover(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
-      $distribuicao->delete();
-      session()->flash('success', 'Distribuicao removida com sucesso.');
+
+      if (isset($distribuicao)) {
+        $distribuicao->delete();
+        session()->flash('success', 'Distribuicao removida com sucesso.');
+        return redirect()->route('/distribuicao/listar');
+      }
+      
+      session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
     }
 
   public function editar(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
-      $escolas = \App\Escola::all();
-      return view("EditarDistribuicao", [
-          "distribuicao" => $distribuicao,
-          "escolas" => $escolas,
-      ]);
+      if (isset($distribuicao)) {
+        $escolas = \App\Escola::all();
+        return view("EditarDistribuicao", [
+            "distribuicao" => $distribuicao,
+            "escolas" => $escolas,
+        ]);
+      }
+      session()->flash('success', 'Distribuicao não existe.');
+      return redirect()->route('/distribuicao/listar');
   }
 
   public function salvar(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
 
-      $distribuicao->observacao = $request->observacao;
-      $distribuicao->escola_id = $request->escola_id;
-      $distribuicao->save();
+      if (isset($distribuicao)) {
+        $distribuicao->observacao = $request->observacao;
+        $distribuicao->escola_id = $request->escola_id;
+        $distribuicao->save();
 
-      session()->flash('success', 'Distribuicao modificada com sucesso.');
+        session()->flash('success', 'Distribuicao modificada com sucesso.');
+        return redirect()->route('/distribuicao/listar');
+      }
+      
+      session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
   }
 
   public function inserirItemDistribuicao(Request $request) {
-    $distribuicao_item = new \App\Distribuicao_item();
-    $distribuicao_item->quantidade = $request->quantidade;
-    $distribuicao_item->quantidade_falta = $request->quantidade_falta;
-    $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
-    $distribuicao_item->item_id = $request->item_id;
-    $distribuicao_item->distribuicao_id = $request->distribuicao_id;
-
-    $distribuicao_item->save();
-
-    $itens = \App\Item::all();
     $distribuicao = \App\Distribuicao::find($request->distribuicao_id);
-    session()->flash('success', 'Item adicionado.');
-    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+
+    if (isset($distribuicao)) {
+      $distribuicao_item = new \App\Distribuicao_item();
+      $distribuicao_item->quantidade = $request->quantidade;
+      $distribuicao_item->quantidade_falta = $request->quantidade_falta;
+      $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
+      $distribuicao_item->item_id = $request->item_id;
+      $distribuicao_item->distribuicao_id = $request->distribuicao_id;
+      $distribuicao_item->save();
+
+      $itens = \App\Item::all();
+      session()->flash('success', 'Item adicionado.');
+      return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+    }
+    
+    session()->flash('success', 'Distribuicao não existe.');
+    return redirect()->route('/distribuicao/listar');
   }
 
   public function removerItemDistribuicao(Request $request) {
@@ -90,10 +110,15 @@ class DistribuicaoController extends Controller
     $itens = \App\Item::all();
     $distribuicao = \App\Distribuicao::find($distribuicao_item->distribuicao_id);
 
-    $distribuicao_item->delete();
+    if (isset($distribuicao)) {
+      $distribuicao_item->delete();
 
-    session()->flash('success', 'Item removido.');
-    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+      session()->flash('success', 'Item removido.');
+      return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+    }
+    
+    session()->flash('success', 'Distribuicao não existe.');
+    return redirect()->route('/distribuicao/listar');
   }
 
   public function finalizarDistribuicao(Request $request) {

@@ -46,18 +46,25 @@ class ContratoController extends Controller
   }
 
   public function inserirItemContrato(Request $request) {
-    $contrato_item = new \App\Contrato_item();
-    $contrato_item->quantidade = $request->quantidade;
-    $contrato_item->valor_unitario = $request->valor;
-    $contrato_item->contrato_id = $request->contrato_id;
-    $contrato_item->item_id = $request->item_id;
-
-    $contrato_item->save();
-
-    $itens = \App\Item::all();
     $contrato = \App\Contrato::find($request->contrato_id);
-    session()->flash('success', 'Item adicionado.');
-    return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+
+    if (isset($contrato)) {
+      $contrato_item = new \App\Contrato_item();
+      $contrato_item->quantidade = $request->quantidade;
+      $contrato_item->valor_unitario = $request->valor;
+      $contrato_item->contrato_id = $request->contrato_id;
+      $contrato_item->item_id = $request->item_id;
+
+      $contrato_item->save();
+
+      $itens = \App\Item::all();
+      
+      session()->flash('success', 'Item adicionado.');
+      return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+    }
+    $contratos = \App\Contrato::all();
+    session()->flash('success', 'Contrato não existe.');
+    return view("ListarContratos", ["contratos" => $contratos]);
   }
 
   public function removerItemContrato(Request $request) {

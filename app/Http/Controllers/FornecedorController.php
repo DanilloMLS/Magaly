@@ -35,26 +35,44 @@ class FornecedorController extends Controller
     }
 
   public function remover(Request $request){
-			$fornecedor = \App\Fornecedor::find($request->id);
-			$fornecedor->delete();
-			session()->flash('success', 'Fornecedor removido com sucesso.');
-			return redirect()->route('/fornecedor/listar');
+      $fornecedor = \App\Fornecedor::find($request->id);
+      
+      if (isset($fornecedor)) {
+        $fornecedor->delete();
+        session()->flash('success', 'Fornecedor removido com sucesso.');
+        return redirect()->route('/fornecedor/listar');
+      }
+      
+      session()->flash('success', 'Fornecedor não existe.');
+      return redirect()->route('/fornecedor/listar');
 		}
 
 	public function editar(Request $request){
 			$fornecedor = \App\Fornecedor::find($request->id);
-			return view("EditarFornecedor", [
+      
+      if (isset($fornecedor)) {
+        return view("EditarFornecedor", [
 					"fornecedor" => $fornecedor,
-			]);
+			  ]);
+      }
+
+      session()->flash('success', 'Fornecedor não existe.');
+      return redirect()->route('/fornecedor/listar');
 	}
 
 	public function salvar(Request $request){
-			$fornecedor = \App\Fornecedor::find($request->id);
+      $fornecedor = \App\Fornecedor::find($request->id);
+      
+    if (isset($fornecedor)) {
       $fornecedor->nome = $request->nome;
       $fornecedor->cnpj = $request->cnpj;
  			$fornecedor->save();
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');
-		}
+    }
+    
+    session()->flash('success', 'Fornecedor não existe.');
+    return redirect()->route('/fornecedor/listar');
+  }
 
 }
