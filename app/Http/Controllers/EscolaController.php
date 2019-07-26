@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Estoque;
 
 class EscolaController extends Controller
 {
   public function cadastrar(Request $request) {
+    $estoque = new \App\Estoque();
+    $estoque->nome = "Estoque da Escola ".$request->nome;
+    $estoque->save();
+    
     $escola = new \App\Escola();
     $escola->nome = $request->nome;
 
@@ -35,15 +40,9 @@ class EscolaController extends Controller
     $escola->periodo_atendimento = $request->periodo_atendimento;
     $escola->qtde_alunos = $request->qtde_alunos;
     $escola->endereco = $request->endereco;
+    $escola->estoque_id = $estoque->id;
+    
     $escola->save();
-
-    /*$endereco = new \App\Endereco();
-    $endereco->rua = $request->rua;
-    $endereco->bairro = $request->bairro;
-    $endereco->cep = $request->cep;
-    $endereco->numero = $request->numero;*/
-
-    // $escola->endereco()->save($endereco);
 
     session()->flash('success', 'Escola cadastrada com sucesso.');
     return redirect()->route('/escola/listar');
@@ -108,13 +107,11 @@ class EscolaController extends Controller
       $escola->qtde_alunos = $request->qtde_alunos;
       $escola->endereco = $request->endereco;
       $escola->save();
-      //disciplina
-      /*$endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
-      $endereco->rua = $request->rua;
-      $endereco->bairro = $request->bairro;
-      $endereco->cep = $request->cep;
-      $endereco->numero = $request->numero;
-      $endereco->save();*/
+
+      $estoque = \App\Estoque::find($escola->estoque_id);
+      $estoque->nome = "Estoque da Escola ".$request->nome;
+      $estoque->save();
+
       session()->flash('success', 'Escola modificada com sucesso.');
       return redirect()->route('/escola/listar');
       }

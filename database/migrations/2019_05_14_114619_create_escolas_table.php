@@ -21,8 +21,6 @@ class CreateEscolasTable extends Migration
             $table->string('periodo_atendimento');
             $table->integer('qtde_alunos');
             $table->string('endereco');
-            //$table->bigInteger('estoque_id')->unsigned();
-            //$table->foreign('estoque_id')->references('id')->on('estoques');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -47,17 +47,24 @@ class EstoqueController extends Controller
 
   public function editar(Request $request){
       $estoque = \App\Estoque::find($request->id);
-      
-      if (isset($estoque)) {
-        return view("EditarEstoque", [
-          "estoque" => $estoque,
-        ]);
-      }
+      $escola = \App\Escola::where('estoque_id', $estoque->id)->get()->first();
 
+      if (!isset($escola)) {
+        if (isset($estoque)) {
+          return view("EditarEstoque", [
+            "estoque" => $estoque,
+          ]);
+        }
+        $estoques = \App\Estoque::all();
+
+        session()->flash('success', 'Estoque não existe.');
+        return view("ListarEstoques", ["estoques" => $estoques]); 
+      }
+      
       $estoques = \App\Estoque::all();
 
-      session()->flash('success', 'Item não existe.');
-      return view("ListarEstoques", ["estoques" => $estoques]);      
+      session()->flash('success', 'O Estoque pertence a uma Escola, renomeie a Escola.');
+      return view("ListarEstoques", ["estoques" => $estoques]);     
   }
 
   public function salvar(Request $request){

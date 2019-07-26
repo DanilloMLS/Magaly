@@ -16,4 +16,8 @@ class Estoque extends Model
   public function item(){
     return $this->hasMany(\App\Item::class);
   }
+
+  public function escola(){
+    return $this->belongsTo(\App\Escola::class);
+  }
 }
