@@ -8,6 +8,11 @@ use App\Estoque_item;
 class EstoqueController extends Controller
 {
   public function cadastrar(Request $request) {
+    $estoque = \App\Estoque::where('nome',$request->nome);
+    $validacao = $request->validate([
+      'nome' => 'unique:estoques',
+    ]);
+
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();

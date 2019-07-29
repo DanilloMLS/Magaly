@@ -8,6 +8,11 @@ use App\Estoque;
 class EscolaController extends Controller
 {
   public function cadastrar(Request $request) {
+    
+    $validacao = $request->validate([
+      'nome' => 'unique:escolas',
+    ]);
+
     $estoque = new \App\Estoque();
     $estoque->nome = "Estoque da Escola ".$request->nome;
     $estoque->save();
