@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+  <style type="text/css">
+
+  footer {
+    height: 60px;
+    width: 100%;
+    z-index: 1;
+    bottom: 0px;
+  }
+  </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -239,6 +248,12 @@
             @yield('content')
         </main>
     </div>
-    <img class=" logo-garanhuns top-left" src="/img/logo.png">
+    <footer class="container-fluid text-center" >
+      <img class=" logo-garanhuns left" src="/img/logo.png">
+    </footer>
+    <footer class="container-fluid text-center">
+
+  </footer>
+
 </body>
 </html>
