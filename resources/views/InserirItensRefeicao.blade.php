@@ -23,6 +23,9 @@
                               Você ainda não cadastrou nenhum item.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                               <div class="form-group row">
                                 <div class="col-md-3">
                                   <center>Nome</center>
@@ -90,4 +93,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection
