@@ -33,7 +33,7 @@
                         <th>Unidade</th>
                         <th>Gramatura</th>
                         <th>Quantidade</th>
-                        <th>Valor unitáro</th>
+                        <th>Valor unitário</th>
                     </tr>
                     @foreach (\App\Contrato_item::where('contrato_id', '=', $contrato->id)->get() as $item_contrato)
                         <tr>

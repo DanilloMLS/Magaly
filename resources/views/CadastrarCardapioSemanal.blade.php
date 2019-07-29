@@ -13,7 +13,6 @@
                 <div class="card-header">{{ __('Inserir Cardápio semanal') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
                       {{ csrf_field() }}
                         @csrf
                         @if(strcmp($cardapio->modalidade_ensino, 'Creche Infantil Integral') == 0)
@@ -40,7 +39,7 @@
                                 <tbody>
                                     <tr>
                                         <td data-title="Segunda">
-                                          
+
                                           <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id]) }}">Refeição 1</a>
                                         </td>
                                         <td data-title="Terça">
@@ -212,14 +211,9 @@
                         </div>
                         @endif
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-5">
-                              <button type="submit" class="btn btn-primary">
-                                  Finalizar
-                              </button>
-                            </div>
-                        </div>
-                    </form>
+                              <div class="panel-footer">
+                                  <center><a class="btn btn-primary" href="/cardapioDiario/finalizarCardapio/{{$cardapio->id}}">Concluir</a></center>
+                              </div>
                 </div>
             </div>
         </div>
