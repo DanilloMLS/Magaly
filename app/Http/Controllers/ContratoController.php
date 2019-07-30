@@ -72,24 +72,35 @@ class ContratoController extends Controller
     $itens = \App\Item::all();
     $contrato = \App\Contrato::find($contrato_item->contrato_id);
 
-    $contrato_item->delete();
+    if (isset($contrato)) {
+      $contrato_item->delete();
 
-    session()->flash('success', 'Item adicionado.');
-    return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+      session()->flash('success', 'Item adicionado.');
+      return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+    }
+    $contratos = \App\Contrato::all();
+    session()->flash('success', 'Contrato não existe.');
+    return view("ListarContratos", ["contratos" => $contratos]);
   }
 
   public function finalizarContrato(Request $request) {
     $contrato = \App\Contrato::find($request->id);
-    $contrato_itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->get();
-    $valorTotal = 0;
-    foreach ($contrato_itens as $key => $contrato_itens) {
-      $valorTotal = $valorTotal + $contrato_itens->valor_unitario * $contrato_itens->quantidade;
-    }
-    $contrato->valor_total = $valorTotal;
-    $contrato->save();
-    $contratos = \App\Contrato::all();
 
-    session()->flash('success', 'Contrato cadastrado.');
+    if (isset($contrato)) {
+      $contrato_itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->get();
+      $valorTotal = 0;
+      foreach ($contrato_itens as $key => $contrato_itens) {
+        $valorTotal = $valorTotal + $contrato_itens->valor_unitario * $contrato_itens->quantidade;
+      }
+      $contrato->valor_total = $valorTotal;
+      $contrato->save();
+      $contratos = \App\Contrato::all();
+
+      session()->flash('success', 'Contrato cadastrado.');
+      return view("ListarContratos", ["contratos" => $contratos]);
+    }
+    $contratos = \App\Contrato::all();
+    session()->flash('success', 'Contrato não existe.');
     return view("ListarContratos", ["contratos" => $contratos]);
   }
 

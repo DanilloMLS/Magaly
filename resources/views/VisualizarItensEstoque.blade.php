@@ -84,7 +84,6 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$item_estoque->estoque_id}}">Novo Item</a>  
                       <a class="btn btn-primary" href="/estoque/listar">Voltar</a>
                   </div>
                 </div>

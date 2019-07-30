@@ -127,9 +127,11 @@ class EstoqueController extends Controller
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
 
+    //impede a inserção de um Item se já tem um com o mesmo Id no Estoque
     if (isset($estoque)) {
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
-                                       ->where('item_id','=',$request->item_id)->first();
+                                       ->where('item_id','=',$request->item_id)
+                                       ->first();
       if (isset($estoque_item)){
         //$itens = \App\Item::all();
       
@@ -166,31 +168,39 @@ class EstoqueController extends Controller
   }
 
   public function removerItem(Request $request){
-    
     $estoque_item = \App\Estoque_item::find($request->id);
+    
 
     if (isset($estoque_item)) {
-      $estoque_es = new \App\Estoque_es();
-      $estoque_es->quantidade_danificados = 0;
-      $estoque_es->quantidade = 0;
-      $estoque_es->operacao = "removido";
-      $estoque_es->item_id = $estoque_item->item_id;
-      $estoque_es->estoque_id = $estoque_item->estoque_id;
-    
-    
-      $estoque_es->save();
-      $estoque_item->delete();
+      $estoque = \App\Estoque::find($estoque_item->estoque_id);
 
-      $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_es->estoque_id)->get();
-      //$request->id = null;
-      session()->flash('success', 'Remoção de item.');
-      return view("VisualizarItensEstoque", ["itens" => $itens]);
+      if (isset($estoque)) {
+        $estoque_es = new \App\Estoque_es();
+        $estoque_es->quantidade_danificados = 0;
+        $estoque_es->quantidade = 0;
+        $estoque_es->operacao = "removido";
+        $estoque_es->item_id = $estoque_item->item_id;
+        $estoque_es->estoque_id = $estoque_item->estoque_id;
+      
+      
+        $estoque_es->save();
+        $estoque_item->delete();
+
+        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_es->estoque_id)->get();
+        //$request->id = null;
+        session()->flash('success', 'Remoção de item.');
+        return view("VisualizarItensEstoque", ["itens" => $itens]);
+      }
+      
+      $estoques = \App\Estoque::all();
+
+      session()->flash('success', 'Estoque não existe.');
+      return view("ListarEstoques", ["estoques" => $estoques]);
     }
-    
     $estoques = \App\Estoque::all();
 
     session()->flash('success', 'Item não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return view("ListarEstoques", ["estoques" => $estoques]); 
   }
 
   public function abrirEntradaItem(Request $request){
@@ -205,27 +215,34 @@ class EstoqueController extends Controller
     $estoque_item = \App\Estoque_item::find($request->id);
 
     if (isset($estoque_item)) {
-      $estoque_item->quantidade += $request->quantidade;
-      $estoque_item->quantidade_danificados += $request->quantidade_danificados;
-      $estoque_item->item_id = $request->item_id;
-      $estoque_item->estoque_id = $request->estoque_id;
-      $estoque_item->save();
-      $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
-
-      $estoque_es = new \App\Estoque_es();
-      $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_es->quantidade = $request->quantidade;
-      $estoque_es->operacao = "entrada";
-      $estoque_es->item_id = $request->item_id;
-      $estoque_es->estoque_id = $request->estoque_id;
-      $estoque_es->save();
+      $estoque = \App\Estoque::find($estoque_item->estoque_id);
+      if (isset($estoque)) {
+        $estoque_item->quantidade += $request->quantidade;
+        $estoque_item->quantidade_danificados += $request->quantidade_danificados;
+        $estoque_item->item_id = $request->item_id;
+        $estoque_item->estoque_id = $request->estoque_id;
+        $estoque_item->save();
+        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+  
+        $estoque_es = new \App\Estoque_es();
+        $estoque_es->quantidade_danificados = $request->quantidade_danificados;
+        $estoque_es->quantidade = $request->quantidade;
+        $estoque_es->operacao = "entrada";
+        $estoque_es->item_id = $request->item_id;
+        $estoque_es->estoque_id = $request->estoque_id;
+        $estoque_es->save();
+        
+        session()->flash('success', 'Entrada de item.');
+        return view("VisualizarItensEstoque", ["itens" => $itens]);
+      }
       
-      session()->flash('success', 'Entrada de item.');
-      return view("VisualizarItensEstoque", ["itens" => $itens]);
+      $estoques = \App\Estoque::all();
+  
+      session()->flash('success', 'Estoque não existe.');
+      return view("ListarEstoques", ["estoques" => $estoques]);
     }
-    
     $estoques = \App\Estoque::all();
-
+  
     session()->flash('success', 'Item não existe.');
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
@@ -241,38 +258,45 @@ class EstoqueController extends Controller
   public function saidaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
 
-    if (isset($estoque_item->estoque_id)) {
-      if ($request->quantidade >= 0 && $request->quantidade_danificados >= 0) {
-        if ($request->quantidade <= $estoque_item->quantidade &&
-            $request->quantidade_danificados <= $estoque_item->quantidade_danificados) {
-              
-              $estoque_item->quantidade -= $request->quantidade;
-              $estoque_item->quantidade_danificados -= $request->quantidade_danificados;
-              $estoque_item->item_id = $request->item_id;
-              $estoque_item->estoque_id = $request->estoque_id;
-              
-              $estoque_es = new \App\Estoque_es();
-              $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-              $estoque_es->quantidade = $request->quantidade;
-              $estoque_es->operacao = "saida";
-              $estoque_es->item_id = $request->item_id;
-              $estoque_es->estoque_id = $request->estoque_id;
-              
-              $estoque_item->save();
-              $estoque_es->save();
+    if (isset($estoque_item)) {
+      $estoque = \App\Estoque::find($estoque_item->estoque_id);
+      if (isset($estoque)) {
+        if ($request->quantidade >= 0 && $request->quantidade_danificados >= 0) {
+          if ($request->quantidade <= $estoque_item->quantidade &&
+              $request->quantidade_danificados <= $estoque_item->quantidade_danificados) {
+                
+                $estoque_item->quantidade -= $request->quantidade;
+                $estoque_item->quantidade_danificados -= $request->quantidade_danificados;
+                $estoque_item->item_id = $request->item_id;
+                $estoque_item->estoque_id = $request->estoque_id;
+                
+                $estoque_es = new \App\Estoque_es();
+                $estoque_es->quantidade_danificados = $request->quantidade_danificados;
+                $estoque_es->quantidade = $request->quantidade;
+                $estoque_es->operacao = "saida";
+                $estoque_es->item_id = $request->item_id;
+                $estoque_es->estoque_id = $request->estoque_id;
+                
+                $estoque_item->save();
+                $estoque_es->save();
+          }
+          elseif ($request->quantidade > $estoque_item->quantidade) {
+            return redirect()->back() ->with('alert', 'Quantidade insuficiente');
+          }
+          else {
+            return redirect()->back() ->with('alert', 'Quantidade de itens danificados insuficiente');
+          }
         }
-        elseif ($request->quantidade > $estoque_item->quantidade) {
-          return redirect()->back() ->with('alert', 'Quantidade insuficiente');
-        }
-        else {
-          return redirect()->back() ->with('alert', 'Quantidade de itens danificados insuficiente');
-        }
+    
+        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+        
+        session()->flash('success', 'Saída de item.');
+        return view("VisualizarItensEstoque", ["itens" => $itens]);
       }
-  
-      $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
-      
-      session()->flash('success', 'Saída de item.');
-      return view("VisualizarItensEstoque", ["itens" => $itens]);
+      $estoques = \App\Estoque::all();
+
+      session()->flash('success', 'Estoque não existe.');
+      return view("ListarEstoques", ["estoques" => $estoques]);
     }
     
     $estoques = \App\Estoque::all();
