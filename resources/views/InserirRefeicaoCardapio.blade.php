@@ -53,7 +53,7 @@
                                     {{ $refeicao->descricao }}
                                   </div>
                                   <div class="col-md-2">
-                                    {{ $refeicao->peso }}
+                                    {{ $refeicao->peso_liquido }}
                                   </div>
                                   <div class="col-md-2">
 
