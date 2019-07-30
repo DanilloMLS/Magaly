@@ -9,9 +9,6 @@ class EstoqueController extends Controller
 {
   public function cadastrar(Request $request) {
     $estoque = \App\Estoque::where('nome',$request->nome);
-    $validacao = $request->validate([
-      'nome' => 'unique:estoques',
-    ]);
 
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
@@ -129,9 +126,18 @@ class EstoqueController extends Controller
 
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
-    //$estoque_item = \App\Estoque_item::find($estoque->id)->where('request->item_id','=',item_id);
 
     if (isset($estoque)) {
+      $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
+                                       ->where('item_id','=',$request->item_id)->first();
+      if (isset($estoque_item)){
+        //$itens = \App\Item::all();
+      
+        session()->flash('success', "Esse Item já existe no estoque.");
+        $itens = \App\Estoque_item::where('estoque_id', '=', $request->estoque_id)->get();
+        return view("VisualizarItensEstoque", ["itens" => $itens]);
+      }
+
       $estoque_item = new \App\Estoque_item();
       $estoque_item->quantidade = $request->quantidade;
       $estoque_item->quantidade_danificados = $request->quantidade_danificados;
