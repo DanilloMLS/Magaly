@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cardapio_diario extends Model
 {
   protected $fillable = [
-    'dia_semana',
+    'dia_semana', 'refeicao'
    ];
 
   public function cardapio_semanal(){
