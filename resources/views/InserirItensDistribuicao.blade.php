@@ -30,7 +30,7 @@
                                 <div class="col-md-2">
                                   <center>Nome</center>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                   Gramatura
                                 </div>
                                 <div class="col-md-2">

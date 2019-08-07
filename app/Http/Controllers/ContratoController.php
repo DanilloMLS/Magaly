@@ -52,7 +52,7 @@ class ContratoController extends Controller
 
     $contrato = \App\Contrato::find($request->contrato_id);
 
-    if (isset($contrato_item)) {
+    if (!isset($contrato_item)) {
       if (isset($contrato)) {
         $contrato_item = new \App\Contrato_item();
         $contrato_item->quantidade = $request->quantidade;
