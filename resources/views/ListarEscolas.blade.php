@@ -46,6 +46,8 @@ function avisoDeletar(id){
                                   <th>Endereço</th>
                                   <th>Período de Atendimento</th>
                                   <th>Quantidade de Alunos</th>
+                                  <th>Gestor</th>
+                                  <th>Telefone</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -58,6 +60,8 @@ function avisoDeletar(id){
                                     <td data-title="Endereco">{{ $escola->endereco }}</td>
                                     <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
                                     <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
+                                    <td data-title="Gestor">{{ $escola->gestor }}</td>
+                                    <td data-title="Telefone">{{ $escola->telefone }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>

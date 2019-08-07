@@ -42,6 +42,8 @@ function avisoDeletar(id){
                               <tr>
                                   <th>Nome</th>
                                   <th>CNPJ</th>
+                                  <th>Telefone</th>
+                                  <th>Email</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -49,7 +51,9 @@ function avisoDeletar(id){
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
-                                    <td data-title="Descrição">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
+                                    <td data-title="Email">{{ $fornecedor->email }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>

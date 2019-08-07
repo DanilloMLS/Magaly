@@ -17,7 +17,7 @@ class CreateRefeicaosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('descricao')->nullable();
-            $table->string('peso_liquido');
+            // $table->string('peso_liquido');
             $table->timestamps();
         });
     }

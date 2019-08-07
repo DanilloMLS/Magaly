@@ -17,8 +17,6 @@
 
                             <div class="col-md-6">
                               <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
-
-
                             </div>
                         </div>
 
@@ -42,7 +40,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
                             </div>
                         </div>
 
@@ -51,7 +49,7 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="rota" id="rota" type="text" class="form-control" required value= {{ old('rota')}}> {{ $errors->first('rota')}}</textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control" value= {{ old('rota')}}> {{ $errors->first('rota')}}</textarea>
 
                             </div>
                         </div>
@@ -60,7 +58,7 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" required value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}</input>
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}</input>
 
                             </div>
                         </div>
@@ -70,6 +68,24 @@
 
                             <div class="col-md-6">
                               <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="gestor" id="gestor" type="text" class="form-control" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="telefone" id="telefone" type="text" class="form-control" value= {{ old('telefone')}}> {{ $errors->first('telefone')}}</input>
 
                             </div>
                         </div>

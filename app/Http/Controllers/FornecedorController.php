@@ -14,6 +14,8 @@ class FornecedorController extends Controller
     $fornecedor = new \App\Fornecedor();
     $fornecedor->nome = $request->nome;
     $fornecedor->cnpj = $request->cnpj;
+    $fornecedor->email = $request->email;
+    $fornecedor->telefone = $request->telefone;
     $fornecedor->save();
 
     session()->flash('success', 'Fornecedor cadastrado com sucesso.');
@@ -52,6 +54,8 @@ class FornecedorController extends Controller
 			$fornecedor = \App\Fornecedor::find($request->id);
       $fornecedor->nome = $request->nome;
       $fornecedor->cnpj = $request->cnpj;
+      $fornecedor->email = $request->email;
+      $fornecedor->telefone = $request->telefone;
  			$fornecedor->save();
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');

@@ -33,13 +33,13 @@
                         </div>
 
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="peso_liquido" class="col-md-4 col-form-label text-md-right">{{ __('Peso Líquido ') }}</label>
 
                             <div class="col-md-6">
                               <input name="peso_liquido" id="peso_liquido" type="text" class="form-control" required value= {{ old('peso_liquido')}}> {{ $errors->first('peso_liquido')}}
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="form-group row mb-0">

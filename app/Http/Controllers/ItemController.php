@@ -18,7 +18,6 @@ class ItemController extends Controller
         $item = new \App\Item();
         $item->nome = $request->nome;
         $item->data_validade = $request->data_validade;
-        $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
         $item->gramatura = $request->gramatura;
@@ -60,7 +59,6 @@ class ItemController extends Controller
         $item = \App\Item::find($request->id);
         $item->nome = $request->nome;
         $item->data_validade = $request->data_validade;
-        $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
         $item->gramatura = $request->gramatura;

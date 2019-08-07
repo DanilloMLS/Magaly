@@ -17,7 +17,6 @@ class CreateItensTable extends Migration
             $table->bigIncrements('id');
             $table->string('data_validade');
             $table->string('nome');
-            $table->string('n_lote');
             $table->string('descricao')->nullable();
             $table->string('unidade');
             $table->string('gramatura');
