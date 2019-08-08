@@ -123,7 +123,7 @@
                                             Novo Cardápio
                                         </a>
                                         <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
-                                            Ver Fornecedores
+                                            Listar Cardápio
                                         </a>
                                     </div>
                                 </div>
