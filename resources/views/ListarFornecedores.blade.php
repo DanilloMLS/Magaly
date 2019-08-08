@@ -54,13 +54,11 @@ function editar(id){
                             <tbody>
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
-                                    <td data-title="Nome">{{ $fornecedor->nome }}</td>
+                                    <td data-title="Nome" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->nome }}</td>
                                     <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
                                     <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
+                                    <td data-title="Email">{{ $fornecedor->email }}</td>
 
-                                    {{-- <td>
-                                      <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
-                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});"> Excluir</a>
                                     </td>
