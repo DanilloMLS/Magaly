@@ -49,6 +49,7 @@ function listarItens(id){
                             <thead>
                               <tr>
                                   <th>Nome</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>

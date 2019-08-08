@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/escola/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -54,7 +58,7 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($escolas as $escola)
                                 <tr>
-                                    <td data-title="Nome">{{ $escola->nome }}</td>
+                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->nome }}</td>
                                     <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
                                     <td data-title="Rota">{{ $escola->rota }}</td>
                                     <td data-title="Endereco">{{ $escola->endereco }}</td>
@@ -63,9 +67,9 @@ function avisoDeletar(id){
                                     <td data-title="Gestor">{{ $escola->gestor }}</td>
                                     <td data-title="Telefone">{{ $escola->telefone }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});"> Excluir</a>
                                     </td>

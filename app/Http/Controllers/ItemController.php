@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 
 class ItemController extends Controller
 {
@@ -17,6 +18,7 @@ class ItemController extends Controller
     public function cadastrar(Request $request) {
         $item = new \App\Item();
         $item->nome = $request->nome;
+        $item->marca = $request->marca;
         $item->data_validade = $request->data_validade;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
@@ -43,16 +45,28 @@ class ItemController extends Controller
 
     public function remover(Request $request) {
         $item = \App\Item::find($request->id);
-        $item->delete();
-        session()->flash('success', 'Item removido com sucesso');
+
+        if (isset($item)) {
+            $item->delete();
+            session()->flash('success', 'Item removido com sucesso');
+            return redirect()->route('/item/listar');
+        }
+        
+        session()->flash('success', 'Item não existe.');
         return redirect()->route('/item/listar');
     }
 
     public function editar(Request $request) {
         $item = \App\Item::find($request->id);
-        return view("EditarItem", [
-            "item" => $item,
-        ]);
+
+        if (isset($item)) {
+            return view("EditarItem", [
+                "item" => $item,
+            ]);
+        }
+        
+        session()->flash('success', 'Item não existe.');
+        return redirect()->route('/item/listar');
     }
 
     public function salvar(Request $request) {
@@ -64,7 +78,25 @@ class ItemController extends Controller
         $item->gramatura = $request->gramatura;
         $item->save();
 
-        session()->flash('success', 'Item modificado com sucesso.');
+
+        if (isset($item)) {
+            $item->nome = $request->nome;
+            $item->marca = $request->marca;
+
+            $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
+            $item->data_validade = $dateObj->format('d/m/Y');
+
+            $item->n_lote = $request->n_lote;
+            $item->descricao = $request->descricao;
+            $item->unidade = $request->unidade;
+            $item->gramatura = $request->gramatura;
+            $item->save();
+
+            session()->flash('success', 'Item modificado com sucesso.');
+            return redirect()->route('/item/listar');
+        }
+        
+        session()->flash('success', 'Item não existe.');
         return redirect()->route('/item/listar');
     }
 }

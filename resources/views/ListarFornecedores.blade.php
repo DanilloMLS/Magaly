@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/fornecedor/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -53,11 +57,10 @@ function avisoDeletar(id){
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
                                     <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
                                     <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
-                                    <td data-title="Email">{{ $fornecedor->email }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});"> Excluir</a>
                                     </td>
