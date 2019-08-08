@@ -23,12 +23,14 @@
                               Não há nenhum item nesta distribuição.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th>Nº lote</th>
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
@@ -45,7 +47,6 @@
                                       $item = \App\Item::find($item_distribuicao->item_id);
                                     @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
-                                    <td data-title="Nº lote">{{ $item->n_lote }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
@@ -75,4 +76,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

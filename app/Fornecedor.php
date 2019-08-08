@@ -10,7 +10,7 @@ class Fornecedor extends Model
   use SoftDeletes;
   protected $dates = ['deleted_at'];
   protected $fillable = [
-      'nome', 'cnpj'
+      'nome', 'cnpj', 'telefone', 'email'
   ];
 
   public function contratos(){

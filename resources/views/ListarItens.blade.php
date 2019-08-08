@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/item/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -31,13 +35,16 @@ function avisoDeletar(id){
                               Não há nenhum item cadastrado no sistema.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
+                                  <th>Marca</th>
                                   <th>Data de validade</th>
-                                  <th>Nº lote</th>
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
@@ -47,9 +54,9 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($itens as $item)
                                 <tr>
-                                    <td data-title="Valor unitário">{{ $item->nome }}</td>
+                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
+                                    <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Data de validade">{{ $item->data_validade }}</td>
-                                    <td data-title="Nº lote">{{ $item->n_lote }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
@@ -72,7 +79,6 @@ function avisoDeletar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                       <a class="btn btn-primary" target="_blank" href="{{ route("/item/RelatorioItens") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/item/telaCadastrar") }}">Novo</a>
                   </div>
@@ -81,4 +87,26 @@ function avisoDeletar(id){
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

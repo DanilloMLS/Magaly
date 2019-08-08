@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/escola/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -33,6 +37,9 @@ function avisoDeletar(id){
                               Não há nenhuma escola cadastrada no sistema.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
@@ -43,22 +50,26 @@ function avisoDeletar(id){
                                   <th>Endereço</th>
                                   <th>Período de Atendimento</th>
                                   <th>Quantidade de Alunos</th>
+                                  <th>Gestor</th>
+                                  <th>Telefone</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($escolas as $escola)
                                 <tr>
-                                    <td data-title="Nome">{{ $escola->nome }}</td>
+                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->nome }}</td>
                                     <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
                                     <td data-title="Rota">{{ $escola->rota }}</td>
                                     <td data-title="Endereco">{{ $escola->endereco }}</td>
                                     <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
                                     <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
+                                    <td data-title="Gestor">{{ $escola->gestor }}</td>
+                                    <td data-title="Telefone">{{ $escola->telefone }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});"> Excluir</a>
                                     </td>
@@ -72,7 +83,6 @@ function avisoDeletar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                       <a class="btn btn-primary" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/escola/cadastrar") }}">Nova</a>
                   </div>
@@ -81,4 +91,26 @@ function avisoDeletar(id){
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

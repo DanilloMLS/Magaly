@@ -10,7 +10,6 @@ class RefeicaoController extends Controller
     $refeicao = new \App\Refeicao();
     $refeicao->nome = $request->nome;
     $refeicao->descricao = $request->descricao;
-    $refeicao->peso_liquido = $request->peso_liquido;
     $refeicao->save();
 
     $itens = \App\Item::all();

@@ -17,10 +17,12 @@ class CreateEscolasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('modalidade_ensino');
-            $table->string('rota');
-            $table->string('periodo_atendimento');
+            $table->string('rota')->nullable();
+            $table->string('periodo_atendimento')->nullable();
             $table->integer('qtde_alunos');
-            $table->string('endereco');
+            $table->string('endereco')->nullable();
+            $table->string('gestor');
+            $table->string('telefone');
             $table->softDeletes();
             $table->timestamps();
         });

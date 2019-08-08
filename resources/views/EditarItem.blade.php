@@ -23,18 +23,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de validade ') }}</label>
+                          <label for="marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca ') }}</label>
 
-                            <div class="col-md-6">
-                              <input name="data_validade" id="data_validade" type="date" class="form-control" value="{{ $item->data_validade}}" > {{ $errors->first('data_validade')}}
-                            </div>
+                          <div class="col-md-6">
+                            <input name="marca" id="marca" type="text" class="form-control" value="{{ $item->marca}}" > {{ $errors->first('marca')}}
+                          </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Nº lote ') }}</label>
+                            <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de validade ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="n_lote" id="n_lote" type="text" class="form-control" value="{{ $item->n_lote}}" > {{ $errors->first('n_lote')}}
+                              @php
+                                  $data_formatada = DateTime::createFromFormat('d/m/Y', $item->data_validade);
+                              @endphp
+                              <input name="data_validade" id="data_validade" type="date" class="form-control" value="<?php echo $data_formatada->format('Y-m-d')  ?>" > {{ $errors->first('data_validade')}}
                             </div>
                         </div>
 

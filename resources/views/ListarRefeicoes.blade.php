@@ -23,13 +23,15 @@
                               Não há nenhuma refeição cadastrada no sistema.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Peso líquido</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
@@ -38,7 +40,6 @@
                                 <tr>
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
-                                    <td data-title="Peso_liquido">{{ $refeicao->peso_liquido }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="/refeicao/exibirItensRefeicao/{{$refeicao->id}}">Itens</a>
@@ -54,7 +55,6 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                       <a class="btn btn-primary" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/refeicao/cadastrar") }}">Novo</a>
                   </div>
@@ -63,4 +63,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

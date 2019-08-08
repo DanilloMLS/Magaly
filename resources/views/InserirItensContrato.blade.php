@@ -23,6 +23,9 @@
                               Você ainda não cadastrou nenhum item.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                               <div class="form-group row">
                                 <div class="col-md-3">
                                   <center>Nome</center>
@@ -31,10 +34,10 @@
                                   Gramatura
                                 </div>
                                 <div class="col-md-2">
-                                  <center>N° lote</center>
+                                  <center>Nº Lote</center>
                                 </div>
                                 <div class="col-md-2">
-                                  <center>Valor</center>
+                                  <center>Valor Unitário</center>
                                 </div>
                                 <div class="col-md-2">
                                   <center>Quantidade</center>
@@ -55,16 +58,19 @@
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
                                   </div>
+
                                   <div class="col-md-2">
-                                    {{ $item->n_lote }}
+                                    <input name="n_lote" id="n_lote" type="number"  class="form-control" required value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
                                   </div>
 
                                   <div class="col-md-2">
                                     <input name="valor" id="valor" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
                                   </div>
+
                                   <div class="col-md-2">
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
+
                                   <div class="col-md-1">
                                     <?php
                                         $contrato_item = \App\Contrato_item::where('contrato_id', '=', $contrato->id)
@@ -96,4 +102,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

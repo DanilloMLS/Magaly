@@ -18,8 +18,6 @@
 
                             <div class="col-md-6">
                               <input name="nome" id="nome" type="text" class="form-control" value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
-
-
                             </div>
                         </div>
 
@@ -29,6 +27,7 @@
                             <div class="col-md-6">
                               <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
                                     <option value="">Selecione uma Modalidade de ensino</option>
+                                    
                                     <option value="1" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Integral') == 0) selected="selected" @endif> Creche Infantil Integral</option>
                                     <option value="2" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Parcial') == 0) selected="selected" @endif>Creche Infantil Parcial</option>
                                     <option value="3" @if(strcasecmp($escola->modalidade_ensino, 'Infantil (pré-escola)') == 0) selected="selected" @endif>Infantil (pré-escola)</option>
@@ -43,7 +42,9 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}
+                          
+                              {{-- <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" value= {{ old('endereco')}}> {{ $errors->first('endereco')}} --}}
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
                             </div>
                         </div>
 
@@ -52,8 +53,9 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <input name="rota" id="rota" type="text" class="form-control" value="{{ $escola->rota}}" required value= {{ old('rota')}}> {{ $errors->first('rota')}}
 
+                              {{-- <input name="rota" id="rota" type="text" class="form-control" value="{{ $escola->rota}}" required value= {{ old('rota')}}> {{ $errors->first('rota')}} --}}
+                              <textarea name="rota" id="rota" type="text" class="form-control" required value= "{{ $escola->rota}}"> <?php echo $escola->rota; ?> </textarea>
                             </div>
                         </div>
 
@@ -61,7 +63,7 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value="{{ $escola->periodo_atendimento}}" required value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}
                             </div>
                         </div>
 
@@ -70,6 +72,22 @@
 
                             <div class="col-md-6">
                               <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="gestor" id="gestor" type="text" class="form-control" value="{{ $escola->gestor}}" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="telefone" id="telefone" type="text" class="form-control" value="{{ $escola->telefone}}" value= {{ old('telefone')}}> {{ $errors->first('telefone')}}
                             </div>
                         </div>
 

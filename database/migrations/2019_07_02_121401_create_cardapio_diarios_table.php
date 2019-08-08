@@ -16,6 +16,7 @@ class CreateCardapioDiariosTable extends Migration
         Schema::create('cardapio_diarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('dia_semana');
+            $table->integer('refeicao');
             $table->integer('cardapio_semanals_id')->unsigned();
             $table->foreign('cardapio_semanals_id')->references('id')->on('cardapio_semanals')->onDelete('cascade');
             $table->timestamps();

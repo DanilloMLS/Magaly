@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/fornecedor/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -33,12 +37,17 @@ function avisoDeletar(id){
                               Não há nenhum fornecedor cadastrado no sistema.
                       </div>
                       @else
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
                                   <th>CNPJ</th>
+                                  <th>Telefone</th>
+                                  <th>Email</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -46,11 +55,12 @@ function avisoDeletar(id){
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
-                                    <td data-title="Descrição">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});"> Excluir</a>
                                     </td>
@@ -64,7 +74,6 @@ function avisoDeletar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                       <a class="btn btn-primary" target="_blank" href="{{ route("/fornecedor/RelatorioFornecedores") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/fornecedor/cadastrar") }}">Novo</a>
                   </div>
@@ -73,4 +82,26 @@ function avisoDeletar(id){
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

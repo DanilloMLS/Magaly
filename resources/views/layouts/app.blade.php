@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+  <style type="text/css">
+
+  footer {
+    height: 60px;
+    width: 100%;
+    z-index: 1;
+    bottom: 0px;
+  }
+  </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -100,7 +109,7 @@
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
                                             Listar Estoques
                                         </a>
-                                        
+
                                     </div>
                                 </div>
 
@@ -123,10 +132,78 @@
                                             Novo Cardápio
                                         </a>
                                         <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
-                                            Listar Cardápio
+                                            Listar Cardápios
                                         </a>
                                     </div>
                                 </div>
+                      @else
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
+                                  Listar Fornecedores
+                              </a>
+                          </div>
+                      </div>
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/contra.png"><div class="titulo-botao">Contrato</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/contrato/listar')}}">
+                                  Listar Contratos
+                              </a>
+                          </div>
+                      </div>
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/escola/listar')}}">
+                                  Listar Escolas
+                              </a>
+                          </div>
+                      </div>
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
+                                  Listar Distribuições
+                              </a>
+                          </div>
+                      </div>
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/item/listar')}}">
+                                  Listar Itens
+                              </a>
+                          </div>
+                      </div>
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/estoq.png"><div class="titulo-botao">Estoque</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/estoque/listar')}}">
+                                  Listar Estoques
+                              </a>
+
+                          </div>
+                      </div>
+
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/refeic.png"><div class="titulo-botao">Refeição</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/refeicao/listar')}}">
+                                  Listar Refeições
+                              </a>
+                          </div>
+                      </div>
+
+                      <div class="dropdown">
+                          <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/cardap.png"><div class="titulo-botao">Cardápio</div></button>
+                          <div class="dropdown-content">
+                              <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
+                                  Listar Cardápios
+                              </a>
+                          </div>
+                      </div>
                       @endif
 
                     </ul>
@@ -171,6 +248,12 @@
             @yield('content')
         </main>
     </div>
-    <img class=" logo-garanhuns top-left" src="/img/logo.png">
+    <footer class="container-fluid text-center" >
+      <img class=" logo-garanhuns left" src="/img/logo.png">
+    </footer>
+    <footer class="container-fluid text-center">
+
+  </footer>
+
 </body>
 </html>
