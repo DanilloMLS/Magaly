@@ -23,6 +23,15 @@
                         </div>
 
                         <div class="form-group row">
+                          <label for="marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="marca" id="marca" type="text" class="form-control" required value= {{ old('marca')}}> {{ $errors->first('marca')}}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de validade ') }}</label>
 
                             <div class="col-md-6">

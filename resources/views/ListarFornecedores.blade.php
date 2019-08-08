@@ -11,6 +11,10 @@ function avisoDeletar(id){
     return false;
   }
 }
+
+function editar(id){
+  location.href="/fornecedor/editar/"+id;
+}
 </script>
 
 <div class="container">
@@ -48,12 +52,12 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
-                                    <td data-title="Nome">{{ $fornecedor->nome }}</td>
+                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$fornecedor->id}});">{{ $fornecedor->nome }}</td>
                                     <td data-title="Descrição">{{ $fornecedor->cnpj }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});"> Excluir</a>
                                     </td>

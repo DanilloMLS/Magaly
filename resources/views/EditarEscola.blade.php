@@ -29,6 +29,7 @@
                             <div class="col-md-6">
                               <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
                                     <option value="">Selecione uma Modalidade de ensino</option>
+                                    
                                     <option value="1" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Integral') == 0) selected="selected" @endif> Creche Infantil Integral</option>
                                     <option value="2" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Parcial') == 0) selected="selected" @endif>Creche Infantil Parcial</option>
                                     <option value="3" @if(strcasecmp($escola->modalidade_ensino, 'Infantil (pré-escola)') == 0) selected="selected" @endif>Infantil (pré-escola)</option>
@@ -43,7 +44,8 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}
+                              {{-- <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}} --}}
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
                             </div>
                         </div>
 
@@ -52,8 +54,8 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <input name="rota" id="rota" type="text" class="form-control" value="{{ $escola->rota}}" required value= {{ old('rota')}}> {{ $errors->first('rota')}}
-
+                              {{-- <input name="rota" id="rota" type="text" class="form-control" value="{{ $escola->rota}}" required value= {{ old('rota')}}> {{ $errors->first('rota')}} --}}
+                              <textarea name="rota" id="rota" type="text" class="form-control" required value= "{{ $escola->rota}}"> <?php echo $escola->rota; ?> </textarea>
                             </div>
                         </div>
 
