@@ -39,60 +39,159 @@
                                 <tbody>
                                     <tr>
                                       <td data-title="Segunda">
-                                        @php
-                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->first();
-                                        $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->where('refeicao', '=', 1)->first();
-                                        $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
-                                        @endphp
-                                        @if(!empty($refeicao))
-                                          $refeicao->nome;
-                                        @endif
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
+
                                       </td>
                                       <td data-title="Terça">
-                                        Refeição 1
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
-                                        Refeição 1
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
-                                        Refeição 1
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
-                                        Refeição 1
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                     </tr>
                                     <tr>
                                       <td data-title="Segunda">
-                                        Refeição 2
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 1)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Terça">
-                                        Refeição 2
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 2)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
-                                        Refeição 2
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 3)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
-                                        Refeição 2
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 4)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
-                                        Refeição 2
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 5)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                     </tr>
                                     <tr>
                                       <td data-title="Segunda">
-                                        Refeição 3
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 1)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Terça">
-                                        Refeição 3
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 2)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
-                                        Refeição 3
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 3)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
-                                        Refeição 3
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 4)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
-                                        Refeição 3
+                                        <?php
+                                        $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 5)->first();
+                                        if(!empty($cardapio_diario)){
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                        ?>
+                                        {{$refeicao->nome}}
+                                      <?php } ?>
                                       </td>
                                     </tr>
 
@@ -126,36 +225,107 @@
                               <tbody>
                                 <tr>
                                   <td data-title="Segunda">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
+
                                   </td>
                                   <td data-title="Terça">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td data-title="Segunda">
-                                    Refeição 2
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 1)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Terça">
-                                    Refeição 2
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 2)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
-                                    Refeição 2
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 3)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
-                                    Refeição 2
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 4)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
-                                    Refeição 2
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 5)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                 </tr>
 
@@ -188,19 +358,55 @@
                               <tbody>
                                 <tr>
                                   <td data-title="Segunda">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
+
                                   </td>
                                   <td data-title="Terça">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
-                                    Refeição 1
+                                    <?php
+                                    $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
+                                    if(!empty($cardapio_diario)){
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                    ?>
+                                    {{$refeicao->nome}}
+                                  <?php } ?>
                                   </td>
                                 </tr>
 

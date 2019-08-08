@@ -34,7 +34,10 @@
                                   Gramatura
                                 </div>
                                 <div class="col-md-2">
-                                  <center>Valor</center>
+                                  <center>Nº Lote</center>
+                                </div>
+                                <div class="col-md-2">
+                                  <center>Valor Unitário</center>
                                 </div>
                                 <div class="col-md-2">
                                   <center>Quantidade</center>
@@ -57,11 +60,17 @@
                                   </div>
 
                                   <div class="col-md-2">
+                                    <input name="n_lote" id="n_lote" type="number"  class="form-control" required value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
+                                  </div>
+
+                                  <div class="col-md-2">
                                     <input name="valor" id="valor" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
                                   </div>
+
                                   <div class="col-md-2">
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
+
                                   <div class="col-md-1">
                                     <?php
                                         $contrato_item = \App\Contrato_item::where('contrato_id', '=', $contrato->id)

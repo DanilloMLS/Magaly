@@ -105,4 +105,10 @@ class CardapioController extends Controller
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
 
   }
+
+  public function exibirCardapioMensal(Request $request){
+    $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
+    return view("ExibirCardapioMensal", ["cardapio" => $cardapio_mensal]);
+
+  }
 }
