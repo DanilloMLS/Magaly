@@ -32,7 +32,6 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Peso líquido</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
@@ -41,7 +40,6 @@
                                 <tr>
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
-                                    <td data-title="Peso_liquido">{{ $refeicao->peso_liquido }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="/refeicao/exibirItensRefeicao/{{$refeicao->id}}">Itens</a>

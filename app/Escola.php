@@ -10,7 +10,7 @@ class Escola extends Model
   use SoftDeletes;
   protected $dates = ['deleted_at'];
   protected $fillable = [
-      'nome', 'estoque_id', 'modalidade_ensino', 'rota', 'periodo_atendimento', 'qtde_alunos', 'endereco'
+      'nome', 'estoque_id', 'modalidade_ensino', 'rota', 'periodo_atendimento', 'qtde_alunos', 'endereco', 'gestor', 'telefone'
   ];
 
   public function distribuicao(){

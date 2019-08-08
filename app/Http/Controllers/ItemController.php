@@ -20,7 +20,6 @@ class ItemController extends Controller
         $item->nome = $request->nome;
         $item->marca = $request->marca;
         $item->data_validade = $request->data_validade;
-        $item->n_lote = $request->n_lote;
         $item->descricao = $request->descricao;
         $item->unidade = $request->unidade;
         $item->gramatura = $request->gramatura;
@@ -72,6 +71,13 @@ class ItemController extends Controller
 
     public function salvar(Request $request) {
         $item = \App\Item::find($request->id);
+        $item->nome = $request->nome;
+        $item->data_validade = $request->data_validade;
+        $item->descricao = $request->descricao;
+        $item->unidade = $request->unidade;
+        $item->gramatura = $request->gramatura;
+        $item->save();
+
 
         if (isset($item)) {
             $item->nome = $request->nome;

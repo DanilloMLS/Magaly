@@ -34,9 +34,6 @@
                                   Gramatura
                                 </div>
                                 <div class="col-md-2">
-                                  <center>N° lote</center>
-                                </div>
-                                <div class="col-md-2">
                                   <center>Quantidade</center>
                                 </div>
                               </div>
@@ -54,9 +51,6 @@
                                   </div>
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
-                                  </div>
-                                  <div class="col-md-2">
-                                    {{ $item->n_lote }}
                                   </div>
 
                                   <div class="col-md-2">

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Refeicao extends Model
 {
   protected $fillable = [
-    'nome', 'descricao','peso_liquido',
+    'nome', 'descricao',
    ];
 
 

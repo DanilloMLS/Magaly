@@ -40,14 +40,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Nº de lote ') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="n_lote" id="n_lote" type="text" class="form-control" required value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">

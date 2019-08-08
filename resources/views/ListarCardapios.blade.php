@@ -45,7 +45,7 @@
                                     <td data-title="Data_fim">{{ $cardapio->data_fim }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="">ver</a>
+                                      <a class="btn btn-primary" href="/cardapio/exibirItensCardapio/{{$cardapio->id}}">ver</a>
                                     </td>
                                 </tr>
                               @endforeach

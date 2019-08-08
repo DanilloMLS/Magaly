@@ -45,6 +45,9 @@ class EscolaController extends Controller
     $escola->periodo_atendimento = $request->periodo_atendimento;
     $escola->qtde_alunos = $request->qtde_alunos;
     $escola->endereco = $request->endereco;
+
+    $escola->gestor = $request->gestor;
+    $escola->telefone = $request->telefone;
     $escola->estoque_id = $estoque->id;
     
     $escola->save();
@@ -96,6 +99,24 @@ class EscolaController extends Controller
   public function salvar(Request $request){
       $escola = \App\Escola::find($request->id);
 
+      $escola->nome = $request->nome;
+      $escola->modalidade_ensino = $request->modalidade_ensino;
+      $escola->rota = $request->rota;
+      $escola->periodo_atendimento = $request->periodo_atendimento;
+      $escola->qtde_alunos = $request->qtde_alunos;
+      $escola->endereco = $request->endereco;
+      $escola->gestor = $request->gestor;
+      $escola->telefone = $request->telefone;
+      $escola->save();
+      //disciplina
+      /*$endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
+      $endereco->rua = $request->rua;
+      $endereco->bairro = $request->bairro;
+      $endereco->cep = $request->cep;
+      $endereco->numero = $request->numero;
+      $endereco->save();*/
+      session()->flash('success', 'Escola modificada com sucesso.');
+      return redirect()->route('/escola/listar');
       if (isset($escola)) {
         $escola->nome = $request->nome;
 
