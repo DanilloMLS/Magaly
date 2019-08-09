@@ -71,6 +71,11 @@ Route::get('/contrato/removerItem/{id}', 'ContratoController@removerItemContrato
 Route::get('/contrato/finalizarContrato/{id}', 'ContratoController@finalizarContrato')->name('/contrato/finalizarContrato')->middleware('auth');
 Route::get('/contrato/exibirItensContrato/{id}', 'ContratoController@exibirItensContrato')->name('/contrato/exibirItensContrato')->middleware('auth');
 Route::get('/contrato/Relatorio_Contratos', 'ContratoController@gerarRelatorio')->name('/contrato/RelatorioContratos')->middleware('auth');
+Route::get('/contrato/buscar', function(Request $request) {
+    return view('BuscarContratos');
+})->name('/contrato/buscar')->middleware('auth');
+Route::post('/contrato/buscarFornecedor', 'ContratoController@buscarContratosFornecedor')->name('/contrato/buscarFornecedor')->middleware('auth');
+Route::post('/contrato/buscarData', 'ContratoController@buscarContratosData')->name('/contrato/buscarData')->middleware('auth');
 
 //Item
 Route::get('/item/telaCadastrar', 'ItemController@telaCadastrar')->name('/item/telaCadastrar')->middleware('auth');
