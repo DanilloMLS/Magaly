@@ -48,7 +48,7 @@ function editar(id){
                                   <th>CNPJ</th>
                                   <th>Telefone</th>
                                   <th>Email</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -57,14 +57,18 @@ function editar(id){
                                     <td data-title="Nome">{{ $fornecedor->nome }}</td>
                                     <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
                                     <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
+                                    <td data-title="Telefone">{{ $fornecedor->email }}</td>
 
-                                    {{-- <td>
-                                      <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">Editar</a>
-                                    </td> --}}
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});"> Excluir</a>
+                                      <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
+                                    </td>
                                 </tr>
                               @endforeach
 
