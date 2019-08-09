@@ -222,6 +222,9 @@
                           $i = 1;
                           for($i=1; $i<= 5; $i++){
                             @endphp
+                            @php
+                            $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
+                            @endphp
                             <center><strong><h4>Semana {{$i}}</h4><strong></center>
                           <div id="tabela_parcial" class="table-responsive">
                             <table class="table table-hover">
@@ -362,6 +365,9 @@
                           @php
                           $i = 1;
                           for($i=1; $i<= 5; $i++){
+                            @endphp
+                            @php
+                            $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
                             <center><strong><h4>Semana {{$i}}</h4><strong></center>
                           <div id="tabela_infantil" class="table-responsive">

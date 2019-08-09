@@ -63,10 +63,14 @@ function listarItens(id){
                                       <a class="btn btn-primary" href="/estoque/historicoEstoque/{{$estoque->id}}">Ver Histórico</a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">Renomear</a>
+                                      <a class="btn btn-primary" honClick="renomear({{$estoque->id}});">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach

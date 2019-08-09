@@ -67,13 +67,17 @@ function editar(id){
                                     <td data-title="Gestor">{{ $escola->gestor }}</td>
                                     <td data-title="Telefone">{{ $escola->telefone }}</td>
 
-                                    {{-- <td>
-                                      <a class="btn btn-primary" href="/escola/editar/{{$escola->id}}">Editar</a>
-                                    </td> --}}
+                                    
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});"> Excluir</a>
+                                      <a class="btn btn-primary"  href="/escola/editar/{{$escola->id}}">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
+                                    </td>
                                 </tr>
                               @endforeach
 

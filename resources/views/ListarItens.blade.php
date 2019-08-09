@@ -48,7 +48,6 @@ function editar(id){
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
-                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -66,9 +65,9 @@ function editar(id){
                                     <!-- <td>
                                       <a class="btn btn-primary" href="/item/editar/{{$item->id}}">Editar</a>
                                     </td> -->
-                                    <td>
+                                    <!-- <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$item->id}});"> Excluir</a>
-                                    </td>
+                                    </td> -->
                                     <td></td>
                                 </tr>
                               @endforeach
