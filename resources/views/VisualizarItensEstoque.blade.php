@@ -42,6 +42,8 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
+                                  <th>Data de Validade</th>
+                                  <th>Nº Lote</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
                                   <th>Danificados</th>
@@ -54,9 +56,12 @@
                                 <tr>
                                     @php
                                       $item = \App\Item::find($item_estoque->item_id);
+                                      $validade_lote = \App\Contrato_item::where('item_id','=',$item_estoque->item_id)->first();
                                     @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
+                                    <td data-title="Data de Validade">{{$validade_lote->data_validade}}</td>
+                                    <td data-title="Nº Lote">{{$validade_lote->n_lote}}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Danificados">{{ $item_estoque->quantidade_danificados}}</td>
