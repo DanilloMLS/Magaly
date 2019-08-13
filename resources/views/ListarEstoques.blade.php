@@ -58,20 +58,16 @@ function listarItens(id){
                                     <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     <td>
                                       <a class="btn btn-primary" href="/estoque/novoItemEstoque/{{$estoque->id}}">Inserir Itens</a>
-                                    </td>
-                                    <td>
                                       <a class="btn btn-primary" href="/estoque/historicoEstoque/{{$estoque->id}}">Ver Histórico</a>
-                                    </td>
-                                    <td>
-                                      <a class="btn btn-primary" honClick="renomear({{$estoque->id}});">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
-                                      </a>
-                                    </td>
-                                    <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>
+                                    {{-- <td>
+                                      <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
+                                    </td> --}}
                                 </tr>
                               @endforeach
 

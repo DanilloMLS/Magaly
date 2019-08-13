@@ -18,6 +18,7 @@ class CreateContratoItemsTable extends Migration
             $table->integer('quantidade');
             $table->decimal('valor_unitario');
             $table->integer('n_lote');
+            $table->date('data_validade');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->integer('item_id')->unsigned();

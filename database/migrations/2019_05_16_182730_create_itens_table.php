@@ -15,7 +15,6 @@ class CreateItensTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('data_validade');
             $table->string('nome');
             $table->string('marca');
             $table->string('descricao')->nullable();

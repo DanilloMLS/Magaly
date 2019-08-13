@@ -44,7 +44,6 @@ function editar(id){
                               <tr>
                                   <th>Nome</th>
                                   <th>Marca</th>
-                                  <th>Data de validade</th>
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
@@ -55,16 +54,12 @@ function editar(id){
                                 <tr>
                                     <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
-                                    <td data-title="Data de validade">{{ $item->data_validade }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
 
                                     </td>
                                     <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
-                                    <!-- <td>
-                                      <a class="btn btn-primary" href="/item/editar/{{$item->id}}">Editar</a>
-                                    </td> -->
                                     <!-- <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$item->id}});"> Excluir</a>
                                     </td> -->

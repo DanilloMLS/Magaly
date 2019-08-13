@@ -31,12 +31,13 @@
                             <thead>
                               <tr>
                                   <th>Nome</th>
+                                  <th>Nº Lote</th>
                                   <th>Data de validade</th>
                                   <th>Descrição</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
-                                  <th>Valor unitáro</th>
+                                  <th>Valor unitário</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -45,13 +46,14 @@
                                     @php
                                       $item = \App\Item::find($item_contrato->item_id);
                                     @endphp
-                                    <td data-title="Valor unitário">{{ $item->nome }}</td>
-                                    <td data-title="Data de validade">{{ $item->data_validade }}</td>
+                                    <td data-title="Nome">{{ $item->nome }}</td>
+                                    <td data-title="Nº Lote">{{ $item_contrato->n_lote }}</td>
+                                    <td data-title="Data de validade">{{ $item_contrato->data_validade }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Quantidade">{{ $item_contrato->quantidade }}</td>
-                                    <td data-title="ValorUnitario">{{ $item_contrato->valor_unitario }}</td>
+                                    <td data-title="Valor Unitario">{{ $item_contrato->valor_unitario }}</td>
 
                                     </td>
 
