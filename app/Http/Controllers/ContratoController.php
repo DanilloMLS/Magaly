@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DateTime;
 
 use Illuminate\Http\Request;
 
@@ -47,15 +48,9 @@ class ContratoController extends Controller
   }
 
   public function inserirItemContrato(Request $request) {
-    $contrato_item = new \App\Contrato_item();
-    $contrato_item->quantidade = $request->quantidade;
-    $contrato_item->valor_unitario = $request->valor;
-    $contrato_item->n_lote = $request->n_lote;
-    $contrato_item->contrato_id = $request->contrato_id;
-    $contrato_item->item_id = $request->item_id;
     $contrato_item = \App\Contrato_item::where('contrato_id','=',$request->contrato_id)
                                        ->where('item_id','=',$request->item_id)
-                                       ->get();
+                                       ->first();
 
     $contrato = \App\Contrato::find($request->contrato_id);
 
@@ -63,7 +58,12 @@ class ContratoController extends Controller
       if (isset($contrato)) {
         $contrato_item = new \App\Contrato_item();
         $contrato_item->quantidade = $request->quantidade;
+
+        $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
+        $contrato_item->data_validade = $dateObj->format('d/m/Y');
+        
         $contrato_item->valor_unitario = $request->valor;
+        $contrato_item->n_lote = $request->n_lote;
         $contrato_item->contrato_id = $request->contrato_id;
         $contrato_item->item_id = $request->item_id;
 

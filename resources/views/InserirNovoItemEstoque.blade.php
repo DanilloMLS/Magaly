@@ -38,7 +38,7 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}</input>
+                              <input name="quantidade" id="quantidade" type="number" pattern="[0-9]*" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}</input>
 
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('quantidade_danificados')}}> {{ $errors->first('quantidade_danificados')}}</input>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" pattern="[0-9]*" min="0" class="form-control" required value= {{ old('quantidade_danificados')}}> {{ $errors->first('quantidade_danificados')}}</input>
 
                             </div>
                         </div>

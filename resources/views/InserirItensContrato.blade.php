@@ -27,14 +27,17 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                               <div class="form-group row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                   <center>Nome</center>
                                 </div>
                                 <div class="col-md-2">
                                   Gramatura
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                   <center>Nº Lote</center>
+                                </div>
+                                <div class="col-md-2">
+                                  <center>Validade</center>
                                 </div>
                                 <div class="col-md-2">
                                   <center>Valor Unitário</center>
@@ -52,23 +55,27 @@
 
                               <div class="form-group row">
 
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     {{ $item->nome }}
                                   </div>
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
                                   </div>
 
-                                  <div class="col-md-2">
-                                    <input name="n_lote" id="n_lote" type="number"  class="form-control" required value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
+                                  <div class="col-md-1">
+                                    <input name="n_lote" id="n_lote" type="text" class="form-control" required value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="valor" id="valor" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
+                                    <input name="data_validade" id="data_validade" type="date" class="form-control" required value={{old('data_validade')}}> {{ $errors->first('data_validade')}}
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                                    <input name="valor" id="valor" placeholder="0.0" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
+                                  </div>
+
+                                  <div class="col-md-2">
+                                    <input name="quantidade" id="quantidade" type="number" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
 
                                   <div class="col-md-1">
