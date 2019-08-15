@@ -19,6 +19,7 @@ class CreateContratosTable extends Migration
             $table->decimal('valor_total')->nullable();
             $table->string('n_contrato');
             $table->string('n_processo_licitatorio');
+            $table->string('modalidade');
             $table->string('descricao')->nullable();
             $table->integer('fornecedor_id')->unsigned();
             $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');

@@ -25,6 +25,7 @@ class ContratoController extends Controller
     $contrato->descricao = $request->descricao;
     $contrato->valor_total = $request->valor_total;
     $contrato->fornecedor_id = $request->fornecedor_id;
+    $contrato->modalidade = $request->modalidade;
     $contrato->save();
 
     $itens = \App\Item::all();
