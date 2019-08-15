@@ -32,6 +32,7 @@
                               <tr>
                                   <th>Nº Contrato</th>
                                   <th>Nº Processo</th>
+                                  <th>Modalidade</th>
                                   <th>Descrição</th>
                                   <th>Data</th>
                                   <th>Valor Total</th>
@@ -44,6 +45,7 @@
                                 <tr>
                                     <td data-title="N_contrato">{{ $contrato->n_contrato }}</td>
                                     <td data-title="N_processo">{{ $contrato->n_processo_licitatorio }}</td>
+                                    <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
                                     <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
                                     <td data-title="valor_total">{{ $contrato->valor_total }}</td>
@@ -65,6 +67,13 @@
                       <a class="btn btn-primary" target="_blank" href="{{ route("/contrato/RelatorioContratos") }}">Relatório</a>
 
                       <a class="btn btn-primary" href="{{ route("/contrato/telaCadastrar") }}">Novo</a>
+
+                      <td>
+                        <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
+                          <img src="/img/search.png" height="21" width="19" align = "right">
+                        </a>
+                      </td>
+
                   </div>
                 </div>
             </div>

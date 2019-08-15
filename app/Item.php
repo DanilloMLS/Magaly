@@ -10,7 +10,7 @@ class Item extends Model
   use SoftDeletes;
   protected $dates = ['deleted_at'];
   protected $fillable = [
-    'nome', 'marca' ,'data_validade','descricao','unidade','gramatura'
+    'nome','marca','descricao','unidade','gramatura'
    ];
 
 

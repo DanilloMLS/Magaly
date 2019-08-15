@@ -14,10 +14,15 @@ class EstoqueController extends Controller
     $estoque->nome = $request->nome;
     $estoque->save();
 
+    $itens_contrato = \App\Contrato_item::all();
     $itens = \App\Item::all();
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
-    return view("InserirNovoItemEstoque", ["estoque" => $estoque, "itens" => $itens]);
+    return view("InserirNovoItemEstoque", [
+      "estoque" => $estoque,
+      "itens" => $itens,
+      "itens_contrato" => $itens_contrato
+    ]);
   }
 
   public function listar(){
@@ -37,14 +42,22 @@ class EstoqueController extends Controller
 
   public function remover(Request $request){
       $estoque = \App\Estoque::find($request->id);
+      $escola = \App\Escola::where('estoque_id', $estoque->id)->get()->first();
       
-      if (isset($estoque)) {
-        $estoque->delete();
-        session()->flash('success', 'Estoque removido com sucesso.');
+      if (!isset($escola)) {
+        if (isset($estoque)) {
+          $estoque->delete();
+          session()->flash('success', 'Estoque removido com sucesso.');
+          return redirect()->route('/estoque/listar');
+        }
+        session()->flash('success', 'Estoque não existe.');
         return redirect()->route('/estoque/listar');
       }
-      session()->flash('success', 'Estoque não existe.');
-      return redirect()->route('/estoque/listar');
+      
+      $estoques = \App\Estoque::all();
+
+      session()->flash('success', 'O Estoque pertence a uma Escola, remova a Escola.');
+      return view("ListarEstoques", ["estoques" => $estoques]);
   }
 
   public function editar(Request $request){
@@ -110,11 +123,18 @@ class EstoqueController extends Controller
   //usado quando se insere itens no Estoque atráves do botão 'Inserir Itens'
   public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
+    $itens_contrato = \App\Contrato_item::all();
+    $contratos = \App\Contrato::all();
+    $fornecedores = \App\Fornecedor::all();
 
     if (isset($estoque)) {
       $itens = \App\Item::all();
       return view("InserirNovoItemEstoque", [
-          "estoque" => $estoque, "itens" => $itens
+        "estoque" => $estoque,
+        "itens" => $itens,
+        "itens_contrato" => $itens_contrato,
+        "contratos" => $contratos,
+        "fornecedores" => $fornecedores
       ]);
     }
     
@@ -157,9 +177,17 @@ class EstoqueController extends Controller
       $estoque_es->save();
 
       $itens = \App\Item::all();
-      
+      $itens_contrato = \App\Contrato_item::all();
+      $contratos = \App\Contrato::all();
+      $fornecedores = \App\Fornecedor::all();
       session()->flash('success', 'Inserção de novo item.');
-      return view("InserirNovoItemEstoque", ["estoque" => $estoque, "itens" => $itens]);
+      return view("InserirNovoItemEstoque", [
+        "estoque" => $estoque, 
+        "itens" => $itens, 
+        "itens_contrato" => $itens_contrato,
+        "contratos" => $contratos,
+        "fornecedores" => $fornecedores
+      ]);
     }
     $estoques = \App\Estoque::all();
 

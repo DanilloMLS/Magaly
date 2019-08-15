@@ -35,7 +35,13 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="cnpj" id="cnpj" type="text" class="form-control" required value= {{ old('cnpj')}}> {{ $errors->first('cnpj')}}
+                                <input id="cnpj" type="cnpj" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" name="cnpj" value="{{ old('cnpj') }}" required>
+
+                                @if ($errors->has('cnpj'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cnpj') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

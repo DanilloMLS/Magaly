@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class FornecedorController extends Controller
 {
@@ -10,7 +12,19 @@ class FornecedorController extends Controller
   public function __construct () {
   }
 
+
   public function cadastrar(Request $request) {
+
+    $validator = Validator::make($request->all(), [
+            'cnpj' => ['required', 'string', 'max:255', 'unique:fornecedors'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('fornecedor/cadastrar')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
     $fornecedor = new \App\Fornecedor();
     $fornecedor->nome = $request->nome;
     $fornecedor->cnpj = $request->cnpj;
@@ -38,20 +52,20 @@ class FornecedorController extends Controller
 
   public function remover(Request $request){
       $fornecedor = \App\Fornecedor::find($request->id);
-      
+
       if (isset($fornecedor)) {
         $fornecedor->delete();
         session()->flash('success', 'Fornecedor removido com sucesso.');
         return redirect()->route('/fornecedor/listar');
       }
-      
+
       session()->flash('success', 'Fornecedor não existe.');
       return redirect()->route('/fornecedor/listar');
 		}
 
 	public function editar(Request $request){
 			$fornecedor = \App\Fornecedor::find($request->id);
-      
+
       if (isset($fornecedor)) {
         return view("EditarFornecedor", [
 					"fornecedor" => $fornecedor,
@@ -64,7 +78,7 @@ class FornecedorController extends Controller
 
 	public function salvar(Request $request){
       $fornecedor = \App\Fornecedor::find($request->id);
-      
+
     if (isset($fornecedor)) {
       $fornecedor->nome = $request->nome;
       $fornecedor->cnpj = $request->cnpj;
@@ -74,7 +88,7 @@ class FornecedorController extends Controller
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');
     }
-    
+
     session()->flash('success', 'Fornecedor não existe.');
     return redirect()->route('/fornecedor/listar');
   }

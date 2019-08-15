@@ -17,10 +17,11 @@ class CreateContratoItemsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('quantidade');
             $table->decimal('valor_unitario');
-            $table->integer('n_lote');
-            $table->integer('contrato_id')->unsigned();
+            $table->string('n_lote');
+            $table->date('data_validade');
+            $table->bigInteger('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
-            $table->integer('item_id')->unsigned();
+            $table->bigInteger('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->timestamps();
         });

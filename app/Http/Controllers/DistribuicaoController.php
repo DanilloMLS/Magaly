@@ -9,9 +9,11 @@ class DistribuicaoController extends Controller
 
   public function telaCadastrar() {
     $escolas = \App\Escola::all();
+    $cardapios = \App\Cardapio_mensal::all();
 
     return view("CadastrarDistribuicao", [
         "escolas" => $escolas,
+        "cardapios" => $cardapios,
     ]);
   }
 
@@ -19,6 +21,7 @@ class DistribuicaoController extends Controller
     $distribuicao = new \App\Distribuicao();
     $distribuicao->observacao = $request->observacao;
     $distribuicao->escola_id = $request->escola_id;
+    $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->save();
 
 
@@ -50,7 +53,7 @@ class DistribuicaoController extends Controller
         session()->flash('success', 'Distribuicao removida com sucesso.');
         return redirect()->route('/distribuicao/listar');
       }
-      
+
       session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
     }
@@ -79,14 +82,14 @@ class DistribuicaoController extends Controller
         session()->flash('success', 'Distribuicao modificada com sucesso.');
         return redirect()->route('/distribuicao/listar');
       }
-      
+
       session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
   }
 
   public function inserirItemDistribuicao(Request $request) {
     $distribuicao_item = \App\Distribuicao_item::where('item_id','=',$request->item_id)
-                                               ->where('distribuicao_id','=',$request->distribuicao_id) 
+                                               ->where('distribuicao_id','=',$request->distribuicao_id)
                                                ->get()->first();
 
     $distribuicao = \App\Distribuicao::find($request->distribuicao_id);
@@ -100,12 +103,12 @@ class DistribuicaoController extends Controller
         $distribuicao_item->item_id = $request->item_id;
         $distribuicao_item->distribuicao_id = $request->distribuicao_id;
         $distribuicao_item->save();
-  
+
         $itens = \App\Item::all();
         session()->flash('success', 'Item adicionado.');
         return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
       }
-      
+
       session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
     }
@@ -117,7 +120,7 @@ class DistribuicaoController extends Controller
   public function removerItemDistribuicao(Request $request) {
     $distribuicao_item = \App\Distribuicao_item::find($request->id);
     $itens = \App\Item::all();
-    
+
 
     if (isset($distribuicao_item)) {
       $distribuicao = \App\Distribuicao::find($distribuicao_item->distribuicao_id);
@@ -128,7 +131,7 @@ class DistribuicaoController extends Controller
         session()->flash('success', 'Item removido.');
         return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
       }
-      
+
       session()->flash('success', 'Distribuicao não existe.');
       return redirect()->route('/distribuicao/listar');
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DateTime;
 
 use Illuminate\Http\Request;
 
@@ -24,6 +25,7 @@ class ContratoController extends Controller
     $contrato->descricao = $request->descricao;
     $contrato->valor_total = $request->valor_total;
     $contrato->fornecedor_id = $request->fornecedor_id;
+    $contrato->modalidade = $request->modalidade;
     $contrato->save();
 
     $itens = \App\Item::all();
@@ -36,6 +38,7 @@ class ContratoController extends Controller
     $contratos = \App\Contrato::all();
     return view("ListarContratos", ["contratos" => $contratos]);
   }
+
   public function gerarRelatorio(){
     $contratos = \App\Contrato::all();
     //return view("RelatorioContratos", ["contratos" => $contratos]);
@@ -46,30 +49,41 @@ class ContratoController extends Controller
   }
 
   public function inserirItemContrato(Request $request) {
-    $contrato_item = new \App\Contrato_item();
-    $contrato_item->quantidade = $request->quantidade;
-    $contrato_item->valor_unitario = $request->valor;
-    $contrato_item->n_lote = $request->n_lote;
-    $contrato_item->contrato_id = $request->contrato_id;
-    $contrato_item->item_id = $request->item_id;
     $contrato_item = \App\Contrato_item::where('contrato_id','=',$request->contrato_id)
                                        ->where('item_id','=',$request->item_id)
-                                       ->get();
+                                       ->first();
 
     $contrato = \App\Contrato::find($request->contrato_id);
 
     if (!isset($contrato_item)) {
       if (isset($contrato)) {
         $contrato_item = new \App\Contrato_item();
+        $item = new \App\Item();
+
+        $item->nome = $request->nome;
+        $item->marca = $request->marca;
+        $item->descricao = $request->descricao;
+        $item->unidade = $request->unidade;
+        $item->gramatura = $request->gramatura;
+        $item->save();
+
+        $item = \App\Item::where('nome','=',$request->nome)
+                         ->first();
+
         $contrato_item->quantidade = $request->quantidade;
-        $contrato_item->valor_unitario = $request->valor;
+        $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
+        $contrato_item->data_validade = $dateObj->format('d/m/Y');
+        $contrato_item->valor_unitario = $request->valor_unitario;
+        $contrato_item->n_lote = $request->n_lote;
         $contrato_item->contrato_id = $request->contrato_id;
-        $contrato_item->item_id = $request->item_id;
-  
+        $contrato_item->item_id = $item->id;
         $contrato_item->save();
-  
+
+        $contrato->valor_total = $request->quantidade * $request->valor_unitario;
+        $contrato->save();
+
         $itens = \App\Item::all();
-        
+
         session()->flash('success', 'Item adicionado.');
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
@@ -78,7 +92,7 @@ class ContratoController extends Controller
       return view("ListarContratos", ["contratos" => $contratos]);
     }
     $itens = \App\Item::all();
-        
+
     session()->flash('success', 'Esse item já existe no Contrato.');
     return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
   }
@@ -91,7 +105,7 @@ class ContratoController extends Controller
     if (isset($contrato_item)) {
       if (isset($contrato)) {
         $contrato_item->delete();
-  
+
         session()->flash('success', 'Item adicionado.');
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
@@ -127,5 +141,20 @@ class ContratoController extends Controller
   public function exibirItensContrato(Request $request){
     $itens = \App\Contrato_item::where('contrato_id', '=', $request->id)->get();
     return view("VisualizarItensContrato", ["itens" => $itens]);
+  }
+
+  public function buscarContratosFornecedor(Request $request){
+  		$fornecedor = \App\Fornecedor::where('nome', 'ilike', '%' . $request->termo . '%')
+  													->first();
+      $contratos = array();
+      if(!empty($fornecedor)){
+        $contratos =  \App\Contrato::where('fornecedor_id', '=', $fornecedor->id)->get();
+      }
+      return view("ListarContratos", ["contratos" => $contratos]);
+  }
+
+  public function buscarContratosData(Request $request){
+      $contratos =  \App\Contrato::where('data', '>=', $request->data_inicio)->where('data', '<=', $request->data_fim)->get();
+      return view("ListarContratos", ["contratos" => $contratos]);
   }
 }

@@ -100,8 +100,8 @@ class CardapioController extends Controller
 
   public function finalizarCardapioDiario(Request $request){
     $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
-    $cardapios = \App\Cardapio_mensal::all();
-    session()->flash('success', 'Refeição cadastrada com sucesso.');
+    session()->flash('success', 'Cardápio cadastrado com sucesso.');
+    session()->flash('success', 'Cardápio diário adicionado.');
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
 
   }
