@@ -124,13 +124,17 @@ class EstoqueController extends Controller
   public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
     $itens_contrato = \App\Contrato_item::all();
+    $contratos = \App\Contrato::all();
+    $fornecedores = \App\Fornecedor::all();
 
     if (isset($estoque)) {
       $itens = \App\Item::all();
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque,
         "itens" => $itens,
-        "itens_contrato" => $itens_contrato
+        "itens_contrato" => $itens_contrato,
+        "contratos" => $contratos,
+        "fornecedores" => $fornecedores
       ]);
     }
     
@@ -173,9 +177,17 @@ class EstoqueController extends Controller
       $estoque_es->save();
 
       $itens = \App\Item::all();
-      
+      $itens_contrato = \App\Contrato_item::all();
+      $contratos = \App\Contrato::all();
+      $fornecedores = \App\Fornecedor::all();
       session()->flash('success', 'Inserção de novo item.');
-      return view("InserirNovoItemEstoque", ["estoque" => $estoque, "itens" => $itens]);
+      return view("InserirNovoItemEstoque", [
+        "estoque" => $estoque, 
+        "itens" => $itens, 
+        "itens_contrato" => $itens_contrato,
+        "contratos" => $contratos,
+        "fornecedores" => $fornecedores
+      ]);
     }
     $estoques = \App\Estoque::all();
 
