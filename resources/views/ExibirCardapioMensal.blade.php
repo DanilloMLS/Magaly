@@ -42,10 +42,18 @@
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
 
                                       </td>
@@ -53,40 +61,72 @@
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                     </tr>
@@ -95,50 +135,90 @@
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 1)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Terça">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 2)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 3)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 4)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 5)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                     </tr>
@@ -147,50 +227,90 @@
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 1)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Terça">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 2)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quarta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 3)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Quinta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 4)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                       <td data-title="Sexta">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 3)->where('dia_semana', '=', 5)->first();
                                         if(!empty($cardapio_diario)){
-                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                          $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                          $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                          $refeicaoLista = array();
+                                          foreach ($cardapio_diario_refeicoes as $ref) {
+                                            $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                            array_push($refeicaoLista, $refeicao);
+                                          }
+
                                         ?>
-                                        {{$refeicao->nome}}
+                                        @foreach($refeicaoLista as $lista)
+                                        {{$lista->nome}} <br>
+                                        @endforeach
+
                                       <?php } ?>
                                       </td>
                                     </tr>
@@ -231,10 +351,18 @@
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
 
                                   </td>
@@ -242,40 +370,72 @@
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                 </tr>
@@ -284,50 +444,90 @@
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 1)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Terça">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 2)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 3)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 4)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 2)->where('dia_semana', '=', 5)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                 </tr>
@@ -367,10 +567,18 @@
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
 
                                   </td>
@@ -378,40 +586,72 @@
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 2)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quarta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 3)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Quinta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 4)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                   <td data-title="Sexta">
                                     <?php
                                     $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 5)->first();
                                     if(!empty($cardapio_diario)){
-                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
-                                      $refeicao = \App\Refeicao::find($cardapio_diario_refeicoes->refeicao_id);
+                                      $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->get();
+                                      $refeicaoLista = array();
+                                      foreach ($cardapio_diario_refeicoes as $ref) {
+                                        $refeicao = \App\Refeicao::find($ref->refeicao_id);
+                                        array_push($refeicaoLista, $refeicao);
+                                      }
+
                                     ?>
-                                    {{$refeicao->nome}}
+                                    @foreach($refeicaoLista as $lista)
+                                    {{$lista->nome}} <br>
+                                    @endforeach
+
                                   <?php } ?>
                                   </td>
                                 </tr>
