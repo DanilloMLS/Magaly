@@ -72,9 +72,11 @@ class EscolaController extends Controller
 
   public function remover(Request $request){
       $escola = \App\Escola::find($request->id);
+      $estoque = \App\Estoque::find($request->id);
       
       if (isset($escola)) {
         $escola->delete();
+        $estoque->delete();
         session()->flash('success', 'Escola removida com sucesso.');
         return redirect()->route('/escola/listar');
       }
