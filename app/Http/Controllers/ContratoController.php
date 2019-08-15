@@ -25,6 +25,7 @@ class ContratoController extends Controller
     $contrato->descricao = $request->descricao;
     $contrato->valor_total = $request->valor_total;
     $contrato->fornecedor_id = $request->fornecedor_id;
+    $contrato->modalidade = $request->modalidade;
     $contrato->save();
 
     $itens = \App\Item::all();
@@ -57,17 +58,29 @@ class ContratoController extends Controller
     if (!isset($contrato_item)) {
       if (isset($contrato)) {
         $contrato_item = new \App\Contrato_item();
-        $contrato_item->quantidade = $request->quantidade;
+        $item = new \App\Item();
 
+        $item->nome = $request->nome;
+        $item->marca = $request->marca;
+        $item->descricao = $request->descricao;
+        $item->unidade = $request->unidade;
+        $item->gramatura = $request->gramatura;
+        $item->save();
+
+        $item = \App\Item::where('nome','=',$request->nome)
+                         ->first();
+
+        $contrato_item->quantidade = $request->quantidade;
         $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
         $contrato_item->data_validade = $dateObj->format('d/m/Y');
-        
-        $contrato_item->valor_unitario = $request->valor;
+        $contrato_item->valor_unitario = $request->valor_unitario;
         $contrato_item->n_lote = $request->n_lote;
         $contrato_item->contrato_id = $request->contrato_id;
-        $contrato_item->item_id = $request->item_id;
-
+        $contrato_item->item_id = $item->id;
         $contrato_item->save();
+
+        $contrato->valor_total = $request->quantidade * $request->valor_unitario;
+        $contrato->save();
 
         $itens = \App\Item::all();
 

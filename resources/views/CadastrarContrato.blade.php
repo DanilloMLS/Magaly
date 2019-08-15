@@ -39,6 +39,14 @@
                         </div>
 
                         <div class="form-group row">
+                          <label for="modalidade" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="modalidade" id="modalidade" type="text" class="form-control" required value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('modalidade')}}
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
