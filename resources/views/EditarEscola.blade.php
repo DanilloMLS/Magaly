@@ -27,7 +27,7 @@
                             <div class="col-md-6">
                               <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
                                     <option value="">Selecione uma Modalidade de ensino</option>
-                                    
+
                                     <option value="1" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Integral') == 0) selected="selected" @endif> Creche Infantil Integral</option>
                                     <option value="2" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Parcial') == 0) selected="selected" @endif>Creche Infantil Parcial</option>
                                     <option value="3" @if(strcasecmp($escola->modalidade_ensino, 'Infantil (pré-escola)') == 0) selected="selected" @endif>Infantil (pré-escola)</option>
@@ -42,7 +42,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                          
+
                               {{-- <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" value= {{ old('endereco')}}> {{ $errors->first('endereco')}} --}}
                               <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
                             </div>
@@ -71,7 +71,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}
+                              <input name="qtde_alunos" id="qtde_alunos" pattern="^[-+]?[0-9]*" type="text" class="form-control" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}
                             </div>
                         </div>
 

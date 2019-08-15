@@ -44,6 +44,26 @@
                             @endif
                          </div>
 
+                         <div class="form-group row">
+                             <label for="id_cardapio" class="col-md-4 col-form-label text-md-right">{{ __('Cardápio') }}</label>
+                             @if(count($cardapios) != 0 and count($cardapios) != 0)
+                             <div class="col-md-6">
+                               <select class="form-control" id="cardapios" name="cardapio_id" required>
+       								              <option value="">Selecione um Cardápio</option>
+       								              @foreach($cardapios as $cardapio)
+       									            <option value="{{$cardapio->id}}">{{$cardapio->nome}}</option>
+       								              @endforeach
+                               </select>
+                             </div>
+                             @else
+                             <div class="col-md-6">
+                               <select class="form-control" id="escolas" name="escola_id" required>
+       								              <option value="">Não há escolas cadastradas</option>
+                               </select>
+                             </div>
+                             @endif
+                          </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

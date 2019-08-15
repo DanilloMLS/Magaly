@@ -34,7 +34,7 @@ Tel: (87)3762-7060
         @foreach ($distribuicoes as $distribuicao)
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#F4A460" colspan=3 align="center"><font size="20px">IDENTIFICAÇÂO DA ESCOLA</font></th>
+                    <th bgcolor="#F4A460" colspan=3 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
                 </tr>
                 <tr bgcolor="#dfdfdf">
                     <th>ESCOLA</th>
@@ -50,7 +50,7 @@ Tel: (87)3762-7060
                     </tr>
                 </tbody>
                 <tr bgcolor="#dfdfdf">
-                    <th>PERIODO DE ATENDIMENTO</th>
+                    <th>PERÍODO DE ATENDIMENTO</th>
                     <th colspan=2>OBSERVAÇÃO</th>
                 </tr>
                 <tbody>
@@ -62,7 +62,7 @@ Tel: (87)3762-7060
             </table>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#F4A460" colspan=5 align="center"><font size="20px">ESPECIFICAÇÂO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
+                    <th bgcolor="#F4A460" colspan=5 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
                 </tr>
                 <tbody>
                     <tr bgcolor="#dfdfdf" align="center">
@@ -90,7 +90,7 @@ Tel: (87)3762-7060
         @endforeach
         <br>
         <p style="text-align:justify;">
-            <b aligh="justify">Sr. Gestor, solicito que ao receber as mercadorias a cima descriminadas, conferir quantidade e qualidade dos produtos,
+            <b aligh="justify">Sr. Gestor, solicito que ao receber as mercadorias acima descriminadas, conferir quantidade e qualidade dos produtos,
                 após atestar o recebimento, o senhor(a) está dando plena e irrevogável quitação da quantidade e qualidade dos produtos recebidos.</b>
         </p>
         <br>
