@@ -44,7 +44,7 @@
                                 </div>
                               </div>
                               @foreach ($itens as $item)
-                              <form method="POST" action="/distribuicao/inserirItem">
+                              <form method="POST" action="{{route ('/distribuicao/inserirItem')}}">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="distribuicao_id" value="{{ $distribuicao->id}}" />
@@ -76,7 +76,7 @@
                                         if(empty($distribuicao_item)){ ?>
                                           <button class="btn btn-success" type="submit">+</button>
                                       <?php } else { ?>
-                                        <a class="btn btn-danger" href="/distribuicao/removerItem/{{$distribuicao_item->id}}">
+                                        <a class="btn btn-danger" href="{{route ("/distribuicao/removerItem", ['id' => $distribuicao_item->id])}}">
                                         -
                                         </a>
                                     <?php } ?>
@@ -93,7 +93,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="/distribuicao/finalizarDistribuicao/{{$distribuicao->id}}">Concluir</a></center>
+                      <center><a class="btn btn-primary" href="{{ route ("/distribuicao/finalizarDistribuicao", ['id' => $distribuicao->id])}}">Concluir</a></center>
                   </div>
             </div>
         </div>
