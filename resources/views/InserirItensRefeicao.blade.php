@@ -54,7 +54,7 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                                    <input name="quantidade" id="quantidade" type="number" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
                                   <div class="col-md-1">
                                     <?php
