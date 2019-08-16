@@ -58,7 +58,9 @@ function avisoDeletar(id){
 
 
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});"> Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
                                     <td></td>
                                 </tr>

@@ -450,7 +450,7 @@
                         @endif
 
                               <div class="panel-footer">
-                                  <center><a class="btn btn-primary" href="/cardapioDiario/finalizarCardapio/{{$cardapio->id}}">Concluir</a></center>
+                                  <center><a class="btn btn-primary" href="/cardapioMensal/finalizarCardapio">Concluir</a></center>
                               </div>
                 </div>
             </div>

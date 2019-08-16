@@ -24,8 +24,30 @@ class DistribuicaoController extends Controller
     $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->save();
 
+    //todos os cardapios diários
+    $cardapios_diarios = \App\Cardapio_diario::where('cardapio_mensal_id', '=', $request->cardapio_id)->get();
+    $cardapios_refeicoes = array();
+    foreach ($cardapios_diarios as $cardapio) {
+      //todas as refeicoes de todos os cardápios diários
+      $cardapio_refeicao = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio->id)->get();
+      foreach ($cardapio_refeicao as $c) {
+        $refeicao = \App\Refeicao::find($c->refeicao_id);
+        array_push($cardapios_refeicoes, $refeicao);
+      }
 
-    $itens = \App\Item::all();
+    }
+
+    $itens = array();
+    foreach ($cardapios_refeicoes as $cr) {
+        //todos os itens de todas as refeições
+        $item_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $cr->id)->get();
+        foreach ($item_refeicao as $i) {
+          $item = \App\Item::find($i->item_id);
+          if(!in_array($item, $itens)){
+            array_push($itens, $item);
+          }
+        }
+    }
 
     session()->flash('success', 'Distribuição cadastrada com sucesso. Insira seus itens.');
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);

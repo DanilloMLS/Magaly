@@ -26,9 +26,12 @@
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                              <div class="form-group row">
+                              <strong><div class="form-group row">
                                 <div class="col-md-3">
                                   <center>Nome</center>
+                                </div>
+                                <div class="col-md-3">
+                                  <center>Marca</center>
                                 </div>
                                 <div class="col-md-2">
                                   Gramatura
@@ -36,7 +39,7 @@
                                 <div class="col-md-2">
                                   <center>Quantidade</center>
                                 </div>
-                              </div>
+                              </div> </strong>
                               @foreach ($itens as $item)
                               <form method="POST" action="/refeicao/inserirItem">
                                 {{ csrf_field() }}
@@ -49,6 +52,9 @@
                                   <div class="col-md-3">
                                     {{ $item->nome }}
                                   </div>
+                                  <div class="col-md-3">
+                                    {{ $item->marca }}
+                                  </div>
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
                                   </div>
@@ -56,6 +62,12 @@
                                   <div class="col-md-2">
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
+                                  @if ($item->unidade == 'kg' || $item->unidade == 'KG' || $item->unidade == 'Kg')
+                                    g
+                                  @endif
+                                  @if ($item->unidade == 'l' || $item->unidade == 'L')
+                                    ml
+                                  @endif
                                   <div class="col-md-1">
                                     <?php
                                         $refeicao_item = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)
