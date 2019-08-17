@@ -16,7 +16,7 @@
 
                         <div class="form-group row">
                             <label for="item_id" class="col-md-4 col-form-label text-md-right">{{ __('Item') }}</label>
-                            @if(count($itens) != 0 and count($itens_contrato) != 0 and count($contratos))
+                            @if(count($itens_contrato))
                             <div class="col-md-6">
                               <select class="form-control" id="itens" name="item_id" required>
       								              <option value="">Selecione um Item</option>

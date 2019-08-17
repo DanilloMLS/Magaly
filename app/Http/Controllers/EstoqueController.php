@@ -15,12 +15,11 @@ class EstoqueController extends Controller
     $estoque->save();
 
     $itens_contrato = \App\Contrato_item::all();
-    $itens = \App\Item::all();
+    //$itens = \App\Item::all();
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
     return view("InserirNovoItemEstoque", [
       "estoque" => $estoque,
-      "itens" => $itens,
       "itens_contrato" => $itens_contrato
     ]);
   }
@@ -124,17 +123,14 @@ class EstoqueController extends Controller
   public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
     $itens_contrato = \App\Contrato_item::all();
-    $contratos = \App\Contrato::all();
-    $fornecedores = \App\Fornecedor::all();
+    //$contratos = \App\Contrato::all();
+    //$fornecedores = \App\Fornecedor::all();
 
     if (isset($estoque)) {
-      $itens = \App\Item::all();
+      //$itens = \App\Item::all();
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque,
-        "itens" => $itens,
-        "itens_contrato" => $itens_contrato,
-        "contratos" => $contratos,
-        "fornecedores" => $fornecedores
+        "itens_contrato" => $itens_contrato
       ]);
     }
     
@@ -176,17 +172,14 @@ class EstoqueController extends Controller
       $estoque_item->save();
       $estoque_es->save();
 
-      $itens = \App\Item::all();
+      //$itens = \App\Item::all();
       $itens_contrato = \App\Contrato_item::all();
-      $contratos = \App\Contrato::all();
-      $fornecedores = \App\Fornecedor::all();
+      //$contratos = \App\Contrato::all();
+      //$fornecedores = \App\Fornecedor::all();
       session()->flash('success', 'Inserção de novo item.');
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque, 
-        "itens" => $itens, 
         "itens_contrato" => $itens_contrato,
-        "contratos" => $contratos,
-        "fornecedores" => $fornecedores
       ]);
     }
     $estoques = \App\Estoque::all();
