@@ -55,7 +55,7 @@ Route::post('/distribuicao/salvar', 'DistribuicaoController@salvar')->name('/dis
 Route::get('/distribuicao/remover/{id}', 'DistribuicaoController@remover')->name('/distribuicao/remover')->middleware('auth');
 Route::post('/distribuicao/inserirItem', 'DistribuicaoController@inserirItemDistribuicao')->name('/distribuicao/inserirItem')->middleware('auth');
 Route::get('/distribuicao/removerItem/{id}', 'DistribuicaoController@removerItemDistribuicao')->name('/distribuicao/removerItem')->middleware('auth');
-Route::get('/distribuicao/finalizarDistribuicao/{id}', 'DistribuicaoController@finalizarDistribuicao')->name('/distribuicao/finalizarContrato')->middleware('auth');
+Route::get('/distribuicao/finalizarDistribuicao/{id}', 'DistribuicaoController@finalizarDistribuicao')->name('/distribuicao/finalizarDistribuicao')->middleware('auth');
 Route::get('/distribuicao/exibirItensDistribuicao/{id}', 'DistribuicaoController@exibirItensDistribuicao')->name('/distribuicao/exibirItensDistribuicao')->middleware('auth');
 Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes')->middleware('auth');
 

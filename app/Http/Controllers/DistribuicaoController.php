@@ -23,7 +23,7 @@ class DistribuicaoController extends Controller
     $distribuicao->escola_id = $request->escola_id;
     $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->save();
-
+    $escola = \App\Escola::find($request->escola_id);
     //todos os cardapios diários
     $cardapios_diarios = \App\Cardapio_diario::where('cardapio_mensal_id', '=', $request->cardapio_id)->get();
     $cardapios_refeicoes = array();
@@ -37,19 +37,33 @@ class DistribuicaoController extends Controller
 
     }
 
-    $itens = array();
+    $itens_dist = array();
     foreach ($cardapios_refeicoes as $cr) {
         //todos os itens de todas as refeições
         $item_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $cr->id)->get();
         foreach ($item_refeicao as $i) {
           $item = \App\Item::find($i->item_id);
-          if(!in_array($item, $itens)){
-            array_push($itens, $item);
+          if(!in_array($item, $itens_dist)){
+            array_push($itens_dist, $item);
+            //cria nova distribuicao_item
+            $distribuicao_item = new \App\Distribuicao_item();
+            $distribuicao_item->quantidade = $i->quantidade;
+            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->item_id = $i->item_id;
+            $distribuicao_item->distribuicao_id = $distribuicao->id;
+            $distribuicao_item->save();
+
+          } else {
+            $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
+            $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
+            //quantidade_total
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->save();
           }
         }
     }
-
-    session()->flash('success', 'Distribuição cadastrada com sucesso. Insira seus itens.');
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
+    session()->flash('success', 'Distribuição cadastrada com sucesso. Confira seus itens.');
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }
 

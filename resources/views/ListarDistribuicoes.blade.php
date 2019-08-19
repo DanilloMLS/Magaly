@@ -53,7 +53,7 @@ function avisoDeletar(id){
                                     <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $$distribuicao->id])}}">Itens</a>
+                                      <a class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">Itens</a>
                                     </td>
 
 

@@ -40,21 +40,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="unidade" class="col-md-4 col-form-label text-md-right">{{ __('Unidade ') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="unidade" id="n_lote" type="text" class="form-control" required value= {{ old('unidade')}}> {{ $errors->first('unidade')}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
-                            <div class="col-md-6">
-                              <input name="gramatura" id="n_lote" type="text" class="form-control" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
+                            <div class="col-md-3">
+                              <input name="gramatura" id="n_lote" type="text" placeholder="ex: 100" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
+                            </div>
+                            <div class="col-md-2">
+                              <select class="form-control" id="unidade" name="unidade" required>
+                                    <option value="">Unidade</option>
+                                    <option value="KG">kg</option>
+                                    <option value="L">L</option>
+                              </select>
                             </div>
                         </div>
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

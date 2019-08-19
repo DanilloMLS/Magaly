@@ -20,72 +20,42 @@
                   <div class="panel-body">
                       @if(count($itens) == 0 and count($itens) == 0)
                       <div class="alert alert-danger">
-                              Você ainda não cadastrou nenhum item.
+                              Você ainda não cadastrou nenhum item neste cardápio.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                              <div class="form-group row">
+                              <strong><div class="form-group row">
                                 <div class="col-md-2">
                                   <center>Nome</center>
                                 </div>
                                 <div class="col-md-2">
-                                  Gramatura
+                                  Quantidade
                                 </div>
                                 <div class="col-md-2">
-                                  <center>Falta</center>
+                                  <center>Quantidade Total</center>
                                 </div>
-                                <div class="col-md-2">
-                                  <center>Danificados</center>
-                                </div>
-                                <div class="col-md-2">
-                                  <center>Total</center>
-                                </div>
-                              </div>
+                              </div></strong>
                               @foreach ($itens as $item)
-                              <form method="POST" action="{{route ('/distribuicao/inserirItem')}}">
-                                {{ csrf_field() }}
-                                  @csrf
-                              <input type="hidden" name="distribuicao_id" value="{{ $distribuicao->id}}" />
-                              <input type="hidden" name="item_id" value="{{ $item->id}}" />
 
                               <div class="form-group row">
 
                                   <div class="col-md-2">
-                                    {{ $item->nome }}
+                                    @php
+                                    $item_nome = \App\Item::find($item->item_id);
+                                    @endphp
+                                    {{ $item_nome->nome }}
                                   </div>
-                                  <div class="col-md-1">
-                                    {{ $item->gramatura }}
+                                  <div class="col-md-2">
+                                    {{ $item->quantidade }}
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade_falta" id="quantidade_falta" type="number"  class="form-control" value= {{ old('quantidade_falta')}}> {{ $errors->first('quantidade_falta')}}
+                                    {{ $item->quantidade_total }}
                                   </div>
-                                  <div class="col-md-2">
-                                    <input name="quantidade_danificados" id="quantidade_danificados" type="number"  class="form-control" value= {{ old('quantidade_danificado')}}> {{ $errors->first('quantidade_danificados')}}
-                                  </div>
-                                  <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
-                                  </div>
-                                  <div class="col-md-1">
-                                    <?php
-                                        $distribuicao_item = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)
-                                                                                ->where('item_id', '=', $item->id)
-                                                                                ->first();
-                                        if(empty($distribuicao_item)){ ?>
-                                          <button class="btn btn-success" type="submit">+</button>
-                                      <?php } else { ?>
-                                        <a class="btn btn-danger" href="{{route ("/distribuicao/removerItem", ['id' => $distribuicao_item->id])}}">
-                                        -
-                                        </a>
-                                    <?php } ?>
 
-                                  </div>
                               </div>
-
-                            </form>
-
 
                               @endforeach
 
@@ -93,7 +63,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="{{ route ("/distribuicao/finalizarDistribuicao", ['id' => $distribuicao->id])}}">Concluir</a></center>
+                      <center><a class="btn btn-primary" href="{{ route ('/distribuicao/listar')}}">Concluir</a></center>
                   </div>
             </div>
         </div>
