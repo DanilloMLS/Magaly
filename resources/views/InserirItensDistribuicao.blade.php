@@ -27,11 +27,11 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                               <strong><div class="form-group row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                   <center>Nome</center>
                                 </div>
-                                <div class="col-md-2">
-                                  Quantidade
+                                <div class="col-md-3">
+                                  Descrição
                                 </div>
                                 <div class="col-md-2">
                                   <center>Quantidade Total</center>
@@ -41,14 +41,18 @@
 
                               <div class="form-group row">
 
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     @php
                                     $item_nome = \App\Item::find($item->item_id);
                                     @endphp
                                     {{ $item_nome->nome }}
                                   </div>
-                                  <div class="col-md-2">
-                                    {{ $item->quantidade }}
+
+                                  <div class="col-md-3">
+                                    @php
+                                    $item_descricao = \App\Item::find($item->item_id);
+                                    @endphp
+                                    {{ $item_descricao->descricao }}
                                   </div>
 
                                   <div class="col-md-2">
@@ -63,7 +67,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="{{ route ('/distribuicao/listar')}}">Concluir</a></center>
+                      <center><a class="btn btn-primary" href="{{ route ('/distribuicao/listar')}}">Confirmar</a></center>
                   </div>
             </div>
         </div>

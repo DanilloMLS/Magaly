@@ -32,9 +32,7 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
-                                  <th>Quantidade</th>
                                   <th>Quantidade Total</th>
                               </tr>
                             </thead>
@@ -46,9 +44,7 @@
                                     @endphp
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Unidade">{{ $item->unidade }}</td>
-                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
-                                    <td data-title="Quantidade">{{ $item_distribuicao->quantidade }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
                                     <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
 
                                     </td>

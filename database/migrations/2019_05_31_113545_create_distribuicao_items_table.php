@@ -21,8 +21,8 @@ class CreateDistribuicaoItemsTable extends Migration
             $table->foreign('distribuicao_id')->references('id')->on('distribuicaos')->onDelete('cascade');
             $table->integer('quantidade_danificados')->unsigned()->nullable();
             $table->integer('quantidade_falta')->unsigned()->nullable();
-            $table->integer('quantidade')->unsigned();
-            $table->integer('quantidade_total')->unsigned();
+            $table->decimal('quantidade')->unsigned();
+            $table->decimal('quantidade_total')->unsigned();
             $table->timestamps();
         });
     }
