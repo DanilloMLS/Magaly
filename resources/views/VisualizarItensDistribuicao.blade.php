@@ -32,12 +32,8 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
-                                  <th>Quantidade</th>
-                                  <th>Qtd. danificados</th>
-                                  <th>Qtd. falta</th>
-                                  <th>Data de validade</th>
+                                  <th>Quantidade Total</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -46,14 +42,10 @@
                                     @php
                                       $item = \App\Item::find($item_distribuicao->item_id);
                                     @endphp
-                                    <td data-title="Valor unitário">{{ $item->nome }}</td>
+                                    <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Unidade">{{ $item->unidade }}</td>
-                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
-                                    <td data-title="Quantidade">{{ $item_distribuicao->quantidade }}</td>
-                                    <td data-title="QuantidadeDanificados">{{ $item_distribuicao->quantidade_danificados }}</td>
-                                    <td data-title="QuantidadeFalta">{{ $item_distribuicao->quantidade_falta }}</td>
-                                    <td data-title="Data de validade">{{ $item->data_validade }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
+                                    <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
 
                                     </td>
 

@@ -42,7 +42,7 @@
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/refeicao/exibirItensRefeicao/{{$refeicao->id}}">Itens</a>
+                                      <a class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >Itens</a>
                                     </td>
 
 

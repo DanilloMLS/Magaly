@@ -19,6 +19,8 @@ class CreateCardapioDiariosTable extends Migration
             $table->integer('refeicao');
             $table->integer('cardapio_semanals_id')->unsigned();
             $table->foreign('cardapio_semanals_id')->references('id')->on('cardapio_semanals')->onDelete('cascade');
+            $table->integer('cardapio_mensal_id')->unsigned();
+            $table->foreign('cardapio_mensal_id')->references('id')->on('cardapio_mensals')->onDelete('cascade');
             $table->timestamps();
         });
     }
