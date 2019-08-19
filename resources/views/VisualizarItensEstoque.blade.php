@@ -68,10 +68,10 @@
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary" href="/estoque/inserirEntrada/{{$item_estoque->id}}">Entrada</a>
+                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">Entrada</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="/estoque/inserirSaida/{{$item_estoque->id}}">Saída</a>
+                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">Saída</a>
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">Excluir</a>
@@ -85,7 +85,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="/estoque/listar">Voltar</a>
+                      <a class="btn btn-primary" href="{{route ('/estoque/listar')}}">Voltar</a>
                   </div>
                 </div>
             </div>

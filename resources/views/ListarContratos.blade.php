@@ -53,7 +53,7 @@
                                     <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/contrato/exibirItensContrato/{{$contrato->id}}">Itens</a>
+                                      <a class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >Itens</a>
                                     </td>
                                 </tr>
                               @endforeach

@@ -64,6 +64,7 @@ class CardapioController extends Controller
     $cardapio_diario->dia_semana = $dia;
     $cardapio_diario->refeicao = $request->refeicao;
     $cardapio_diario->cardapio_semanals_id = $cardapio_semanal->id;
+    $cardapio_diario->cardapio_mensal_id = $request->cardapio_mensal;
     $cardapio_diario->save();
     $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
     $refeicoes = \App\Refeicao::all();
@@ -100,10 +101,14 @@ class CardapioController extends Controller
 
   public function finalizarCardapioDiario(Request $request){
     $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
-    session()->flash('success', 'Cardápio cadastrado com sucesso.');
     session()->flash('success', 'Cardápio diário adicionado.');
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
+  }
 
+  public function finalizarCardapioMensal(Request $request){
+    session()->flash('success', 'Cardápio cadastrado com sucesso.');
+    $cardapios = \App\Cardapio_mensal::all();
+    return view("ListarCardapios", ["cardapios" => $cardapios]);
   }
 
   public function exibirCardapioMensal(Request $request){

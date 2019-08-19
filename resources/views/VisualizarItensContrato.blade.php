@@ -67,7 +67,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="/contrato/listar">Voltar</a>
+                      <a class="btn btn-primary" href="{{ route ('/contrato/listar')}}">Voltar</a>
 
                   </div>
                 </div>

@@ -22,6 +22,7 @@ class CreateDistribuicaoItemsTable extends Migration
             $table->integer('quantidade_danificados')->unsigned()->nullable();
             $table->integer('quantidade_falta')->unsigned()->nullable();
             $table->integer('quantidade')->unsigned();
+            $table->integer('quantidade_total')->unsigned();
             $table->timestamps();
         });
     }
