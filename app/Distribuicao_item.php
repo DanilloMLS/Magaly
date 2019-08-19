@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Distribuicao_item extends Model
 {
   protected $fillable = [
-    'item_id', 'distribuicao_id', 'quantidade_danificados', 'quantidade_falta', 'quantidade',
+    'item_id', 'distribuicao_id', 'quantidade_danificados', 'quantidade_falta', 'quantidade', 'quantidade_total'
   ];
 
   public function distribuicao(){
