@@ -39,6 +39,9 @@
                                 <div class="col-md-2">
                                   <center>Quantidade</center>
                                 </div>
+                                <div class="col-md-3">
+                                  <center></center>
+                                </div>
                               </div> </strong>
                               @foreach ($itens as $item)
                               <form method="POST" action="{{route ('/refeicao/inserirItem')}}">
@@ -61,13 +64,18 @@
 
                                   <div class="col-md-2">
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+
                                   </div>
-                                  @if ($item->unidade == 'kg' || $item->unidade == 'KG' || $item->unidade == 'Kg')
-                                    g
-                                  @endif
-                                  @if ($item->unidade == 'l' || $item->unidade == 'L')
-                                    ml
-                                  @endif
+                                  <div class="col-md-1" style="padding-top:10px">
+                                    @if ($item->unidade == 'kg' || $item->unidade == 'KG' || $item->unidade == 'Kg')
+                                      g
+                                    @endif
+                                    @if ($item->unidade == 'l' || $item->unidade == 'L')
+                                      ml
+                                    @endif
+                                  </div>
+
+
                                   <div class="col-md-1">
                                     <?php
                                         $refeicao_item = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)
