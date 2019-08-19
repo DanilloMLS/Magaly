@@ -24,13 +24,11 @@ Tel: (87)3762-7060
         </table>
         <br>
         <br>
-        <table width="100%">
-            <tr>
-                <td align="center" colspan=3><font size="20px"><b>PROGRAMA NACIONAL DE ALIMENTAÇÃO ESCOLAR - PNAE<br>GRR - GUIA DE RECEBIMENTO E REMESSA</b></font></td>
-            </tr>
-        </table>
+        <p align="center">
+            <font size="20px"><b>PROGRAMA NACIONAL DE ALIMENTAÇÃO ESCOLAR - PNAE<br>GRR - GUIA DE RECEBIMENTO E REMESSA</b></font>
+        </p>
         <br>
-        <b>DATA:____/____/<u>20____</u></b>
+        <b>DATA:____/____/20____</b>
         @foreach ($distribuicoes as $distribuicao)
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
