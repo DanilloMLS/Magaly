@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
+                            <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-6">
                               <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
