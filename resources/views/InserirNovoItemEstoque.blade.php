@@ -18,7 +18,7 @@
                             <label for="item_id" class="col-md-4 col-form-label text-md-right">{{ __('Item') }}</label>
                             @if(count($itens_contrato))
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_id" required>
+                              <select class="form-control" id="itens" name="item_contrato_id" required>
       								              <option value="">Selecione um Item</option>
                                     @foreach($itens_contrato as $item_contrato)
                                       @php
@@ -26,7 +26,7 @@
                                           $contrato = \App\Contrato::find($item_contrato->contrato_id);
                                           $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id);
                                       @endphp
-      									              <option value="{{$item_contrato->item_id}}">{{$item->nome}} - {{$item->gramatura}}{{$item->unidade}} - {{$fornecedor->nome}} - Contrato Nº {{$contrato->n_contrato}}</option>
+      									              <option value="{{$item_contrato->id}}">{{$item->nome}} - {{$item->gramatura}}{{$item->unidade}} - {{$fornecedor->nome}} - Contrato Nº {{$contrato->n_contrato}}</option>
       								              @endforeach
                               </select>
                             </div>

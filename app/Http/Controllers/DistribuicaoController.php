@@ -66,7 +66,6 @@ class DistribuicaoController extends Controller
     }
 
     $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
-    //$estoque = \App\Estoque::find($request->estoque_id);
 
     foreach ($itens as $item) {
       //subtrair do estoque_central (origem)

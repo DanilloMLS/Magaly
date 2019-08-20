@@ -145,12 +145,12 @@ class EstoqueController extends Controller
 
     //impede a inserção de um Item se já tem um com o mesmo Id no Estoque
     if (isset($estoque)) {
+      $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
-                                       ->where('item_id','=',$request->item_id)
+                                       ->where('item_id','=',$contrato_item->item_id)
+                                       ->where('contrato_id','=',$contrato_item->contrato_id)
                                        ->first();
       if (isset($estoque_item)){
-        //$itens = \App\Item::all();
-      
         session()->flash('success', "Esse Item já existe no estoque.");
         $itens = \App\Estoque_item::where('estoque_id', '=', $request->estoque_id)->get();
         return view("VisualizarItensEstoque", ["itens" => $itens]);
@@ -159,23 +159,24 @@ class EstoqueController extends Controller
       $estoque_item = new \App\Estoque_item();
       $estoque_item->quantidade = $request->quantidade;
       $estoque_item->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_item->item_id = $request->item_id;
+      $estoque_item->item_id = $contrato_item->item_id;
       $estoque_item->estoque_id = $request->estoque_id;
+      $estoque_item->contrato_id = $contrato_item->contrato_id;
 
       $estoque_es = new \App\Estoque_es();
       $estoque_es->quantidade_danificados = $request->quantidade_danificados;
       $estoque_es->quantidade = $request->quantidade;
       $estoque_es->operacao = "inserção";
-      $estoque_es->item_id = $request->item_id;
+      $estoque_es->item_id = $contrato_item->item_id;
       $estoque_es->estoque_id = $request->estoque_id;
+
+      $contrato_item->quantidade -= $request->quantidade;
       
       $estoque_item->save();
       $estoque_es->save();
+      $contrato_item->save();
 
-      //$itens = \App\Item::all();
       $itens_contrato = \App\Contrato_item::all();
-      //$contratos = \App\Contrato::all();
-      //$fornecedores = \App\Fornecedor::all();
       session()->flash('success', 'Inserção de novo item.');
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque, 
@@ -242,8 +243,12 @@ class EstoqueController extends Controller
         $estoque_item->quantidade_danificados += $request->quantidade_danificados;
         $estoque_item->item_id = $request->item_id;
         $estoque_item->estoque_id = $request->estoque_id;
-        $estoque_item->save();
-        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
+        $estoque_item->contrato_id = $request->contrato_id;
+        
+        $contrato_item = \App\Contrato_item::where('id','=',$request->contrato_id)
+                                           ->where('item_id','=',$request->item_id)
+                                           ->first();
+        $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
   
         $estoque_es = new \App\Estoque_es();
         $estoque_es->quantidade_danificados = $request->quantidade_danificados;
@@ -251,8 +256,12 @@ class EstoqueController extends Controller
         $estoque_es->operacao = "entrada";
         $estoque_es->item_id = $request->item_id;
         $estoque_es->estoque_id = $request->estoque_id;
-        $estoque_es->save();
         
+        $estoque_item->save();
+        $estoque_es->save();
+        $contrato_item->save();
+        
+        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
         session()->flash('success', 'Entrada de item.');
         return view("VisualizarItensEstoque", ["itens" => $itens]);
       }
