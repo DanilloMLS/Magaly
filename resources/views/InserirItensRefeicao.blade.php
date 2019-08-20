@@ -67,10 +67,10 @@
 
                                   </div>
                                   <div class="col-md-1" style="padding-top:10px">
-                                    @if ($item->unidade == 'kg' || $item->unidade == 'KG' || $item->unidade == 'Kg')
+                                    @if ($item->unidade == 'G')
                                       g
                                     @endif
-                                    @if ($item->unidade == 'l' || $item->unidade == 'L')
+                                    @if ($item->unidade == 'ML')
                                       ml
                                     @endif
                                   </div>

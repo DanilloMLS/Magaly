@@ -48,7 +48,7 @@ class DistribuicaoController extends Controller
             //cria nova distribuicao_item
             $distribuicao_item = new \App\Distribuicao_item();
             $distribuicao_item->quantidade = $i->quantidade;
-            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->item_id = $i->item_id;
             $distribuicao_item->distribuicao_id = $distribuicao->id;
             $distribuicao_item->save();
@@ -57,7 +57,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
             $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
             //quantidade_total
-            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->save();
           }
         }
