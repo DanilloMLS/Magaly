@@ -50,7 +50,7 @@ class DistribuicaoController extends Controller
             //cria nova distribuicao_item
             $distribuicao_item = new \App\Distribuicao_item();
             $distribuicao_item->quantidade = $i->quantidade;
-            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->item_id = $i->item_id;
             $distribuicao_item->distribuicao_id = $distribuicao->id;
             $distribuicao_item->save();
@@ -59,7 +59,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
             $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
             //quantidade_total
-            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->save();
           }
         }
@@ -217,5 +217,27 @@ class DistribuicaoController extends Controller
     $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $request->id)->get();
     return view("VisualizarItensDistribuicao", ["itens" => $itens]);
   }
+  public function editarItemDistribuicao(Request $request){
+    $item_distribuicao = \App\Distribuicao_item::find($request->id);
 
+    if (isset($item_distribuicao)) {
+      return view("EditarItemDistribuicao", [
+        "item_distribuicao" => $item_distribuicao,
+      ]);
+    }
+
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+  }
+
+  public function salvarItemDistribuicao(Request $request){
+    $item_distribuicao = \App\Distribuicao_item::find($request->id);
+
+    $item_distribuicao->quantidade_total = $request->quantidade_total;
+    $item_distribuicao->save();
+
+    session()->flash('success', 'Item da distribuição modificado com sucesso.');
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+  }
 }

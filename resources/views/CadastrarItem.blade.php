@@ -48,8 +48,8 @@
                             <div class="col-md-2">
                               <select class="form-control" id="unidade" name="unidade" required>
                                     <option value="">Unidade</option>
-                                    <option value="KG">kg</option>
-                                    <option value="L">L</option>
+                                    <option value="G">g</option>
+                                    <option value="ML">ml</option>
                               </select>
                             </div>
                         </div>

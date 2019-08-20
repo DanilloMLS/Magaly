@@ -35,6 +35,7 @@
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -49,6 +50,10 @@
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Quantidade">{{ $item_refeicao->quantidade }}</td>
 
+                                    <td>
+                                      <a class="btn btn-primary" href="{{ route ("/itemRefeicao/editar", ['id' => $item_refeicao->id])}}">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
 
 
