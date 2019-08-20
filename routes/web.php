@@ -126,6 +126,8 @@ Route::get('/refeicao/removerItem/{id}', 'RefeicaoController@removerItemRefeicao
 Route::get('/refeicao/finalizarRefeicao/{id}', 'RefeicaoController@finalizarRefeicao')->name('/refeicao/finalizarRefeicao')->middleware('auth');
 Route::get('/refeicao/exibirItensRefeicao/{id}', 'RefeicaoController@exibirItensRefeicao')->name('/refeicao/exibirItensRefeicao')->middleware('auth');
 Route::get('/refeicao/Relatorio_Refeicoes', 'RefeicaoController@gerarRelatorio')->name('/refeicao/RelatorioRefeicoes')->middleware('auth');
+Route::get('/itemRefeicao/editar/{id}', 'RefeicaoController@editarItemRefeicao')->name('/itemRefeicao/editar')->middleware('auth');
+Route::post('/itemRefeicao/salvar', 'RefeicaoController@salvarItemRefeicao')->name('/itemRefeicao/salvar')->middleware('auth');
 
 //Cardapio
 Route::get('/cardapio/cadastrar', function(Request $request) {
