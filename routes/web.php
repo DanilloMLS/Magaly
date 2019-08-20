@@ -58,6 +58,8 @@ Route::get('/distribuicao/removerItem/{id}', 'DistribuicaoController@removerItem
 Route::get('/distribuicao/finalizarDistribuicao/{id}', 'DistribuicaoController@finalizarDistribuicao')->name('/distribuicao/finalizarDistribuicao')->middleware('auth');
 Route::get('/distribuicao/exibirItensDistribuicao/{id}', 'DistribuicaoController@exibirItensDistribuicao')->name('/distribuicao/exibirItensDistribuicao')->middleware('auth');
 Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes')->middleware('auth');
+Route::get('/itemDistribuicao/editar/{id}', 'DistribuicaoController@editarItemDistribuicao')->name('/itemDistribuicao/editar')->middleware('auth');
+Route::post('/itemDistribuicao/salvar', 'DistribuicaoController@salvarItemDistribuicao')->name('/itemDistribuicao/salvar')->middleware('auth');
 
 //Contrato
 Route::get('/contrato/telaCadastrar', 'ContratoController@telaCadastrar')->name('/contrato/telaCadastrar')->middleware('auth');
