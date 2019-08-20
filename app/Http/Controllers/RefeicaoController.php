@@ -69,4 +69,29 @@ class RefeicaoController extends Controller
     $itens = \App\Refeicao_item::where('refeicao_id', '=', $request->id)->get();
     return view("VisualizarItensRefeicao", ["itens" => $itens]);
   }
+
+  public function editarItemRefeicao(Request $request){
+    $item_refeicao = \App\Refeicao_item::find($request->id);
+
+    if (isset($item_refeicao)) {
+      return view("EditarItemRefeicao", [
+        "item_refeicao" => $item_refeicao,
+      ]);
+    }
+
+    $itens = \App\Refeicao_item::where('refeicao_id', '=', $item_refeicao->refeicao_id)->get();
+    return view("VisualizarItensRefeicao", ["itens" => $itens]);
+  }
+
+  public function salvarItemRefeicao(Request $request){
+    $item_refeicao = \App\Refeicao_item::find($request->id);
+
+    $item_refeicao->quantidade = $request->quantidade;
+    $item_refeicao->save();
+
+    session()->flash('success', 'Item da distribuição modificado com sucesso.');
+    $itens = \App\Refeicao_item::where('refeicao_id', '=', $item_refeicao->refeicao_id)->get();
+    return view("VisualizarItensRefeicao", ["itens" => $itens]);
+  }
+
 }

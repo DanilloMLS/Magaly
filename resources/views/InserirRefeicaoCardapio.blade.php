@@ -32,7 +32,7 @@
                                 </div>
                               </div>
                               @foreach ($refeicoes as $refeicao)
-                              <form method="POST" action="/cardapio/inserirItem">
+                              <form method="POST" action="{{route ('/cardapio/inserirItem')}}">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="cardapio_diario" value="{{ $cardapio_diario->id}}" />
@@ -58,7 +58,8 @@
                                         if(empty($cardapio_refeicao)){ ?>
                                           <button class="btn btn-success" type="submit">+</button>
                                       <?php } else { ?>
-                                        <a class="btn btn-danger" href="/cardapio/removerItem/{{$cardapio_refeicao->id}}">
+
+                                        <a class="btn btn-danger" href="{{ route ("/cardapio/removerItem", ['id' => $cardapio_refeicao->id])}}">
                                         -
                                         </a>
                                     <?php } ?>

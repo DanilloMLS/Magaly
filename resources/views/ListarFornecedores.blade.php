@@ -60,7 +60,7 @@ function editar(id){
                                     <td data-title="Email">{{ $fornecedor->email }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/fornecedor/editar/{{$fornecedor->id}}">
+                                      <a class="btn btn-primary" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>

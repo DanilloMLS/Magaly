@@ -23,11 +23,47 @@ class DistribuicaoController extends Controller
     $distribuicao->escola_id = $request->escola_id;
     $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->save();
+    $escola = \App\Escola::find($request->escola_id);
+    //todos os cardapios diários
+    $cardapios_diarios = \App\Cardapio_diario::where('cardapio_mensal_id', '=', $request->cardapio_id)->get();
+    $cardapios_refeicoes = array();
+    foreach ($cardapios_diarios as $cardapio) {
+      //todas as refeicoes de todos os cardápios diários
+      $cardapio_refeicao = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio->id)->get();
+      foreach ($cardapio_refeicao as $c) {
+        $refeicao = \App\Refeicao::find($c->refeicao_id);
+        array_push($cardapios_refeicoes, $refeicao);
+      }
 
+    }
 
-    $itens = \App\Item::all();
+    $itens_dist = array();
+    foreach ($cardapios_refeicoes as $cr) {
+        //todos os itens de todas as refeições
+        $item_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $cr->id)->get();
+        foreach ($item_refeicao as $i) {
+          $item = \App\Item::find($i->item_id);
+          if(!in_array($item, $itens_dist)){
+            array_push($itens_dist, $item);
+            //cria nova distribuicao_item
+            $distribuicao_item = new \App\Distribuicao_item();
+            $distribuicao_item->quantidade = $i->quantidade;
+            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->item_id = $i->item_id;
+            $distribuicao_item->distribuicao_id = $distribuicao->id;
+            $distribuicao_item->save();
 
-    session()->flash('success', 'Distribuição cadastrada com sucesso. Insira seus itens.');
+          } else {
+            $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
+            $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
+            //quantidade_total
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->save();
+          }
+        }
+    }
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
+    session()->flash('success', 'Distribuição cadastrada com sucesso. Confira seus itens.');
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }
 
@@ -152,5 +188,27 @@ class DistribuicaoController extends Controller
     $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $request->id)->get();
     return view("VisualizarItensDistribuicao", ["itens" => $itens]);
   }
+  public function editarItemDistribuicao(Request $request){
+    $item_distribuicao = \App\Distribuicao_item::find($request->id);
 
+    if (isset($item_distribuicao)) {
+      return view("EditarItemDistribuicao", [
+        "item_distribuicao" => $item_distribuicao,
+      ]);
+    }
+
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+  }
+
+  public function salvarItemDistribuicao(Request $request){
+    $item_distribuicao = \App\Distribuicao_item::find($request->id);
+
+    $item_distribuicao->quantidade_total = $request->quantidade_total;
+    $item_distribuicao->save();
+
+    session()->flash('success', 'Item da distribuição modificado com sucesso.');
+    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+  }
 }
