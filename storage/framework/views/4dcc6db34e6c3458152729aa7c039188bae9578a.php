@@ -49,7 +49,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Telefone')); ?></label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" required value= <?php echo e(old('telefone')); ?>> <?php echo e($errors->first('telefone')); ?>
+                              <input name="telefone" id="telefone" type="text" placeholder="(99)99999-9999" class="form-control" required value= <?php echo e(old('telefone')); ?>> <?php echo e($errors->first('telefone')); ?>
 
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail')); ?></label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required>
+                                <input id="email" type="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" placeholder="xxx@xxx.xxx" name="email" value="<?php echo e(old('email')); ?>" required>
 
                                 <?php if($errors->has('email')): ?>
                                     <span class="invalid-feedback" role="alert">

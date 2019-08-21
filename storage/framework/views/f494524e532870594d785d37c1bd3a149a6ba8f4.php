@@ -31,12 +31,9 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
-                                  <th>Quantidade</th>
-                                  <th>Qtd. danificados</th>
-                                  <th>Qtd. falta</th>
-                                  <th>Data de validade</th>
+                                  <th>Quantidade Total</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -45,15 +42,15 @@
                                     <?php
                                       $item = \App\Item::find($item_distribuicao->item_id);
                                     ?>
-                                    <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
+                                    <td data-title="Nome"><?php echo e($item->nome); ?></td>
                                     <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
-                                    <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
-                                    <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>
-                                    <td data-title="Quantidade"><?php echo e($item_distribuicao->quantidade); ?></td>
-                                    <td data-title="QuantidadeDanificados"><?php echo e($item_distribuicao->quantidade_danificados); ?></td>
-                                    <td data-title="QuantidadeFalta"><?php echo e($item_distribuicao->quantidade_falta); ?></td>
-                                    <td data-title="Data de validade"><?php echo e($item->data_validade); ?></td>
+                                    <td data-title="Gramatura"><?php echo e($item->gramatura); ?><?php echo e($item->unidade); ?></td>
+                                    <td data-title="Quantidade_total"><?php echo e($item_distribuicao->quantidade_total); ?></td>
 
+                                    <td>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/itemDistribuicao/editar", ['id' => $item_distribuicao->id])); ?>">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
 
 

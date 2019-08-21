@@ -57,7 +57,7 @@
                              <?php else: ?>
                              <div class="col-md-6">
                                <select class="form-control" id="escolas" name="escola_id" required>
-       								              <option value="">Não há escolas cadastradas</option>
+       								              <option value="">Não há cardápios cadastrados</option>
                                </select>
                              </div>
                              <?php endif; ?>

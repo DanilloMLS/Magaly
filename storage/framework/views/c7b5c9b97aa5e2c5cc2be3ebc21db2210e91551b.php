@@ -11,7 +11,7 @@
                       <?php echo e(csrf_field()); ?>
 
                         <?php echo csrf_field(); ?>
-                        
+
                         <input type="hidden" name="contrato_id" value="<?php echo e($contrato->id); ?>" />
 
                         <div class="form-group row">
@@ -51,23 +51,21 @@
                           </div>
                       </div>
 
-                        <div class="form-group row">
-                            <label for="unidade" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Unidade ')); ?></label>
+                      <div class="form-group row">
+                          <label for="gramatura" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Gramatura ')); ?></label>
 
-                            <div class="col-md-6">
-                              <input name="unidade" id="unidade" type="text" class="form-control" required value= <?php echo e(old('unidade')); ?>> <?php echo e($errors->first('unidade')); ?>
+                          <div class="col-md-3">
+                            <input name="gramatura" id="n_lote" type="text" placeholder="ex: 100" pattern="^[-+]?[0-9]*" class="form-control" required value= <?php echo e(old('gramatura')); ?>> <?php echo e($errors->first('gramatura')); ?>
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="gramatura" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Gramatura ')); ?></label>
-
-                            <div class="col-md-6">
-                              <input name="gramatura" id="gramatura" type="number" min="0" class="form-control" required value= <?php echo e(old('gramatura')); ?>> <?php echo e($errors->first('gramatura')); ?>
-
-                            </div>
-                        </div>
+                          </div>
+                          <div class="col-md-2">
+                            <select class="form-control" id="unidade" name="unidade" required>
+                                  <option value="">Unidade</option>
+                                  <option value="KG">kg</option>
+                                  <option value="L">L</option>
+                            </select>
+                          </div>
+                      </div>
 
                         <div class="form-group row">
                           <label for="quantidade" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Quantidade ')); ?></label>
@@ -111,4 +109,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/jsouza/Dropbox/Projetos/Seduc/Magaly/resources/views/InserirItensContrato.blade.php ENDPATH**/ ?>

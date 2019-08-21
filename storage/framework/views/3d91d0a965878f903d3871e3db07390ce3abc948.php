@@ -21,23 +21,28 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Fornecedores</h1></td>
+                <td align="center" colspan=3><h1 size="80">RELATÓRIO DE FORNECEDORES</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-              <tr>
-                  <th>Nome</th>
+              <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+                  <th>ID</th>
+                  <th>NOME</th>
                   <th>CNPJ</th>
+                  <th>E-MAIL</th>
+                  <th>TELEFONE</th>
               </tr>
             </thead>
             <tbody>
               <?php $__currentLoopData = $fornecedores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fornecedor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr>
-                    <td data-title="Nome"><?php echo e($fornecedor->nome); ?></td>
-                    <td data-title="Descrição"><?php echo e($fornecedor->cnpj); ?></td>
+                <tr bgcolor="#dfdfdf">
+                    <td data-title="Id" align="center"><?php echo e($fornecedor->id); ?></td>
+                    <td data-title="Nome" align="center"><?php echo e($fornecedor->nome); ?></td>
+                    <td data-title="Descrição" align="center"><?php echo e($fornecedor->cnpj); ?></td>
+                    <td data-title="E-mail" align="center"><?php echo e($fornecedor->email); ?></td>
+                    <td data-title="Telefone" align="center"><?php echo e($fornecedor->telefone); ?></td>
                 </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>

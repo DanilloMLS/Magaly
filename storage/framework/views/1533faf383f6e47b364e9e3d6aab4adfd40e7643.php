@@ -76,7 +76,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Quantidade de alunos')); ?></label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" pattern="^[-+]?[0-9]*" class="form-control" required value= <?php echo e(old('qtde_alunos')); ?>> <?php echo e($errors->first('qtde_alunos')); ?></input>
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" placeholder="ex:100" pattern="^[-+]?[0-9]*" class="form-control" required value= <?php echo e(old('qtde_alunos')); ?>> <?php echo e($errors->first('qtde_alunos')); ?></input>
 
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Telefone')); ?></label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" value= <?php echo e(old('telefone')); ?>> <?php echo e($errors->first('telefone')); ?></input>
+                              <input name="telefone" id="telefone" type="text" class="form-control" placeholder="(99)99999-9999" value= <?php echo e(old('telefone')); ?>> <?php echo e($errors->first('telefone')); ?></input>
 
                             </div>
                         </div>

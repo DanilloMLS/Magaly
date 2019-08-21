@@ -52,7 +52,7 @@
                       <?php endif; ?>
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="/estoque/listar">Voltar</a>
+                      <a class="btn btn-primary" href="<?php echo e(route ('/estoque/listar')); ?>">Voltar</a>
                   </div>
                 </div>
             </div>
@@ -60,4 +60,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/jsouza/Dropbox/Projetos/Seduc/Magaly/resources/views/HistoricoEstoque.blade.php ENDPATH**/ ?>

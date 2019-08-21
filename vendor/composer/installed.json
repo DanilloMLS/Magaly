@@ -893,17 +893,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.8.32",
-        "version_normalized": "5.8.32.0",
+        "version": "v5.8.33",
+        "version_normalized": "5.8.33.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "ee16d719516dfd77ed6c9538000bca49ded284e2"
+            "reference": "58b81842cbdcfbbd8302790ac0f98119ea1c56e5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/ee16d719516dfd77ed6c9538000bca49ded284e2",
-            "reference": "ee16d719516dfd77ed6c9538000bca49ded284e2",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/58b81842cbdcfbbd8302790ac0f98119ea1c56e5",
+            "reference": "58b81842cbdcfbbd8302790ac0f98119ea1c56e5",
             "shasum": ""
         },
         "require": {
@@ -1006,7 +1006,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2019-08-13T14:11:52+00:00",
+        "time": "2019-08-20T15:45:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1390,17 +1390,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.23.0",
-        "version_normalized": "2.23.0.0",
+        "version": "2.23.1",
+        "version_normalized": "2.23.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "97a08830a22ce0b69549a4966773c0eae900468d"
+            "reference": "767617a047e5b8b8b3b0b6023a2650847ed7df02"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/97a08830a22ce0b69549a4966773c0eae900468d",
-            "reference": "97a08830a22ce0b69549a4966773c0eae900468d",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/767617a047e5b8b8b3b0b6023a2650847ed7df02",
+            "reference": "767617a047e5b8b8b3b0b6023a2650847ed7df02",
             "shasum": ""
         },
         "require": {
@@ -1416,7 +1416,7 @@
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2019-08-12T17:19:41+00:00",
+        "time": "2019-08-17T13:57:34+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -2412,17 +2412,17 @@
     },
     {
         "name": "phpunit/phpunit",
-        "version": "7.5.14",
-        "version_normalized": "7.5.14.0",
+        "version": "7.5.15",
+        "version_normalized": "7.5.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "2834789aeb9ac182ad69bfdf9ae91856a59945ff"
+            "reference": "d79c053d972856b8b941bb233e39dc521a5093f0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2834789aeb9ac182ad69bfdf9ae91856a59945ff",
-            "reference": "2834789aeb9ac182ad69bfdf9ae91856a59945ff",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d79c053d972856b8b941bb233e39dc521a5093f0",
+            "reference": "d79c053d972856b8b941bb233e39dc521a5093f0",
             "shasum": ""
         },
         "require": {
@@ -2461,7 +2461,7 @@
             "ext-xdebug": "*",
             "phpunit/php-invoker": "^2.0"
         },
-        "time": "2019-07-15T06:24:08+00:00",
+        "time": "2019-08-21T07:05:16+00:00",
         "bin": [
             "phpunit"
         ],
@@ -2484,8 +2484,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sebastian@phpunit.de"
             }
         ],
         "description": "The PHP Unit Testing framework.",

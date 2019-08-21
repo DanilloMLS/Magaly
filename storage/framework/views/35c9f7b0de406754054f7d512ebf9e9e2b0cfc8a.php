@@ -31,7 +31,7 @@
                                 </div>
                               </div>
                               <?php $__currentLoopData = $refeicoes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refeicao): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <form method="POST" action="/cardapio/inserirItem">
+                              <form method="POST" action="<?php echo e(route ('/cardapio/inserirItem')); ?>">
                                 <?php echo e(csrf_field()); ?>
 
                                   <?php echo csrf_field(); ?>
@@ -60,7 +60,8 @@
                                         if(empty($cardapio_refeicao)){ ?>
                                           <button class="btn btn-success" type="submit">+</button>
                                       <?php } else { ?>
-                                        <a class="btn btn-danger" href="/cardapio/removerItem/<?php echo e($cardapio_refeicao->id); ?>">
+
+                                        <a class="btn btn-danger" href="<?php echo e(route ("/cardapio/removerItem", ['id' => $cardapio_refeicao->id])); ?>">
                                         -
                                         </a>
                                     <?php } ?>

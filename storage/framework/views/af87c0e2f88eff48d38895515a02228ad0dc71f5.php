@@ -59,7 +59,7 @@ function editar(id){
                                     <td data-title="Email"><?php echo e($fornecedor->email); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/fornecedor/editar/<?php echo e($fornecedor->id); ?>">
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/fornecedor/editar", ['id' => $fornecedor->id])); ?>">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>

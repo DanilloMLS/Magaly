@@ -19,78 +19,49 @@
                   <div class="panel-body">
                       <?php if(count($itens) == 0 and count($itens) == 0): ?>
                       <div class="alert alert-danger">
-                              Você ainda não cadastrou nenhum item.
+                              Você ainda não cadastrou nenhum item neste cardápio.
                       </div>
                       <?php else: ?>
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                              <div class="form-group row">
-                                <div class="col-md-2">
+                              <strong><div class="form-group row">
+                                <div class="col-md-3">
                                   <center>Nome</center>
                                 </div>
-                                <div class="col-md-2">
-                                  Gramatura
+                                <div class="col-md-3">
+                                  Descrição
                                 </div>
                                 <div class="col-md-2">
-                                  <center>Falta</center>
+                                  <center>Quantidade Total</center>
                                 </div>
-                                <div class="col-md-2">
-                                  <center>Danificados</center>
-                                </div>
-                                <div class="col-md-2">
-                                  <center>Total</center>
-                                </div>
-                              </div>
+                              </div></strong>
                               <?php $__currentLoopData = $itens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <form method="POST" action="/distribuicao/inserirItem">
-                                <?php echo e(csrf_field()); ?>
-
-                                  <?php echo csrf_field(); ?>
-                              <input type="hidden" name="distribuicao_id" value="<?php echo e($distribuicao->id); ?>" />
-                              <input type="hidden" name="item_id" value="<?php echo e($item->id); ?>" />
 
                               <div class="form-group row">
 
-                                  <div class="col-md-2">
-                                    <?php echo e($item->nome); ?>
-
-                                  </div>
-                                  <div class="col-md-1">
-                                    <?php echo e($item->gramatura); ?>
-
-                                  </div>
-
-                                  <div class="col-md-2">
-                                    <input name="quantidade_falta" id="quantidade_falta" type="number"  class="form-control" value= <?php echo e(old('quantidade_falta')); ?>> <?php echo e($errors->first('quantidade_falta')); ?>
-
-                                  </div>
-                                  <div class="col-md-2">
-                                    <input name="quantidade_danificados" id="quantidade_danificados" type="number"  class="form-control" value= <?php echo e(old('quantidade_danificado')); ?>> <?php echo e($errors->first('quantidade_danificados')); ?>
-
-                                  </div>
-                                  <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= <?php echo e(old('quantidade')); ?>> <?php echo e($errors->first('quantidade')); ?>
-
-                                  </div>
-                                  <div class="col-md-1">
+                                  <div class="col-md-3">
                                     <?php
-                                        $distribuicao_item = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)
-                                                                                ->where('item_id', '=', $item->id)
-                                                                                ->first();
-                                        if(empty($distribuicao_item)){ ?>
-                                          <button class="btn btn-success" type="submit">+</button>
-                                      <?php } else { ?>
-                                        <a class="btn btn-danger" href="/distribuicao/removerItem/<?php echo e($distribuicao_item->id); ?>">
-                                        -
-                                        </a>
-                                    <?php } ?>
+                                    $item_nome = \App\Item::find($item->item_id);
+                                    ?>
+                                    <?php echo e($item_nome->nome); ?>
 
                                   </div>
+
+                                  <div class="col-md-3">
+                                    <?php
+                                    $item_descricao = \App\Item::find($item->item_id);
+                                    ?>
+                                    <?php echo e($item_descricao->descricao); ?>
+
+                                  </div>
+
+                                  <div class="col-md-2">
+                                    <?php echo e($item->quantidade_total); ?>
+
+                                  </div>
+
                               </div>
-
-                            </form>
-
 
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -98,7 +69,7 @@
                       <?php endif; ?>
                   </div>
                   <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="/distribuicao/finalizarDistribuicao/<?php echo e($distribuicao->id); ?>">Concluir</a></center>
+                      <center><a class="btn btn-primary" href="<?php echo e(route ('/distribuicao/listar')); ?>">Confirmar</a></center>
                   </div>
             </div>
         </div>

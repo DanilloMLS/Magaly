@@ -21,14 +21,13 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Estoques</h1></td>
+                <td align="center" colspan=3><h1 size="80">RELATÓRIO DE ESTOQUES</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <tbody>
-                <tr>
+                <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
                     <th>Item</th>
                     <th>Unidade</th>
                     <th>Estoque</th>
@@ -42,7 +41,7 @@ Tel: (87)3762-7060
                       @php
                           $item = \App\Item::find($item_estoque->item_id);
                       @endphp
-                      <tr>
+                      <tr bgcolor="#dfdfdf">
                           <td data-title="Valor unitário">{{ $item->nome }}</td>
                           <td data-title="Unidade">{{ $item->unidade }}</td>
                           <td data-title="Nome">{{ $estoque->nome }}</td>

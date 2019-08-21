@@ -21,19 +21,18 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Estoques</h1></td>
+                <td align="center" colspan=3><h1 size="80">RELATÓRIO DE ESTOQUES</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <tbody>
-                <tr>
-                    <th>Estoque</th>
+                <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
                     <th>Item</th>
+                    <th>Unidade</th>
+                    <th>Estoque</th>
                     <th>Data de validade</th>
                     <th>Nº lote</th>
-                    <th>Unidade</th>
                     <th>Gramatura</th>
                     <th>Descrição</th>
                 </tr>
@@ -42,12 +41,12 @@ Tel: (87)3762-7060
                       <?php
                           $item = \App\Item::find($item_estoque->item_id);
                       ?>
-                      <tr>
-                          <td data-title="Nome"><?php echo e($estoque->nome); ?></td>
+                      <tr bgcolor="#dfdfdf">
                           <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
+                          <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
+                          <td data-title="Nome"><?php echo e($estoque->nome); ?></td>
                           <td data-title="Data de validade"><?php echo e($item->data_validade); ?></td>
                           <td data-title="Nº lote"><?php echo e($item->n_lote); ?></td>
-                          <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
                           <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>
                           <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
                       </tr>

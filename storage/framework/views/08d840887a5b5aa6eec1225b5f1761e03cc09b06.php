@@ -449,7 +449,7 @@
                         <?php endif; ?>
 
                               <div class="panel-footer">
-                                  <center><a class="btn btn-primary" href="/cardapioDiario/finalizarCardapio/<?php echo e($cardapio->id); ?>">Concluir</a></center>
+                                  <center><a class="btn btn-primary" href="<?php echo e(route ('/cardapioMensal/finalizarCardapio')); ?>">Concluir</a></center>
                               </div>
                 </div>
             </div>

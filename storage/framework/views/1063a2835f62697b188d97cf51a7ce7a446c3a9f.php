@@ -56,8 +56,8 @@ function listarItens(id){
                                 <tr>
                                     <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens(<?php echo e($estoque->id); ?>);"><?php echo e($estoque->nome); ?></td>
                                     <td>
-                                      <a class="btn btn-primary" href="/estoque/novoItemEstoque/<?php echo e($estoque->id); ?>">Inserir Itens</a>
-                                      <a class="btn btn-primary" href="/estoque/historicoEstoque/<?php echo e($estoque->id); ?>">Ver Histórico</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/estoque/novoItemEstoque", ['id' => $estoque->id])); ?>">Inserir Itens</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/estoque/historicoEstoque", ['id' => $estoque->id])); ?>">Ver Histórico</a>
                                       <a class="btn btn-primary" onClick="avisoDeletar(<?php echo e($estoque->id); ?>);">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>

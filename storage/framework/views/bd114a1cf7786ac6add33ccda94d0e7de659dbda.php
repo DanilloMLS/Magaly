@@ -66,9 +66,9 @@ function editar(id){
                                     <td data-title="Gestor"><?php echo e($escola->gestor); ?></td>
                                     <td data-title="Telefone"><?php echo e($escola->telefone); ?></td>
 
-                                    
+
                                     <td>
-                                      <a class="btn btn-primary"  href="/escola/editar/<?php echo e($escola->id); ?>">
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/escola/editar", ['id' => $escola->id])); ?>">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>

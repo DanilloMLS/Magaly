@@ -52,7 +52,7 @@
                                     <td data-title="Fornecedor"><?php echo e($fornecedor->nome); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/contrato/exibirItensContrato/<?php echo e($contrato->id); ?>">Itens</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/contrato/exibirItensContrato", ['id' => $contrato->id])); ?>" >Itens</a>
                                     </td>
                                 </tr>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

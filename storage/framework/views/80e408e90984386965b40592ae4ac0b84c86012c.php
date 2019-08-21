@@ -52,12 +52,14 @@ function avisoDeletar(id){
                                     <td data-title="Modalidade de Ensino"><?php echo e($escola->nome); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="/distribuicao/exibirItensDistribuicao/<?php echo e($distribuicao->id); ?>">Itens</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])); ?>">Itens</a>
                                     </td>
 
 
                                     <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar(<?php echo e($distribuicao->id); ?>);"> Excluir</a>
+                                      <a class="btn btn-primary" onClick="avisoDeletar(<?php echo e($distribuicao->id); ?>);">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
                                     <td></td>
                                 </tr>
