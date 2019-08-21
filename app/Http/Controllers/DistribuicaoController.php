@@ -72,9 +72,11 @@ class DistribuicaoController extends Controller
       $estoque_central_item = \App\Estoque_item::where('item_id','=',$item->item_id)
                                                ->where('estoque_id','=',$request->estoque_id)
                                                ->first();
-      $estoque_central_item->quantidade -= intval(ceil($item->quantidade_total));
-      $estoque_central_item->save();
-
+      if ($estoque_central_item->quantidade - $item->quantidade_total > 0) {
+        $estoque_central_item->quantidade -= intval(ceil($item->quantidade_total));
+        $estoque_central_item->save();
+      }
+      
       //adicionar ao estoque_escola (destino)
       $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
                                               ->where('item_id','=',$item->item_id)
@@ -88,6 +90,7 @@ class DistribuicaoController extends Controller
         $estoque_escola_item->quantidade_danificados = 0;
         $estoque_escola_item->item_id = $item->item_id;
         $estoque_escola_item->estoque_id = $escola->estoque_id;
+        $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
         $estoque_escola_item->save();
       }
     }
