@@ -64,6 +64,26 @@
                              @endif
                           </div>
 
+                          <div class="form-group row">
+                            <label for="id_estoque" class="col-md-4 col-form-label text-md-right">{{ __('Estoque') }}</label>
+                            @if(count($estoques) != 0 and count($estoques) != 0)
+                            <div class="col-md-6">
+                              <select class="form-control" id="estoques" name="estoque_id" required>
+                                    <option value="">Selecione um Estoque</option>
+                                    @foreach($estoques as $estoque)
+                                    <option value="{{$estoque->id}}">{{$estoque->nome}}</option>
+                                    @endforeach
+                              </select>
+                            </div>
+                            @else
+                            <div class="col-md-6">
+                              <select class="form-control" id="estoques" name="estoque_id" required>
+                                    <option value="">Não há estoques cadastrados</option>
+                              </select>
+                            </div>
+                            @endif
+                         </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

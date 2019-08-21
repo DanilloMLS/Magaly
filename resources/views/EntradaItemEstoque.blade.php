@@ -15,6 +15,7 @@
 
                         <input type="hidden" name="estoque_id" value="{{$estoque_item->estoque_id}}" />
                         <input type="hidden" name="item_id" value="{{$estoque_item->item_id}}" />
+                        <input type="hidden" name="contrato_id" value="{{$estoque_item->contrato_id}}" />
                         
                         <div class="form-group row">
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>

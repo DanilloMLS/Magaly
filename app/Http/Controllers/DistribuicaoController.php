@@ -10,10 +10,12 @@ class DistribuicaoController extends Controller
   public function telaCadastrar() {
     $escolas = \App\Escola::all();
     $cardapios = \App\Cardapio_mensal::all();
+    $estoques = \App\Estoque::all();
 
     return view("CadastrarDistribuicao", [
         "escolas" => $escolas,
         "cardapios" => $cardapios,
+        "estoques" => $estoques
     ]);
   }
 
@@ -48,7 +50,7 @@ class DistribuicaoController extends Controller
             //cria nova distribuicao_item
             $distribuicao_item = new \App\Distribuicao_item();
             $distribuicao_item->quantidade = $i->quantidade;
-            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->item_id = $i->item_id;
             $distribuicao_item->distribuicao_id = $distribuicao->id;
             $distribuicao_item->save();
@@ -57,12 +59,39 @@ class DistribuicaoController extends Controller
             $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
             $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
             //quantidade_total
-            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura * 1000);
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->save();
           }
         }
     }
+
     $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
+
+    foreach ($itens as $item) {
+      //subtrair do estoque_central (origem)
+      $estoque_central_item = \App\Estoque_item::where('item_id','=',$item->item_id)
+                                               ->where('estoque_id','=',$request->estoque_id)
+                                               ->first();
+      $estoque_central_item->quantidade -= intval(ceil($item->quantidade_total));
+      $estoque_central_item->save();
+
+      //adicionar ao estoque_escola (destino)
+      $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
+                                              ->where('item_id','=',$item->item_id)
+                                              ->first();
+      if (isset($estoque_escola_item)) {
+        $estoque_escola_item->quantidade += intval(ceil($item->quantidade_total));
+        $estoque_escola_item->save();
+      } else {
+        $estoque_escola_item = new \App\Estoque_item();
+        $estoque_escola_item->quantidade = intval(ceil($item->quantidade_total));
+        $estoque_escola_item->quantidade_danificados = 0;
+        $estoque_escola_item->item_id = $item->item_id;
+        $estoque_escola_item->estoque_id = $escola->estoque_id;
+        $estoque_escola_item->save();
+      }
+    }
+
     session()->flash('success', 'Distribuição cadastrada com sucesso. Confira seus itens.');
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }

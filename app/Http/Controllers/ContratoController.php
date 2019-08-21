@@ -52,21 +52,29 @@ class ContratoController extends Controller
     $contrato_item = \App\Contrato_item::where('contrato_id','=',$request->contrato_id)
                                        ->where('item_id','=',$request->item_id)
                                        ->first();
-
     $contrato = \App\Contrato::find($request->contrato_id);
 
     if (!isset($contrato_item)) {
       if (isset($contrato)) {
         $contrato_item = new \App\Contrato_item();
-        $item = new \App\Item();
+        $item = \App\Item::where('nome','=',$request->nome)
+                         ->where('marca','=',$request->marca)
+                         ->where('descricao','=',$request->descricao)
+                         ->where('unidade','=',$request->unidade)
+                         ->where('gramatura','=',$request->gramatura)
+                         ->first();
 
-        $item->nome = $request->nome;
-        $item->marca = $request->marca;
-        $item->descricao = $request->descricao;
-        $item->unidade = $request->unidade;
-        $item->gramatura = $request->gramatura;
-        $item->save();
+        if (!isset($item)) {
+          $item = new \App\Item();
 
+          $item->nome = $request->nome;
+          $item->marca = $request->marca;
+          $item->descricao = $request->descricao;
+          $item->unidade = $request->unidade;
+          $item->gramatura = $request->gramatura;
+          $item->save();
+        }
+        
         $item = \App\Item::where('nome','=',$request->nome)
                          ->first();
 

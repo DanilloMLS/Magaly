@@ -33,6 +33,9 @@
                                 <div class="col-md-3">
                                   Descrição
                                 </div>
+                                <div class="col-md-3">
+                                  Gramatura
+                                </div>
                                 <div class="col-md-2">
                                   <center>Quantidade Total</center>
                                 </div>
@@ -53,6 +56,13 @@
                                     $item_descricao = \App\Item::find($item->item_id);
                                     @endphp
                                     {{ $item_descricao->descricao }}
+                                  </div>
+
+                                  <div class="col-md-3">
+                                    @php
+                                    $item_gramatura = \App\Item::find($item->item_id);
+                                    @endphp
+                                    {{ $item_gramatura->gramatura }}{{ $item_gramatura->unidade }}
                                   </div>
 
                                   <div class="col-md-2">
