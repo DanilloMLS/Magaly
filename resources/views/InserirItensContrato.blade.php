@@ -76,7 +76,7 @@
                           <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de Validade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="data_validade" id="data_validade" type="date" class="form-control" required value= {{ old('data_validade')}}> {{ $errors->first('data_validade')}}
+                            <input name="data_validade" id="data_validade" type="date" class="form-control" data-date-format="dd-mm-yyyy" required value= {{ old('data_validade')}}> {{ $errors->first('data_validade')}}
                           </div>
                         </div>
 
