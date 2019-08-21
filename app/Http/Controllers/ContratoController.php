@@ -74,13 +74,14 @@ class ContratoController extends Controller
           $item->gramatura = $request->gramatura;
           $item->save();
         }
-        
+
         $item = \App\Item::where('nome','=',$request->nome)
                          ->first();
 
         $contrato_item->quantidade = $request->quantidade;
-        $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
-        $contrato_item->data_validade = $dateObj->format('d/m/Y');
+        // $dateObj= DateTime::createFromFormat('Y-m-d', $request->data_validade);
+        // $contrato_item->data_validade = $dateObj->format('d/m/Y');
+        $contrato_item->data_validade = $request->data_validade;
         $contrato_item->valor_unitario = $request->valor_unitario;
         $contrato_item->n_lote = $request->n_lote;
         $contrato_item->contrato_id = $request->contrato_id;
