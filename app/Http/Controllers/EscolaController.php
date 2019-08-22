@@ -8,7 +8,7 @@ use App\Estoque;
 class EscolaController extends Controller
 {
   public function cadastrar(Request $request) {
-    
+
     $validacao = $request->validate([
       'nome' => 'unique:escolas',
     ]);
@@ -16,7 +16,7 @@ class EscolaController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = "Estoque da Escola ".$request->nome;
     $estoque->save();
-    
+
     $escola = new \App\Escola();
     $escola->nome = $request->nome;
 
@@ -28,7 +28,7 @@ class EscolaController extends Controller
   			$escola->modalidade_ensino = "Creche Infantil Parcial";
    			break;
       case "3":
-    		$escola->modalidade_ensino = "Infantil (Pré-escola)";
+    		$escola->modalidade_ensino = "Infantil";
    			break;
       case "4":
       	$escola->modalidade_ensino = "Ensino Fundamental";
@@ -49,7 +49,7 @@ class EscolaController extends Controller
     $escola->gestor = $request->gestor;
     $escola->telefone = $request->telefone;
     $escola->estoque_id = $estoque->id;
-    
+
     $escola->save();
 
     session()->flash('success', 'Escola cadastrada com sucesso.');
@@ -73,7 +73,7 @@ class EscolaController extends Controller
   public function remover(Request $request){
       $escola = \App\Escola::find($request->id);
       $estoque = \App\Estoque::find($request->id);
-      
+
       if (isset($escola)) {
         $escola->delete();
         $estoque->delete();
@@ -87,13 +87,13 @@ class EscolaController extends Controller
 
   public function editar(Request $request){
       $escola = \App\Escola::find($request->id);
-      
+
       if (isset($escola)) {
         return view("EditarEscola", [
           "escola" => $escola,
         ]);
       }
-      
+
       session()->flash('success', 'Escola não existe.');
       return redirect()->route('/escola/listar');
   }
@@ -130,7 +130,7 @@ class EscolaController extends Controller
             $escola->modalidade_ensino = "Creche Infantil Parcial";
             break;
           case "3":
-            $escola->modalidade_ensino = "Infantil (Pré-escola)";
+            $escola->modalidade_ensino = "Infantil";
             break;
           case "4":
             $escola->modalidade_ensino = "Ensino Fundamental";
@@ -156,7 +156,7 @@ class EscolaController extends Controller
         session()->flash('success', 'Escola modificada com sucesso.');
         return redirect()->route('/escola/listar');
       }
-      
+
       session()->flash('success', 'Escola não existe.');
       return redirect()->route('/escola/listar');
   }

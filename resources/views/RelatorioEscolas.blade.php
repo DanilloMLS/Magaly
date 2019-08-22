@@ -22,31 +22,32 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Escolas</h1></td>
+                <td align="center" colspan=3><h1 size="80">LISTAGEM DAS ESCOLAS</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
         <thead>
-          <tr>
-              <th>Nome</th>
-              <th>Modalidade de Ensino</th>
-              <th>Rota</th>
-              <th>Endereço</th>
-              <th>Período de Atendimento</th>
-              <th>Quantidade de Alunos</th>
+          <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+              <th>Nº</th>
+              <th>NOME</th>
+              <th>MODALIDADE</th>
+              <th>ROTA</th>
+              <th>ENDEREÇO</th>
+              <th>ATENDIMENTO</th>
+              <th>ALUNOS</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($escolas as $escola)
-            <tr>
-                <td data-title="Nome">{{ $escola->nome }}</td>
-                <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
-                <td data-title="Rota">{{ $escola->rota }}</td>
-                <td data-title="Endereco">{{ $escola->endereco }}</td>
-                <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
-                <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
+            <tr bgcolor="#dfdfdf">
+                <td data-title="nº" align="center">{{ $escola->id }}</td>
+                <td data-title="Nome" align="center">{{ $escola->nome }}</td>
+                <td data-title="Modalidade de Ensino" align="center">{{ $escola->modalidade_ensino }}</td>
+                <td data-title="Rota" align="center">{{ $escola->rota }}</td>
+                <td data-title="Endereco" align="center">{{ $escola->endereco }}</td>
+                <td data-title="Período de Atendimento" align="center">{{ $escola->periodo_atendimento }}</td>
+                <td data-title="Quantidade de Alunos" align="center">{{ $escola->qtde_alunos }}</td>
             </tr>
           @endforeach
         </tbody>
