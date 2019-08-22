@@ -150,6 +150,12 @@ class EstoqueController extends Controller
                                        ->where('item_id','=',$contrato_item->item_id)
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
                                        ->first();
+
+      if ($contrato_item->quantidade < $request->quantidade or $contrato_item->quantidade <= 0) {
+        session()->flash('success', 'Contrato não tem quantidade suficiente.');
+        return redirect()->route('/estoque/listar');
+      }
+
       if (isset($estoque_item)){
         session()->flash('success', "Esse Item já existe no estoque.");
         $itens = \App\Estoque_item::where('estoque_id', '=', $request->estoque_id)->get();
@@ -245,8 +251,8 @@ class EstoqueController extends Controller
         $estoque_item->estoque_id = $request->estoque_id;
         $estoque_item->contrato_id = $request->contrato_id;
         
-        $contrato_item = \App\Contrato_item::where('id','=',$request->contrato_id)
-                                           ->where('item_id','=',$request->item_id)
+        $contrato_item = \App\Contrato_item::where('contrato_id','=',$estoque_item->contrato_id)
+                                           ->where('item_id','=',$estoque_item->item_id)
                                            ->first();
         $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
   
