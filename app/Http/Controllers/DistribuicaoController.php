@@ -10,7 +10,12 @@ class DistribuicaoController extends Controller
   public function telaCadastrar() {
     $escolas = \App\Escola::all();
     $cardapios = \App\Cardapio_mensal::all();
-    $estoques = \App\Estoque::all();
+
+    //$ids_escolas = [];
+    foreach ($escolas as $escola) {
+      $ids_escolas[] = $escola->estoque_id;
+    }
+    $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
 
     return view("CadastrarDistribuicao", [
         "escolas" => $escolas,

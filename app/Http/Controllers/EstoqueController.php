@@ -176,7 +176,7 @@ class EstoqueController extends Controller
       $estoque_es->item_id = $contrato_item->item_id;
       $estoque_es->estoque_id = $request->estoque_id;
 
-      $contrato_item->quantidade -= $request->quantidade;
+      $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
       
       $estoque_item->save();
       $estoque_es->save();
