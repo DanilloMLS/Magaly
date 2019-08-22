@@ -30,7 +30,7 @@
 
                                     <option value="1" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Integral') == 0) selected="selected" @endif> Creche Infantil Integral</option>
                                     <option value="2" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Parcial') == 0) selected="selected" @endif>Creche Infantil Parcial</option>
-                                    <option value="3" @if(strcasecmp($escola->modalidade_ensino, 'Infantil (pré-escola)') == 0) selected="selected" @endif>Infantil (pré-escola)</option>
+                                    <option value="3" @if(strcasecmp($escola->modalidade_ensino, 'Infantil') == 0) selected="selected" @endif>Infantil</option>
                                     <option value="4" @if(strcasecmp($escola->modalidade_ensino, 'Ensino Fundamental') == 0) selected="selected" @endif>Ensino Fundamental</option>
                                     <option value="5" @if(strcasecmp($escola->modalidade_ensino, 'EJA') == 0) selected="selected" @endif>EJA</option>
                                     <option value="6" @if(strcasecmp($escola->modalidade_ensino, 'Quilombola') == 0) selected="selected" @endif>Quilombola</option>
