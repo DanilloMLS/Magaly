@@ -45,7 +45,7 @@
                           <label for="valor_unitario" class="col-md-4 col-form-label text-md-right">{{ __('Valor Unitário ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= {{ old('valor_unitario')}}> {{ $errors->first('valor_unitario')}}
+                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" required type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= {{ old('valor_unitario')}}> {{ $errors->first('valor_unitario')}}
                           </div>
                       </div>
 
