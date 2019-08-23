@@ -49,7 +49,7 @@
                                   <th>Gramatura</th>
                                   <th>Danificados</th>
                                   <th>Quantidade disponível</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -71,13 +71,20 @@
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">Entrada</a>
+                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">
+                                          <img src="/img/entrance.png" height="21" width="17" align = "right">                                          
+                                        </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">Saída</a>
+                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">
+                                          <img src="/img/exit.png" height="21" width="17" align = "right">                                          
+                                        </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">Excluir</a>
+                                        <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">
+                                          <img src="/img/delete.png" height="21" width="17" align = "right">
+                                        </a>
+                                        
                                     </td>
                                 </tr>
                               @endforeach

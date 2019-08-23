@@ -46,7 +46,9 @@
 
                                     <td>
 
-                                      <a class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >ver</a>
+                                      <a title="Ver Refeições" class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >
+                                        <img src="/img/menu.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach

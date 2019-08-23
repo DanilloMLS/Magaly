@@ -53,7 +53,9 @@
                                     <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >Itens</a>
+                                      <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach
