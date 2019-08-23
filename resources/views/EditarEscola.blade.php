@@ -43,8 +43,7 @@
 
                             <div class="col-md-6">
 
-                              {{-- <input name="endereco" id="endereco" type="text" class="form-control" value="{{ $escola->endereco}}" value= {{ old('endereco')}}> {{ $errors->first('endereco')}} --}}
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
                             </div>
                         </div>
 
@@ -54,8 +53,7 @@
 
                             <div class="col-md-6">
 
-                              {{-- <input name="rota" id="rota" type="text" class="form-control" value="{{ $escola->rota}}" required value= {{ old('rota')}}> {{ $errors->first('rota')}} --}}
-                              <textarea name="rota" id="rota" type="text" class="form-control" required value= "{{ $escola->rota}}"> <?php echo $escola->rota; ?> </textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control" value= "{{ $escola->rota}}"> <?php echo $escola->rota; ?> </textarea>
                             </div>
                         </div>
 
