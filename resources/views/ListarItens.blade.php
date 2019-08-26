@@ -51,8 +51,8 @@ function editar(id){
                             </thead>
                             <tbody>
                               @foreach ($itens as $item)
-                                <tr>
-                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
+                                <tr title="Clique para editar" onclick="editar({{$item->id}});">
+                                    <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
