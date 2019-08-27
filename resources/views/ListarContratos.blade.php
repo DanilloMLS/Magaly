@@ -62,6 +62,7 @@
 
                             </tbody>
                           </table>
+                          {{$contratos->links()}}
                         </div>
                       @endif
                   </div>

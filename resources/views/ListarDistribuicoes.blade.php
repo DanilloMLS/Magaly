@@ -70,6 +70,7 @@ function avisoDeletar(id){
 
                             </tbody>
                           </table>
+                          {{$distribuicoes->links()}}
                         </div>
                       @endif
                   </div>

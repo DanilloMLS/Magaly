@@ -35,7 +35,7 @@ class ContratoController extends Controller
   }
 
   public function listar(){
-    $contratos = \App\Contrato::all();
+    $contratos = \App\Contrato::paginate(10);
     return view("ListarContratos", ["contratos" => $contratos]);
   }
 

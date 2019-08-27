@@ -85,6 +85,7 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          {{$escolas->links()}}
                         </div>
                       @endif
                   </div>

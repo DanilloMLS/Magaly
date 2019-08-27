@@ -69,6 +69,7 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          {{$itens->links()}}
                         </div>
                       @endif
                   </div>

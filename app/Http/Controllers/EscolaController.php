@@ -64,7 +64,7 @@ class EscolaController extends Controller
   }
 
   public function listar(){
-    $escolas = \App\Escola::all();
+    $escolas = \App\Escola::paginate(10);
     return view("ListarEscolas", ["escolas" => $escolas]);
   }
 

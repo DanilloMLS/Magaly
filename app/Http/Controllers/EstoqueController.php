@@ -25,7 +25,7 @@ class EstoqueController extends Controller
   }
 
   public function listar(){
-    $estoques = \App\Estoque::all();
+    $estoques = \App\Estoque::paginate(10);
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
 

@@ -74,6 +74,7 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          {{$fornecedores->links()}}
                         </div>
                       @endif
                   </div>

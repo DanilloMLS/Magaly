@@ -75,6 +75,7 @@ function listarItens(id){
 
                             </tbody>
                           </table>
+                          {{$estoques->links()}}
                         </div>
                       @endif
                   </div>
