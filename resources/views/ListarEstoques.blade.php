@@ -45,6 +45,10 @@ function listarItens(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$estoques->count()}} estoques de {{$estoques->total()}} 
+                            ({{$estoques->firstItem()}} a {{$estoques->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>

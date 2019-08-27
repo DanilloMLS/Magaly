@@ -41,6 +41,10 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$escolas->count()}} escolas de {{$escolas->total()}} 
+                            ({{$escolas->firstItem()}} a {{$escolas->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
