@@ -77,7 +77,7 @@ class FornecedorController extends Controller
 	}
 
 	public function salvar(Request $request){
-      $fornecedor = \App\Fornecedor::find($request->id);
+    $fornecedor = \App\Fornecedor::find($request->id);
 
     if (isset($fornecedor)) {
       $fornecedor->nome = $request->nome;

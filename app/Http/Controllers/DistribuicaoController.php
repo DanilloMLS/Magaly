@@ -248,6 +248,7 @@ class DistribuicaoController extends Controller
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }
 
+  //Fora de circulação
   public function removerItemDistribuicao(Request $request) {
     $distribuicao_item = \App\Distribuicao_item::find($request->id);
     $itens = \App\Item::all();

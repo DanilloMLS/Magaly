@@ -43,7 +43,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= "{{ $escola->endereco}}"> <?php echo $escola->endereco; ?> </textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="rota" id="rota" type="text" class="form-control" value= "{{ $escola->rota}}"> <?php echo $escola->rota; ?> </textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control" value= "{{ $escola->rota}}"><?php echo $escola->rota; ?></textarea>
                             </div>
                         </div>
 
