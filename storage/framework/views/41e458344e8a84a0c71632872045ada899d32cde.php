@@ -63,6 +63,26 @@
                              <?php endif; ?>
                           </div>
 
+                          <div class="form-group row">
+                            <label for="id_estoque" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Estoque')); ?></label>
+                            <?php if(count($estoques) != 0 and count($estoques) != 0): ?>
+                            <div class="col-md-6">
+                              <select class="form-control" id="estoques" name="estoque_id" required>
+                                    <option value="">Selecione um Estoque</option>
+                                    <?php $__currentLoopData = $estoques; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estoque): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($estoque->id); ?>"><?php echo e($estoque->nome); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
+                            </div>
+                            <?php else: ?>
+                            <div class="col-md-6">
+                              <select class="form-control" id="estoques" name="estoque_id" required>
+                                    <option value="">Não há estoques cadastrados</option>
+                              </select>
+                            </div>
+                            <?php endif; ?>
+                         </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

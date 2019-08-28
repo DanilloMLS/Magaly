@@ -37,7 +37,7 @@
         								              <option value="">Selecione uma Modalidade de ensino</option>
         									            <option value="1">Creche Infantil Integral</option>
                                       <option value="2">Creche Infantil Parcial</option>
-                                      <option value="3">Infantil (pré-escola)</option>
+                                      <option value="3">Infantil</option>
                                       <option value="4">Ensino Fundamental</option>
                                       <option value="5">EJA</option>
                                       <option value="6">Quilombola</option>

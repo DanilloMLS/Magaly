@@ -15,9 +15,9 @@
 
                         <div class="form-group row">
                             <label for="item_id" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Item')); ?></label>
-                            <?php if(count($itens) != 0 and count($itens_contrato) != 0 and count($contratos)): ?>
+                            <?php if(count($itens_contrato)): ?>
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_id" required>
+                              <select class="form-control" id="itens" name="item_contrato_id" required>
       								              <option value="">Selecione um Item</option>
                                     <?php $__currentLoopData = $itens_contrato; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item_contrato): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                       <?php
@@ -25,7 +25,7 @@
                                           $contrato = \App\Contrato::find($item_contrato->contrato_id);
                                           $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id);
                                       ?>
-      									              <option value="<?php echo e($item_contrato->item_id); ?>"><?php echo e($item->nome); ?> - <?php echo e($item->gramatura); ?><?php echo e($item->unidade); ?> - <?php echo e($fornecedor->nome); ?> - Contrato Nº <?php echo e($contrato->n_contrato); ?></option>
+      									              <option value="<?php echo e($item_contrato->id); ?>"><?php echo e($item->nome); ?> - <?php echo e($item->gramatura); ?><?php echo e($item->unidade); ?> - <?php echo e($fornecedor->nome); ?> - Contrato Nº <?php echo e($contrato->n_contrato); ?></option>
       								              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </select>
                             </div>

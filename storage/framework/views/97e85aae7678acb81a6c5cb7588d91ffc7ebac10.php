@@ -44,7 +44,6 @@
                                     <td data-title="Data_fim"><?php echo e($cardapio->data_fim); ?></td>
 
                                     <td>
-
                                       <a class="btn btn-primary" href="<?php echo e(route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])); ?>" >ver</a>
                                     </td>
                                 </tr>
@@ -56,7 +55,6 @@
                       <?php endif; ?>
                   </div>
                   <div class="panel-footer">
-
                       <a class="btn btn-primary" href="<?php echo e(route("/cardapio/cadastrar")); ?>">Novo</a>
                   </div>
                 </div>

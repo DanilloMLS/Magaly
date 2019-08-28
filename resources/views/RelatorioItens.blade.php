@@ -21,17 +21,14 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
                 <td align="center" colspan=3><h1 size="80">Itens</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-            <tr>
+            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
                 <th>Nome</th>
-                <th>Data de validade</th>
-                <th>Nº lote</th>
                 <th>Descrição</th>
                 <th>Unidade</th>
                 <th>Gramatura</th>
@@ -39,16 +36,12 @@ Tel: (87)3762-7060
             </thead>
             <tbody>
             @foreach ($itens as $item)
-                <colgroup>
-                    <tr>
-                        <td data-title="Valor unitário">{{ $item->nome }}</td>
-                        <td data-title="Data de validade">{{ $item->data_validade }}</td>
-                        <td data-title="Nº lote">{{ $item->n_lote }}</td>
-                        <td data-title="Descrição">{{ $item->descricao }}</td>
-                        <td data-title="Unidade">{{ $item->unidade }}</td>
-                        <td data-title="Gramatura">{{ $item->gramatura }}</td>
-                    </tr>
-                </colgroup>
+                <tr bgcolor="#dfdfdf">
+                    <td data-title="Valor unitário">{{ $item->nome }}</td>
+                    <td data-title="Descrição">{{ $item->descricao }}</td>
+                    <td data-title="Unidade">{{ $item->unidade }}</td>
+                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
+                </tr>
             @endforeach
             </tbody>
         </table>

@@ -31,21 +31,21 @@
                          <div class="form-group row">
                              <label for="data_inicio" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Data de início')); ?></label>
                              <div class="col-md-6">
-                               <input type="date" id="data_inicio" name="data_inicio">
+                               <input type="date" id="data_inicio" required name="data_inicio">
                              </div>
                           </div>
 
                           <div class="form-group row">
                               <label for="data_fim" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Data de fim')); ?></label>
                               <div class="col-md-6">
-                                <input type="date" id="data_fim" name="data_fim">
+                                <input type="date" id="data_fim" required name="data_fim">
                               </div>
                            </div>
 
                            <div class="form-group row">
                                <label for="nome" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Nome')); ?></label>
                                <div class="col-md-6">
-                                 <input id="nome" name="nome">
+                                 <input id="nome" required name="nome">
                                </div>
                             </div>
 

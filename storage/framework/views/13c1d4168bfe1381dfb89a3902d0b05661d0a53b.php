@@ -66,15 +66,14 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= <?php echo e(old('quantidade')); ?>> <?php echo e($errors->first('quantidade')); ?>
-
+                                    <input name="quantidade" id="quantidade" type="number" min="0" class="form-control" required value= <?php echo e(old('quantidade')); ?>> <?php echo e($errors->first('quantidade')); ?>
 
                                   </div>
                                   <div class="col-md-1" style="padding-top:10px">
-                                    <?php if($item->unidade == 'kg' || $item->unidade == 'KG' || $item->unidade == 'Kg'): ?>
+                                    <?php if($item->unidade == 'G'): ?>
                                       g
                                     <?php endif; ?>
-                                    <?php if($item->unidade == 'l' || $item->unidade == 'L'): ?>
+                                    <?php if($item->unidade == 'ML'): ?>
                                       ml
                                     <?php endif; ?>
                                   </div>
