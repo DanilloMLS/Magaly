@@ -10,7 +10,12 @@ class DistribuicaoController extends Controller
   public function telaCadastrar() {
     $escolas = \App\Escola::all();
     $cardapios = \App\Cardapio_mensal::all();
-    $estoques = \App\Estoque::all();
+
+    //$ids_escolas = [];
+    foreach ($escolas as $escola) {
+      $ids_escolas[] = $escola->estoque_id;
+    }
+    $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
 
     return view("CadastrarDistribuicao", [
         "escolas" => $escolas,
@@ -158,7 +163,7 @@ class DistribuicaoController extends Controller
   }
 
   public function listar(){
-    $distribuicoes = \App\Distribuicao::all();
+    $distribuicoes = \App\Distribuicao::orderBy('id')->paginate(10);
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
@@ -243,6 +248,7 @@ class DistribuicaoController extends Controller
     return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
   }
 
+  //Fora de circulação
   public function removerItemDistribuicao(Request $request) {
     $distribuicao_item = \App\Distribuicao_item::find($request->id);
     $itens = \App\Item::all();

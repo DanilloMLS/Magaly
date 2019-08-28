@@ -37,6 +37,10 @@ function avisoDeletar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$distribuicoes->count()}} distribuições de {{$distribuicoes->total()}} 
+                            ({{$distribuicoes->firstItem()}} a {{$distribuicoes->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -53,7 +57,9 @@ function avisoDeletar(id){
                                     <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">Itens</a>
+                                      <a class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
 
 
@@ -68,6 +74,7 @@ function avisoDeletar(id){
 
                             </tbody>
                           </table>
+                          {{$distribuicoes->links()}}
                         </div>
                       @endif
                   </div>

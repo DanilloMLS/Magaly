@@ -27,6 +27,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$refeicoes->count()}} refeições de {{$refeicoes->total()}} 
+                            ({{$refeicoes->firstItem()}} a {{$refeicoes->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -44,7 +48,9 @@
                                     <td data-title="Quantidade">{{ $refeicao->quantidade_total }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >Itens</a>
+                                      <a class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
 
 
@@ -53,6 +59,7 @@
 
                             </tbody>
                           </table>
+                          {{$refeicoes->links()}}
                         </div>
                       @endif
                   </div>

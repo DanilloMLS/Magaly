@@ -39,6 +39,10 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$itens->count()}} itens de {{$itens->total()}} 
+                            ({{$itens->firstItem()}} a {{$itens->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -51,8 +55,8 @@ function editar(id){
                             </thead>
                             <tbody>
                               @foreach ($itens as $item)
-                                <tr>
-                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$item->id}});">{{ $item->nome }}</td>
+                                <tr title="Clique para editar" onclick="editar({{$item->id}});">
+                                    <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
@@ -69,6 +73,7 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          {{$itens->links()}}
                         </div>
                       @endif
                   </div>

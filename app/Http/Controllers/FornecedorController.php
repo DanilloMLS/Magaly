@@ -37,7 +37,7 @@ class FornecedorController extends Controller
   }
 
   public function listar(){
-    $fornecedores = \App\Fornecedor::all();
+    $fornecedores = \App\Fornecedor::orderBy('id')->paginate(10);
     return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
   }
 
@@ -77,7 +77,7 @@ class FornecedorController extends Controller
 	}
 
 	public function salvar(Request $request){
-      $fornecedor = \App\Fornecedor::find($request->id);
+    $fornecedor = \App\Fornecedor::find($request->id);
 
     if (isset($fornecedor)) {
       $fornecedor->nome = $request->nome;
