@@ -45,7 +45,6 @@
                                     <td data-title="Data_fim">{{ $cardapio->data_fim }}</td>
 
                                     <td>
-
                                       <a class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >ver</a>
                                     </td>
                                 </tr>
@@ -57,7 +56,6 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-
                       <a class="btn btn-primary" href="{{ route("/cardapio/cadastrar") }}">Novo</a>
                   </div>
                 </div>

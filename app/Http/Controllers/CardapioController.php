@@ -113,6 +113,11 @@ class CardapioController extends Controller
 
   public function exibirCardapioMensal(Request $request){
     $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
+
+      //return  \PDF::loadView('ExibirCardapioMensal', compact('$cardapio_mensal'))
+      //    // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+      //    ->stream('Cardapio.pdf');
+
     return view("ExibirCardapioMensal", ["cardapio" => $cardapio_mensal]);
 
   }

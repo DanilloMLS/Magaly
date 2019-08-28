@@ -21,14 +21,13 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Fornecedores</h1></td>
+                <td align="center" colspan=3><h1 size="80">REFEIÇÕES</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
-        <thead>
-          <tr>
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
+            <thead>
+            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
               <th>Nome</th>
               <th>Descrição</th>
               <th>Peso líquido</th>
@@ -36,7 +35,7 @@ Tel: (87)3762-7060
         </thead>
         <tbody>
           @foreach ($refeicoes as $refeicao)
-            <tr>
+              <tr bgcolor="#dfdfdf">
                 <td data-title="Nome">{{ $refeicao->nome }}</td>
                 <td data-title="Descricao">{{ $refeicao->descricao }}</td>
                 <td data-title="Peso_liquido">{{ $refeicao->peso_liquido }}</td>
