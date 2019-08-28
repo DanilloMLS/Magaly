@@ -30,6 +30,9 @@
                                 <div class="col-md-2">
                                   Descrição
                                 </div>
+                                <div class="col-md-2">
+                                  Quantidade Total
+                                </div>
                               </div>
                               @foreach ($refeicoes as $refeicao)
                               <form method="POST" action="{{route ('/cardapio/inserirItem')}}">
@@ -48,6 +51,9 @@
                                   </div>
                                   <div class="col-md-2">
                                     {{ $refeicao->descricao }}
+                                  </div>
+                                  <div class="col-md-2">
+                                    {{ $refeicao->quantidade_total }}
                                   </div>
                                   <div class="col-md-2">
 
