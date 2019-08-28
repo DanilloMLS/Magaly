@@ -67,7 +67,7 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
-    $refeicoes = \App\Refeicao::all();
+    $refeicoes = \App\Refeicao::orderBy('id')->paginate(10);
 
     session()->flash('success', 'Refeição cadastrada.');
     return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
