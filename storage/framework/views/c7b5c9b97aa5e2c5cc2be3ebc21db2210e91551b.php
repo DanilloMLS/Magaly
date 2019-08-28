@@ -46,7 +46,7 @@
                           <label for="valor_unitario" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Valor Unitário ')); ?></label>
 
                           <div class="col-md-6">
-                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= <?php echo e(old('valor_unitario')); ?>> <?php echo e($errors->first('valor_unitario')); ?>
+                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" required type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= <?php echo e(old('valor_unitario')); ?>> <?php echo e($errors->first('valor_unitario')); ?>
 
                           </div>
                       </div>
@@ -61,8 +61,8 @@
                           <div class="col-md-2">
                             <select class="form-control" id="unidade" name="unidade" required>
                                   <option value="">Unidade</option>
-                                  <option value="KG">kg</option>
-                                  <option value="L">L</option>
+                                  <option value="G">g</option>
+                                  <option value="ML">ml</option>
                             </select>
                           </div>
                       </div>

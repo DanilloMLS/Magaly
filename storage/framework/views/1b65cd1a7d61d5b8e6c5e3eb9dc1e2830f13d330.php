@@ -21,17 +21,14 @@ Tel: (87)3762-7060
                     ?>
                 </td>
             </tr>
-            <hr>
             <tr align="">
                 <td align="center" colspan=3><h1 size="80">Itens</h1></td>
             </tr>
         </table>
-        <table width="100%" class="table table-hover">
+        <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-            <tr>
+            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
                 <th>Nome</th>
-                <th>Data de validade</th>
-                <th>Nº lote</th>
                 <th>Descrição</th>
                 <th>Unidade</th>
                 <th>Gramatura</th>
@@ -39,16 +36,12 @@ Tel: (87)3762-7060
             </thead>
             <tbody>
             <?php $__currentLoopData = $itens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <colgroup>
-                    <tr>
-                        <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
-                        <td data-title="Data de validade"><?php echo e($item->data_validade); ?></td>
-                        <td data-title="Nº lote"><?php echo e($item->n_lote); ?></td>
-                        <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
-                        <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
-                        <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>
-                    </tr>
-                </colgroup>
+                <tr bgcolor="#dfdfdf">
+                    <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
+                    <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
+                    <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
+                    <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>
+                </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>

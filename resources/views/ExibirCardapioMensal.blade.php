@@ -11,7 +11,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Visualizar Cardápio') }}</div>
-
                 <div class="card-body">
                       {{ csrf_field() }}
                         @csrf

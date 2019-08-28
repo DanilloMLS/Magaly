@@ -47,8 +47,8 @@ function listarItens(id){
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Nome</th>
-                                  <th>Ações</th>
+                                  <th >Nome</th>
+                                  <th align="center">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
