@@ -36,6 +36,7 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
+                                  <th>Quantidade</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
@@ -44,6 +45,7 @@
                                 <tr>
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
+                                    <td data-title="Quantidade">{{ $refeicao->quantidade_total }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
