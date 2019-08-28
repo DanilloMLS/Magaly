@@ -52,6 +52,7 @@ function listarItens(id){
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>Id</th>
                                   <th >Nome</th>
                                   <th align="center">Ações</th>
                               </tr>
@@ -59,6 +60,7 @@ function listarItens(id){
                             <tbody>
                               @foreach ($estoques as $estoque)
                                 <tr>
+                                    <td data-title="Id" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}})">{{ $estoque->id }}</td>
                                     <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     <td>
                                       <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
