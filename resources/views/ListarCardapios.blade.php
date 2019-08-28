@@ -27,6 +27,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$cardapios->count()}} cardápios de {{$cardapios->total()}} 
+                            ({{$cardapios->firstItem()}} a {{$cardapios->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -55,6 +59,7 @@
 
                             </tbody>
                           </table>
+                          {{$cardapios->links()}}
                         </div>
                       @endif
                   </div>

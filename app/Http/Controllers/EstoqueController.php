@@ -10,12 +10,21 @@ class EstoqueController extends Controller
   public function cadastrar(Request $request) {
     $estoque = \App\Estoque::where('nome',$request->nome);
 
+    $validator = Validator::make($request->all(), [
+      'nome' => ['required', 'string', 'max:255', 'unique:estoques'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('estoque/cadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();
 
-    $itens_contrato = \App\Contrato_item::all();
-    //$itens = \App\Item::all();
+    $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
     return view("InserirNovoItemEstoque", [
@@ -182,7 +191,7 @@ class EstoqueController extends Controller
       $estoque_es->save();
       $contrato_item->save();
 
-      $itens_contrato = \App\Contrato_item::all();
+      $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
       session()->flash('success', 'Inserção de novo item.');
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque, 

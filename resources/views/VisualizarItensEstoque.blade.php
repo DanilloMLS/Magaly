@@ -71,17 +71,17 @@
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">
+                                        <a class="btn btn-primary" title="Entrada de Item" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">
                                           <img src="/img/entrance.png" height="21" width="17" align = "right">                                          
                                         </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">
+                                        <a class="btn btn-primary" title="Saída de Item" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">
                                           <img src="/img/exit.png" height="21" width="17" align = "right">                                          
                                         </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">
+                                        <a class="btn btn-primary" title="Deletar Item" onClick="avisoDeletar({{$item_estoque->id}});">
                                           <img src="/img/delete.png" height="21" width="17" align = "right">
                                         </a>
                                         

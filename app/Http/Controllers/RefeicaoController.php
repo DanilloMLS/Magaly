@@ -19,7 +19,7 @@ class RefeicaoController extends Controller
   }
 
   public function listar(){
-    $refeicoes = \App\Refeicao::all();
+    $refeicoes = \App\Refeicao::orderBy('id')->paginate(10);
     return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
   }
 

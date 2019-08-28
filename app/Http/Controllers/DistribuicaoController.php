@@ -163,8 +163,7 @@ class DistribuicaoController extends Controller
   }
 
   public function listar(){
-    //$distribuicoes = \App\Distribuicao::all();
-    $distribuicoes = \App\Distribuicao::paginate(10);
+    $distribuicoes = \App\Distribuicao::orderBy('id')->paginate(10);
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
