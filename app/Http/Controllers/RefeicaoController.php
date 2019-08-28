@@ -10,6 +10,7 @@ class RefeicaoController extends Controller
     $refeicao = new \App\Refeicao();
     $refeicao->nome = $request->nome;
     $refeicao->descricao = $request->descricao;
+    $refeicao->quantidade_total = 0;
     $refeicao->save();
 
     $itens = \App\Item::all();
@@ -19,7 +20,7 @@ class RefeicaoController extends Controller
   }
 
   public function listar(){
-    $refeicoes = \App\Refeicao::all();
+    $refeicoes = \App\Refeicao::orderBy('id')->paginate(10);
     return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
   }
 
@@ -58,6 +59,14 @@ class RefeicaoController extends Controller
   }
 
   public function finalizarRefeicao(Request $request) {
+    $refeicao = \App\Refeicao::find($request->id);
+    $itens_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)->get();
+    $quantidade = 0;
+    foreach ($itens_refeicao as $item_refeicao) {
+      $quantidade = $quantidade + $item_refeicao->quantidade;
+    }
+    $refeicao->quantidade_total = $quantidade;
+    $refeicao->save();
     $refeicoes = \App\Refeicao::all();
 
     session()->flash('success', 'Refeição cadastrada.');

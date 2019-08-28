@@ -15,7 +15,7 @@ class CreateRefeicaoItemsTable extends Migration
     {
         Schema::create('refeicao_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('quantidade')->unsigned();
+            $table->decimal('quantidade')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->integer('refeicao_id')->unsigned();

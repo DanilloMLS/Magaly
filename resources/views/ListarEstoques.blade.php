@@ -45,6 +45,10 @@ function listarItens(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$estoques->count()}} estoques de {{$estoques->total()}} 
+                            ({{$estoques->firstItem()}} a {{$estoques->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -57,22 +61,25 @@ function listarItens(id){
                                 <tr>
                                     <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">Inserir Itens</a>
-                                      <a class="btn btn-primary" href="{{ route ("/estoque/historicoEstoque", ['id' => $estoque->id])}}">Ver Histórico</a>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
+                                      <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
+                                        <img src="/img/add_item.png" height="21" width="21" align = "right">
+                                      </a>
+                                      <a title="Histórico de Movimentações" class="btn btn-primary" href="{{ route ("/estoque/historicoEstoque", ['id' => $estoque->id])}}">
+                                        <img src="/img/history.png" height="21" width="21" align = "right">
+                                      </a>
+                                      <a title="Remover Estoque" class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
-                                    {{-- <td>
-                                      <a class="btn btn-primary" onClick="renomear({{$estoque->id}});">
+                                      <a title="Renomear" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                               @endforeach
 
                             </tbody>
                           </table>
+                          {{$estoques->links()}}
                         </div>
                       @endif
                   </div>

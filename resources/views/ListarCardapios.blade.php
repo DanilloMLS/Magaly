@@ -27,6 +27,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$cardapios->count()}} cardápios de {{$cardapios->total()}} 
+                            ({{$cardapios->firstItem()}} a {{$cardapios->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -45,13 +49,16 @@
                                     <td data-title="Data_fim">{{ $cardapio->data_fim }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >ver</a>
+                                      <a title="Ver Refeições" class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >
+                                        <img src="/img/menu.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach
 
                             </tbody>
                           </table>
+                          {{$cardapios->links()}}
                         </div>
                       @endif
                   </div>

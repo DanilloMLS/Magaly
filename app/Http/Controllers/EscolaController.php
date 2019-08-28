@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Estoque;
 
 class EscolaController extends Controller
 {
   public function cadastrar(Request $request) {
 
-    $validacao = $request->validate([
-      'nome' => 'unique:escolas',
+    $validator = Validator::make($request->all(), [
+      'nome' => ['required', 'string', 'max:255', 'unique:escolas'],
     ]);
+
+    if ($validator->fails()) {
+        return redirect('escola/cadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
 
     $estoque = new \App\Estoque();
     $estoque->nome = "Estoque da Escola ".$request->nome;
@@ -57,7 +64,7 @@ class EscolaController extends Controller
   }
 
   public function listar(){
-    $escolas = \App\Escola::all();
+    $escolas = \App\Escola::orderBy('id')->paginate(10);
     return view("ListarEscolas", ["escolas" => $escolas]);
   }
 
@@ -101,26 +108,10 @@ class EscolaController extends Controller
   public function salvar(Request $request){
       $escola = \App\Escola::find($request->id);
 
-      $escola->nome = $request->nome;
-      $escola->modalidade_ensino = $request->modalidade_ensino;
-      $escola->rota = $request->rota;
-      $escola->periodo_atendimento = $request->periodo_atendimento;
-      $escola->qtde_alunos = $request->qtde_alunos;
-      $escola->endereco = $request->endereco;
-      $escola->gestor = $request->gestor;
-      $escola->telefone = $request->telefone;
-      $escola->save();
-      //disciplina
-      /*$endereco = \App\Endereco::where('escola_id', '=', $request->id)->first();
-      $endereco->rua = $request->rua;
-      $endereco->bairro = $request->bairro;
-      $endereco->cep = $request->cep;
-      $endereco->numero = $request->numero;
-      $endereco->save();*/
-      session()->flash('success', 'Escola modificada com sucesso.');
-      return redirect()->route('/escola/listar');
+            
       if (isset($escola)) {
         $escola->nome = $request->nome;
+        $escola->modalidade_ensino = $request->modalidade_ensino;
 
         switch ($request->modalidade_ensino) {
           case "1":
@@ -147,6 +138,8 @@ class EscolaController extends Controller
         $escola->periodo_atendimento = $request->periodo_atendimento;
         $escola->qtde_alunos = $request->qtde_alunos;
         $escola->endereco = $request->endereco;
+        $escola->gestor = $request->gestor;
+        $escola->telefone = $request->telefone;
         $escola->save();
 
         $estoque = \App\Estoque::find($escola->estoque_id);

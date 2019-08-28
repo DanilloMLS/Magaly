@@ -41,9 +41,14 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$escolas->count()}} escolas de {{$escolas->total()}} 
+                            ({{$escolas->firstItem()}} a {{$escolas->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>Nº</th>
                                   <th>Nome</th>
                                   <th>Modalidade de Ensino</th>
                                   <th>Rota</th>
@@ -58,6 +63,7 @@ function editar(id){
                             <tbody>
                               @foreach ($escolas as $escola)
                                 <tr>
+                                    <td data-title="Nº" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->id }}</td>
                                     <td data-title="Nome" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->nome }}</td>
                                     <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
                                     <td data-title="Rota">{{ $escola->rota }}</td>
@@ -83,6 +89,7 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          {{$escolas->links()}}
                         </div>
                       @endif
                   </div>
@@ -105,10 +112,12 @@ function editar(id){
       tr = table.getElementsByTagName("tr");
       // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        td_id = tr[i].getElementsByTagName("td")[0];
+        td_nome = tr[i].getElementsByTagName("td")[1];
+        if (td_nome || td_id) {
+          txtValue = td_nome.textContent || td_nome.innerText;
+          txtValue1 = td_id.textContent || td_id.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue1.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
           } else {
             tr[i].style.display = "none";

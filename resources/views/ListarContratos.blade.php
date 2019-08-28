@@ -27,6 +27,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}} 
+                            ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -53,13 +57,16 @@
                                     <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >Itens</a>
+                                      <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach
 
                             </tbody>
                           </table>
+                          {{$contratos->links()}}
                         </div>
                       @endif
                   </div>

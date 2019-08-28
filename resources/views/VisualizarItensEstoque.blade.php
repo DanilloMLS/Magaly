@@ -44,11 +44,12 @@
                                   <th>Descrição</th>
                                   <th>Data de Validade</th>
                                   <th>Nº Lote</th>
+                                  <th>Nº de Contrato</th>
                                   <th>Unidade</th>
                                   <th>Gramatura</th>
                                   <th>Danificados</th>
                                   <th>Quantidade disponível</th>
-                                  <th colspan="2">Ações</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -56,25 +57,34 @@
                                 <tr>
                                     @php
                                       $item = \App\Item::find($item_estoque->item_id);
-                                      $validade_lote = \App\Contrato_item::where('item_id','=',$item_estoque->item_id)->first();
+                                      $contrato_item = \App\Contrato_item::where('item_id','=',$item_estoque->item_id)->first();
+                                      $contrato = \App\Contrato::where('id','=',$contrato_item->contrato_id)->first();
                                     @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Data de Validade">{{$validade_lote->data_validade}}</td>
-                                    <td data-title="Nº Lote">{{$validade_lote->n_lote}}</td>
+                                    <td data-title="Data de Validade">{{$contrato_item->data_validade}}</td>
+                                    <td data-title="Nº Lote">{{$contrato_item->n_lote}}</td>
+                                    <td data-title="Nº de Contrato">{{$contrato->n_contrato}}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Danificados">{{ $item_estoque->quantidade_danificados}}</td>
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">Entrada</a>
+                                        <a class="btn btn-primary" title="Entrada de Item" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">
+                                          <img src="/img/entrance.png" height="21" width="17" align = "right">                                          
+                                        </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">Saída</a>
+                                        <a class="btn btn-primary" title="Saída de Item" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">
+                                          <img src="/img/exit.png" height="21" width="17" align = "right">                                          
+                                        </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" onClick="avisoDeletar({{$item_estoque->id}});">Excluir</a>
+                                        <a class="btn btn-primary" title="Deletar Item" onClick="avisoDeletar({{$item_estoque->id}});">
+                                          <img src="/img/delete.png" height="21" width="17" align = "right">
+                                        </a>
+                                        
                                     </td>
                                 </tr>
                               @endforeach

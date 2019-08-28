@@ -51,7 +51,7 @@ class CardapioController extends Controller
   }
 
   public function listar(){
-    $cardapios = \App\Cardapio_mensal::all();
+    $cardapios = \App\Cardapio_mensal::orderBy('id')->paginate(10);
     return view("ListarCardapios", ["cardapios" => $cardapios]);
   }
 
