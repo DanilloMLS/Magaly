@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Estoque_item;
 
 class EstoqueController extends Controller
@@ -34,7 +35,7 @@ class EstoqueController extends Controller
   }
 
   public function listar(){
-    $estoques = \App\Estoque::paginate(10);
+    $estoques = \App\Estoque::orderBy('nome')->paginate(10);
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
 
@@ -62,10 +63,9 @@ class EstoqueController extends Controller
         return redirect()->route('/estoque/listar');
       }
       
-      $estoques = \App\Estoque::all();
 
       session()->flash('success', 'O Estoque pertence a uma Escola, remova a Escola.');
-      return view("ListarEstoques", ["estoques" => $estoques]);
+      return redirect()->route('/estoque/listar');
   }
 
   public function editar(Request $request){
@@ -78,16 +78,13 @@ class EstoqueController extends Controller
             "estoque" => $estoque,
           ]);
         }
-        $estoques = \App\Estoque::all();
 
         session()->flash('success', 'Estoque não existe.');
-        return view("ListarEstoques", ["estoques" => $estoques]); 
+        return redirect()->route('/estoque/listar');
       }
       
-      $estoques = \App\Estoque::all();
-
       session()->flash('success', 'O Estoque pertence a uma Escola, renomeie a Escola.');
-      return view("ListarEstoques", ["estoques" => $estoques]);     
+      return redirect()->route('/estoque/listar');    
   }
 
   public function salvar(Request $request){
@@ -100,18 +97,14 @@ class EstoqueController extends Controller
       return redirect()->route('/estoque/listar');
     }
 
-    $estoques = \App\Estoque::all();
-
     session()->flash('success', 'Estoque não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]);       
+    return redirect()->route('/estoque/listar');     
   }
 
   public function finalizarEstoque(Request $request) {
 
-    $estoques = \App\Estoque::all();
-
     session()->flash('success', 'Estoque cadastrado.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return redirect()->route('/estoque/listar');
   }
 
   public function exibirItensEstoque(Request $request){
@@ -121,11 +114,9 @@ class EstoqueController extends Controller
       $itens = \App\Estoque_item::where('estoque_id', '=', $request->id)->get();
       return view("VisualizarItensEstoque", ["itens" => $itens]);
     }
-    
-    $estoques = \App\Estoque::all();
 
     session()->flash('success', 'Estoque não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return redirect()->route('/estoque/listar');
   }
 
   //usado quando se insere itens no Estoque atráves do botão 'Inserir Itens'
@@ -143,10 +134,9 @@ class EstoqueController extends Controller
       ]);
     }
     
-    $estoques = \App\Estoque::all();
 
     session()->flash('success', 'Estoque não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]); 
+    return redirect()->route('/estoque/listar'); 
   }
 
   public function novoItem(Request $request){
@@ -198,10 +188,9 @@ class EstoqueController extends Controller
         "itens_contrato" => $itens_contrato,
       ]);
     }
-    $estoques = \App\Estoque::all();
-
+    
     session()->flash('success', 'Estoque não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]); 
+    return redirect()->route('/estoque/listar');
   }
 
   public function removerItem(Request $request){
@@ -229,15 +218,13 @@ class EstoqueController extends Controller
         return view("VisualizarItensEstoque", ["itens" => $itens]);
       }
       
-      $estoques = \App\Estoque::all();
-
+      
       session()->flash('success', 'Estoque não existe.');
-      return view("ListarEstoques", ["estoques" => $estoques]);
+      return redirect()->route('/estoque/listar');
     }
-    $estoques = \App\Estoque::all();
 
     session()->flash('success', 'Item não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]); 
+    return redirect()->route('/estoque/listar');
   }
 
   public function abrirEntradaItem(Request $request){
@@ -281,15 +268,13 @@ class EstoqueController extends Controller
         return view("VisualizarItensEstoque", ["itens" => $itens]);
       }
       
-      $estoques = \App\Estoque::all();
   
       session()->flash('success', 'Estoque não existe.');
-      return view("ListarEstoques", ["estoques" => $estoques]);
+      return redirect()->route('/estoque/listar');
     }
-    $estoques = \App\Estoque::all();
   
     session()->flash('success', 'Item não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return redirect()->route('/estoque/listar');
   }
 
   public function abrirSaidaItem(Request $request){
@@ -338,16 +323,14 @@ class EstoqueController extends Controller
         session()->flash('success', 'Saída de item.');
         return view("VisualizarItensEstoque", ["itens" => $itens]);
       }
-      $estoques = \App\Estoque::all();
 
       session()->flash('success', 'Estoque não existe.');
-      return view("ListarEstoques", ["estoques" => $estoques]);
+      return redirect()->route('/estoque/listar');
     }
     
-    $estoques = \App\Estoque::all();
 
     session()->flash('success', 'Item não existe.');
-    return view("ListarEstoques", ["estoques" => $estoques]);
+    return redirect()->route('/estoque/listar');
   }
 
   public function mostrarHistorico(Request $request){

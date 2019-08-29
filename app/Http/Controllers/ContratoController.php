@@ -94,7 +94,7 @@ class ContratoController extends Controller
         session()->flash('success', 'Item adicionado.');
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
-      $contratos = \App\Contrato::all();
+      $contratos = \App\Contrato::paginate(10);
       session()->flash('success', 'Contrato não existe.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
@@ -116,7 +116,7 @@ class ContratoController extends Controller
         session()->flash('success', 'Item adicionado.');
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
-      $contratos = \App\Contrato::all();
+      $contratos = \App\Contrato::paginate(10);
       session()->flash('success', 'Contrato não existe.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
@@ -135,12 +135,12 @@ class ContratoController extends Controller
       }
       $contrato->valor_total = $valorTotal;
       $contrato->save();
-      $contratos = \App\Contrato::all();
+      $contratos = \App\Contrato::paginate(10);
 
       session()->flash('success', 'Contrato cadastrado.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
-    $contratos = \App\Contrato::all();
+    $contratos = \App\Contrato::paginate(10);
     session()->flash('success', 'Contrato não existe.');
     return view("ListarContratos", ["contratos" => $contratos]);
   }
@@ -155,13 +155,13 @@ class ContratoController extends Controller
   													->first();
       $contratos = array();
       if(!empty($fornecedor)){
-        $contratos =  \App\Contrato::where('fornecedor_id', '=', $fornecedor->id)->get();
+        $contratos =  \App\Contrato::where('fornecedor_id', '=', $fornecedor->id)->paginate(10);
       }
       return view("ListarContratos", ["contratos" => $contratos]);
   }
 
   public function buscarContratosData(Request $request){
-      $contratos =  \App\Contrato::where('data', '>=', $request->data_inicio)->where('data', '<=', $request->data_fim)->get();
+      $contratos =  \App\Contrato::where('data', '>=', $request->data_inicio)->where('data', '<=', $request->data_fim)->paginate(10);
       return view("ListarContratos", ["contratos" => $contratos]);
   }
 }
