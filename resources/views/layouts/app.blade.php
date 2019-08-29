@@ -92,9 +92,9 @@
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
-                                        <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
+                                        <!-- <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
                                             Novo Item
-                                        </a>
+                                        </a> -->
                                         <a class="dropdown-item" href="{{route('/item/listar')}}">
                                             Listar Itens
                                         </a>

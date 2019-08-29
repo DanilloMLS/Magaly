@@ -24,7 +24,7 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4><strong></center>
                             <div id="tabela_integral" class="table-responsive">
                               <table class="table table-hover">
                                 <thead>
@@ -225,7 +225,7 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4><strong></center>
                           <div id="tabela_parcial" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
@@ -369,16 +369,16 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4></strong></center>
                           <div id="tabela_infantil" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
                                 <tr>
-                                    <th>Segunda</th>
-                                    <th>Terça</th>
-                                    <th>Quarta</th>
-                                    <th>Quinta</th>
-                                    <th>Sexta</th>
+                                    <th><strong>Segunda</strong></th>
+                                    <th><strong>Terça</strong></th>
+                                    <th><strong>Quarta</strong></th>
+                                    <th><strong>Quinta</strong></th>
+                                    <th><strong>Sexta</strong></th>
                                 </tr>
                               </thead>
                               <tbody>
