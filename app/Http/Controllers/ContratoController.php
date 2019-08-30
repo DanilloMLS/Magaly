@@ -49,59 +49,50 @@ class ContratoController extends Controller
   }
 
   public function inserirItemContrato(Request $request) {
-    $contrato_item = \App\Contrato_item::where('contrato_id','=',$request->contrato_id)
-                                       ->where('item_id','=',$request->item_id)
-                                       ->first();
     $contrato = \App\Contrato::find($request->contrato_id);
 
-    if (!isset($contrato_item)) {
-      if (isset($contrato)) {
-        $contrato_item = new \App\Contrato_item();
-        $item = \App\Item::where('nome','=',$request->nome)
-                         ->where('marca','=',$request->marca)
-                         ->where('descricao','=',$request->descricao)
-                         ->where('unidade','=',$request->unidade)
-                         ->where('gramatura','=',$request->gramatura)
-                         ->first();
+    if (isset($contrato)) {
+      $contrato_item = new \App\Contrato_item();
+      $item = \App\Item::where('nome','=',$request->nome)
+                        ->where('marca','=',$request->marca)
+                        ->where('descricao','=',$request->descricao)
+                        ->where('unidade','=',$request->unidade)
+                        ->where('gramatura','=',$request->gramatura)
+                        ->first();
 
-        if (!isset($item)) {
-          $item = new \App\Item();
+      if (!isset($item)) {
+        $item = new \App\Item();
 
-          $item->nome = $request->nome;
-          $item->marca = $request->marca;
-          $item->descricao = $request->descricao;
-          $item->unidade = $request->unidade;
-          $item->gramatura = $request->gramatura;
-          $item->save();
-        }
-
-        $item = \App\Item::where('nome','=',$request->nome)
-                         ->first();
-
-        $contrato_item->quantidade = $request->quantidade;
-        $contrato_item->data_validade = $request->data_validade;
-        $contrato_item->valor_unitario = $request->valor_unitario;
-        $contrato_item->n_lote = $request->n_lote;
-        $contrato_item->contrato_id = $request->contrato_id;
-        $contrato_item->item_id = $item->id;
-        $contrato_item->save();
-
-        $contrato->valor_total = $request->quantidade * $request->valor_unitario;
-        $contrato->save();
-
-        $itens = \App\Item::all();
-
-        session()->flash('success', 'Item adicionado.');
-        return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+        $item->nome = $request->nome;
+        $item->marca = $request->marca;
+        $item->descricao = $request->descricao;
+        $item->unidade = $request->unidade;
+        $item->gramatura = $request->gramatura;
+        $item->save();
       }
-      $contratos = \App\Contrato::paginate(10);
-      session()->flash('success', 'Contrato não existe.');
-      return view("ListarContratos", ["contratos" => $contratos]);
-    }
-    $itens = \App\Item::all();
 
-    session()->flash('success', 'Esse item já existe no Contrato.');
-    return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+      $item = \App\Item::where('nome','=',$request->nome)
+                        ->first();
+
+      $contrato_item->quantidade = $request->quantidade;
+      $contrato_item->data_validade = $request->data_validade;
+      $contrato_item->valor_unitario = $request->valor_unitario;
+      $contrato_item->n_lote = $request->n_lote;
+      $contrato_item->contrato_id = $request->contrato_id;
+      $contrato_item->item_id = $item->id;
+      $contrato_item->save();
+
+      $contrato->valor_total = $request->quantidade * $request->valor_unitario;
+      $contrato->save();
+
+      $itens = \App\Item::all();
+
+      session()->flash('success', 'Item adicionado.');
+      return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+    }
+    
+    session()->flash('success', 'Contrato não existe.');
+    return redirect()->route('/contrato/listar');
   }
 
   public function removerItemContrato(Request $request) {
