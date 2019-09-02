@@ -44,7 +44,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <!-- USer ADM -->
-                        @if (Auth::guard()->check() && Auth::user()->is_adm)
+                        @if (Auth::guard()->check())
+                          @if (Auth::user()->is_adm)
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                                     <div class="dropdown-content">
@@ -136,7 +137,7 @@
                                         </a>
                                     </div>
                                 </div>
-                      @else
+                                @else
                       <div class="dropdown">
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                           <div class="dropdown-content">
@@ -205,7 +206,7 @@
                           </div>
                       </div>
                       @endif
-
+                    @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
