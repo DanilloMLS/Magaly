@@ -23,16 +23,16 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4></strong></center>
                             <div id="tabela_integral" class="table-responsive">
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                      <th>Segunda</th>
-                                      <th>Terça</th>
-                                      <th>Quarta</th>
-                                      <th>Quinta</th>
-                                      <th>Sexta</th>
+                                      <th style="width:200px;"><strong>Segunda</strong></th>
+                                      <th style="width:200px;">Terça</th>
+                                      <th style="width:200px;">Quarta</th>
+                                      <th style="width:200px;">Quinta</th>
+                                      <th style="width:200px;">Sexta</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +50,10 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a>
+                                         <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -69,7 +72,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -87,7 +92,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -105,7 +112,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -123,7 +132,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -143,7 +154,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -161,7 +174,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -179,7 +194,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -197,7 +214,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -215,7 +234,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -235,7 +256,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -253,7 +276,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -271,7 +296,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -289,7 +316,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -307,7 +336,9 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        {{$lista->nome}} <br>
+                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                          {{$lista->nome}}
+                                        </a> <br>
                                         @endforeach
 
                                       <?php } ?>
@@ -332,16 +363,16 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4></strong></center>
                           <div id="tabela_parcial" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
                                 <tr>
-                                    <th>Segunda</th>
-                                    <th>Terça</th>
-                                    <th>Quarta</th>
-                                    <th>Quinta</th>
-                                    <th>Sexta</th>
+                                    <th style="width:200px;"><strong>Segunda</strong></th>
+                                    <th style="width:200px;"><strong>Terça</strong></th>
+                                    <th style="width:200px;"><strong>Quarta</strong></th>
+                                    <th style="width:200px;"><strong>Quinta</strong></th>
+                                    <th style="width:200px;"><strong>Sexta</strong></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -359,7 +390,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -378,7 +411,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -396,7 +431,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -414,7 +451,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -432,7 +471,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -452,7 +493,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -470,7 +513,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -488,7 +533,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -506,7 +553,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -524,7 +573,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -548,16 +599,16 @@
                             @php
                             $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $cardapio->id)->where('semana', '=', $i)->first();
                             @endphp
-                            <center><strong><h4>Semana {{$i}}</h4><strong></center>
+                            <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4></strong></center>
                           <div id="tabela_infantil" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
                                 <tr>
-                                    <th>Segunda</th>
-                                    <th>Terça</th>
-                                    <th>Quarta</th>
-                                    <th>Quinta</th>
-                                    <th>Sexta</th>
+                                    <th style="width:200px;"><strong>Segunda</strong></th>
+                                    <th style="width:200px;"><strong>Terça</strong></th>
+                                    <th style="width:200px;"><strong>Quarta</strong></th>
+                                    <th style="width:200px;"><strong>Quinta</strong></th>
+                                    <th style="width:200px;"><strong>Sexta</strong></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -575,7 +626,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -594,7 +647,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -612,7 +667,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -630,7 +687,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>
@@ -648,7 +707,9 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    {{$lista->nome}} <br>
+                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                      {{$lista->nome}}
+                                    </a> <br>
                                     @endforeach
 
                                   <?php } ?>

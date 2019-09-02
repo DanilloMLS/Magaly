@@ -32,7 +32,6 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
                                   <th colspan="2">Ações</th>
@@ -46,9 +45,8 @@
                                     @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Unidade">{{ $item->unidade }}</td>
-                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
-                                    <td data-title="Quantidade">{{ $item_refeicao->quantidade }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
+                                    <td data-title="Quantidade">{{ $item_refeicao->quantidade }}{{ $item->unidade }}</td>
 
                                     <td>
                                       <a class="btn btn-primary" href="{{ route ("/itemRefeicao/editar", ['id' => $item_refeicao->id])}}">
