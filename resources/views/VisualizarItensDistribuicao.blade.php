@@ -33,6 +33,7 @@
                                   <th>Nome</th>
                                   <th>Descrição</th>
                                   <th>Gramatura</th>
+                                  <th>Qtde. Falta</th>
                                   <th>Quantidade Total</th>
                                   <th colspan="2">Ações</th>
                               </tr>
@@ -46,6 +47,7 @@
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
+                                    <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
                                     <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
 
                                     <td>
