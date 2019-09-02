@@ -142,7 +142,6 @@ class EstoqueController extends Controller
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
 
-    //impede a inserção de um Item se já tem um com o mesmo Id no Estoque
     if (isset($estoque)) {
       $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
@@ -156,9 +155,7 @@ class EstoqueController extends Controller
       }
 
       if (isset($estoque_item)){
-        session()->flash('success', "Esse Item já existe no estoque.");
-        $itens = \App\Estoque_item::where('estoque_id', '=', $request->estoque_id)->get();
-        return view("VisualizarItensEstoque", ["itens" => $itens]);
+        //atualizar esse item
       }
 
       $estoque_item = new \App\Estoque_item();
@@ -183,10 +180,7 @@ class EstoqueController extends Controller
 
       $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
       session()->flash('success', 'Inserção de novo item.');
-      return view("InserirNovoItemEstoque", [
-        "estoque" => $estoque, 
-        "itens_contrato" => $itens_contrato,
-      ]);
+      return redirect()->route('/estoque/novoItemEstoque',[$estoque->id]);
     }
     
     session()->flash('success', 'Estoque não existe.');

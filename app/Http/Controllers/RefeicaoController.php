@@ -13,7 +13,8 @@ class RefeicaoController extends Controller
     $refeicao->quantidade_total = 0;
     $refeicao->save();
 
-    $itens = \App\Item::all();
+    //$itens = \App\Item::all();
+    $itens = \App\Item::all()->unique('nome');
 
     session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
     return view("InserirItensRefeicao", ["refeicao" => $refeicao, "itens" => $itens]);
@@ -24,14 +25,14 @@ class RefeicaoController extends Controller
     return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
   }
 
-    public function gerarRelatorio(){
-        $refeicoes = \App\Refeicao::all();
-        //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
+  public function gerarRelatorio(){
+    $refeicoes = \App\Refeicao::all();
+    //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
 
-        return  \PDF::loadView('RelatorioRefeicoes', compact('refeicoes'))
-            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Refeicao.pdf');
-    }
+    return  \PDF::loadView('RelatorioRefeicoes', compact('refeicoes'))
+      // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+      ->stream('relatorio_Refeicao.pdf');
+  }
 
   public function inserirItemRefeicao(Request $request) {
     $refeicao_item = new \App\Refeicao_item();
@@ -41,7 +42,9 @@ class RefeicaoController extends Controller
 
     $refeicao_item->save();
 
-    $itens = \App\Item::all();
+    //$itens = \App\Item::all();
+    $itens = \App\Item::all()->unique('nome');
+
     $refeicao = \App\Refeicao::find($request->refeicao_id);
     session()->flash('success', 'Item adicionado.');
     return view("InserirItensRefeicao", ["refeicao" => $refeicao, "itens" => $itens]);
@@ -67,10 +70,9 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
-    $refeicoes = \App\Refeicao::orderBy('id')->paginate(10);
 
     session()->flash('success', 'Refeição cadastrada.');
-    return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
+    return redirect()->route('/refeicao/listar');
   }
 
 
@@ -100,7 +102,8 @@ class RefeicaoController extends Controller
 
     session()->flash('success', 'Item da distribuição modificado com sucesso.');
     $itens = \App\Refeicao_item::where('refeicao_id', '=', $item_refeicao->refeicao_id)->get();
-    return view("VisualizarItensRefeicao", ["itens" => $itens]);
+    //return view("VisualizarItensRefeicao", ["itens" => $itens]);
+    return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);
   }
 
 }
