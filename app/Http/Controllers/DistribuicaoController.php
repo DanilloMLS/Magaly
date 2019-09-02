@@ -11,7 +11,7 @@ class DistribuicaoController extends Controller
     $escolas = \App\Escola::all();
     $cardapios = \App\Cardapio_mensal::all();
 
-    //$ids_escolas = [];
+    $ids_escolas = [];
     foreach ($escolas as $escola) {
       $ids_escolas[] = $escola->estoque_id;
     }
@@ -25,46 +25,6 @@ class DistribuicaoController extends Controller
   }
 
   public function cadastrar(Request $request) {
-
-    //todos os cardapios diários
-    $cardapios_diarios = \App\Cardapio_diario::where('cardapio_mensal_id', '=', $request->cardapio_id)->get();
-    $cardapios_refeicoes = array();
-    foreach ($cardapios_diarios as $cardapio) {
-      //todas as refeicoes de todos os cardápios diários
-      $cardapio_refeicao = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio->id)->get();
-      foreach ($cardapio_refeicao as $c) {
-        $refeicao = \App\Refeicao::find($c->refeicao_id);
-        array_push($cardapios_refeicoes, $refeicao);
-      }
-
-    }
-
-    $estoque = \App\Estoque::find($request->estoque_id);
-    foreach ($cardapios_refeicoes as $cr) {
-        //todos os itens de todas as refeições
-        $item_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $cr->id)->get();
-        foreach ($item_refeicao as $i) {
-          $item = \App\Item::find($i->item_id);
-          //aqui pode vir mais de um item,
-          //caso tenhamos o mesmo item no estoque, mas com mais de um contrato
-          $estoque_item = \App\Estoque_item::where('estoque_id','=',$estoque->id)
-                                           ->where('item_id','=',$item->id)
-                                           ->get();
-          
-          //verifica se tem o suficiente de cada item no Estoque
-          if (isset($estoque_item)) {
-            $soma_estoque_item = 0;
-            foreach ($estoque_item as $e_item) {
-              $soma_estoque_item += $e_item->quantidade;
-            }
-            if ($soma_estoque_item < $i->quantidade) {
-              session()->flash('success', 'Estoque não é suficiente.');
-              return redirect()->route('/distribuicao/listar');
-            }
-          }
-          
-        }
-    }
 
     $distribuicao = new \App\Distribuicao();
     $distribuicao->observacao = $request->observacao;
@@ -112,41 +72,54 @@ class DistribuicaoController extends Controller
         }
     }
 
-    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
+    //movimentação automática do Estoque
+    $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
 
-    foreach ($itens as $item) {
-      $estoque_central_itens = \App\Estoque_item::where('item_id','=',$item->item_id)
-                                               ->where('estoque_id','=',$request->estoque_id)
-                                               ->get();
+    foreach ($distribuicao_itens as $distribuicao_item) {
+      //procurar o Item pelo id, com isso acho o nome dele
+      $item_nome = \App\Item::find($distribuicao_item->item_id);
 
+      //procuro outros Itens com o mesmo nome e,
+      $itens_nome = \App\Item::select('id')->where('nome','=',$item_nome->nome)->get();
+
+      //com os ids acho os Itens no Estoque que tenham o mesmo nome
+      $estoque_central_itens = \App\Estoque_item::whereIn('item_id',$itens_nome)
+                                                ->where('estoque_id','=',$request->estoque_id)
+                                                ->get();
+      //incluir condição para Item inexistente no Estoque
+
+      //quantidade de itens que devem sair do estoque_central
+      $qtde_restante = intval(ceil($distribuicao_item->quantidade_total));
       //cada item será retirado do estoque
       foreach ($estoque_central_itens as $estoque_central_item) {
-        //quantidade de itens que devem sair do estoque_central
-        $qtde_restante = intval(ceil($item->quantidade_total));
         //subtrair do estoque_central (origem)
-        if ($estoque_central_item->quantidade - $qtde_restante >= 0) {
+        if ($estoque_central_item->quantidade >= $qtde_restante) {
           $estoque_central_item->quantidade -= $qtde_restante;
           $estoque_central_item->save();
           $qtde_restante = 0;
+          $distribuicao_item->quantidade_falta = $qtde_restante;
+          $distribuicao_item->save();
         } else {
           $temp = $estoque_central_item->quantidade;
           $estoque_central_item->quantidade = 0;
           $estoque_central_item->save();
           $qtde_restante -= $temp;
+          $distribuicao_item->quantidade_falta = $qtde_restante;
+          $distribuicao_item->save();
         }
 
         //adicionar ao estoque_escola (destino)
         $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
-                                                ->where('item_id','=',$item->item_id)
+                                                ->where('item_id','=',$distribuicao_item->item_id)
                                                 ->first();
         if (isset($estoque_escola_item)) {
           $estoque_escola_item->quantidade += intval(ceil($item->quantidade_total));
           $estoque_escola_item->save();
         } else {
           $estoque_escola_item = new \App\Estoque_item();
-          $estoque_escola_item->quantidade = intval(ceil($item->quantidade_total));
+          $estoque_escola_item->quantidade = intval(ceil($distribuicao_item->quantidade_total));
           $estoque_escola_item->quantidade_danificados = 0;
-          $estoque_escola_item->item_id = $item->item_id;
+          $estoque_escola_item->item_id = $distribuicao_item->item_id;
           $estoque_escola_item->estoque_id = $escola->estoque_id;
           $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
           $estoque_escola_item->save();
@@ -159,7 +132,7 @@ class DistribuicaoController extends Controller
     }
 
     session()->flash('success', 'Distribuição cadastrada com sucesso. Confira seus itens.');
-    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $itens]);
+    return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $distribuicao_itens]);
   }
 
   public function listar(){
@@ -218,6 +191,7 @@ class DistribuicaoController extends Controller
       return redirect()->route('/distribuicao/listar');
   }
 
+  //fora de circulação
   public function inserirItemDistribuicao(Request $request) {
     $distribuicao_item = \App\Distribuicao_item::where('item_id','=',$request->item_id)
                                                ->where('distribuicao_id','=',$request->distribuicao_id)
