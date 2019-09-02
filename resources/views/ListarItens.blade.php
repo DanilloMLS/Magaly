@@ -40,7 +40,7 @@ function editar(id){
                       </div>
                         <div id="tabela" class="table-responsive">
                           <h5 class="card-title">
-                            Exibindo {{$itens->count()}} itens de {{$itens->total()}} 
+                            Exibindo {{$itens->count()}} itens de {{$itens->total()}}
                             ({{$itens->firstItem()}} a {{$itens->lastItem()}})
                           </h5>
                           <table class="table table-hover">
@@ -49,7 +49,6 @@ function editar(id){
                                   <th>Nome</th>
                                   <th>Marca</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
                               </tr>
                             </thead>
@@ -59,8 +58,7 @@ function editar(id){
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Unidade">{{ $item->unidade }}</td>
-                                    <td data-title="Gramatura">{{ $item->gramatura }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
 
                                     </td>
                                     <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
