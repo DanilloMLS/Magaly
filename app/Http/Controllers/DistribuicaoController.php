@@ -86,26 +86,30 @@ class DistribuicaoController extends Controller
       $estoque_central_itens = \App\Estoque_item::whereIn('item_id',$itens_nome)
                                                 ->where('estoque_id','=',$request->estoque_id)
                                                 ->get();
-      //incluir condição para Item inexistente no Estoque
-
-      //quantidade de itens que devem sair do estoque_central
-      $qtde_restante = intval(ceil($distribuicao_item->quantidade_total));
-      //cada item será retirado do estoque
-      foreach ($estoque_central_itens as $estoque_central_item) {
-        //subtrair do estoque_central (origem)
-        if ($estoque_central_item->quantidade >= $qtde_restante) {
-          $estoque_central_item->quantidade -= $qtde_restante;
-          $estoque_central_item->save();
-          $qtde_restante = 0;
-          $distribuicao_item->quantidade_falta = $qtde_restante;
-          $distribuicao_item->save();
-        } else {
-          $temp = $estoque_central_item->quantidade;
-          $estoque_central_item->quantidade = 0;
-          $estoque_central_item->save();
-          $qtde_restante -= $temp;
-          $distribuicao_item->quantidade_falta = $qtde_restante;
-          $distribuicao_item->save();
+      //condição para Item inexistente no Estoque
+      if (isset($estoque_central_itens)){
+        //quantidade de itens que devem sair do estoque_central
+        $qtde_restante = intval(ceil($distribuicao_item->quantidade_total));
+        //cada item será retirado do estoque
+        foreach ($estoque_central_itens as $estoque_central_item) {
+          //subtrair do estoque_central (origem)
+          if ($estoque_central_item->quantidade >= $qtde_restante) {
+            $estoque_central_item->quantidade -= $qtde_restante;
+            $estoque_central_item->save();
+            $qtde_restante = 0;
+            $distribuicao_item->quantidade_falta = $qtde_restante;
+            $distribuicao_item->save();
+          } else {
+            $temp = $estoque_central_item->quantidade;
+            $estoque_central_item->quantidade = 0;
+            $estoque_central_item->save();
+            $qtde_restante -= $temp;
+            $distribuicao_item->quantidade_falta = $qtde_restante;
+            $distribuicao_item->save();
+          }
+          if ($qtde_restante <= 0) {
+            break;
+          }
         }
 
         //adicionar ao estoque_escola (destino)
@@ -113,7 +117,7 @@ class DistribuicaoController extends Controller
                                                 ->where('item_id','=',$distribuicao_item->item_id)
                                                 ->first();
         if (isset($estoque_escola_item)) {
-          $estoque_escola_item->quantidade += intval(ceil($item->quantidade_total));
+          $estoque_escola_item->quantidade += intval(ceil($distribuicao_item->quantidade_total));
           $estoque_escola_item->save();
         } else {
           $estoque_escola_item = new \App\Estoque_item();
@@ -124,10 +128,9 @@ class DistribuicaoController extends Controller
           $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
           $estoque_escola_item->save();
         }
-
-        if ($qtde_restante <= 0) {
-          break;
-        }
+      } else {
+        $distribuicao_item->quantidade_falta = $qtde_restante;
+        $distribuicao_item->save();
       }
     }
 

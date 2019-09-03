@@ -149,21 +149,24 @@ class EstoqueController extends Controller
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
                                        ->first();
 
+      //mudar para permitir a inserção com os Itens restantes
       if ($contrato_item->quantidade < $request->quantidade or $contrato_item->quantidade <= 0) {
         session()->flash('success', 'Contrato não tem quantidade suficiente.');
         return redirect()->route('/estoque/listar');
       }
 
+      //quantidade atualizada se o Item já existir
       if (isset($estoque_item)){
-        //atualizar esse item
+        $estoque_item->quantidade += $request->quantidade;
+        $estoque_item->quantidade_danificados += $request->quantidade_danificados;
+      } else {
+        $estoque_item = new \App\Estoque_item();
+        $estoque_item->quantidade = $request->quantidade;
+        $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+        $estoque_item->item_id = $contrato_item->item_id;
+        $estoque_item->estoque_id = $request->estoque_id;
+        $estoque_item->contrato_id = $contrato_item->contrato_id;
       }
-
-      $estoque_item = new \App\Estoque_item();
-      $estoque_item->quantidade = $request->quantidade;
-      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_item->item_id = $contrato_item->item_id;
-      $estoque_item->estoque_id = $request->estoque_id;
-      $estoque_item->contrato_id = $contrato_item->contrato_id;
 
       $estoque_es = new \App\Estoque_es();
       $estoque_es->quantidade_danificados = $request->quantidade_danificados;
@@ -178,7 +181,6 @@ class EstoqueController extends Controller
       $estoque_es->save();
       $contrato_item->save();
 
-      $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
       session()->flash('success', 'Inserção de novo item.');
       return redirect()->route('/estoque/novoItemEstoque',[$estoque->id]);
     }
