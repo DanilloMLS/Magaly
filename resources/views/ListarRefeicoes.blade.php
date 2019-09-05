@@ -48,7 +48,7 @@
                                     <td data-title="Quantidade">{{ $refeicao->quantidade_total }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
+                                      <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">
                                       </a>
                                     </td>
