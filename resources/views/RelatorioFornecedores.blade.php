@@ -27,7 +27,7 @@ Tel: (87)3762-7060
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-              <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+              <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
                   <th>ID</th>
                   <th>NOME</th>
                   <th>CNPJ</th>
@@ -37,8 +37,8 @@ Tel: (87)3762-7060
             </thead>
             <tbody>
               @foreach ($fornecedores as $fornecedor)
-                <tr bgcolor="#dfdfdf">
-                    <td data-title="Id" align="center">{{ $fornecedor->id }}</td>
+                <tr>
+                    <td bgcolor="#dfdfdf" data-title="Id" align="center">{{ $fornecedor->id }}</td>
                     <td data-title="Nome" align="center">{{ $fornecedor->nome }}</td>
                     <td data-title="Descrição" align="center">{{ $fornecedor->cnpj }}</td>
                     <td data-title="E-mail" align="center">{{ $fornecedor->email }}</td>

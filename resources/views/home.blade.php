@@ -9,50 +9,49 @@
       @if (Auth::guard()->check() && Auth::user()->is_adm)
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header"><br>
-                </div>
-
-                <div class="card-body">
-                  <div class="panel-body">
+                <div class="card-header">
                     <center><strong>Estoque</strong><center>
-                    <div id ="img" style="padding-bottom: 5px;"><center>
-                      <a href="{{route('/estoque/listar')}}" ><img class="btn-img" src="/img/estoq.png"></a>
-                    </center></div>
-                    <br>
-                  </div>
                 </div>
+                <a href="{{route('/estoque/listar')}}" >
+                    <div class="card-body">
+                      <div class="panel-body">
+                        <div id ="img" style="padding-bottom: 5px;"><center><img class="btn-img" src="/img/estoq.png">
+                        </center></div>
+                      </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header"><br>
-                </div>
-
-                <div class="card-body">
-                  <div class="panel-body">
+                <div class="card-header">
                     <center><strong>Cardápio</strong><center>
-                    <div id ="img"><center>
-                    <a href="{{route('/cardapio/listar')}}" ><img class="btn-img" src="/img/cardap.png"></a>
-                    </center></div>
-                    <br>
-                  </div>
                 </div>
+                <a href="{{route('/cardapio/listar')}}" >
+                    <div class="card-body">
+                      <div class="panel-body">
+                        <div id ="img"><center>
+                        <img class="btn-img" src="/img/cardap.png">
+                        </center></div>
+                      </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header"><br>
-                </div>
-
-                <div class="card-body">
-                  <div class="panel-body">
+                <div class="card-header">
                     <center><strong>Distribuição</strong><center>
-                    <div id ="img" style="padding-bottom: 5px;"><center>
-                    <a href="{{route('/distribuicao/listar')}}" ><img class="btn-img" src="/img/distri.png"></a>
-                    </center></div>
-                    <br>
-                  </div>
                 </div>
+                <a href="{{route('/distribuicao/listar')}}" >
+                    <div class="card-body">
+                      <div class="panel-body">
+                        <div id ="img" style="padding-bottom: 5px;"><center>
+                        <img class="btn-img" src="/img/distri.png">
+                        </center></div>
+                      </div>
+                    </div>
+                </a>
             </div>
         </div>
 

@@ -36,6 +36,10 @@ function avisoDeletar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($distribuicoes->count()); ?> distribuições de <?php echo e($distribuicoes->total()); ?> 
+                            (<?php echo e($distribuicoes->firstItem()); ?> a <?php echo e($distribuicoes->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -52,7 +56,9 @@ function avisoDeletar(id){
                                     <td data-title="Modalidade de Ensino"><?php echo e($escola->nome); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="<?php echo e(route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])); ?>">Itens</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])); ?>">
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
 
 
@@ -67,6 +73,8 @@ function avisoDeletar(id){
 
                             </tbody>
                           </table>
+                          <?php echo e($distribuicoes->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>

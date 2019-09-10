@@ -22,12 +22,13 @@ Tel: (87)3762-7060
                 </td>
             </tr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">Itens</h1></td>
+                <td align="center" colspan=3><h1 size="80">ITENS</h1></td>
             </tr>
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+            <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
+                <th>Id</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Unidade</th>
@@ -36,8 +37,9 @@ Tel: (87)3762-7060
             </thead>
             <tbody>
             <?php $__currentLoopData = $itens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr bgcolor="#dfdfdf">
-                    <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
+                <tr>
+                    <td bgcolor="#dfdfdf" data-title="Id"><?php echo e($item->id); ?></td>
+                    <td data-title="Nome"><?php echo e($item->nome); ?></td>
                     <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
                     <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
                     <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>

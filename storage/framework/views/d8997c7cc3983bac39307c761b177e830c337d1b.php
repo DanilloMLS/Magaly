@@ -27,7 +27,7 @@ Tel: (87)3762-7060
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+            <tr bgcolor="#00CED1" colspan=3 align="center"><font size="20px">
               <th>Nome</th>
               <th>Descrição</th>
               <th>Peso líquido</th>
@@ -35,7 +35,7 @@ Tel: (87)3762-7060
         </thead>
         <tbody>
           <?php $__currentLoopData = $refeicoes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refeicao): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <tr bgcolor="#dfdfdf">
+              <tr>
                 <td data-title="Nome"><?php echo e($refeicao->nome); ?></td>
                 <td data-title="Descricao"><?php echo e($refeicao->descricao); ?></td>
                 <td data-title="Peso_liquido"><?php echo e($refeicao->peso_liquido); ?></td>

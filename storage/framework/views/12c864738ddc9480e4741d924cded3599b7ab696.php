@@ -26,11 +26,16 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($refeicoes->count()); ?> refeições de <?php echo e($refeicoes->total()); ?> 
+                            (<?php echo e($refeicoes->firstItem()); ?> a <?php echo e($refeicoes->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
+                                  <th>Quantidade</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
@@ -39,9 +44,12 @@
                                 <tr>
                                     <td data-title="Nome"><?php echo e($refeicao->nome); ?></td>
                                     <td data-title="Descricao"><?php echo e($refeicao->descricao); ?></td>
+                                    <td data-title="Quantidade"><?php echo e($refeicao->quantidade_total); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="<?php echo e(route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])); ?>" >Itens</a>
+                                      <a class="btn btn-primary" href="<?php echo e(route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])); ?>" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
 
 
@@ -50,6 +58,8 @@
 
                             </tbody>
                           </table>
+                          <?php echo e($refeicoes->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>

@@ -27,7 +27,7 @@ Tel: (87)3762-7060
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <thead>
-            <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+            <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
               <th>Nome</th>
               <th>Descrição</th>
               <th>Peso líquido</th>
@@ -35,7 +35,7 @@ Tel: (87)3762-7060
         </thead>
         <tbody>
           @foreach ($refeicoes as $refeicao)
-              <tr bgcolor="#dfdfdf">
+              <tr>
                 <td data-title="Nome">{{ $refeicao->nome }}</td>
                 <td data-title="Descricao">{{ $refeicao->descricao }}</td>
                 <td data-title="Peso_liquido">{{ $refeicao->peso_liquido }}</td>
