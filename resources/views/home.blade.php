@@ -5,6 +5,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
+
       @if (Auth::guard()->check() && Auth::user()->is_adm)
         <div class="col-md-3">
             <div class="card">
