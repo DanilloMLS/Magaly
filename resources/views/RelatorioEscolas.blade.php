@@ -28,7 +28,7 @@ Tel: (87)3762-7060
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
         <thead>
-          <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+          <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
               <th>Nº</th>
               <th>NOME</th>
               <th>MODALIDADE</th>
@@ -40,8 +40,8 @@ Tel: (87)3762-7060
         </thead>
         <tbody>
           @foreach ($escolas as $escola)
-            <tr bgcolor="#dfdfdf">
-                <td data-title="nº" align="center">{{ $escola->id }}</td>
+            <tr>
+                <td bgcolor="#dfdfdf" data-title="nº" align="center">{{ $escola->id }}</td>
                 <td data-title="Nome" align="center">{{ $escola->nome }}</td>
                 <td data-title="Modalidade de Ensino" align="center">{{ $escola->modalidade_ensino }}</td>
                 <td data-title="Rota" align="center">{{ $escola->rota }}</td>

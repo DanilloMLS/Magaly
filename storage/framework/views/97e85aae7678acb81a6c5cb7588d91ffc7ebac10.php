@@ -26,6 +26,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($cardapios->count()); ?> cardápios de <?php echo e($cardapios->total()); ?> 
+                            (<?php echo e($cardapios->firstItem()); ?> a <?php echo e($cardapios->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -44,13 +48,17 @@
                                     <td data-title="Data_fim"><?php echo e($cardapio->data_fim); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="<?php echo e(route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])); ?>" >ver</a>
+                                      <a title="Ver Refeições" class="btn btn-primary" href="<?php echo e(route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])); ?>" >
+                                        <img src="/img/menu.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </tbody>
                           </table>
+                          <?php echo e($cardapios->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>

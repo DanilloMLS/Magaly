@@ -38,16 +38,8 @@ Secretaria Municipal de Educação</br>
 
     <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
         <thead>
-        <tr bgcolor="#dfdfdf">
-            <td><b>Nº</b></td>
-            <td><b>ITENS</b></td>
-            <td><b>UND</b></td>
-            <td><b>MARCA</b></td>
-            <td><b>Qtid. Total</b></td>
-            <td><b>Valor Unit.</b></td>
-            <td><b>Valor Total</b></td>
-
-
+        <tr>
+            <td bgcolor="#dfdfdf"><b>Nº</b></td>
             <td><b>Contrato</b></td>
             <td><b>Fornecedor</b></td>
             <td><b>Processo</b></td>

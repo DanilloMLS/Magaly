@@ -44,7 +44,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <!-- USer ADM -->
-                        <?php if(Auth::guard()->check() && Auth::user()->is_adm): ?>
+                        <?php if(Auth::guard()->check()): ?>
+                          <?php if(Auth::user()->is_adm): ?>
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                                     <div class="dropdown-content">
@@ -92,9 +93,9 @@
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
-                                        <a class="dropdown-item" href="<?php echo e(route('/item/telaCadastrar')); ?>">
+                                        <!-- <a class="dropdown-item" href="<?php echo e(route('/item/telaCadastrar')); ?>">
                                             Novo Item
-                                        </a>
+                                        </a> -->
                                         <a class="dropdown-item" href="<?php echo e(route('/item/listar')); ?>">
                                             Listar Itens
                                         </a>
@@ -136,7 +137,7 @@
                                         </a>
                                     </div>
                                 </div>
-                      <?php else: ?>
+                                <?php else: ?>
                       <div class="dropdown">
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                           <div class="dropdown-content">
@@ -205,7 +206,7 @@
                           </div>
                       </div>
                       <?php endif; ?>
-
+                    <?php endif; ?>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

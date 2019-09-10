@@ -40,9 +40,14 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($escolas->count()); ?> escolas de <?php echo e($escolas->total()); ?> 
+                            (<?php echo e($escolas->firstItem()); ?> a <?php echo e($escolas->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>Nº</th>
                                   <th>Nome</th>
                                   <th>Modalidade de Ensino</th>
                                   <th>Rota</th>
@@ -57,6 +62,7 @@ function editar(id){
                             <tbody>
                               <?php $__currentLoopData = $escolas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $escola): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
+                                    <td data-title="Nº" title="Clique para editar" onclick="editar(<?php echo e($escola->id); ?>);"><?php echo e($escola->id); ?></td>
                                     <td data-title="Nome" title="Clique para editar" onclick="editar(<?php echo e($escola->id); ?>);"><?php echo e($escola->nome); ?></td>
                                     <td data-title="Modalidade de Ensino"><?php echo e($escola->modalidade_ensino); ?></td>
                                     <td data-title="Rota"><?php echo e($escola->rota); ?></td>
@@ -82,6 +88,8 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          <?php echo e($escolas->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>
@@ -104,10 +112,12 @@ function editar(id){
       tr = table.getElementsByTagName("tr");
       // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        td_id = tr[i].getElementsByTagName("td")[0];
+        td_nome = tr[i].getElementsByTagName("td")[1];
+        if (td_nome || td_id) {
+          txtValue = td_nome.textContent || td_nome.innerText;
+          txtValue1 = td_id.textContent || td_id.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue1.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
           } else {
             tr[i].style.display = "none";

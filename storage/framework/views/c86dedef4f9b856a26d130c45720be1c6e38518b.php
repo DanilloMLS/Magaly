@@ -26,6 +26,10 @@
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($contratos->count()); ?> contratos de <?php echo e($contratos->total()); ?> 
+                            (<?php echo e($contratos->firstItem()); ?> a <?php echo e($contratos->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -52,13 +56,17 @@
                                     <td data-title="Fornecedor"><?php echo e($fornecedor->nome); ?></td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="<?php echo e(route ("/contrato/exibirItensContrato", ['id' => $contrato->id])); ?>" >Itens</a>
+                                      <a title="Ver Itens" class="btn btn-primary" href="<?php echo e(route ("/contrato/exibirItensContrato", ['id' => $contrato->id])); ?>" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </tbody>
                           </table>
+                          <?php echo e($contratos->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>
