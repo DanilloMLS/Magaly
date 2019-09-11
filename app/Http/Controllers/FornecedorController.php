@@ -43,11 +43,11 @@ class FornecedorController extends Controller
 
     public function gerarRelatorio(){
         $fornecedores = \App\Fornecedor::all();
-        //return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
+        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
 
         return  \PDF::loadView('RelatorioFornecedores', compact('fornecedores'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Fornecedor.pdf');
+            ->stream('relatorio_Fornecedor_'.$data.'.pdf');
     }
 
   public function remover(Request $request){

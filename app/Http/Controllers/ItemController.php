@@ -34,11 +34,11 @@ class ItemController extends Controller
 
     public function gerarRelatorio(){
         $itens = \App\Item::All();
-        //return view("RelatorioItens", ["itens" => $itens]);
+        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("RelatorioItens", ["itens" => $itens]);
 
         return  \PDF::loadView('RelatorioItens', compact('itens'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Itens.pdf');
+            ->stream('relatorio_Itens_'.$data.'.pdf');
     }
 
     public function remover(Request $request) {

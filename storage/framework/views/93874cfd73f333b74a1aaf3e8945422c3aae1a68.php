@@ -27,7 +27,8 @@ Tel: (87)3762-7060
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
             <tbody>
-                <tr bgcolor="#F4A460" colspan=3 align="center"><font size="20px">
+                <tr bgcolor="#00CED1" colspan=3 align="center"><font size="20px">
+                    <th>Id</th>
                     <th>Item</th>
                     <th>Unidade</th>
                     <th>Estoque</th>
@@ -41,8 +42,9 @@ Tel: (87)3762-7060
                       <?php
                           $item = \App\Item::find($item_estoque->item_id);
                       ?>
-                      <tr bgcolor="#dfdfdf">
-                          <td data-title="Valor unitário"><?php echo e($item->nome); ?></td>
+                      <tr>
+                          <td bgcolor="#dfdfdf" data-title="Id"><?php echo e($item->id); ?></td>
+                          <td data-title="Nome"><?php echo e($item->nome); ?></td>
                           <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
                           <td data-title="Nome"><?php echo e($estoque->nome); ?></td>
                           <td data-title="Data de validade"><?php echo e($item->data_validade); ?></td>

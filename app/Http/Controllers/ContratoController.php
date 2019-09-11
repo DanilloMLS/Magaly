@@ -40,11 +40,11 @@ class ContratoController extends Controller
 
   public function gerarRelatorio(){
     $contratos = \App\Contrato::all();
-    //return view("RelatorioContratos", ["contratos" => $contratos]);
+      $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("RelatorioContratos", ["contratos" => $contratos]);
 
     return  \PDF::loadView('RelatorioContratos', compact('contratos'))
           // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-          ->stream('relatorio_Contrato.pdf');
+          ->stream('relatorio_Contrato_'.$data.'.pdf');
   }
 
   //para inserir Itens em um Contrato

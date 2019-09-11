@@ -36,12 +36,12 @@ class EstoqueController extends Controller
 
     public function gerarRelatorio(){
         $estoques = \App\Estoque::all();
-        //return view("VisualizarItensEstoque", ["itens" => $itens]);
+        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("VisualizarItensEstoque", ["itens" => $itens]);
         //return view("ListarEstoques", ["estoques" => $estoques]);
 
         return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Estoque.pdf');
+            ->stream('relatorio_Estoque_'.$data.'.pdf');
     }
 
   public function remover(Request $request){

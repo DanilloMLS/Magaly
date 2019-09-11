@@ -40,6 +40,10 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($fornecedores->count()); ?> fornecedores de <?php echo e($fornecedores->total()); ?> 
+                            (<?php echo e($fornecedores->firstItem()); ?> a <?php echo e($fornecedores->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -73,6 +77,8 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          <?php echo e($fornecedores->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>

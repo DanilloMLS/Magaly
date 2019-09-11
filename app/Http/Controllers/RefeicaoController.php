@@ -27,11 +27,11 @@ class RefeicaoController extends Controller
 
   public function gerarRelatorio(){
     $refeicoes = \App\Refeicao::all();
-    //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
+      $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
 
     return  \PDF::loadView('RelatorioRefeicoes', compact('refeicoes'))
       // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-      ->stream('relatorio_Refeicao.pdf');
+      ->stream('relatorio_Refeicao_'.$data.'.pdf');
   }
 
   public function inserirItemRefeicao(Request $request) {

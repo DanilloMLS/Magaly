@@ -32,7 +32,7 @@ Tel: (87)3762-7060
         <?php $__currentLoopData = $distribuicoes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $distribuicao): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#F4A460" colspan=3 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
+                    <th bgcolor="#00CED1" colspan=3 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
                 </tr>
                 <tr bgcolor="#dfdfdf">
                     <th>ESCOLA</th>
@@ -60,10 +60,11 @@ Tel: (87)3762-7060
             </table>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#F4A460" colspan=5 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
+                    <th bgcolor="#00CED1" colspan=5 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
                 </tr>
                 <tbody>
-                    <tr bgcolor="#dfdfdf" align="center">
+                    <tr align="center">
+                        <th bgcolor="#dfdfdf">ID</th>
                         <th>ITEM</th>
                         <th>UNIDADE</th>
                         <th>QUANTIDADE</th>
@@ -75,6 +76,7 @@ Tel: (87)3762-7060
                             <?php
                                 $item = \App\Item::find($item_distribuicao->item_id);
                             ?>
+                            <td data-title="Id"><?php echo e($item->id); ?></td>
                             <td data-title="Nome"><?php echo e($item->nome); ?></td>
                             <td data-title="Unidade" align="center"><?php echo e($item->gramatura . "" . $item->unidade); ?></td>
                             <td data-title="Quantidade" align="center"><?php echo e($item_distribuicao->quantidade); ?></td>

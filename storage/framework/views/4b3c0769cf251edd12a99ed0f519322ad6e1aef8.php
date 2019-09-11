@@ -38,24 +38,27 @@ function editar(id){
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
+                          <h5 class="card-title">
+                            Exibindo <?php echo e($itens->count()); ?> itens de <?php echo e($itens->total()); ?>
+
+                            (<?php echo e($itens->firstItem()); ?> a <?php echo e($itens->lastItem()); ?>)
+                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
                                   <th>Marca</th>
                                   <th>Descrição</th>
-                                  <th>Unidade</th>
                                   <th>Gramatura</th>
                               </tr>
                             </thead>
                             <tbody>
                               <?php $__currentLoopData = $itens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                    <td data-title="Nome" title="Clique para editar" onclick="editar(<?php echo e($item->id); ?>);"><?php echo e($item->nome); ?></td>
+                                <tr title="Clique para editar" onclick="editar(<?php echo e($item->id); ?>);">
+                                    <td data-title="Nome"><?php echo e($item->nome); ?></td>
                                     <td data-title="Marca"><?php echo e($item->marca); ?></td>
                                     <td data-title="Descrição"><?php echo e($item->descricao); ?></td>
-                                    <td data-title="Unidade"><?php echo e($item->unidade); ?></td>
-                                    <td data-title="Gramatura"><?php echo e($item->gramatura); ?></td>
+                                    <td data-title="Gramatura"><?php echo e($item->gramatura); ?><?php echo e($item->unidade); ?></td>
 
                                     </td>
                                     <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
@@ -68,6 +71,8 @@ function editar(id){
 
                             </tbody>
                           </table>
+                          <?php echo e($itens->links()); ?>
+
                         </div>
                       <?php endif; ?>
                   </div>
