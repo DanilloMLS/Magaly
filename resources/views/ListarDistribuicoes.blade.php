@@ -57,18 +57,18 @@ function avisoDeletar(id){
                                     <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
-                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
+                                        <img src="/img/item.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
-
-
-                                    <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                      <a title="Remover" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
+                                      @if ($distribuicao->baixada == false)
+                                        <a title="Dar baixa" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                          <img src="/img/down_arrow.png" height="21" width="17" align = "right">
+                                        </a>
+                                      @endif
                                     </td>
-                                    <td></td>
                                 </tr>
                               @endforeach
 

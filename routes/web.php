@@ -60,6 +60,8 @@ Route::get('/distribuicao/exibirItensDistribuicao/{id}', 'DistribuicaoController
 Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes')->middleware('auth');
 Route::get('/itemDistribuicao/editar/{id}', 'DistribuicaoController@editarItemDistribuicao')->name('/itemDistribuicao/editar')->middleware('auth');
 Route::post('/itemDistribuicao/salvar', 'DistribuicaoController@salvarItemDistribuicao')->name('/itemDistribuicao/salvar')->middleware('auth');
+Route::get('/distribuicao/novaBaixa/{id}', 'DistribuicaoController@buscarDistribuicao')->name('/distribuicao/novaBaixa')->middleware('auth');
+Route::post('/distribuicao/baixaDistribuicao','DistribuicaoController@baixaDistribuicao')->name('/distribuicao/baixaDistribuicao')->middleware('auth');
 
 //Contrato
 Route::get('/contrato/telaCadastrar', 'ContratoController@telaCadastrar')->name('/contrato/telaCadastrar')->middleware('auth');

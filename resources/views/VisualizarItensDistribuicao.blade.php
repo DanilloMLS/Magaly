@@ -35,7 +35,6 @@
                                   <th>Gramatura</th>
                                   <th>Qtde. Danificados</th>
                                   <th>Qtde. Falta</th>
-                                  <th>Qtde. Aceita</th>
                                   <th>Quantidade Total</th>
                                   <th colspan="2">Ações</th>
                               </tr>
@@ -51,11 +50,10 @@
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
                                     <td data-title="Qtde. Danificados">{{ $item_distribuicao->quantidade_danificados }}</td>
                                     <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
-                                    <td data-title="Qtde. Aceita"></td>
                                     <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{ route ("/itemDistribuicao/editar", ['id' => $item_distribuicao->id])}}">
+                                      <a title="Editar quantidade" class="btn btn-primary" href="{{ route ("/itemDistribuicao/editar", ['id' => $item_distribuicao->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>
