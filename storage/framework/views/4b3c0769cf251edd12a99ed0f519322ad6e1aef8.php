@@ -78,7 +78,6 @@ function editar(id){
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" target="_blank" href="<?php echo e(route("/item/RelatorioItens")); ?>">Relatório</a>
-                      <a class="btn btn-primary" href="<?php echo e(route("/item/telaCadastrar")); ?>">Novo</a>
                   </div>
                 </div>
             </div>
