@@ -12,17 +12,12 @@ class FornecedorTableSeeder extends Seeder
      */
     public function run()
     {
-        Fornecedor::create([
-            'nome'=>'Queijaria B & S',
-            'cnpj'=>'125463987526/42'
-        ]);
-        Fornecedor::create([
-            'nome'=>'Itambé',
-            'cnpj'=>'425987987526/65'
-        ]);
-        Fornecedor::create([
-            'nome'=>'Nestlé',
-            'cnpj'=>'214463952674/80'
-        ]);
+        $fake = Fake\Factory::create('pt_BR');
+        for($i = 0; $i < 10; $i++){
+            Fornecedor::create([
+                'nome'=>$fake->name,
+                'cnpj'=>'125463987526/42'
+            ]);
+        }
     }
 }
