@@ -2,11 +2,12 @@
 
 @section('content')
 
+
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Baixa em distribuição') }}</div>
+                <div class="card-header">{{ __('Baixa Distribuição - Lista de Itens') }}</div>
 
                 <div class="card-body">
 
@@ -17,93 +18,94 @@
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($itens) == 0 and count($itens) == 0)
+                      @if(count($distribuicao_itens) == 0)
                       <div class="alert alert-danger">
-                              Você ainda não cadastrou nenhum item.
+                              Não há itens nesta distribuição.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                       <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                              <strong><div class="form-group row">
-                                <div class="col-md-3">
-                                  <center>Nome</center>
-                                </div>
-                                <div class="col-md-3">
-                                  <center>Marca</center>
-                                </div>
-                                <div class="col-md-2">
-                                  Gramatura
-                                </div>
-                                <div class="col-md-2">
-                                  <center>Quantidade</center>
-                                </div>
-                                <div class="col-md-3">
-                                  <center></center>
-                                </div>
-                              </div> </strong>
-                              @foreach ($itens as $item)
-                              <form method="POST" action="{{route ('/distribuicao/baixaDistribuicao')}}">
-                                {{ csrf_field() }}
-                                  @csrf
-                              <input type="hidden" name="refeicao_id" value="{{ $refeicao->id}}" />
-                              <input type="hidden" name="item_id" value="{{ $item->id}}" />
+                        <div id="tabela" class="table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                  <th>Nome</th>
+                                  <th>Descrição</th>
+                                  <th>Gramatura</th>
+                                  <th>Qtde. Danificados</th>
+                                  <th>Qtde. Falta</th>
+                                  <th title="Quantidade total pedida">Qtde. Pedida</th>
+                                  <th>Qtde. Aceita</th>
+                                  <th colspan="2">Ações</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ($distribuicao_itens as $distribuicao_item)
+                                <tr>
+                                    @php
+                                      $item = \App\Item::find($distribuicao_item->item_id);
+                                    @endphp
+                                    <td data-title="Nome">{{ $item->nome }}</td>
+                                    <td data-title="Descrição">{{ $item->descricao }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
+                                    <td data-title="Qtde. Danificados">{{ $distribuicao_item->quantidade_danificados }}</td>
+                                    <td data-title="Qtde. Falta">{{ $distribuicao_item->quantidade_falta }}</td>
+                                    <td data-title="Qtde. Pedida">{{ $distribuicao_item->quantidade_total }}</td>
+                                    <td data-title="Qtde. Aceita">{{ $distribuicao_item->quantidade_aceita }}</td>
 
-                              <div class="form-group row">
-
-                                  <div class="col-md-3">
-                                    {{ $item->nome }}
-                                  </div>
-                                  <div class="col-md-3">
-                                    {{ $item->marca }}
-                                  </div>
-                                  <div class="col-md-2">
-                                    {{ $item->gramatura }}
-                                  </div>
-
-                                  <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
-                                  </div>
-                                  <div class="col-md-1" style="padding-top:10px">
-                                    @if ($item->unidade == 'G')
-                                      g
-                                    @endif
-                                    @if ($item->unidade == 'ML')
-                                      ml
-                                    @endif
-                                  </div>
-
-
-                                  <div class="col-md-1">
-                                    <?php
-                                        $refeicao_item = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)
-                                                                                ->where('item_id', '=', $item->id)
-                                                                                ->first();
-                                        if(empty($refeicao_item)){ ?>
-                                          <button class="btn btn-success" type="submit">+</button>
-                                      <?php } else { ?>
-                                        <a class="btn btn-danger" href="{{ route ("/refeicao/removerItem", ['id' => $refeicao_item->id])}}">
-                                        -
+                                    <td>
+                                      @if ($distribuicao_item->baixado == false)
+                                        <a title="Revisar quantidade" class="btn btn-primary" href="{{ route ("/distribuicao/baixaItem", ['id' => $distribuicao_item->id])}}">
+                                          <img src="/img/edit.png" height="21" width="17" align = "right">
                                         </a>
-                                    <?php } ?>
+                                      @else
+                                      <a title="Corrigir" class="btn btn-success" href="{{ route ("/distribuicao/baixaItem", ['id' => $distribuicao_item->id])}}">
+                                        <img src="/img/contra.png" height="21" width="17" align = "right">
+                                      </a>
+                                      @endif
+                                    </td>
 
-                                  </div>
-                              </div>
 
-                            </form>
-
-
+                                    <td></td>
+                                </tr>
                               @endforeach
 
+                            </tbody>
+                          </table>
                         </div>
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="/refeicao/finalizarRefeicao/{{$refeicao->id}}">Concluir</a></center>
+                      <a class="btn btn-primary" href="{{ route ('/distribuicao/concluirBaixa',['id' => $distribuicao->id])}}">Concluir</a>
+                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
+
                   </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
 @endsection

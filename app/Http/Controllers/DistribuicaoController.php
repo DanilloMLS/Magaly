@@ -30,6 +30,7 @@ class DistribuicaoController extends Controller
     $distribuicao->observacao = $request->observacao;
     $distribuicao->escola_id = $request->escola_id;
     $distribuicao->cardapio_id = $request->cardapio_id;
+    $distribuicao->estoque_id = $request->estoque_id;
     $distribuicao->save();
     $escola = \App\Escola::find($request->escola_id);
 
@@ -60,7 +61,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->item_id = $i->item_id;
             $distribuicao_item->distribuicao_id = $distribuicao->id;
-            $distribuicao_item->quantidade_falta = $distribuicao_item->quantidade_total;
+            $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total));
             $distribuicao_item->quantidade_danificados = 0;
             $distribuicao_item->save();
 
@@ -69,7 +70,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
             //quantidade_total
             $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura);
-            $distribuicao_item->quantidade_falta = $distribuicao_item->quantidade_total;
+            $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total));
             $distribuicao_item->quantidade_danificados = 0;
             $distribuicao_item->save();
           }
@@ -78,15 +79,14 @@ class DistribuicaoController extends Controller
 
     //$distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
 
-    session()->flash('success', 'Distribuição cadastrada com sucesso.');
-    //return view("InserirItensDistribuicao", ["distribuicao" => $distribuicao, "itens" => $distribuicao_itens]);
-    //return redirect()->route('/distribuicao/novaBaixa',[$distribuicao]);
-    return redirect()->route('/distribuicao/listar');
+    session()->flash('success', 'Distribuição cadastrada com sucesso. Confira seus itens.');
+    return redirect()->route('/distribuicao/exibirItensDistribuicao',[$distribuicao]);
   }
 
+  //puxa distribuição para dar baixa
   public function buscarDistribuicao(Request $request){
-    $distribuicao = \App\Distribuicao::find($request->distribuicao_id);
-    $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id','=',$request->distribuicao_id)->get();
+    $distribuicao = \App\Distribuicao::find($request->id);
+    $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id','=',$request->id)->get();
 
     if (isset($distribuicao)) {
       return view("BaixaDistribuicao", [
@@ -95,25 +95,39 @@ class DistribuicaoController extends Controller
     }
   }
 
+  public function buscarItemDistribuicao(Request $request){
+    $distribuicao_item = \App\Distribuicao_item::find($request->id);
+
+    if (isset($distribuicao_item)) {
+      return view("BaixaItemDistribuicao", [
+        "distribuicao_item" => $distribuicao_item
+      ]);
+    }
+
+    return redirect()->route('/distribuicao/listar')->with('Esse item não existe.');
+  }
+
   public function baixaDistribuicao(Request $request){
-    $distribuicao = \App\Distribuicao::find($request->distribuicao_id);
+    $distribuicao = \App\Distribuicao::find($request->id);
     $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get();
 
-    /* foreach ($distribuicao_itens as $distribuicao_item) {
+    foreach ($distribuicao_itens as $distribuicao_item) {
       //procurar o Item pelo id, com isso acho o nome dele
       $item_nome = \App\Item::find($distribuicao_item->item_id);
-
+      
       //procuro outros Itens com o mesmo nome e,
       $itens_nome = \App\Item::select('id')->where('nome','=',$item_nome->nome)->get();
-
+      
       //com os ids acho os Itens no Estoque que tenham o mesmo nome
       $estoque_central_itens = \App\Estoque_item::whereIn('item_id',$itens_nome)
-                                                ->where('estoque_id','=',$request->estoque_id)
+                                                ->where('estoque_id','=',$distribuicao->estoque_id)
                                                 ->get();
+                                              
+      
       //condição para Item inexistente no Estoque
       if (isset($estoque_central_itens)){
         //quantidade de itens que devem sair do estoque_central
-        $qtde_restante = intval(ceil($distribuicao_item->quantidade_total));
+        $qtde_restante = $distribuicao_item->quantidade_aceita;
         //cada item será retirado do estoque
         foreach ($estoque_central_itens as $estoque_central_item) {
           //subtrair do estoque_central (origem)
@@ -121,14 +135,14 @@ class DistribuicaoController extends Controller
             $estoque_central_item->quantidade -= $qtde_restante;
             $estoque_central_item->save();
             $qtde_restante = 0;
-            $distribuicao_item->quantidade_falta = $qtde_restante;
+            $distribuicao_item->quantidade_falta += $qtde_restante;
             $distribuicao_item->save();
           } else {
             $temp = $estoque_central_item->quantidade;
             $estoque_central_item->quantidade = 0;
             $estoque_central_item->save();
             $qtde_restante -= $temp;
-            $distribuicao_item->quantidade_falta = $qtde_restante;
+            $distribuicao_item->quantidade_falta += $qtde_restante;
             $distribuicao_item->save();
           }
           if ($qtde_restante <= 0) {
@@ -136,17 +150,17 @@ class DistribuicaoController extends Controller
           }
         }
 
-        $escola = \App\Escola::find($request->escola_id);
+        $escola = \App\Escola::find($distribuicao->escola_id);
         //adicionar ao estoque_escola (destino)
         $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
                                                 ->where('item_id','=',$distribuicao_item->item_id)
                                                 ->first();
         if (isset($estoque_escola_item)) {
-          $estoque_escola_item->quantidade += intval(ceil($distribuicao_item->quantidade_total));
+          $estoque_escola_item->quantidade += $distribuicao_item->quantidade_aceita;
           $estoque_escola_item->save();
         } else {
           $estoque_escola_item = new \App\Estoque_item();
-          $estoque_escola_item->quantidade = intval(ceil($distribuicao_item->quantidade_total));
+          $estoque_escola_item->quantidade = $distribuicao_item->quantidade_aceita;
           $estoque_escola_item->quantidade_danificados = 0;
           $estoque_escola_item->item_id = $distribuicao_item->item_id;
           $estoque_escola_item->estoque_id = $escola->estoque_id;
@@ -154,10 +168,26 @@ class DistribuicaoController extends Controller
           $estoque_escola_item->save();
         }
       } else {
-        $distribuicao_item->quantidade_falta = $qtde_restante;
+        $distribuicao_item->quantidade_falta += $qtde_restante;
         $distribuicao_item->save();
       }
-    } */
+    }
+    //$distribuicao->baixada = true;
+    //$distribuicao->save();
+    session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
+    return redirect()->route('/distribuicao/listar');
+  }
+
+  //atualiza as quantidades do item da distribuicação
+  public function baixaItemDistribuicao(Request $request){
+    $distribuicao_item = \App\Distribuicao_item::find($request->id);
+    $distribuicao_item->quantidade_aceita = $request->quantidade_aceita;
+    $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total - $request->quantidade_aceita));
+    $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
+    $distribuicao_item->baixado = true;
+    $distribuicao_item->save();
+
+    return redirect()->route('/distribuicao/novaBaixa',[$distribuicao_item->distribuicao_id]);
   }
 
   public function listar(){

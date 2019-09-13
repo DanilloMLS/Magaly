@@ -64,7 +64,7 @@ function avisoDeletar(id){
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
                                       @if ($distribuicao->baixada == false)
-                                        <a title="Dar baixa" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                        <a title="Dar baixa" class="btn btn-primary" href="{{ route("/distribuicao/novaBaixa", ['id' => $distribuicao->id]) }}">
                                           <img src="/img/down_arrow.png" height="21" width="17" align = "right">
                                         </a>
                                       @endif
