@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Distribuicao;
 use Illuminate\Http\Request;
 
 class DistribuicaoController extends Controller
@@ -172,6 +173,7 @@ class DistribuicaoController extends Controller
         $distribuicao_item->save();
       }
     }
+    $this->gerarDistribuicaoRest($distribuicao);
     //$distribuicao->baixada = true;
     //$distribuicao->save();
     session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
@@ -188,6 +190,34 @@ class DistribuicaoController extends Controller
     $distribuicao_item->save();
 
     return redirect()->route('/distribuicao/novaBaixa',[$distribuicao_item->distribuicao_id]);
+  }
+
+  private function gerarDistribuicaoRest(Distribuicao $distribuicao){
+    //$distribuicao = \App\Distribuicao::find($ris->id);
+    $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id','=',$distribuicao->id)
+                                                ->where('quantidade_falta','>',0)
+                                                ->get();
+
+    if (count($distribuicao_itens) > 0) {
+      $nova_distribuicao = new \App\Distribuicao();
+      $nova_distribuicao->observacao = 'Continuação da '.$distribuicao->observacao;
+      $nova_distribuicao->escola_id = $distribuicao->escola_id;
+      $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
+      $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
+      $nova_distribuicao->save();
+      $distribuicao->proxima = $nova_distribuicao->id;
+      $distribuicao->save();
+      foreach ($distribuicao_itens as $distribuicao_item) {
+        $novo_distribuicao_item = new \App\Distribuicao_item();
+        $novo_distribuicao_item->item_id = $distribuicao_item->item_id;
+        $novo_distribuicao_item->distribuicao_id = $nova_distribuicao->id;
+        $novo_distribuicao_item->quantidade = $distribuicao_item->quantidade;
+        $novo_distribuicao_item->quantidade_danificados = $distribuicao_item->quantidade_danificados;
+        $novo_distribuicao_item->quantidade_falta = $distribuicao_item->quantidade_falta;
+        $novo_distribuicao_item->quantidade_total = $distribuicao_item->quantidade_total;
+        $novo_distribuicao_item->save();
+      }
+    }
   }
 
   public function listar(){
