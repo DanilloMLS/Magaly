@@ -43,7 +43,7 @@ Tel: (87)3762-7060
             </div>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
                 <thead>
-                    <tr bgcolor="#00CED1" colspan=3 align="center"><font size="20px">
+                    <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
                         <td><b>Nº</b></td>
                         <td><b>ITEM</b></td>
                         <td><b>UNIDADE</b></td>
