@@ -174,8 +174,8 @@ class DistribuicaoController extends Controller
       }
     }
     $this->gerarDistribuicaoRest($distribuicao);
-    //$distribuicao->baixada = true;
-    //$distribuicao->save();
+    $distribuicao->baixada = true;
+    $distribuicao->save();
     session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
     return redirect()->route('/distribuicao/listar');
   }
@@ -200,7 +200,7 @@ class DistribuicaoController extends Controller
 
     if (count($distribuicao_itens) > 0) {
       $nova_distribuicao = new \App\Distribuicao();
-      $nova_distribuicao->observacao = 'Continuação da '.$distribuicao->observacao;
+      $nova_distribuicao->observacao = '#'.$distribuicao->id;
       $nova_distribuicao->escola_id = $distribuicao->escola_id;
       $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
       $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
@@ -221,7 +221,7 @@ class DistribuicaoController extends Controller
   }
 
   public function listar(){
-    $distribuicoes = \App\Distribuicao::orderBy('id')->paginate(10);
+    $distribuicoes = \App\Distribuicao::orderBy('baixada')->orderBy('observacao')->paginate(10);
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
@@ -352,8 +352,9 @@ class DistribuicaoController extends Controller
       ]);
     }
 
-    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
-    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+    //$itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    //return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+    return redirect()->route('/distribuicao/exibirItensDistribuicao');
   }
 
   public function salvarItemDistribuicao(Request $request){
@@ -363,7 +364,8 @@ class DistribuicaoController extends Controller
     $item_distribuicao->save();
 
     session()->flash('success', 'Item da distribuição modificado com sucesso.');
-    $itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
-    return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+    //$itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
+    //return view("VisualizarItensDistribuicao", ["itens" => $itens]);
+    return redirect()->route('/distribuicao/exibirItensDistribuicao');
   }
 }

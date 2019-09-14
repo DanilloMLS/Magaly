@@ -44,6 +44,7 @@ function avisoDeletar(id){
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>#</th>
                                   <th>Observação</th>
                                   <th>Escola</th>
                                   <th colspan="2">Ações</th>
@@ -52,6 +53,7 @@ function avisoDeletar(id){
                             <tbody>
                               @foreach ($distribuicoes as $distribuicao)
                                 <tr>
+                                    <td data-title="Id">{{ $distribuicao->id }}</td>
                                     <td data-title="Observação">{{ $distribuicao->observacao }}</td>
                                     <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
                                     <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>

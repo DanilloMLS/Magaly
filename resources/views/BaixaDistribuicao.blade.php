@@ -2,6 +2,16 @@
 
 @section('content')
 
+<script language= 'javascript'>
+    function avisoBaixa(id){
+      if(confirm (' Deseja realmente dar baixa? ')) {
+        location.href="/distribuicao/concluirBaixa/"+id;
+      }
+      else {
+        return false;
+      }
+    }
+    </script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -77,7 +87,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{ route ('/distribuicao/concluirBaixa',['id' => $distribuicao->id])}}">Concluir</a>
+                      <a class="btn btn-primary" onClick="avisoBaixa({{$distribuicao->id}});">Concluir</a>
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
                   </div>

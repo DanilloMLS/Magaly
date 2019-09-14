@@ -61,7 +61,6 @@ Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gera
 Route::get('/itemDistribuicao/editar/{id}', 'DistribuicaoController@editarItemDistribuicao')->name('/itemDistribuicao/editar')->middleware('adm');
 Route::post('/itemDistribuicao/salvar', 'DistribuicaoController@salvarItemDistribuicao')->name('/itemDistribuicao/salvar')->middleware('adm');
 Route::get('/distribuicao/novaBaixa/{id}', 'DistribuicaoController@buscarDistribuicao')->name('/distribuicao/novaBaixa')->middleware('adm');
-//Route::post('/distribuicao/baixaDistribuicao','DistribuicaoController@baixaDistribuicao')->name('/distribuicao/baixaDistribuicao')->middleware('adm');
 Route::get('/distribuicao/baixaItem/{id}','DistribuicaoController@buscarItemDistribuicao')->name('/distribuicao/baixaItem')->middleware('adm');
 Route::post('/distribuicao/baixaItemDistribuicao','DistribuicaoController@baixaItemDistribuicao')->name('/distribuicao/baixaItemDistribuicao')->middleware('adm');
 Route::get('/distribuicao/concluirBaixa/{id}', 'DistribuicaoController@baixaDistribuicao')->name('/distribuicao/concluirBaixa')->middleware('adm');
