@@ -28,10 +28,9 @@ class ContratoController extends Controller
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
 
-    $itens = \App\Item::all();
-
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
-    return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+    return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
+    //return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
   }
 
   public function listar(){
@@ -46,6 +45,16 @@ class ContratoController extends Controller
     return  \PDF::loadView('RelatorioContratos', compact('contratos'))
           // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
           ->stream('relatorio_Contrato_'.$data.'.pdf');
+  }
+
+  //para inserir Itens em um Contrato
+  public function buscarContrato(Request $request) {
+    $contrato = \App\Contrato::find($request->id);
+
+    if (isset($contrato)) {
+      $itens = \App\Item::all();
+      return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+    }
   }
 
   public function inserirItemContrato(Request $request) {
@@ -85,10 +94,8 @@ class ContratoController extends Controller
       $contrato->valor_total = $request->quantidade * $request->valor_unitario;
       $contrato->save();
 
-      $itens = \App\Item::all();
-
       session()->flash('success', 'Item adicionado.');
-      return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
+      return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
     }
     
     session()->flash('success', 'Contrato não existe.');

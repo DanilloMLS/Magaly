@@ -79,8 +79,8 @@ Tel: (87)3762-7060
                             <td data-title="Id">{{ $item->id }}</td>
                             <td data-title="Nome">{{ $item->nome }}</td>
                             <td data-title="Unidade" align="center">{{$item->gramatura . "" . $item->unidade }}</td>
-                            <td data-title="Quantidade" align="center">{{ $item_distribuicao->quantidade }}</td>
-                            <td></td>
+                            <td data-title="Quantidade" align="center">{{ $item_distribuicao->quantidade_total }}</td>
+                            <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
                             <td></td>
                             </td>
                         </tr>

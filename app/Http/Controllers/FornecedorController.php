@@ -37,7 +37,7 @@ class FornecedorController extends Controller
   }
 
   public function listar(){
-    $fornecedores = \App\Fornecedor::orderBy('id')->paginate(10);
+    $fornecedores = \App\Fornecedor::orderBy('nome')->paginate(10);
     return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
   }
 

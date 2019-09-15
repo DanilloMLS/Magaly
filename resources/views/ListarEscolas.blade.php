@@ -65,20 +65,20 @@ function editar(id){
                                 <tr>
                                     <td data-title="Nº" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->id }}</td>
                                     <td data-title="Nome" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->nome }}</td>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
-                                    <td data-title="Rota">{{ $escola->rota }}</td>
-                                    <td data-title="Endereco">{{ $escola->endereco }}</td>
-                                    <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
-                                    <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
-                                    <td data-title="Gestor">{{ $escola->gestor }}</td>
-                                    <td data-title="Telefone">{{ $escola->telefone }}</td>
+                                    <td data-title="Modalidade de Ensino" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->modalidade_ensino }}</td>
+                                    <td data-title="Rota" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->rota }}</td>
+                                    <td data-title="Endereco" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->endereco }}</td>
+                                    <td data-title="Período de Atendimento" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->periodo_atendimento }}</td>
+                                    <td data-title="Quantidade de Alunos" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->qtde_alunos }}</td>
+                                    <td data-title="Gestor" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->gestor }}</td>
+                                    <td data-title="Telefone" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->telefone }}</td>
 
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">

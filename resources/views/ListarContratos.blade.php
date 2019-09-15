@@ -24,7 +24,7 @@
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca por fornecedor">
                       </div>
                         <div id="tabela" class="table-responsive">
                           <h5 class="card-title">
@@ -34,27 +34,28 @@
                           <table class="table table-hover">
                             <thead>
                               <tr>
+                                  <th>Fornecedor</th>
                                   <th>Nº Contrato</th>
                                   <th>Nº Processo</th>
                                   <th>Modalidade</th>
                                   <th>Descrição</th>
                                   <th>Data</th>
                                   <th>Valor Total</th>
-                                  <th>Fornecedor</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($contratos as $contrato)
                                 <tr>
+                                    <?php $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id)?>
+                                    <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
                                     <td data-title="N_contrato">{{ $contrato->n_contrato }}</td>
                                     <td data-title="N_processo">{{ $contrato->n_processo_licitatorio }}</td>
                                     <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
                                     <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
                                     <td data-title="valor_total">{{ $contrato->valor_total }}</td>
-                                    <?php $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id)?>
-                                    <td data-title="Fornecedor">{{ $fornecedor->nome }}</td>
+                                    
 
                                     <td>
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >

@@ -2,12 +2,22 @@
 
 @section('content')
 
+<script language= 'javascript'>
+    function avisoBaixa(id){
+      if(confirm (' Deseja realmente dar baixa? ')) {
+        location.href="/distribuicao/concluirBaixa/"+id;
+      }
+      else {
+        return false;
+      }
+    }
+    </script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Itens desta distribuição') }}</div>
+                <div class="card-header">{{ __('Baixa Distribuição - Lista de Itens') }}</div>
 
                 <div class="card-body">
 
@@ -18,9 +28,9 @@
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($itens) == 0 and count($itens) == 0)
+                      @if(count($distribuicao_itens) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhum item nesta distribuição.
+                              Não há itens nesta distribuição.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
@@ -35,27 +45,35 @@
                                   <th>Gramatura</th>
                                   <th>Qtde. Danificados</th>
                                   <th>Qtde. Falta</th>
-                                  <th>Quantidade Total</th>
+                                  <th title="Quantidade total pedida">Qtde. Pedida</th>
+                                  <th>Qtde. Aceita</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($itens as $item_distribuicao)
+                              @foreach ($distribuicao_itens as $distribuicao_item)
                                 <tr>
                                     @php
-                                      $item = \App\Item::find($item_distribuicao->item_id);
+                                      $item = \App\Item::find($distribuicao_item->item_id);
                                     @endphp
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
-                                    <td data-title="Qtde. Danificados">{{ $item_distribuicao->quantidade_danificados }}</td>
-                                    <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
-                                    <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
+                                    <td data-title="Qtde. Danificados">{{ $distribuicao_item->quantidade_danificados }}</td>
+                                    <td data-title="Qtde. Falta">{{ $distribuicao_item->quantidade_falta }}</td>
+                                    <td data-title="Qtde. Pedida">{{ $distribuicao_item->quantidade_total }}</td>
+                                    <td data-title="Qtde. Aceita">{{ $distribuicao_item->quantidade_aceita }}</td>
 
                                     <td>
-                                      <a title="Editar quantidade" class="btn btn-primary" href="{{ route ("/itemDistribuicao/editar", ['id' => $item_distribuicao->id])}}">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      @if ($distribuicao_item->baixado == false)
+                                        <a title="Revisar quantidade" class="btn btn-primary" href="{{ route ("/distribuicao/baixaItem", ['id' => $distribuicao_item->id])}}">
+                                          <img src="/img/edit.png" height="21" width="17" align = "right">
+                                        </a>
+                                      @else
+                                      <a title="Corrigir" class="btn btn-success" href="{{ route ("/distribuicao/baixaItem", ['id' => $distribuicao_item->id])}}">
+                                        <img src="/img/contra.png" height="21" width="17" align = "right">
                                       </a>
+                                      @endif
                                     </td>
 
 
@@ -69,6 +87,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
+                      <a class="btn btn-primary" onClick="avisoBaixa({{$distribuicao->id}});">Concluir</a>
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
                   </div>

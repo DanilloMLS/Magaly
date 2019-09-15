@@ -28,7 +28,7 @@ class ItemController extends Controller
     }
 
     public function listar() {
-        $itens = \App\Item::orderBy('id')->paginate(10);
+        $itens = \App\Item::orderBy('nome')->paginate(10);
         return view("ListarItens", ["itens" => $itens]);
     }
 

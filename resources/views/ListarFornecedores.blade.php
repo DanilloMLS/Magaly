@@ -59,15 +59,15 @@ function editar(id){
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
                                     <td data-title="Nome" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->nome }}</td>
-                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
-                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
-                                    <td data-title="Email">{{ $fornecedor->email }}</td>
+                                    <td data-title="CNPJ" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="Telefone" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->telefone }}</td>
+                                    <td data-title="Email" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->email }}</td>
 
-                                    <td>
+                                    {{-- <td>
                                       <a class="btn btn-primary" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">

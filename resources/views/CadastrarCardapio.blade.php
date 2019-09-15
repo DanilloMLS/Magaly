@@ -31,22 +31,22 @@
 
                          <div class="form-group row">
                              <label for="data_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Data de início') }}</label>
-                             <div class="col-md-6">
-                               <input type="date" id="data_inicio" required name="data_inicio">
+                             <div class="col-md-2">
+                               <input type="date" id="data_inicio" class="form-control" required name="data_inicio">
                              </div>
                           </div>
 
                           <div class="form-group row">
                               <label for="data_fim" class="col-md-4 col-form-label text-md-right">{{ __('Data de fim') }}</label>
-                              <div class="col-md-6">
-                                <input type="date" id="data_fim" required name="data_fim">
+                              <div class="col-md-2">
+                                <input type="date" id="data_fim" class="form-control" required name="data_fim">
                               </div>
                            </div>
 
                            <div class="form-group row">
                                <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
                                <div class="col-md-6">
-                                 <input id="nome" required name="nome">
+                                 <input id="nome" class="form-control" required name="nome">
                                </div>
                             </div>
 

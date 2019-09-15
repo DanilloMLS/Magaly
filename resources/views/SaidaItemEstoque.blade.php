@@ -30,7 +30,7 @@
                             
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" min="0" autofocus required placeholder="Sáida máxima: {{$estoque_item->quantidade}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade')}}</input>
+                              <input name="quantidade" id="quantidade" type="number" min="0" max="{{$estoque_item->quantidade}}" autofocus required placeholder="Sáida máxima: {{$estoque_item->quantidade}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade')}}</input>
 
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" min="0" required placeholder="Saída máxima: {{$estoque_item->quantidade_danificados}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade_danificados')}}</input>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" min="0" max="{{$estoque_item->quantidade_danificados}}" required placeholder="Saída máxima: {{$estoque_item->quantidade_danificados}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade_danificados')}}</input>
 
                             </div>
                         </div>

@@ -69,10 +69,10 @@ function listarItens(id){
                                       <a title="Histórico de Movimentações" class="btn btn-primary" href="{{ route ("/estoque/historicoEstoque", ['id' => $estoque->id])}}">
                                         <img src="/img/history.png" height="21" width="21" align = "right">
                                       </a>
-                                      <a title="Remover Estoque" class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
+                                      <a title="Deletar Estoque" class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
-                                      <a title="Renomear" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
+                                      <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>

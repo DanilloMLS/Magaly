@@ -25,13 +25,8 @@ class EstoqueController extends Controller
     $estoque->nome = $request->nome;
     $estoque->save();
 
-    $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
-
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
-    return view("InserirNovoItemEstoque", [
-      "estoque" => $estoque,
-      "itens_contrato" => $itens_contrato
-    ]);
+    return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
   }
 
   public function listar(){
@@ -111,7 +106,7 @@ class EstoqueController extends Controller
     $estoque = \App\Estoque::find($request->id);
 
     if (isset($estoque)) {
-      $itens = \App\Estoque_item::where('estoque_id', '=', $request->id)->get();
+      $itens = \App\Estoque_item::where('estoque_id', '=', $request->id)->orderBy('id')->get();
       return view("VisualizarItensEstoque", ["itens" => $itens]);
     }
 
@@ -122,12 +117,10 @@ class EstoqueController extends Controller
   //usado quando se insere itens no Estoque atráves do botão 'Inserir Itens'
   public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
-    $itens_contrato = \App\Contrato_item::all();
-    //$contratos = \App\Contrato::all();
-    //$fornecedores = \App\Fornecedor::all();
+    $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
+    //$itens_contrato = \App\Contrato_item::all();
 
     if (isset($estoque)) {
-      //$itens = \App\Item::all();
       return view("InserirNovoItemEstoque", [
         "estoque" => $estoque,
         "itens_contrato" => $itens_contrato
@@ -149,21 +142,24 @@ class EstoqueController extends Controller
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
                                        ->first();
 
+      //mudar para permitir a inserção com os Itens restantes
       if ($contrato_item->quantidade < $request->quantidade or $contrato_item->quantidade <= 0) {
         session()->flash('success', 'Contrato não tem quantidade suficiente.');
         return redirect()->route('/estoque/listar');
       }
 
+      //quantidade atualizada se o Item já existir
       if (isset($estoque_item)){
-        //atualizar esse item
+        $estoque_item->quantidade += $request->quantidade;
+        $estoque_item->quantidade_danificados += $request->quantidade_danificados;
+      } else {
+        $estoque_item = new \App\Estoque_item();
+        $estoque_item->quantidade = $request->quantidade;
+        $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+        $estoque_item->item_id = $contrato_item->item_id;
+        $estoque_item->estoque_id = $request->estoque_id;
+        $estoque_item->contrato_id = $contrato_item->contrato_id;
       }
-
-      $estoque_item = new \App\Estoque_item();
-      $estoque_item->quantidade = $request->quantidade;
-      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_item->item_id = $contrato_item->item_id;
-      $estoque_item->estoque_id = $request->estoque_id;
-      $estoque_item->contrato_id = $contrato_item->contrato_id;
 
       $estoque_es = new \App\Estoque_es();
       $estoque_es->quantidade_danificados = $request->quantidade_danificados;
@@ -178,7 +174,6 @@ class EstoqueController extends Controller
       $estoque_es->save();
       $contrato_item->save();
 
-      $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
       session()->flash('success', 'Inserção de novo item.');
       return redirect()->route('/estoque/novoItemEstoque',[$estoque->id]);
     }
@@ -206,10 +201,8 @@ class EstoqueController extends Controller
         $estoque_es->save();
         $estoque_item->delete();
 
-        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_es->estoque_id)->get();
-        //$request->id = null;
         session()->flash('success', 'Remoção de item.');
-        return view("VisualizarItensEstoque", ["itens" => $itens]);
+        return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
       
       
@@ -257,9 +250,8 @@ class EstoqueController extends Controller
         $estoque_es->save();
         $contrato_item->save();
         
-        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
         session()->flash('success', 'Entrada de item.');
-        return view("VisualizarItensEstoque", ["itens" => $itens]);
+        return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
       
   
@@ -312,14 +304,11 @@ class EstoqueController extends Controller
           }
         }
     
-        $itens = \App\Estoque_item::where('estoque_id', '=', $estoque_item->estoque_id)->get();
-        
         session()->flash('success', 'Saída de item.');
-        return view("VisualizarItensEstoque", ["itens" => $itens]);
+        return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
 
-      session()->flash('success', 'Estoque não existe.');
-      return redirect()->route('/estoque/listar');
+      return redirect()->back() ->with('alert', 'Estoque não existe.');
     }
     
 
