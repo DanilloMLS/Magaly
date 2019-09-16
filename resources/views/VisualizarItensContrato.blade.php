@@ -68,7 +68,7 @@
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{ route ('/contrato/listar')}}">Voltar</a>
-
+                      <a class="btn btn-primary" href="#">Novo Item</a>
                   </div>
                 </div>
             </div>

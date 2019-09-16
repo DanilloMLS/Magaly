@@ -13,11 +13,23 @@ class RefeicaoController extends Controller
     $refeicao->quantidade_total = 0;
     $refeicao->save();
 
-    //$itens = \App\Item::all();
+    session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
+    return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
+  }
+
+  //Obter uma refeição específica para edição e inserção de itens
+  public function buscarRefeicao(Request $request){
+    $refeicao = \App\Refeicao::find($request->id);
     $itens = \App\Item::all()->unique('nome');
 
-    session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
-    return view("InserirItensRefeicao", ["refeicao" => $refeicao, "itens" => $itens]);
+    if (isset($refeicao)) {
+      return view("InserirItensRefeicao", [
+        "refeicao" => $refeicao,
+        "itens" => $itens
+      ]);
+    }
+
+    return redirect()->back()->with('alert', 'Refeição não existe.');
   }
 
   public function listar(){
@@ -42,23 +54,19 @@ class RefeicaoController extends Controller
 
     $refeicao_item->save();
 
-    //$itens = \App\Item::all();
-    $itens = \App\Item::all()->unique('nome');
-
     $refeicao = \App\Refeicao::find($request->refeicao_id);
     session()->flash('success', 'Item adicionado.');
-    return view("InserirItensRefeicao", ["refeicao" => $refeicao, "itens" => $itens]);
+    return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
 
   public function removerItemRefeicao(Request $request) {
     $refeicao_item = \App\Refeicao_item::find($request->id);
-    $itens = \App\Item::all();
     $refeicao = \App\Refeicao::find($refeicao_item->refeicao_id);
 
     $refeicao_item->delete();
 
     session()->flash('success', 'Item adicionado.');
-    return view("InserirItensRefeicao", ["refeicao" => $refeicao, "itens" => $itens]);
+    return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
 
   public function finalizarRefeicao(Request $request) {
@@ -101,8 +109,6 @@ class RefeicaoController extends Controller
     $item_refeicao->save();
 
     session()->flash('success', 'Item da distribuição modificado com sucesso.');
-    $itens = \App\Refeicao_item::where('refeicao_id', '=', $item_refeicao->refeicao_id)->get();
-    //return view("VisualizarItensRefeicao", ["itens" => $itens]);
     return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);
   }
 
