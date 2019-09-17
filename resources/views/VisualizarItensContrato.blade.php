@@ -38,6 +38,7 @@
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
                                   <th>Valor unitário</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -54,11 +55,12 @@
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>
                                     <td data-title="Quantidade">{{ $item_contrato->quantidade }}</td>
                                     <td data-title="Valor Unitario">{{ $item_contrato->valor_unitario }}</td>
-
+                                    
+                                    <td>
+                                      <a title="Editar valor/qtde" class="btn btn-primary" href="{{ route ('/itemContrato/editar', ['contrato_id' => $item_contrato->contrato_id, 'contrato_item_id' => $item_contrato->id]) }}" >
+                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                      </a>
                                     </td>
-
-
-                                    <td></td>
                                 </tr>
                               @endforeach
                             </tbody>
@@ -68,7 +70,7 @@
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{ route ('/contrato/listar')}}">Voltar</a>
-                      <a class="btn btn-primary" href="#">Novo Item</a>
+                      <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $item_contrato->contrato_id])}}">Novo Item</a>
                   </div>
                 </div>
             </div>

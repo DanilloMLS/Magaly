@@ -57,6 +57,17 @@ class ContratoController extends Controller
     }
   }
 
+  public function editarItem(Request $request) {
+    $contrato = \App\Contrato::find($request->contrato_id);
+    $contrato_item = \App\Contrato_item::find($request->contrato_item_id);
+
+    if (isset($contrato_item)) {
+      return view("EditarItemContrato", [
+        "contrato" => $contrato,
+        "contrato_item" => $contrato_item]);
+    }
+  }
+
   public function inserirItemContrato(Request $request) {
     $contrato = \App\Contrato::find($request->contrato_id);
 
@@ -102,6 +113,7 @@ class ContratoController extends Controller
     return redirect()->route('/contrato/listar');
   }
 
+  //fora de circulação
   public function removerItemContrato(Request $request) {
     $contrato_item = \App\Contrato_item::find($request->id);
     $itens = \App\Item::all();
@@ -128,24 +140,31 @@ class ContratoController extends Controller
     if (isset($contrato)) {
       $contrato_itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->get();
       $valorTotal = 0;
-      foreach ($contrato_itens as $key => $contrato_itens) {
-        $valorTotal = $valorTotal + $contrato_itens->valor_unitario * $contrato_itens->quantidade;
+      foreach ($contrato_itens as $contrato_item) {
+        $valorTotal = $valorTotal + $contrato_item->valor_unitario * $contrato_item->quantidade;
       }
       $contrato->valor_total = $valorTotal;
       $contrato->save();
-      $contratos = \App\Contrato::paginate(10);
 
       session()->flash('success', 'Contrato cadastrado.');
-      return view("ListarContratos", ["contratos" => $contratos]);
+      return redirect()->route('/contrato/listar');
     }
-    $contratos = \App\Contrato::paginate(10);
     session()->flash('success', 'Contrato não existe.');
-    return view("ListarContratos", ["contratos" => $contratos]);
+    return redirect()->route('/contrato/listar');
   }
 
   public function exibirItensContrato(Request $request){
     $itens = \App\Contrato_item::where('contrato_id', '=', $request->id)->get();
     return view("VisualizarItensContrato", ["itens" => $itens]);
+  }
+
+  public function salvarItem(Request $request) {
+    $item_contrato = \App\Contrato_item::find($request->contrato_item_id);
+    $item_contrato->quantidade = $request->quantidade;
+    $item_contrato->valor_unitario = $request->valor_unitario;
+    $item_contrato->save();
+    session()->flash('success', 'Valores alterados com sucesso.');
+    return redirect()->route('/contrato/exibirItensContrato',[$item_contrato->contrato_id]);
   }
 
   public function buscarContratosFornecedor(Request $request){

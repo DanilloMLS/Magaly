@@ -312,8 +312,9 @@ class EstoqueController extends Controller
     }
     
 
-    session()->flash('success', 'Item não existe.');
-    return redirect()->route('/estoque/listar');
+    //session()->flash('success', 'Item não existe.');
+    return redirect()->back() ->with('alert', 'Item não existe.');
+    //return redirect()->route('/estoque/listar');
   }
 
   public function mostrarHistorico(Request $request){

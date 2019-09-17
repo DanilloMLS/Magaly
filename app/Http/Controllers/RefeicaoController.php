@@ -17,7 +17,7 @@ class RefeicaoController extends Controller
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
 
-  //Obter uma refeição específica para edição e inserção de itens
+  //Obter uma refeição específica para edição, inserção e remoção de itens
   public function buscarRefeicao(Request $request){
     $refeicao = \App\Refeicao::find($request->id);
     $itens = \App\Item::all()->unique('nome');

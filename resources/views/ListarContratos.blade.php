@@ -57,7 +57,7 @@
                                     <td data-title="valor_total">{{ $contrato->valor_total }}</td>
                                     
 
-                                    <td>
+                                    <td data-title="Itens">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">
                                       </a>
@@ -78,7 +78,7 @@
 
                       <td>
                         <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
-                          <img src="/img/search.png" height="21" width="19" align = "right">
+                          <img src="/img/search.png" height="23" width="21" align = "right">
                         </a>
                       </td>
 
