@@ -136,14 +136,16 @@ class DistribuicaoController extends Controller
             $estoque_central_item->quantidade -= $qtde_restante;
             $estoque_central_item->save();
             $qtde_restante = 0;
-            $distribuicao_item->quantidade_falta += $qtde_restante;
+            //$distribuicao_item->quantidade_falta += $qtde_restante;
+            $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total - $distribuicao_item->quantidade_aceita));
             $distribuicao_item->save();
           } else {
             $temp = $estoque_central_item->quantidade;
             $estoque_central_item->quantidade = 0;
             $estoque_central_item->save();
             $qtde_restante -= $temp;
-            $distribuicao_item->quantidade_falta += $qtde_restante;
+            //$distribuicao_item->quantidade_falta += $qtde_restante;
+            $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total - $distribuicao_item->quantidade_aceita));
             $distribuicao_item->save();
           }
           if ($qtde_restante <= 0) {
