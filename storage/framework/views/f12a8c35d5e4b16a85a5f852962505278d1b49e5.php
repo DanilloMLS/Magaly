@@ -52,23 +52,6 @@
                 </a>
             </div>
         </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <center><strong>Teste</strong><center>
-                    </div>
-                    <?php
-                        $width = 10;
-                        $height = 10;
-                        $plot = new PHPlot($width, $height);
-                        $plot->SetTTFPath($this->fonts_path);
-                        $plot->SetUseTTF(true);
-                        return $plot;
-                    ?>
-                </div>
-            </div>
-
         <div style="width:80%">
           <br>
             <div class="card">
