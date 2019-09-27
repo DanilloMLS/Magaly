@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Contrato;
 use DateTime;
 
 use Illuminate\Http\Request;
@@ -30,7 +31,6 @@ class ContratoController extends Controller
 
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
-    //return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
   }
 
   public function listar(){
@@ -55,6 +55,7 @@ class ContratoController extends Controller
       $itens = \App\Item::all();
       return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
     }
+    return redirect()->back()->with('alert','O Contrato não existe.');
   }
 
   public function editarItem(Request $request) {
@@ -66,6 +67,7 @@ class ContratoController extends Controller
         "contrato" => $contrato,
         "contrato_item" => $contrato_item]);
     }
+    return redirect()->back()->with('alert','O Item não existe.');
   }
 
   public function inserirItemContrato(Request $request) {
@@ -103,6 +105,7 @@ class ContratoController extends Controller
       $contrato_item->save();
 
       $contrato->valor_total = $request->quantidade * $request->valor_unitario;
+      //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->save();
 
       session()->flash('success', 'Item adicionado.');
@@ -111,6 +114,17 @@ class ContratoController extends Controller
     
     session()->flash('success', 'Contrato não existe.');
     return redirect()->route('/contrato/listar');
+  }
+
+  private function calcularTotal(Contrato $contrato) {
+    $contrato_itens = \App\Contrato_item::where('contrato_id','=',$contrato->id)->get();
+    $total = 0.0;
+
+    foreach ($contrato_itens as $contrato_item) {
+      $total += $contrato_item->valor_unitario * $contrato_item->quantidade;
+    }
+
+    return $total;
   }
 
   //fora de circulação
@@ -160,11 +174,21 @@ class ContratoController extends Controller
 
   public function salvarItem(Request $request) {
     $item_contrato = \App\Contrato_item::find($request->contrato_item_id);
-    $item_contrato->quantidade = $request->quantidade;
-    $item_contrato->valor_unitario = $request->valor_unitario;
-    $item_contrato->save();
-    session()->flash('success', 'Valores alterados com sucesso.');
-    return redirect()->route('/contrato/exibirItensContrato',[$item_contrato->contrato_id]);
+
+    if (isset($item_contrato)) {
+      $contrato = \App\Contrato::find($item_contrato->contrato_id);
+      if (isset($contrato)){
+        $item_contrato->quantidade = $request->quantidade;
+        $item_contrato->valor_unitario = $request->valor_unitario;
+        $item_contrato->save();
+        $contrato->valor_total = $this->calcularTotal($contrato);
+        $contrato->save();
+        session()->flash('success', 'Valores alterados com sucesso.');
+        return redirect()->route('/contrato/exibirItensContrato',[$item_contrato->contrato_id]);
+      }
+      return redirect()->back()->with('alert','Esse Contrato não existe.');
+    }
+    return redirect()->back()->with('alert','Esse Item não existe.');
   }
 
   public function buscarContratosFornecedor(Request $request){

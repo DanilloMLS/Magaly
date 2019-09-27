@@ -54,7 +54,7 @@
                                     <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
                                     <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
-                                    <td data-title="valor_total">{{ $contrato->valor_total }}</td>
+                                    <td data-title="valor_total">R$ {{ $contrato->valor_total }}</td>
                                     
 
                                     <td data-title="Itens">
