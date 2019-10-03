@@ -41,6 +41,7 @@
                                   <th>Descrição</th>
                                   <th>Data</th>
                                   <th>Valor Total</th>
+                                  <th>Valor Restante</th>
                                   <th>Itens</th>
                               </tr>
                             </thead>
@@ -54,9 +55,22 @@
                                     <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
                                     <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
-                                    <td data-title="valor_total">R$ {{ $contrato->valor_total }}</td>
-                                    
+                                    <td data-title="valor_total">
+                                      @php
+                                          echo "R$".number_format($contrato->valor_total,2,',','.');
+                                      @endphp
+                                      </td>
+                                    <td data-title="valor_restante">
+                                      @php
+                                          $contrato_itens = \App\Contrato_item::where('contrato_id','=',$contrato->id)->get();
+                                          $valor_restante = 0.0;
 
+                                          foreach ($contrato_itens as $contrato_item) {
+                                            $valor_restante += $contrato_item->valor_unitario * $contrato_item->quantidade;
+                                          }
+                                          echo "R$".number_format($valor_restante,2,',','.');
+                                      @endphp
+                                      </td>
                                     <td data-title="Itens">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">

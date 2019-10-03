@@ -104,7 +104,7 @@ class ContratoController extends Controller
       $contrato_item->item_id = $item->id;
       $contrato_item->save();
 
-      $contrato->valor_total = $request->quantidade * $request->valor_unitario;
+      $contrato->valor_total += $request->quantidade * $request->valor_unitario;
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->save();
 
@@ -116,7 +116,7 @@ class ContratoController extends Controller
     return redirect()->route('/contrato/listar');
   }
 
-  private function calcularTotal(Contrato $contrato) {
+  /* private function calcularTotal(Contrato $contrato) {
     $contrato_itens = \App\Contrato_item::where('contrato_id','=',$contrato->id)->get();
     $total = 0.0;
 
@@ -125,7 +125,7 @@ class ContratoController extends Controller
     }
 
     return $total;
-  }
+  } */
 
   //fora de circulação
   public function removerItemContrato(Request $request) {
@@ -148,6 +148,7 @@ class ContratoController extends Controller
     return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
   }
 
+  //fora de circulação
   public function finalizarContrato(Request $request) {
     $contrato = \App\Contrato::find($request->id);
 
@@ -157,6 +158,7 @@ class ContratoController extends Controller
       foreach ($contrato_itens as $contrato_item) {
         $valorTotal = $valorTotal + $contrato_item->valor_unitario * $contrato_item->quantidade;
       }
+      //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->valor_total = $valorTotal;
       $contrato->save();
 
@@ -181,8 +183,8 @@ class ContratoController extends Controller
         $item_contrato->quantidade = $request->quantidade;
         $item_contrato->valor_unitario = $request->valor_unitario;
         $item_contrato->save();
-        $contrato->valor_total = $this->calcularTotal($contrato);
-        $contrato->save();
+        //$contrato->valor_total = $this->calcularTotal($contrato);
+        //$contrato->save();
         session()->flash('success', 'Valores alterados com sucesso.');
         return redirect()->route('/contrato/exibirItensContrato',[$item_contrato->contrato_id]);
       }
