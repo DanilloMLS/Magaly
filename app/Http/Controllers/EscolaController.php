@@ -71,6 +71,7 @@ class EscolaController extends Controller
   public function gerarRelatorio(){
       $escolas = \App\Escola::all();
       //return view("ListarEscolas", ["escolas" => $escolas]);
+      sleep(2);
       $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");      return  \PDF::loadView('RelatorioEscolas', compact('escolas'))
           // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
           ->stream('relatorio_Escolas_'.$data.'.pdf');

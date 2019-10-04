@@ -36,6 +36,7 @@ class ItemController extends Controller
         $itens = \App\Item::All();
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("RelatorioItens", ["itens" => $itens]);
 
+        sleep(2);
         return  \PDF::loadView('RelatorioItens', compact('itens'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
             ->stream('relatorio_Itens_'.$data.'.pdf');

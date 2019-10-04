@@ -39,6 +39,7 @@ class EstoqueController extends Controller
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("VisualizarItensEstoque", ["itens" => $itens]);
         //return view("ListarEstoques", ["estoques" => $estoques]);
 
+        sleep(2);
         return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
             ->stream('relatorio_Estoque_'.$data.'.pdf');
