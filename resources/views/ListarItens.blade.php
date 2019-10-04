@@ -76,7 +76,7 @@ function editar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/item/RelatorioItens") }}">Relatório</a>
+                      <!-- <a class="btn btn-primary" target="_blank" href="{{ route("/item/RelatorioItens") }}">Relatório</a> -->
                   </div>
                 </div>
             </div>

@@ -12,12 +12,6 @@ class FornecedorTableSeeder extends Seeder
      */
     public function run()
     {
-        $fake = Fake\Factory::create('pt_BR');
-        for($i = 0; $i < 10; $i++){
-            Fornecedor::create([
-                'nome'=>$fake->name,
-                'cnpj'=>'125463987526/42'
-            ]);
-        }
+        factory('App\Fornecedor', 5)->create();
     }
 }
