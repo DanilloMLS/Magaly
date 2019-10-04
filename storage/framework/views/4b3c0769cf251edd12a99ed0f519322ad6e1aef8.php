@@ -77,7 +77,7 @@ function editar(id){
                       <?php endif; ?>
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="<?php echo e(route("/item/RelatorioItens")); ?>">Relatório</a>
+                      <!-- <a class="btn btn-primary" target="_blank" href="<?php echo e(route("/item/RelatorioItens")); ?>">Relatório</a> -->
                   </div>
                 </div>
             </div>
