@@ -53,8 +53,16 @@
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura."".$item->unidade }}</td>
                                     <td data-title="Quantidade">{{ $item_contrato->quantidade }}</td>
-                                    <td data-title="Valor Unitario">R$ {{ $item_contrato->valor_unitario }}</td>
-                                    <td data-title="Subtotal"> R$ {{ sprintf('%0.2f', $item_contrato->quantidade * $item_contrato->valor_unitario) }}</td>
+                                    <td data-title="Valor Unitario">
+                                      @php
+                                          echo "R$".number_format($item_contrato->valor_unitario,2,',','.');
+                                      @endphp
+                                    </td>
+                                    <td data-title="Subtotal">
+                                      @php
+                                          echo "R$".number_format($item_contrato->quantidade * $item_contrato->valor_unitario,2,',','.');
+                                      @endphp
+                                    </td>
                                     <td>
                                       <a title="Editar valor/qtde" class="btn btn-primary" href="{{ route ('/itemContrato/editar', ['contrato_id' => $item_contrato->contrato_id, 'contrato_item_id' => $item_contrato->id]) }}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">

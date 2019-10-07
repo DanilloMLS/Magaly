@@ -42,7 +42,7 @@
                                   <th>Data</th>
                                   <th>Valor Total</th>
                                   <th>Valor Restante</th>
-                                  <th>Itens</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -71,10 +71,13 @@
                                           echo "R$".number_format($valor_restante,2,',','.');
                                       @endphp
                                       </td>
-                                    <td data-title="Itens">
+                                    <td data-title="Ações">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
-                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                        <img src="/img/item.png" height="24" width="21" align = "right">
                                       </a>
+                                      
+                                    </td>
+                                    <td>
                                       <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
                                         <img src="/img/edit.png" height="21" width="21" align = "center">
                                       </a>
