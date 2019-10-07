@@ -75,6 +75,9 @@
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">
                                       </a>
+                                      <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
+                                        <img src="/img/edit.png" height="21" width="21" align = "center">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach

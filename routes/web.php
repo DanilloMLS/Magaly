@@ -83,6 +83,8 @@ Route::get('/contrato/buscar', function(Request $request) {
 })->name('/contrato/buscar')->middleware('auth');
 Route::post('/contrato/buscarFornecedor', 'ContratoController@buscarContratosFornecedor')->name('/contrato/buscarFornecedor')->middleware('adm');
 Route::post('/contrato/buscarData', 'ContratoController@buscarContratosData')->name('/contrato/buscarData')->middleware('adm');
+Route::get('/contrato/editar/{id}', 'ContratoController@editar')->name('/contrato/editar')->middleware('adm');
+Route::post('/contrato/salvar', 'ContratoController@salvar')->name('/contrato/salvar')->middleware('adm');
 Route::get('/itemContrato/editar/{contrato_id}/{contrato_item_id}', 'ContratoController@editarItem')->name('/itemContrato/editar')->middleware('adm');
 Route::post('/itemContrato/salvar', 'ContratoController@salvarItem')->name('/itemContrato/salvar')->middleware('adm');
 
@@ -152,5 +154,5 @@ Route::get('/cardapioDiario/finalizarCardapio/{id}', 'CardapioController@finaliz
 Route::get('/cardapioMensal/finalizarCardapio', 'CardapioController@finalizarCardapioMensal')->name('/cardapioMensal/finalizarCardapio')->middleware('adm');
 Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('adm');
 Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCardapioMensal')->name('/cardapio/exibirItensCardapio')->middleware('auth');
-//Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
+Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');

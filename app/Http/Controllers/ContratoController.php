@@ -207,4 +207,35 @@ class ContratoController extends Controller
       $contratos =  \App\Contrato::where('data', '>=', $request->data_inicio)->where('data', '<=', $request->data_fim)->paginate(10);
       return view("ListarContratos", ["contratos" => $contratos]);
   }
+
+  public function editar(Request $request){
+    $contrato = \App\Contrato::find($request->id);
+
+    if (isset($contrato)) {
+      $fornecedores = \App\Fornecedor::all();
+      return view("EditarContrato", ["contrato" => $contrato, "fornecedores" => $fornecedores]);
+    }
+
+    return redirect()->back()->with('alert','Esse Contrato não existe.');
+  }
+
+  public function salvar(Request $request){
+    $contrato = \App\Contrato::find($request->id);
+
+    if (isset($contrato)) {
+      $contrato->data = $request->data;
+      $contrato->n_contrato = $request->n_contrato;
+      $contrato->n_processo_licitatorio = $request->n_processo_licitatorio;
+      $contrato->descricao = $request->descricao;
+      $contrato->valor_total = $request->valor_total;
+      $contrato->fornecedor_id = $request->fornecedor_id;
+      $contrato->modalidade = $request->modalidade;
+      $contrato->save();
+
+      session()->flash('success', 'Contrato editado com sucesso.');
+      return redirect()->route('/contrato/listar');
+    }
+
+    return redirect()->back()->with('alert', 'Contrato não existe.');
+  }
 }
