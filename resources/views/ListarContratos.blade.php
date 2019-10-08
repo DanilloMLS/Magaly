@@ -23,14 +23,15 @@
                               Não há nenhum contrato cadastrado no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca por fornecedor">
-                      </div>
-                        <div id="tabela" class="table-responsive">
+                      <div id= "termoBusca" style="display: flex; justify-content: space-between">
                           <h5 class="card-title">
-                            Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}} 
-                            ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
+                              Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}}
+                              ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
                           </h5>
+                        <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
+                          <br>
+                        <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -92,7 +93,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/contrato/RelatorioContratos") }}">Relatório</a>
+                      <!-- <a class="btn btn-primary" target="_blank" href="{{ route("/contrato/RelatorioContratos") }}">Relatório</a> -->
 
                       <a class="btn btn-primary" href="{{ route("/contrato/telaCadastrar") }}">Novo</a>
 

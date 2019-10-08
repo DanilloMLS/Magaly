@@ -38,6 +38,7 @@ class RefeicaoController extends Controller
   }
 
   public function gerarRelatorio(){
+
     $refeicoes = \App\Refeicao::all();
       $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
 
