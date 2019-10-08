@@ -18,7 +18,7 @@
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($itens) == 0 and count($itens) == 0)
+                      @if(count($itens) == 0)
                       <div class="alert alert-danger">
                               Não há nenhum item neste contrato.
                       </div>
@@ -77,7 +77,7 @@
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{ route ('/contrato/listar')}}">Voltar</a>
-                      <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $item_contrato->contrato_id])}}">Novo Item</a>
+                      
                   </div>
                 </div>
             </div>

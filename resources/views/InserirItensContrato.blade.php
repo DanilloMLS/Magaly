@@ -93,7 +93,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Inserir
                               </button>
-                              <a class="btn btn-primary" href="/contrato/exibirItensContrato/+{{$contrato->id}}">Finalizar</a>
+                              <a class="btn btn-primary" href={{route ('/contrato/exibirItensContrato', ['id' => $contrato->id])}}>Finalizar</a>
                             </div>
                         </div>
                     </form>

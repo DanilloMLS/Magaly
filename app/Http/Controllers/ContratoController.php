@@ -170,8 +170,17 @@ class ContratoController extends Controller
   }
 
   public function exibirItensContrato(Request $request){
-    $itens = \App\Contrato_item::where('contrato_id', '=', $request->id)->get();
-    return view("VisualizarItensContrato", ["itens" => $itens]);
+    $contrato = \App\Contrato::find($request->id);
+    
+    if (isset($contrato)) {
+      $itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->get();
+      if (isset($itens)) {
+        return view("VisualizarItensContrato", ["itens" => $itens]);
+      }
+    }
+    
+    session()->flash('success', 'Contrato não existe.');
+    return redirect()->route('/contrato/listar');
   }
 
   public function salvarItem(Request $request) {
@@ -186,7 +195,7 @@ class ContratoController extends Controller
         //$contrato->valor_total = $this->calcularTotal($contrato);
         //$contrato->save();
         session()->flash('success', 'Valores alterados com sucesso.');
-        return redirect()->route('/contrato/exibirItensContrato',[$item_contrato->contrato_id]);
+        return redirect()->route('/contrato/exibirItensContrato', ["id" => $item_contrato->contrato_id]);
       }
       return redirect()->back()->with('alert','Esse Contrato não existe.');
     }
