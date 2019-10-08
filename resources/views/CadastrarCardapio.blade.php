@@ -17,9 +17,9 @@
                         <div class="form-group row">
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
                             <div class="col-md-6">
-                              <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
-      								              <option value="0">Selecione uma Modalidade de ensino</option>
-      									            <option value="1">Creche Infantil Integral</option>
+                              <select class="form-control" id="modalidade_ensino" required name="modalidade_ensino">
+      					<option value="">Selecione uma Modalidade de ensino</option>
+      					<option value="1">Creche Infantil Integral</option>
                                     <option value="2">Creche Infantil Parcial</option>
                                     <option value="3">Infantil (pré-escola)</option>
                                     <option value="4">Ensino Fundamental</option>

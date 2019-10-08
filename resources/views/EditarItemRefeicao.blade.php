@@ -43,7 +43,7 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Total ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="text"  class="form-control" value="{{ $item_refeicao->quantidade}}" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                              <input name="quantidade" id="quantidade" type="number"  class="form-control" min="0"  value="{{ $item_refeicao->quantidade}}" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                             </div>
                         </div>
 
