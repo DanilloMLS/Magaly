@@ -83,6 +83,11 @@
                                         <img src="/img/edit.png" height="21" width="21" align = "center">
                                       </a>
                                     </td>
+                                    <td>
+                                      <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
+                                        <img src="/img/add_item.png" height="21" width="21" align = "center">
+                                      </a>
+                                    </td>
                                 </tr>
                               @endforeach
 
