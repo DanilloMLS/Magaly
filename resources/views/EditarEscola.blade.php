@@ -17,7 +17,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" required value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" required value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control" value="{{ $escola->gestor}}" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}
+                              <input name="gestor" id="gestor" type="text" class="form-control" required value="{{ $escola->gestor}}" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}
                             </div>
                         </div>
 
