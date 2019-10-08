@@ -357,18 +357,22 @@ class DistribuicaoController extends Controller
 
     //$itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
     //return view("VisualizarItensDistribuicao", ["itens" => $itens]);
-    return redirect()->route('/distribuicao/exibirItensDistribuicao');
+    return redirect()->back()->with('alert', 'Item não existe.');
   }
 
   public function salvarItemDistribuicao(Request $request){
     $item_distribuicao = \App\Distribuicao_item::find($request->id);
+    
+    if (isset($item_distribuicao)) {
+      $item_distribuicao->quantidade_total = $request->quantidade_total;
+      $item_distribuicao->save();
 
-    $item_distribuicao->quantidade_total = $request->quantidade_total;
-    $item_distribuicao->save();
-
-    session()->flash('success', 'Item da distribuição modificado com sucesso.');
-    //$itens = \App\Distribuicao_item::where('distribuicao_id', '=', $item_distribuicao->distribuicao_id)->get();
-    //return view("VisualizarItensDistribuicao", ["itens" => $itens]);
-    return redirect()->route('/distribuicao/exibirItensDistribuicao');
+      session()->flash('success', 'Item da distribuição modificado com sucesso.');
+      return redirect()->route('/distribuicao/exibirItensDistribuicao', [
+        "distribuicao" => $item_distribuicao->distribuicao_id
+        ]);
+    }
+    
+    return redirect()->back()->with('alert','Item não existe.');
   }
 }
