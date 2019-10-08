@@ -49,7 +49,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}</input>
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" required value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}</input>
 
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
+                              <input name="gestor" id="gestor" type="text" class="form-control" required value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
 
                             </div>
                         </div>
