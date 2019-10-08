@@ -83,6 +83,10 @@ Route::get('/contrato/buscar', function(Request $request) {
 })->name('/contrato/buscar')->middleware('auth');
 Route::post('/contrato/buscarFornecedor', 'ContratoController@buscarContratosFornecedor')->name('/contrato/buscarFornecedor')->middleware('adm');
 Route::post('/contrato/buscarData', 'ContratoController@buscarContratosData')->name('/contrato/buscarData')->middleware('adm');
+Route::get('/contrato/editar/{id}', 'ContratoController@editar')->name('/contrato/editar')->middleware('adm');
+Route::post('/contrato/salvar', 'ContratoController@salvar')->name('/contrato/salvar')->middleware('adm');
+Route::get('/itemContrato/editar/{contrato_id}/{contrato_item_id}', 'ContratoController@editarItem')->name('/itemContrato/editar')->middleware('adm');
+Route::post('/itemContrato/salvar', 'ContratoController@salvarItem')->name('/itemContrato/salvar')->middleware('adm');
 
 //Item
 Route::get('/item/telaCadastrar', 'ItemController@telaCadastrar')->name('/item/telaCadastrar')->middleware('adm');
@@ -123,11 +127,12 @@ Route::get('/refeicao/cadastrar', function(Request $request) {
 })->name('/refeicao/cadastrar')->middleware('adm');
 Route::post('/refeicao/cadastrar', 'RefeicaoController@cadastrar')->name('/refeicao/cadastrar')->middleware('adm');
 Route::get('/refeicao/listar', 'RefeicaoController@listar')->name('/refeicao/listar')->middleware('auth');
-Route::get('/refeicao/editar/{id}', 'RefeicaoController@editar')->name('/refeicao/editar')->middleware('adm');
-Route::post('/refeicao/salvar', 'RefeicaoController@salvar')->name('/refeicao/salvar')->middleware('adm');
-Route::get('/refeicao/remover/{id}', 'RefeicaoController@remover')->name('/refeicao/remover')->middleware('adm');
+//Route::get('/refeicao/editar/{id}', 'RefeicaoController@editar')->name('/refeicao/editar')->middleware('adm');
+//Route::post('/refeicao/salvar', 'RefeicaoController@salvar')->name('/refeicao/salvar')->middleware('adm');
+//Route::get('/refeicao/remover/{id}', 'RefeicaoController@remover')->name('/refeicao/remover')->middleware('adm');
 Route::post('/refeicao/inserirItem', 'RefeicaoController@inserirItemRefeicao')->name('/refeicao/inserirItem')->middleware('adm');
 Route::get('/refeicao/removerItem/{id}', 'RefeicaoController@removerItemRefeicao')->name('/refeicao/removerItem')->middleware('adm');
+Route::get('/refeicao/inserirItemRefeicao/{id}', 'RefeicaoController@buscarRefeicao')->name('/refeicao/inserirItemRefeicao')->middleware('adm');
 Route::get('/refeicao/finalizarRefeicao/{id}', 'RefeicaoController@finalizarRefeicao')->name('/refeicao/finalizarRefeicao')->middleware('adm');
 Route::get('/refeicao/exibirItensRefeicao/{id}', 'RefeicaoController@exibirItensRefeicao')->name('/refeicao/exibirItensRefeicao')->middleware('auth');
 Route::get('/refeicao/Relatorio_Refeicoes', 'RefeicaoController@gerarRelatorio')->name('/refeicao/RelatorioRefeicoes')->middleware('auth');
@@ -149,3 +154,5 @@ Route::get('/cardapioDiario/finalizarCardapio/{id}', 'CardapioController@finaliz
 Route::get('/cardapioMensal/finalizarCardapio', 'CardapioController@finalizarCardapioMensal')->name('/cardapioMensal/finalizarCardapio')->middleware('adm');
 Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('adm');
 Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCardapioMensal')->name('/cardapio/exibirItensCardapio')->middleware('auth');
+Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
+Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');

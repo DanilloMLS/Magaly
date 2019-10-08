@@ -42,7 +42,8 @@
                                   <th>Descrição</th>
                                   <th>Data</th>
                                   <th>Valor Total</th>
-                                  <th>Itens</th>
+                                  <th>Valor Restante</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -55,12 +56,31 @@
                                     <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
                                     <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
-                                    <td data-title="valor_total">{{ $contrato->valor_total }}</td>
-                                    
+                                    <td data-title="valor_total">
+                                      @php
+                                          echo "R$".number_format($contrato->valor_total,2,',','.');
+                                      @endphp
+                                      </td>
+                                    <td data-title="valor_restante">
+                                      @php
+                                          $contrato_itens = \App\Contrato_item::where('contrato_id','=',$contrato->id)->get();
+                                          $valor_restante = 0.0;
 
-                                    <td>
+                                          foreach ($contrato_itens as $contrato_item) {
+                                            $valor_restante += $contrato_item->valor_unitario * $contrato_item->quantidade;
+                                          }
+                                          echo "R$".number_format($valor_restante,2,',','.');
+                                      @endphp
+                                      </td>
+                                    <td data-title="Ações">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
-                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                        <img src="/img/item.png" height="24" width="21" align = "right">
+                                      </a>
+                                      
+                                    </td>
+                                    <td>
+                                      <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
+                                        <img src="/img/edit.png" height="21" width="21" align = "center">
                                       </a>
                                     </td>
                                 </tr>
@@ -79,7 +99,7 @@
 
                       <td>
                         <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
-                          <img src="/img/search.png" height="21" width="19" align = "right">
+                          <img src="/img/search.png" height="23" width="21" align = "right">
                         </a>
                       </td>
 
