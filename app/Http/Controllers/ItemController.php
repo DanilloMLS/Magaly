@@ -73,7 +73,6 @@ class ItemController extends Controller
         if (isset($item)) {
             $item->nome = $request->nome;
             $item->marca = $request->marca;
-            $item->n_lote = $request->n_lote;
             $item->descricao = $request->descricao;
             $item->unidade = $request->unidade;
             $item->gramatura = $request->gramatura;

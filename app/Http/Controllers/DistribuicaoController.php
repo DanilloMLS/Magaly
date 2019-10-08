@@ -194,6 +194,7 @@ class DistribuicaoController extends Controller
     return redirect()->route('/distribuicao/novaBaixa',[$distribuicao_item->distribuicao_id]);
   }
 
+  //gera uma nova distribuição com os itens em falta
   private function gerarDistribuicaoRest(Distribuicao $distribuicao){
     //$distribuicao = \App\Distribuicao::find($ris->id);
     $distribuicao_itens = \App\Distribuicao_item::where('distribuicao_id','=',$distribuicao->id)
