@@ -42,7 +42,6 @@ class ContratoController extends Controller
     $contratos = \App\Contrato::all();
       $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("RelatorioContratos", ["contratos" => $contratos]);
 
-      sleep(2);
     return  \PDF::loadView('RelatorioContratos', compact('contratos'))
           // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
           ->stream('relatorio_Contrato_'.$data.'.pdf');

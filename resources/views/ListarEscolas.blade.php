@@ -37,14 +37,15 @@ function editar(id){
                               Não há nenhuma escola cadastrada no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
-                      </div>
-                        <div id="tabela" class="table-responsive">
+                      <div id= "termoBusca" style="display: flex; justify-content: space-between">
                           <h5 class="card-title">
-                            Exibindo {{$escolas->count()}} escolas de {{$escolas->total()}} 
-                            ({{$escolas->firstItem()}} a {{$escolas->lastItem()}})
+                              Exibindo {{$escolas->count()}} escolas de {{$escolas->total()}}
+                              ({{$escolas->firstItem()}} a {{$escolas->lastItem()}})
                           </h5>
+                          <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
+                      <br>
+                        <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -63,27 +64,27 @@ function editar(id){
                             <tbody>
                               @foreach ($escolas as $escola)
                                 <tr>
-                                    <td data-title="Nº" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->id }}</td>
-                                    <td data-title="Nome" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->nome }}</td>
-                                    <td data-title="Modalidade de Ensino" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->modalidade_ensino }}</td>
-                                    <td data-title="Rota" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->rota }}</td>
-                                    <td data-title="Endereco" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->endereco }}</td>
-                                    <td data-title="Período de Atendimento" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->periodo_atendimento }}</td>
-                                    <td data-title="Quantidade de Alunos" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->qtde_alunos }}</td>
-                                    <td data-title="Gestor" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->gestor }}</td>
-                                    <td data-title="Telefone" title="Clique para editar" onclick="editar({{$escola->id}});">{{ $escola->telefone }}</td>
+                                    <td data-title="Nº">{{ $escola->id }}</td>
+                                    <td data-title="Nome">{{ $escola->nome }}</td>
+                                    <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
+                                    <td data-title="Rota">{{ $escola->rota }}</td>
+                                    <td data-title="Endereco">{{ $escola->endereco }}</td>
+                                    <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
+                                    <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
+                                    <td data-title="Gestor">{{ $escola->gestor }}</td>
+                                    <td data-title="Telefone">{{ $escola->telefone }}</td>
 
 
-                                    {{-- <td>
+                                    <td>
                                       <a class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td> --}}
-                                    <td>
+                                    </td>
+                                    <!-- <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                               @endforeach
 

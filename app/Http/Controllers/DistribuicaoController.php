@@ -231,7 +231,7 @@ class DistribuicaoController extends Controller
         $distribuicoes = \App\Distribuicao::All();
         //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");
-        sleep(2);
+
         return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
             ->stream('relatorio_Distribuicao_'.$data.'.pdf');
