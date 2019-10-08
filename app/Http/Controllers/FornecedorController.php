@@ -45,7 +45,6 @@ class FornecedorController extends Controller
         $fornecedores = \App\Fornecedor::all();
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
 
-        sleep(2);
         return  \PDF::loadView('RelatorioFornecedores', compact('fornecedores'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
             ->stream('relatorio_Fornecedor_'.$data.'.pdf');

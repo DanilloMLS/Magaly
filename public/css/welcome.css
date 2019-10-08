@@ -34,18 +34,19 @@ html, body {
 
 .logo-garanhuns {
     width: 8%;
-}
+}BR
+9+
+
 
 .content {
     text-align: center;
 }
 
-.title {
+.title  {
     font-size: 84px;
     color: #00aabb;
     text-shadow: 3px 3px #3f3f3f;
 }
-
 .links > a {
     font: 16px bold;
     color: rgba(65,65,65,.5);
@@ -70,4 +71,19 @@ html, body {
 
 .logo {
     background-image: url("../img/BACKGROUND-PNG1.png");
+}
+@media (max-width:1980px){
+    .title{font-size: 100px}
+}
+@media (max-width:1600px){
+    .title{font-size: 75px}
+}
+@media (max-width:1200px){
+    .title{font-size: 65px}
+}
+@media (max-width:900px){
+    .title{font-size: 55px}
+}
+@media (max-width:768px){
+    .title{font-size: 45px}
 }

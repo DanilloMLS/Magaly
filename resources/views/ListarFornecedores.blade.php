@@ -37,14 +37,15 @@ function editar(id){
                               Não há nenhum fornecedor cadastrado no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
-                      </div>
-                        <div id="tabela" class="table-responsive">
+                      <div id= "termoBusca" style="display: flex; justify-content: space-between">
                           <h5 class="card-title">
-                            Exibindo {{$fornecedores->count()}} fornecedores de {{$fornecedores->total()}} 
-                            ({{$fornecedores->firstItem()}} a {{$fornecedores->lastItem()}})
+                              Exibindo {{$fornecedores->count()}} fornecedores de {{$fornecedores->total()}}
+                              ({{$fornecedores->firstItem()}} a {{$fornecedores->lastItem()}})
                           </h5>
+                          <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      </div>
+                          <br>
+                        <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -58,21 +59,21 @@ function editar(id){
                             <tbody>
                               @foreach ($fornecedores as $fornecedor)
                                 <tr>
-                                    <td data-title="Nome" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->nome }}</td>
-                                    <td data-title="CNPJ" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->cnpj }}</td>
-                                    <td data-title="Telefone" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->telefone }}</td>
-                                    <td data-title="Email" onclick="editar({{$fornecedor->id}})" title="Clique para editar">{{ $fornecedor->email }}</td>
+                                    <td data-title="Nome">{{ $fornecedor->nome }}</td>
+                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
+                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
+                                    <td data-title="Email">{{ $fornecedor->email }}</td>
 
-                                    {{-- <td>
+                                   <td>
                                       <a class="btn btn-primary" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td> --}}
-                                    <td>
+                                    </td>
+                                <!-- <td>
                                       <a class="btn btn-primary" onClick="avisoDeletar({{$fornecedor->id}});">
                                         <img src="/img/delete.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                               @endforeach
 
@@ -83,7 +84,7 @@ function editar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/fornecedor/RelatorioFornecedores") }}">Relatório</a>
+                      <a class="btn btn-primary" target="_blank" href="{{ route("/fornecedor/RelatorioFornecedores") }}">Listar</a>
                       <a class="btn btn-primary" href="{{ route("/fornecedor/cadastrar") }}">Novo</a>
                   </div>
                 </div>

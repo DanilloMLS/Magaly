@@ -31,7 +31,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <h1>Magaly</h1>
+                    <h1 class="title-body-text">Magaly</h1>
                 </div>
 <!-- 
                 <div class="links">

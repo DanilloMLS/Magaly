@@ -33,14 +33,14 @@ function avisoDeletar(id){
                               Não há nenhuma distribuição cadastrada no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      <div id= "termoBusca" style="display: flex; justify-content: space-between">
+                          <h5 class="card-title">
+                              Exibindo {{$distribuicoes->count()}} distribuições de {{$distribuicoes->total()}}
+                              ({{$distribuicoes->firstItem()}} a {{$distribuicoes->lastItem()}})
+                          </h5>
+                          <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
-                          <h5 class="card-title">
-                            Exibindo {{$distribuicoes->count()}} distribuições de {{$distribuicoes->total()}} 
-                            ({{$distribuicoes->firstItem()}} a {{$distribuicoes->lastItem()}})
-                          </h5>
                           <table class="table table-hover">
                             <thead>
                               <tr>

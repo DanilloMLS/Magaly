@@ -35,14 +35,14 @@ function editar(id){
                               Não há nenhum item cadastrado no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
-                      </div>
                         <div id="tabela" class="table-responsive">
-                          <h5 class="card-title">
-                            Exibindo {{$itens->count()}} itens de {{$itens->total()}}
-                            ({{$itens->firstItem()}} a {{$itens->lastItem()}})
-                          </h5>
+                            <div id= "termoBusca" style="display: flex; justify-content: space-between">
+                                <h5 class="card-title">
+                                    Exibindo {{$itens->count()}} itens de {{$itens->total()}}
+                                    ({{$itens->firstItem()}} a {{$itens->lastItem()}})
+                                </h5>
+                                <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                            </div>
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -54,12 +54,18 @@ function editar(id){
                             </thead>
                             <tbody>
                               @foreach ($itens as $item)
-                                <tr title="Clique para editar" onclick="editar({{$item->id}});">
+                                <tr>
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
 
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route ("/item/editar", ['id' => $item->id])}}">
+                                            <img src="/img/edit.png" height="21" width="17" align = "right">
+                                        </a>
                                     </td>
                                     <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
                                     <!-- <td>
