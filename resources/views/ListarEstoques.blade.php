@@ -42,10 +42,6 @@ function listarItens(id){
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: space-between">
-                          <h5 class="card-title">
-                              Exibindo {{$estoques->count()}} estoques de {{$estoques->total()}}
-                              ({{$estoques->firstItem()}} a {{$estoques->lastItem()}})
-                          </h5>
                           <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
@@ -81,7 +77,6 @@ function listarItens(id){
 
                             </tbody>
                           </table>
-                          {{$estoques->links()}}
                         </div>
                       @endif
                   </div>

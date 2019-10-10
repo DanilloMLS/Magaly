@@ -34,7 +34,8 @@ class ContratoController extends Controller
   }
 
   public function listar(){
-    $contratos = \App\Contrato::orderBy('id')->paginate(10);
+    //$contratos = \App\Contrato::orderBy('id')->paginate(10);
+    $contratos = \App\Contrato::orderBy('id')->get();
     return view("ListarContratos", ["contratos" => $contratos]);
   }
 

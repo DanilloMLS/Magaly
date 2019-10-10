@@ -64,7 +64,7 @@ class EscolaController extends Controller
   }
 
   public function listar(){
-    $escolas = \App\Escola::orderBy('id')->paginate(10);
+    $escolas = \App\Escola::orderBy('id')->get();
     return view("ListarEscolas", ["escolas" => $escolas]);
   }
 
