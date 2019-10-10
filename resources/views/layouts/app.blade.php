@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <title>Magaly</title>
+    <link rel="shortcut icon" href="/img/MG-S.png" type="image/x-png">
   <style type="text/css">
 
   footer {
@@ -15,8 +17,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Magaly') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -213,12 +213,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastro') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><img class="btn-img" align="center" src="/img/cadastro.png"></a>
                                 </li>
                             @endif
                         @else
@@ -232,6 +229,7 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
+                                        <img class="btn-img" align="center" src="/img/exit.png">
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -47,7 +47,7 @@ class FornecedorController extends Controller
 
         return  \PDF::loadView('RelatorioFornecedores', compact('fornecedores'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Fornecedor_'.$data.'.pdf');
+            ->stream('Lista de Fornecedor_'.$data.'.pdf');
     }
 
   public function remover(Request $request){

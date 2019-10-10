@@ -34,9 +34,7 @@ html, body {
 
 .logo-garanhuns {
     width: 8%;
-}BR
-9+
-
+}
 
 .content {
     text-align: center;
@@ -47,24 +45,6 @@ html, body {
     color: #00aabb;
     text-shadow: 3px 3px #3f3f3f;
 }
-.links > a {
-    font: 16px bold;
-    color: rgba(65,65,65,.5);
-    padding: 0 25px;
-    font-weight: 600;
-    text-decoration: none;
-    text-shadow: 1px 1px rgba(65,65,65,.5);
-    background: rgba(255,255,255,.7);
-    border-style: solid;
-    border-color: rgba(63,63,63,.15);
-    border-width: 3px;
-    border-radius: 10px;
-}
-
-.links > a:hover{
-    background: rgba(200,200,200,.7);
-}
-
 .m-b-md {
     margin-bottom: 30px;
 }

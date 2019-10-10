@@ -48,17 +48,12 @@
           <div class="form-group">
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-              <label class="custom-control-label" for="remember">Mantenha-me conectado</label>
+              <label class="custom-control-label" for="remember">Lembrar</label>
             </div>
           </div>
 
       <div class="d-flex justify-content-center mt-3 login_container">
         <button type="submit" name="button" class="btn login_btn">{{ __('Login') }}</button>
-        @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ __('Esqueceu a senha?') }}
-            </a>
-        @endif
       </div>
     </form>
     </div>

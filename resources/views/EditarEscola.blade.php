@@ -14,10 +14,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
+                            <label for="nome"  class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" readonly=“true” id="nome" type="text" class="form-control" required value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -94,6 +94,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Salvar
                               </button>
+                                <a class="btn-cancelar btn btn-primary" href="{{route ('/escola/listar')}}">Cancelar</a>
                             </div>
                         </div>
                     </form>

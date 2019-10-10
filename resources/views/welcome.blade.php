@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <title>Magaly</title>
+        <link rel="shortcut icon" href="/img/MG-S.png" type="image/x-png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -20,11 +20,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Cadastro</a>
-                        @endif
+                        <a href="{{ route('login') }}"><img width="70%" class="btn-img" align="center" src="/img/login.png"></a>
                     @endauth
                 </div>
             @endif
@@ -33,16 +29,6 @@
                 <div class="title m-b-md">
                     <h1 class="title-body-text">Magaly</h1>
                 </div>
-<!-- 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> -->
             </div>
         </div>
     </body>

@@ -23,7 +23,7 @@ Tel: (87)3762-7060
                 </td>
             </tr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">LISTAGEM DAS ESCOLAS</h1></td>
+                <td align="center" colspan=3><h1 size="80">ESCOLAS</h1></td>
             </tr>
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">

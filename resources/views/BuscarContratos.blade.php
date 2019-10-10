@@ -60,6 +60,7 @@
                                   <img src="/img/search.png" height="21" width="19" align = "right">
                               </button>
                             </div>
+                            <a class="btn-cancelar btn btn-primary" href="{{route ('/contrato/listar')}}">Cancelar</a>
                         </div>
                     </form>
                 </div>
