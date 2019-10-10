@@ -24,11 +24,6 @@
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: space-between">
-
-                          <h5 class="card-title">
-                              Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}}
-                              ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
-                          </h5>
                           <div>
                             <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca Simples">
                             <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
