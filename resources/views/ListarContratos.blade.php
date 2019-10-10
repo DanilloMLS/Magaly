@@ -24,7 +24,18 @@
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: space-between">
-                        <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+
+                          <h5 class="card-title">
+                              Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}}
+                              ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
+                          </h5>
+                          <div>
+                            <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca Simples">
+                            <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
+                                <img src="/img/search.png" height="23" width="21" align = "right">
+                                Detalhada
+                            </a>
+                          </div>
                       </div>
                           <br>
                         <div id="tabela" class="table-responsive">
@@ -95,13 +106,6 @@
                   <div class="panel-footer">
 
                       <a class="btn btn-primary" href="{{ route("/contrato/telaCadastrar") }}">Novo</a>
-
-                      <td>
-                        <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
-                          <img src="/img/search.png" height="23" width="21" align = "right">
-                        </a>
-                      </td>
-
                   </div>
                 </div>
             </div>

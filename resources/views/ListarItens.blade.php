@@ -72,7 +72,7 @@ function editar(id){
                         </div>
                       @endif
                   </div>
-                  
+
                 </div>
             </div>
         </div>

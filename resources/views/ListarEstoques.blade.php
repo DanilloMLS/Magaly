@@ -65,9 +65,6 @@ function listarItens(id){
                                       <a title="Histórico de Movimentações" class="btn btn-primary" href="{{ route ("/estoque/historicoEstoque", ['id' => $estoque->id])}}">
                                         <img src="/img/history.png" height="21" width="21" align = "right">
                                       </a>
-                                      <!-- <a title="Deletar Estoque" class="btn btn-primary" onClick="avisoDeletar({{$estoque->id}});">
-                                        <img src="/img/delete.png" height="21" width="17" align = "right">
-                                      </a> -->
                                       <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
@@ -98,7 +95,6 @@ function listarItens(id){
       filter = input.value.toUpperCase();
       table = document.getElementById("tabela");
       tr = table.getElementsByTagName("tr");
-      // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {

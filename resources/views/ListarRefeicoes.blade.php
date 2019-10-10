@@ -59,7 +59,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">Relatório</a>
+                      <a class="btn btn-primary" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">Listar</a>
                       <a class="btn btn-primary" href="{{ route("/refeicao/cadastrar") }}">Novo</a>
                   </div>
                 </div>

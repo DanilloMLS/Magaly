@@ -27,6 +27,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Salvar
                               </button>
+                                <a class="btn-cancelar btn btn-primary" href="{{route ('/estoque/listar')}}">Cancelar</a>
                             </div>
                         </div>
                     </form>

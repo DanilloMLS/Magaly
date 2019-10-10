@@ -66,7 +66,6 @@
                   </div>
                   <div class="panel-footer">
                       <a class="btn btn-primary" href="{{route ('/refeicao/listar')}}">Voltar</a>
-
                   </div>
                 </div>
             </div>
