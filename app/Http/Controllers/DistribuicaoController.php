@@ -224,7 +224,7 @@ class DistribuicaoController extends Controller
   }
 
   public function listar(){
-    $distribuicoes = \App\Distribuicao::orderBy('baixada')->orderBy('observacao')->paginate(10);
+    $distribuicoes = \App\Distribuicao::orderBy('baixada')->orderBy('observacao')->get();
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 

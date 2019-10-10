@@ -37,10 +37,6 @@ function editar(id){
                       @else
                         <div id="tabela" class="table-responsive">
                             <div id= "termoBusca" style="display: flex; justify-content: space-between">
-                                <h5 class="card-title">
-                                    Exibindo {{$itens->count()}} itens de {{$itens->total()}}
-                                    ({{$itens->firstItem()}} a {{$itens->lastItem()}})
-                                </h5>
                                 <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                             </div>
                           <table class="table table-hover">
@@ -73,10 +69,10 @@ function editar(id){
 
                             </tbody>
                           </table>
-                          {{$itens->links()}}
                         </div>
                       @endif
                   </div>
+
                 </div>
             </div>
         </div>

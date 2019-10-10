@@ -38,10 +38,6 @@ function editar(id){
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: space-between">
-                          <h5 class="card-title">
-                              Exibindo {{$escolas->count()}} escolas de {{$escolas->total()}}
-                              ({{$escolas->firstItem()}} a {{$escolas->lastItem()}})
-                          </h5>
                           <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                       <br>
@@ -80,17 +76,11 @@ function editar(id){
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>
-                                    <!-- <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$escola->id}});">
-                                        <img src="/img/delete.png" height="21" width="17" align = "right">
-                                      </a>
-                                    </td> -->
                                 </tr>
                               @endforeach
 
                             </tbody>
                           </table>
-                          {{$escolas->links()}}
                         </div>
                       @endif
                   </div>

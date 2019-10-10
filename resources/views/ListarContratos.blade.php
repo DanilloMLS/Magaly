@@ -24,10 +24,6 @@
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: space-between">
-                          <h5 class="card-title">
-                              Exibindo {{$contratos->count()}} contratos de {{$contratos->total()}}
-                              ({{$contratos->firstItem()}} a {{$contratos->lastItem()}})
-                          </h5>
                           <div>
                             <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca Simples">
                             <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
@@ -99,12 +95,10 @@
 
                             </tbody>
                           </table>
-                          {{$contratos->links()}}
                         </div>
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <!-- <a class="btn btn-primary" target="_blank" href="{{ route("/contrato/RelatorioContratos") }}">Relatório</a> -->
 
                       <a class="btn btn-primary" href="{{ route("/contrato/telaCadastrar") }}">Novo</a>
                   </div>

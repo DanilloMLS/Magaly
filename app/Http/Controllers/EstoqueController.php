@@ -30,7 +30,7 @@ class EstoqueController extends Controller
   }
 
   public function listar(){
-    $estoques = \App\Estoque::orderBy('nome')->paginate(10);
+    $estoques = \App\Estoque::orderBy('nome')->get();
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
 
