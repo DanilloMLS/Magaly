@@ -67,10 +67,6 @@ function editar(id){
                                             <img src="/img/edit.png" height="21" width="17" align = "right">
                                         </a>
                                     </td>
-                                    <!-- A exclusão deve ser feita apenas pelo controle de estoque -->
-                                    <!-- <td>
-                                      <a class="btn btn-primary" onClick="avisoDeletar({{$item->id}});"> Excluir</a>
-                                    </td> -->
                                     <td></td>
                                 </tr>
                               @endforeach
@@ -80,9 +76,6 @@ function editar(id){
                           {{$itens->links()}}
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <!-- <a class="btn btn-primary" target="_blank" href="{{ route("/item/RelatorioItens") }}">Relatório</a> -->
                   </div>
                 </div>
             </div>

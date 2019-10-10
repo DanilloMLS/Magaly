@@ -48,8 +48,8 @@
                               <select class="form-control" id="unidade" name="unidade" required value="{{ $item->unidade}}">
                                     <option value="">Unidade</option>
 
-					<option value="G" @if(strcasecmp($item->unidade, 'G') == 0) selected="selected" @endif> G </option>
-					<option value="ML" @if(strcasecmp($item->unidade, 'ML') == 0) selected="selected" @endif> ML </option>
+					<option value="g" @if(strcasecmp($item->unidade, 'g') == 0) selected="selected" @endif> g </option>
+					<option value="ml" @if(strcasecmp($item->unidade, 'ml') == 0) selected="selected" @endif> ml</option>
 				</select>
                             </div>
                         </div>
@@ -58,6 +58,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Salvar
                               </button>
+                                <a class="btn-cancelar btn btn-primary" href="{{route ('/item/listar')}}">Cancelar</a>
                             </div>
                         </div>
                     </form>

@@ -17,7 +17,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome da fornecedor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value="{{ $fornecedor->nome}}" required value= {{ old('nome')}} > {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" readonly=“true” type="text" class="form-control" required value="{{ $fornecedor->nome}}" required value= {{ old('nome')}} > {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -25,7 +25,7 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="cnpj" id="cnpj" type="text" class="form-control" required value="{{ $fornecedor->cnpj}}" > {{ $errors->first('cnpj')}}
+                              <input name="cnpj" id="cnpj" readonly=“true” type="text" class="form-control" required value="{{ $fornecedor->cnpj}}" > {{ $errors->first('cnpj')}}
                             </div>
                         </div>
 
@@ -56,6 +56,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Salvar
                               </button>
+                              <a class="btn-cancelar btn btn-primary" href="{{route ('/fornecedor/listar')}}">Cancelar</a>
                             </div>
                         </div>
                     </form>
