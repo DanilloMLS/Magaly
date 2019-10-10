@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Estoque_item;
 
 class EstoqueController extends Controller
 {
@@ -149,7 +148,7 @@ class EstoqueController extends Controller
       }
 
       //quantidade atualizada se o Item já existir
-      if (isset($estoque_item)){
+      /* if (isset($estoque_item)){
         $estoque_item->quantidade += $request->quantidade;
         $estoque_item->quantidade_danificados += $request->quantidade_danificados;
       } else {
@@ -159,7 +158,18 @@ class EstoqueController extends Controller
         $estoque_item->item_id = $contrato_item->item_id;
         $estoque_item->estoque_id = $request->estoque_id;
         $estoque_item->contrato_id = $contrato_item->contrato_id;
-      }
+        $estoque_item->n_lote = $request->n_lote;
+        $estoque_item->data_validade = $request->data_validade;
+      } */
+
+      $estoque_item = new \App\Estoque_item();
+      $estoque_item->quantidade = $request->quantidade;
+      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+      $estoque_item->item_id = $contrato_item->item_id;
+      $estoque_item->estoque_id = $request->estoque_id;
+      $estoque_item->contrato_id = $contrato_item->contrato_id;
+      $estoque_item->n_lote = $request->n_lote;
+      $estoque_item->data_validade = $request->data_validade;
 
       $estoque_es = new \App\Estoque_es();
       $estoque_es->quantidade_danificados = $request->quantidade_danificados;

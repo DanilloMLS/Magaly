@@ -31,8 +31,6 @@
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th>Nº Lote</th>
-                                  <th>Data de validade</th>
                                   <th>Descrição</th>
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
@@ -48,8 +46,6 @@
                                       $item = \App\Item::find($item_contrato->item_id);
                                     @endphp
                                     <td data-title="Nome">{{ $item->nome }}</td>
-                                    <td data-title="Nº Lote">{{ $item_contrato->n_lote }}</td>
-                                    <td data-title="Data de validade">{{ $item_contrato->data_validade }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura."".$item->unidade }}</td>
                                     <td data-title="Quantidade">{{ $item_contrato->quantidade }}</td>

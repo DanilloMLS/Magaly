@@ -62,8 +62,8 @@
                                     @endphp
                                     <td data-title="Valor unitário">{{ $item->nome }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
-                                    <td data-title="Data de Validade">{{$contrato_item->data_validade}}</td>
-                                    <td data-title="Nº Lote">{{$contrato_item->n_lote}}</td>
+                                    <td data-title="Data de Validade">{{$item_estoque->data_validade}}</td>
+                                    <td data-title="Nº Lote">{{$item_estoque->n_lote}}</td>
                                     <td data-title="Nº de Contrato">{{$contrato->n_contrato}}</td>
                                     <td data-title="Unidade">{{ $item->unidade }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}</td>

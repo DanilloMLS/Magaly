@@ -14,7 +14,8 @@ class AddValidadeLoteFields extends Migration
     public function up()
     {
         Schema::table('estoque_items', function (Blueprint $table) {
-            //
+            $table->string('n_lote');
+            $table->date('data_validade');
         });
     }
 
@@ -26,7 +27,8 @@ class AddValidadeLoteFields extends Migration
     public function down()
     {
         Schema::table('estoque_items', function (Blueprint $table) {
-            //
+            $table->dropColumn('data_validade');
+            $table->dropColumn('n_lote');
         });
     }
 }
