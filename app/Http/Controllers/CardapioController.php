@@ -10,7 +10,7 @@ class CardapioController extends Controller
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
       'modalidade_ensino' =>  ['required', 'between:1,6'],
-      'nome' =>               ['required', 'string', 'max:255', 'unique:cardapios'],
+      'nome' =>               ['required', 'string', 'max:255', 'unique:cardapio_mensals'],
       'data_inicio' =>        ['required', 'date', 'after_or_equal:today'],
       'data_fim' =>           ['required', 'date', 'after:data_inicio'],
     ]);
