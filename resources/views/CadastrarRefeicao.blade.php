@@ -6,6 +6,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Cadastrar Refeição') }}</div>
 
@@ -19,7 +28,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -31,16 +40,6 @@
                               <textarea name="descricao" id="descricao" type="date" class="form-control" value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
                             </div>
                         </div>
-
-
-                        <!-- <div class="form-group row">
-                            <label for="peso_liquido" class="col-md-4 col-form-label text-md-right">{{ __('Peso Líquido ') }}</label>
-
-                            <div class="col-md-6">
-                              <input name="peso_liquido" id="peso_liquido" type="text" class="form-control" required value= {{ old('peso_liquido')}}> {{ $errors->first('peso_liquido')}}
-                            </div>
-                        </div> -->
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

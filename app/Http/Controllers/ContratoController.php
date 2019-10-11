@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Contrato;
-use DateTime;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -19,6 +18,21 @@ class ContratoController extends Controller
   }
 
   public function cadastrar(Request $request) {
+    $validator = Validator::make($request->all(), [
+      'data' =>                   ['required', 'date', 'after_or_equal:today'],
+      'n_contrato' =>             ['required', 'string', 'unique:contratos'],
+      'n_processo_licitatorio' => ['required', 'string'],
+      'modalidade' =>             ['required', 'string'],
+      'descricao' =>              ['nullable', 'string', 'max:1500'],
+      'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('contrato/telaCadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $contrato = new \App\Contrato();
     $contrato->data = $request->data;
     $contrato->n_contrato = $request->n_contrato;

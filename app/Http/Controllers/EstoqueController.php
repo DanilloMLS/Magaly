@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 class EstoqueController extends Controller
 {
   public function cadastrar(Request $request) {
-    $estoque = \App\Estoque::where('nome',$request->nome);
+    //$estoque = \App\Estoque::where('nome',$request->nome);
 
     $validator = Validator::make($request->all(), [
       'nome' => ['required', 'string', 'max:255', 'unique:estoques'],
@@ -133,6 +133,20 @@ class EstoqueController extends Controller
 
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
+
+    $validator = Validator::make($request->all(), [
+      'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
+      'quantidade' => ['required', 'numeric', 'min:0', 'max:5000000'],
+      'item_id' => ['required', 'numeric', 'exists:items,id'],
+      'n_lote' => ['required', 'string', 'max:255'],
+      'data_validade' => ['required', 'date', 'after_or_equal:today'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->route('/estoque/novoItemEstoque',[$estoque->id])
+                    ->withErrors($validator)
+                    ->withInput();
+    }
 
     if (isset($estoque)) {
       $contrato_item = \App\Contrato_item::find($request->item_contrato_id);

@@ -16,7 +16,10 @@ class FornecedorController extends Controller
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-            'cnpj' => ['required', 'string', 'max:255', 'unique:fornecedors'],
+            'cnpj' =>     ['required', 'string', 'size:14', 'unique:fornecedors'],
+            'email' =>    ['required', 'unique:fornecedors,email', 'email'],
+            'telefone' => ['required', 'string', 'max:15'],
+            'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors:nome'],
         ]);
 
         if ($validator->fails()) {
