@@ -11,7 +11,7 @@ class EscolaController extends Controller
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas'],
+      'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome'],
       'modalidade_ensino' =>    ['required', 'between:1,6'],
       'rota' =>                 ['nullable', 'string', 'max:1500'],
       'periodo_atendimento' =>  ['sometimes', 'string:255'],

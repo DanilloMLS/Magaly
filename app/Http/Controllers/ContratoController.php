@@ -20,7 +20,7 @@ class ContratoController extends Controller
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
       'data' =>                   ['required', 'date', 'after_or_equal:today'],
-      'n_contrato' =>             ['required', 'string', 'unique:contratos'],
+      'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato'],
       'n_processo_licitatorio' => ['required', 'string'],
       'modalidade' =>             ['required', 'string'],
       'descricao' =>              ['nullable', 'string', 'max:1500'],
