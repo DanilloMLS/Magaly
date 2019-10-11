@@ -4,6 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Inserir Item no Estoque') }}</div>
 
@@ -18,7 +27,7 @@
                             <label for="item_id" class="col-md-4 col-form-label text-md-right">{{ __('Item') }}</label>
                             @if(count($itens_contrato))
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_contrato_id" required>
+                              <select class="form-control" id="itens" name="item_contrato_id">
       								              <option value="">Selecione um Item</option>
                                     @foreach($itens_contrato as $item_contrato)
                                       @php
@@ -32,7 +41,7 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_id" required>
+                              <select class="form-control" id="itens" name="item_id">
       								              <option value="">Não há itens cadastrados</option>
                               </select>
                             </div>
@@ -43,7 +52,7 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" pattern="[0-9]*" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}</input>
+                              <input name="quantidade" id="quantidade" type="number" class="form-control" value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}</input>
 
                             </div>
                         </div>
@@ -52,9 +61,25 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" pattern="[0-9]*" min="0" class="form-control" required value= {{ old('quantidade_danificados')}}> {{ $errors->first('quantidade_danificados')}}</input>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" class="form-control" value= {{ old('quantidade_danificados')}}> {{ $errors->first('quantidade_danificados')}}</input>
 
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de Validade ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="data_validade" id="data_validade" type="date" class="form-control" value= {{ old('data_validade')}}> {{ $errors->first('data_validade')}}
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Lote ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="n_lote" id="n_lote" type="text" class="form-control" value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
+                          </div>
                         </div>
 
                         <div class="form-group row mb-0">
@@ -62,7 +87,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Inserir no Estoque
                               </button>
-                            <a class="btn btn-primary" href="/estoque/exibirItensEstoque/+{{$estoque->id}}">Finalizar</a>
+                            <a class="btn btn-primary" href="{{ route ("/estoque/exibirItensEstoque", ['id' => $estoque->id])}}">Finalizar</a>
                             </div>
                         </div>
                     </form>

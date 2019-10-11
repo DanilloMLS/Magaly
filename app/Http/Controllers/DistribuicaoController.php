@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Distribuicao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DistribuicaoController extends Controller
 {
@@ -26,6 +27,19 @@ class DistribuicaoController extends Controller
   }
 
   public function cadastrar(Request $request) {
+    $validator = Validator::make($request->all(), [
+      'observacao' =>   ['nullable', 'string', 'max:1500'],
+      'escola_id' =>    ['required', 'numeric', 'exists:escolas,id'],
+      'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
+      'proxima' =>      ['nullable', 'numeric', 'exists:distribuicaos,id'],
+      'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('distribuicao/telaCadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
 
     $distribuicao = new \App\Distribuicao();
     $distribuicao->observacao = $request->observacao;

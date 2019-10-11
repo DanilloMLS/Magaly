@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CardapioController extends Controller
 {
   public function cadastrar(Request $request) {
+    $validator = Validator::make($request->all(), [
+      'modalidade_ensino' =>  ['required', 'between:1,6'],
+      'nome' =>               ['required', 'string', 'max:255', 'unique:cardapios'],
+      'data_inicio' =>        ['required', 'date', 'after_or_equal:today'],
+      'data_fim' =>           ['required', 'date', 'after:data_inicio'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('cardapio/cadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $cardapio_mensal = new \App\Cardapio_mensal();
     $cardapio_diario = new \App\Cardapio_diario();
 

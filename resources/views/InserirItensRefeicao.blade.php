@@ -6,6 +6,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Inserir Itens') }}</div>
 
@@ -63,7 +72,7 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                                    <input name="quantidade" id="quantidade" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= {{ old('quantidade')}}> 
                                   </div>
                                   <div class="col-md-1" style="padding-top:10px">
                                     @if ($item->unidade == 'G')

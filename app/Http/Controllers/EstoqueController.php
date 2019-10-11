@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Estoque_item;
 
 class EstoqueController extends Controller
 {
   public function cadastrar(Request $request) {
-    $estoque = \App\Estoque::where('nome',$request->nome);
+    //$estoque = \App\Estoque::where('nome',$request->nome);
 
     $validator = Validator::make($request->all(), [
       'nome' => ['required', 'string', 'max:255', 'unique:estoques'],
@@ -135,6 +134,20 @@ class EstoqueController extends Controller
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
 
+    $validator = Validator::make($request->all(), [
+      'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
+      'quantidade' => ['required', 'numeric', 'min:0', 'max:5000000'],
+      'item_id' => ['required', 'numeric', 'exists:items,id'],
+      'n_lote' => ['required', 'string', 'max:255'],
+      'data_validade' => ['required', 'date', 'after_or_equal:today'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->route('/estoque/novoItemEstoque',[$estoque->id])
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     if (isset($estoque)) {
       $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
@@ -149,7 +162,7 @@ class EstoqueController extends Controller
       }
 
       //quantidade atualizada se o Item já existir
-      if (isset($estoque_item)){
+      /* if (isset($estoque_item)){
         $estoque_item->quantidade += $request->quantidade;
         $estoque_item->quantidade_danificados += $request->quantidade_danificados;
       } else {
@@ -159,7 +172,18 @@ class EstoqueController extends Controller
         $estoque_item->item_id = $contrato_item->item_id;
         $estoque_item->estoque_id = $request->estoque_id;
         $estoque_item->contrato_id = $contrato_item->contrato_id;
-      }
+        $estoque_item->n_lote = $request->n_lote;
+        $estoque_item->data_validade = $request->data_validade;
+      } */
+
+      $estoque_item = new \App\Estoque_item();
+      $estoque_item->quantidade = $request->quantidade;
+      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+      $estoque_item->item_id = $contrato_item->item_id;
+      $estoque_item->estoque_id = $request->estoque_id;
+      $estoque_item->contrato_id = $contrato_item->contrato_id;
+      $estoque_item->n_lote = $request->n_lote;
+      $estoque_item->data_validade = $request->data_validade;
 
       $estoque_es = new \App\Estoque_es();
       $estoque_es->quantidade_danificados = $request->quantidade_danificados;

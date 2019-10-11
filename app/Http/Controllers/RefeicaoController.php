@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RefeicaoController extends Controller
 {
   public function cadastrar(Request $request) {
+    $validator = Validator::make($request->all(), [
+      'nome' =>                 ['required', 'string', 'max:80', 'unique:refeicaos'],
+      'descricao' =>            ['nullable', 'string', 'max:255'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('refeicao/cadastrar')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $refeicao = new \App\Refeicao();
     $refeicao->nome = $request->nome;
     $refeicao->descricao = $request->descricao;
@@ -48,6 +60,20 @@ class RefeicaoController extends Controller
   }
 
   public function inserirItemRefeicao(Request $request) {
+    $refeicao = \App\Refeicao::find($request->refeicao_id);
+
+    $validator = Validator::make($request->all(), [
+      'quantidade' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+      'item_id' =>     ['required', 'numeric', 'exists:items,id'],
+      'refeicao_id' => ['required', 'numeric', 'exists:refeicaos,id'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao->id])
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $refeicao_item = new \App\Refeicao_item();
     $refeicao_item->quantidade = $request->quantidade;
     $refeicao_item->refeicao_id = $request->refeicao_id;
@@ -55,7 +81,6 @@ class RefeicaoController extends Controller
 
     $refeicao_item->save();
 
-    $refeicao = \App\Refeicao::find($request->refeicao_id);
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
