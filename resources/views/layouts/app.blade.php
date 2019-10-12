@@ -210,26 +210,20 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul align="center" class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"><img class="btn-img" align="center" src="/img/cadastro.png"></a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
-                                        <img class="btn-img" align="center" src="/img/exit.png">
+                                        <img class="btn-img" src="/img/exit.png">
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -237,6 +231,19 @@
                                     </form>
                                 </div>
                             </li>
+                            @if (Auth::user()->is_adm)
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <img class="btn-img" src="/img/adm.png">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('register') }}">
+                                                {{'Novo'}}
+                                                <img class="btn-img" src="/img/cadastro.png">
+                                            </a>
+                                    </div>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>

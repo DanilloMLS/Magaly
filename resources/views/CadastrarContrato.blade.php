@@ -27,7 +27,7 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="data" id="data" type="date" class="form-control" value= {{ old('data')}}> {{ $errors->first('data')}}
+                              <input name="data" id="data" type="date" class="form-control" required value= {{ old('data')}}> {{ $errors->first('data')}}
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@
                             <label for="n_contrato" class="col-md-4 col-form-label text-md-right">{{ __('Nº Contrato ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="n_contrato" id="n_contrato" type="text" class="form-control" value= {{ old('n_contrato')}}> {{ $errors->first('n_contrato')}}
+                              <input name="n_contrato" id="n_contrato" type="text" class="form-control" required value= {{ old('n_contrato')}}> {{ $errors->first('n_contrato')}}
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                             <label for="n_processo_licitatorio" class="col-md-4 col-form-label text-md-right">{{ __('Nº Processo Licitatório ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" class="form-control" value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('n_processo_licitatorio')}}
+                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" required class="form-control" value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('n_processo_licitatorio')}}
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                           <label for="modalidade" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="modalidade" id="modalidade" type="text" class="form-control" value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('modalidade')}}
+                            <input name="modalidade" id="modalidade" type="text" class="form-control" required value= {{ old('n_processo_licitatorio')}}> {{ $errors->first('modalidade')}}
                           </div>
                         </div>
 
@@ -59,7 +59,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="text" class="form-control" value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
+                              <textarea name="descricao" id="descricao" type="text" class="form-control"  value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                             <label for="fornecedor_id" class="col-md-4 col-form-label text-md-right">{{ __('Fornecedor') }}</label>
                             @if(count($fornecedores) != 0 and count($fornecedores) != 0)
                             <div class="col-md-6">
-                              <select class="form-control" id="fornecedores" name="fornecedor_id">
+                              <select required class="form-control" id="fornecedores" name="fornecedor_id">
       								              <option value="">Selecione um Fornecedor</option>
       								              @foreach($fornecedores as $fornecedor)
       									            <option value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
@@ -76,7 +76,7 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="fornecedores" name="fornecedor_id">
+                              <select required class="form-control" id="fornecedores" name="fornecedor_id">
       								              <option value="">Não há fornecedores cadastrados</option>
                               </select>
                             </div>

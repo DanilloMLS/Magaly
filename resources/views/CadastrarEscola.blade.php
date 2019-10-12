@@ -25,7 +25,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
 
                               <div class="col-md-6">
-                                <select class="form-control" id="modalidade_ensino" name="modalidade_ensino">
+                                <select required class="form-control" id="modalidade_ensino" name="modalidade_ensino">
         								              <option value="">Selecione uma Modalidade de ensino</option>
         									            <option value="1">Creche Infantil Integral</option>
                                       <option value="2">Creche Infantil Parcial</option>
@@ -49,7 +49,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" placeholder="ex:100" pattern="^[-+]?[0-9]*" class="form-control" value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" required placeholder="ex:100" pattern="^[-+]?[0-9]*" class="form-control" value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
 
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
+                              <input name="gestor" id="gestor" type="text" class="form-control" required value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
 
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" placeholder="(99)99999-9999" value= {{ old('telefone')}}> {{ $errors->first('telefone')}}</input>
+                              <input name="telefone" id="telefone" type="text" class="form-control" placeholder="(99)99999-9999" required value= {{ old('telefone')}}> {{ $errors->first('telefone')}}</input>
 
                             </div>
                         </div>

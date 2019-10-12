@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //É necessário referenciar aqui cada seeder que será executado
         $this->call(ItensTableSeeder::class);
         $this->call(EscolaTableSeeder::class);
-        //$this->call(EstoqueTableSeeder::class);
+        $this->call(EstoqueTableSeeder::class);
         $this->call(RefeicaoTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(FornecedorTableSeeder::class);

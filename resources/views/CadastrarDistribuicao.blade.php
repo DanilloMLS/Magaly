@@ -37,7 +37,7 @@
                             <label for="id_escola" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
                             @if(count($escolas) != 0 and count($escolas) != 0)
                             <div class="col-md-6">
-                              <select class="form-control" id="escolas" name="escola_id">
+                              <select required class="form-control" id="escolas" name="escola_id">
       								              <option value="">Selecione uma Escola</option>
       								              @foreach($escolas as $escola)
       									            <option value="{{$escola->id}}">{{$escola->nome}}</option>
@@ -46,7 +46,7 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="escolas" name="escola_id">
+                              <select required class="form-control" id="escolas" name="escola_id">
       								              <option value="">Não há escolas cadastradas</option>
                               </select>
                             </div>
@@ -57,7 +57,7 @@
                              <label for="id_cardapio" class="col-md-4 col-form-label text-md-right">{{ __('Cardápio') }}</label>
                              @if(count($cardapios) != 0 and count($cardapios) != 0)
                              <div class="col-md-6">
-                               <select class="form-control" id="cardapios" name="cardapio_id">
+                               <select required class="form-control" id="cardapios" name="cardapio_id">
        								              <option value="">Selecione um Cardápio</option>
        								              @foreach($cardapios as $cardapio)
        									            <option value="{{$cardapio->id}}">{{$cardapio->nome}}</option>
@@ -66,7 +66,7 @@
                              </div>
                              @else
                              <div class="col-md-6">
-                               <select class="form-control" id="escolas" name="escola_id">
+                               <select required class="form-control" id="escolas" name="escola_id">
        								              <option value="">Não há cardápios cadastrados</option>
                                </select>
                              </div>
@@ -77,7 +77,7 @@
                             <label for="id_estoque" class="col-md-4 col-form-label text-md-right">{{ __('Estoque') }}</label>
                             @if(count($estoques) != 0 and count($estoques) != 0)
                             <div class="col-md-6">
-                              <select class="form-control" id="estoques" name="estoque_id">
+                              <select required class="form-control" id="estoques" name="estoque_id">
                                     <option value="">Selecione um Estoque</option>
                                     @foreach($estoques as $estoque)
                                     <option value="{{$estoque->id}}">{{$estoque->nome}}</option>
@@ -86,7 +86,7 @@
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="estoques" name="estoque_id">
+                              <select required class="form-control" id="estoques" name="estoque_id">
                                     <option value="">Não há estoques cadastrados</option>
                               </select>
                             </div>
