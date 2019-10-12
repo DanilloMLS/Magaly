@@ -14,7 +14,7 @@ class EscolaController extends Controller
       'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome'],
       'modalidade_ensino' =>    ['required', 'between:1,6'],
       'rota' =>                 ['nullable', 'string', 'max:1500'],
-      'periodo_atendimento' =>  ['sometimes', 'string:255'],
+      'periodo_atendimento' =>  ['nullable', 'string:255'],
       'qtde_alunos' =>          ['required', 'numeric', 'min:0', 'max:500000'],
       'endereco' =>             ['nullable', 'string', 'max:1500'],
       'gestor' =>               ['nullable', 'string', 'max:255'],

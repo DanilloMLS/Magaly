@@ -25,9 +25,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" autofocus value= {{ old('nome')}}> {{ $errors->first('nome')}}
-
-
+                              <input name="nome" id="nome" type="text" class="form-control" autofocus required value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -35,8 +33,7 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cnpj" type="cnpj" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" name="cnpj" value="{{ old('cnpj') }}">
-
+                                <input id="cnpj" type="cnpj" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" required name="cnpj" value="{{ old('cnpj') }}">
                                 @if ($errors->has('cnpj'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('cnpj') }}</strong>
@@ -49,7 +46,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" placeholder="(99)99999-9999" class="form-control" value= {{ old('telefone')}}> {{ $errors->first('telefone')}}
+                              <input name="telefone" id="telefone" type="text" placeholder="(99)99999-9999" class="form-control" required  value= {{ old('telefone')}}> {{ $errors->first('telefone')}}
                             </div>
                         </div>
 
@@ -57,7 +54,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="xxx@xxx.xxx" name="email" value="{{ old('email') }}">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required placeholder="xxx@xxx.xxx" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

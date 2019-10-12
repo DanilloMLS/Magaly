@@ -71,9 +71,6 @@
                             <input name="quantidade" id="quantidade" type="number" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                           </div>
                         </div>
-
-                        
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

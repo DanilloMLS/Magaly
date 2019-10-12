@@ -26,9 +26,9 @@
                         <div class="form-group row">
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
                             <div class="col-md-6">
-                              <select class="form-control" id="modalidade_ensino" name="modalidade_ensino">
-      					<option value="">Selecione uma Modalidade de ensino</option>
-      					<option value="1">Creche Infantil Integral</option>
+                              <select required class="form-control" id="modalidade_ensino" name="modalidade_ensino">
+                                    <option value="">Selecione uma Modalidade de ensino</option>
+                                    <option value="1">Creche Infantil Integral</option>
                                     <option value="2">Creche Infantil Parcial</option>
                                     <option value="3">Infantil (pré-escola)</option>
                                     <option value="4">Ensino Fundamental</option>
@@ -41,21 +41,21 @@
                          <div class="form-group row">
                              <label for="data_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Data de início') }}</label>
                              <div class="col-md-2">
-                               <input type="date" id="data_inicio" class="form-control"  name="data_inicio">
+                               <input type="date" id="data_inicio" required class="form-control"  name="data_inicio">
                              </div>
                           </div>
 
                           <div class="form-group row">
                               <label for="data_fim" class="col-md-4 col-form-label text-md-right">{{ __('Data de fim') }}</label>
                               <div class="col-md-2">
-                                <input type="date" id="data_fim" class="form-control"  name="data_fim">
+                                <input type="date" id="data_fim" required class="form-control"  name="data_fim">
                               </div>
                            </div>
 
                            <div class="form-group row">
                                <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
                                <div class="col-md-6">
-                                 <input id="nome" class="form-control"  name="nome">
+                                 <input id="nome" class="form-control" required name="nome">
                                </div>
                             </div>
 

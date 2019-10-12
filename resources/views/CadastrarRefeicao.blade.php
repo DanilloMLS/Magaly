@@ -28,7 +28,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="date" class="form-control" value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
+                              <textarea name="descricao" id="descricao" type="date" class="form-control"  value= {{ old('descricao')}}> {{ $errors->first('descricao')}} </textarea>
                             </div>
                         </div>
 
