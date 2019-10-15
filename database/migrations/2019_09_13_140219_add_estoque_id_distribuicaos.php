@@ -27,7 +27,6 @@ class AddEstoqueIdDistribuicaos extends Migration
     public function down()
     {
         Schema::table('distribuicaos', function (Blueprint $table) {
-            $table->dropForeign('estoque_id');
             $table->dropColumn('estoque_id');
         });
     }
