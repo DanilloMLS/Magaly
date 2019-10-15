@@ -134,26 +134,27 @@ class EstoqueController extends Controller
   public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
 
-    $validator = Validator::make($request->all(), [
-      'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
-      'quantidade' => ['required', 'numeric', 'min:0', 'max:5000000'],
-      'item_id' => ['required', 'numeric', 'exists:items,id'],
-      'n_lote' => ['required', 'string', 'max:255'],
-      'data_validade' => ['required', 'date', 'after_or_equal:today'],
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->route('/estoque/novoItemEstoque',[$estoque->id])
-                    ->withErrors($validator)
-                    ->withInput();
-    }
-
     if (isset($estoque)) {
+      $validator = Validator::make($request->all(), [
+        'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
+        'quantidade' => ['required', 'numeric', 'min:0', 'max:5000000'],
+        'item_contrato_id' => ['required', 'numeric', 'exists:items,id'],
+        'n_lote' => ['required', 'string', 'max:255'],
+        'data_validade' => ['required', 'date', 'after_or_equal:today'],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/estoque/novoItemEstoque',[$estoque->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
                                        ->where('item_id','=',$contrato_item->item_id)
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
                                        ->first();
+
 
       //mudar para permitir a inserção com os Itens restantes
       if ($contrato_item->quantidade < $request->quantidade or $contrato_item->quantidade <= 0) {

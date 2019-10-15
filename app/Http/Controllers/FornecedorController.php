@@ -83,6 +83,19 @@ class FornecedorController extends Controller
     $fornecedor = \App\Fornecedor::find($request->id);
 
     if (isset($fornecedor)) {
+      $validator = Validator::make($request->all(), [
+          'cnpj' =>     ['required', 'string', 'size:14', 'unique:fornecedors,cnpj,'.$fornecedor->id],
+          'email' =>    ['required', 'unique:fornecedors,email,'.$fornecedor->id, 'email'],
+          'telefone' => ['required', 'string', 'max:15'],
+          'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome,'.$fornecedor->id],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/fornecedor/editar',[$fornecedor->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+      
       $fornecedor->nome = $request->nome;
       $fornecedor->cnpj = $request->cnpj;
       $fornecedor->email = $request->email;

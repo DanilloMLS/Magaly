@@ -71,6 +71,21 @@ class ItemController extends Controller
         $item = \App\Item::find($request->id);
 
         if (isset($item)) {
+
+            $validator = Validator::make($request->all(), [
+                'nome' =>       ['required', 'string', 'max:255'],
+                'marca' =>      ['required', 'string', 'max:255'],
+                'descricao' =>  ['required', 'string', 'max:1500'],
+                'unidade' =>    ['required', 'string', 'max:2'],
+                'gramatura' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+            ]);
+      
+            if ($validator->fails()) {
+                return redirect()->route('/item/editar',[$item->id])
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+
             $item->nome = $request->nome;
             $item->marca = $request->marca;
             $item->descricao = $request->descricao;

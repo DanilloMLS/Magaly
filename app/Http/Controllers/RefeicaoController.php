@@ -131,11 +131,27 @@ class RefeicaoController extends Controller
   public function salvarItemRefeicao(Request $request){
     $item_refeicao = \App\Refeicao_item::find($request->id);
 
-    $item_refeicao->quantidade = $request->quantidade;
-    $item_refeicao->save();
-
-    session()->flash('success', 'Item da distribuição modificado com sucesso.');
-    return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);
+    if (isset($item_refeicao)) {
+      $validator = Validator::make($request->all(), [
+        'quantidade' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+        'item_id' =>     ['required', 'numeric', 'exists:items,id'],
+        'refeicao_id' => ['required', 'numeric', 'exists:refeicaos,id'],
+      ]);
+  
+      if ($validator->fails()) {
+          return redirect()->route('/refeicao/inserirItemRefeicao',[$item_refeicao->refeicao_id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+  
+      $item_refeicao->quantidade = $request->quantidade;
+      $item_refeicao->save();
+  
+      session()->flash('success', 'Item da distribuição modificado com sucesso.');
+      return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);
+    }
+    
+    return redirect()->back()->with('alert','Refeição não existe.');
   }
 
 }
