@@ -282,6 +282,20 @@ class DistribuicaoController extends Controller
       $distribuicao = \App\Distribuicao::find($request->id);
 
       if (isset($distribuicao)) {
+        $validator = Validator::make($request->all(), [
+          'observacao' =>   ['nullable', 'string', 'max:1500'],
+          'escola_id' =>    ['required', 'numeric', 'exists:escolas,id'],
+          'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
+          'proxima' =>      ['nullable', 'numeric', 'exists:distribuicaos,id'],
+          'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->route('/distribuicao/editar',[$distribuicao->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $distribuicao->observacao = $request->observacao;
         $distribuicao->escola_id = $request->escola_id;
         $distribuicao->save();

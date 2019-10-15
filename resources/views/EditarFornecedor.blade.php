@@ -17,7 +17,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome da fornecedor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" readonly=“true” type="text" class="form-control" required value="{{ $fornecedor->nome}}" required value= {{ old('nome')}} > {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" value="{{ $fornecedor->nome}}" value= {{ old('nome')}} > {{ $errors->first('nome')}}
                             </div>
                         </div>
 
@@ -25,7 +25,7 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="cnpj" id="cnpj" readonly=“true” type="text" class="form-control" required value="{{ $fornecedor->cnpj}}" > {{ $errors->first('cnpj')}}
+                              <input name="cnpj" id="cnpj" type="text" class="form-control" value="{{ $fornecedor->cnpj}}" > {{ $errors->first('cnpj')}}
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" required value="{{ $fornecedor->telefone}}" > {{ $errors->first('telefone')}}
+                              <input name="telefone" id="telefone" type="text" class="form-control" value="{{ $fornecedor->telefone}}" > {{ $errors->first('telefone')}}
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required value="{{ $fornecedor->email}}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $fornecedor->email}}">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

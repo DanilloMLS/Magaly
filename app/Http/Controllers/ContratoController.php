@@ -245,6 +245,22 @@ class ContratoController extends Controller
     $contrato = \App\Contrato::find($request->id);
 
     if (isset($contrato)) {
+
+      $validator = Validator::make($request->all(), [
+        'data' =>                   ['required', 'date', 'after_or_equal:today'],
+        'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato,'.$contrato->id],
+        'n_processo_licitatorio' => ['required', 'string'],
+        'modalidade' =>             ['required', 'string'],
+        'descricao' =>              ['nullable', 'string', 'max:1500'],
+        'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
+      ]);
+  
+      if ($validator->fails()) {
+          return redirect()->route('/contrato/editar',[$contrato->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $contrato->data = $request->data;
       $contrato->n_contrato = $request->n_contrato;
       $contrato->n_processo_licitatorio = $request->n_processo_licitatorio;
