@@ -17,7 +17,12 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome da fornecedor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" value="{{ $fornecedor->nome}}" value= {{ old('nome')}} > {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ $fornecedor->nome}}" value= {{ old('nome')}} >
+                              @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -25,7 +30,12 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="cnpj" id="cnpj" type="text" class="form-control" value="{{ $fornecedor->cnpj}}" > {{ $errors->first('cnpj')}}
+                              <input name="cnpj" id="cnpj" type="text" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" value="{{ $fornecedor->cnpj}}" >
+                              @if ($errors->has('cnpj'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cnpj') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -33,7 +43,12 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" value="{{ $fornecedor->telefone}}" > {{ $errors->first('telefone')}}
+                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value="{{ $fornecedor->telefone}}" >
+                              @if ($errors->has('telefone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -42,7 +57,6 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $fornecedor->email}}">
-
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
