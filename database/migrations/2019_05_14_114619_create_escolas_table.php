@@ -15,7 +15,7 @@ class CreateEscolasTable extends Migration
     {
         Schema::create('escolas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('nome')->unique();
             $table->string('modalidade_ensino');
             $table->string('rota')->nullable();
             $table->string('periodo_atendimento')->nullable();

@@ -4,15 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          @if ($errors->any())
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-          @endif
             <div class="card">
                 <div class="card-header">{{ __('Cadastrar Escola') }}</div>
 
@@ -25,7 +16,12 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value= {{ old('nome')}}>
+                              @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -33,7 +29,7 @@
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
 
                               <div class="col-md-6">
-                                <select required class="form-control" id="modalidade_ensino" name="modalidade_ensino">
+                                <select class="form-control{{ $errors->has('modalidade_ensino') ? ' is-invalid' : '' }}" id="modalidade_ensino" name="modalidade_ensino">
         								              <option value="">Selecione uma Modalidade de ensino</option>
         									            <option value="1">Creche Infantil Integral</option>
                                       <option value="2">Creche Infantil Parcial</option>
@@ -42,6 +38,11 @@
                                       <option value="5">EJA</option>
                                       <option value="6">Quilombola</option>
                                 </select>
+                                @if ($errors->has('modalidade_ensino'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('modalidade_ensino') }}</strong>
+                                    </span>
+                                @endif
                               </div>
                         </div>
 
@@ -49,7 +50,12 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= {{ old('endereco')}}> {{ $errors->first('endereco')}}</textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" value= {{ old('endereco')}}></textarea>
+                              @if ($errors->has('endereco'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('endereco') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -58,8 +64,12 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="rota" id="rota" type="text" class="form-control" value= {{ old('rota')}}> {{ $errors->first('rota')}}</textarea>
-
+                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" value= {{ old('rota')}}></textarea>
+                              @if ($errors->has('rota'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('rota') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -67,8 +77,12 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}</input>
-
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control{{ $errors->has('periodo_atendimento') ? ' is-invalid' : '' }}" value= {{ old('periodo_atendimento')}}></input>
+                              @if ($errors->has('periodo_atendimento'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('periodo_atendimento') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -76,8 +90,12 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" required placeholder="ex:100" pattern="^[-+]?[0-9]*" class="form-control" value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}</input>
-
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" type="text" placeholder="ex:100" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value= {{ old('qtde_alunos')}}></input>
+                              @if ($errors->has('qtde_alunos'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('qtde_alunos') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -85,8 +103,12 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control" required value= {{ old('gestor')}}> {{ $errors->first('gestor')}}</input>
-
+                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value= {{ old('gestor')}}></input>
+                              @if ($errors->has('gestor'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gestor') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -94,8 +116,12 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" placeholder="(99)99999-9999" required value= {{ old('telefone')}}> {{ $errors->first('telefone')}}</input>
-
+                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" placeholder="Somente dígitos, DDD sem zero" value= {{ old('telefone')}}></input>
+                              @if ($errors->has('telefone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 

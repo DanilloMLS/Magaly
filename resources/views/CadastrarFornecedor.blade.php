@@ -29,7 +29,7 @@
                             <label for="cnpj" class="col-md-4 col-form-label text-md-right">{{ __('CNPJ') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cnpj" type="cnpj" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" name="cnpj" value="{{ old('cnpj') }}">
+                                <input id="cnpj" type="cnpj" placeholder="Somente dígitos" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}" name="cnpj" value="{{ old('cnpj') }}">
                                 @if ($errors->has('cnpj'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('cnpj') }}</strong>
@@ -42,7 +42,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" placeholder="(99)99999-9999" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}"  value= {{ old('telefone')}}>
+                              <input name="telefone" id="telefone" type="text" placeholder="Somente dígitos, DDD sem zero" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}"  value= {{ old('telefone')}}>
                               @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefone') }}</strong>
