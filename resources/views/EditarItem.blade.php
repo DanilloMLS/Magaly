@@ -18,7 +18,12 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value="{{ $item->nome}}" > {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ $item->nome}}" >
+                              @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -26,7 +31,12 @@
                           <label for="marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="marca" id="marca" type="text" class="form-control" required value="{{ $item->marca}}" > {{ $errors->first('marca')}}
+                            <input name="marca" id="marca" type="text" class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}" value="{{ $item->marca}}" >
+                            @if ($errors->has('marca'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('marca') }}</strong>
+                                </span>
+                            @endif
                           </div>
                         </div>
 
@@ -34,23 +44,38 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control" required value="{{ $item->descricao}}" > {{ $errors->first('descricao')}}
+                              <input name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}" value="{{ $item->descricao}}" >
+                              @if ($errors->has('descricao'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('descricao') }}</strong>
+                                  </span>
+                              @endif
                             </div>
                         </div>
 
-			<div class="form-group row">
+			                  <div class="form-group row">
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-3">
-                              <input name="gramatura" id="gramatura" type="number" class="form-control" required value="{{ $item->gramatura}}"> {{ $errors->first('gramatura')}}
+                              <input name="gramatura" id="gramatura" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" value="{{ $item->gramatura}}">
+                              @if ($errors->has('gramatura'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('gramatura') }}</strong>
+                                  </span>
+                              @endif
                             </div>
                             <div class="col-md-2">
-                              <select class="form-control" id="unidade" name="unidade" required value="{{ $item->unidade}}">
+                              <select class="form-control{{ $errors->has('unidade') ? ' is-invalid' : '' }}" id="unidade" name="unidade" value="{{ $item->unidade}}">
                                     <option value="">Unidade</option>
 
-					<option value="g" @if(strcasecmp($item->unidade, 'g') == 0) selected="selected" @endif> g </option>
-					<option value="ml" @if(strcasecmp($item->unidade, 'ml') == 0) selected="selected" @endif> ml</option>
-				</select>
+                                    <option value="g" @if(strcasecmp($item->unidade, 'g') == 0) selected="selected" @endif> g </option>
+                                    <option value="ml" @if(strcasecmp($item->unidade, 'ml') == 0) selected="selected" @endif> ml</option>
+                              </select>
+                              @if ($errors->has('unidade'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('unidade') }}</strong>
+                                  </span>
+                              @endif
                             </div>
                         </div>
                         <div class="form-group row mb-0">
