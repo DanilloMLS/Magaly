@@ -10,6 +10,26 @@ html, body {
     height: 100vh;
 }
 
+a{
+    text-decoration:none;
+}
+
+.btn-text{
+    text-shadow: 1px 1px #3f3f3f;
+    font-size: 25px;
+    font-family: 'Nunito', sans-serif;
+    color: #00aabb;
+    font-weight:bold;
+    display: none;
+}
+
+.links:hover .btn-img{
+    display: none;
+}
+.links:hover .btn-text{
+    display: block;
+}
+
 .flex-center {
     align-items: center;
     display: flex;
@@ -33,7 +53,7 @@ html, body {
 }
 
 .logo-garanhuns {
-    width: 8%;
+    width: 6%;
 }
 
 .content {

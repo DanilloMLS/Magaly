@@ -17,10 +17,18 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    /*
     return [
         'name' => "Suporte",
         'email' => "seducdivtecnologia@gmail.com",
         'password' => password_hash("|u`Ut/_bF,oT+^(fv=N/n*\xs*!]@*RM!@;\c~/7\u.\8o-&kLfdYtX7Ci[Eh`ev4", PASSWORD_DEFAULT), // password
+        'is_adm' => true,
+    ];
+    */
+    return [
+        'name' => "Teste",
+        'email' => "teste@teste",
+        'password' => password_hash("testeteste", PASSWORD_DEFAULT), // password
         'is_adm' => true,
     ];
 });
