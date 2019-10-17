@@ -16,11 +16,11 @@
         <div class="flex-center position-ref full-height">
             <img class=" logo-garanhuns top-left" src="/img/logo.png">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a class="links" href="{{ url('/home') }}"><div class="btn-text">Home</div><img class="btn-img" align="center" src="/img/login.png"></a>
                     @else
-                        <a href="{{ route('login') }}"><img width="70%" class="btn-img" align="center" src="/img/login.png"></a>
+                        <a class="links" href="{{ route('login') }}"><div class="btn-text">Login</div><img class="btn-img" align="center" src="/img/login.png"></a>
                     @endauth
                 </div>
             @endif
