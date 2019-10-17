@@ -20,7 +20,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" value= {{ old('nome')}}>
                             </div>
                         </div>
 
@@ -28,7 +28,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= {{ old('descricao')}}> {{ $errors->first('descricao')}}
+                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= {{ old('descricao')}}>
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
+                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" value= {{ old('gramatura')}}>
                             </div>
                         </div>
 
@@ -44,7 +44,12 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" min="0"  class="form-control" value="{{ $contrato_item->quantidade}}" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                              <input name="quantidade" id="quantidade" type="text"  class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value="{{ $contrato_item->quantidade}}" value= {{ old('quantidade')}}>
+                              @if ($errors->has('quantidade'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -52,7 +57,12 @@
                           <label for="valor_unitario" class="col-md-4 col-form-label text-md-right">{{ __('Valor Unitário ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" required type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value="{{ $contrato_item->valor_unitario}}" required value= {{ old('valor_unitario')}}> {{ $errors->first('valor_unitario')}}
+                            <input name="valor_unitario" id="valor_unitario" type="text" class="form-control{{ $errors->has('valor_unitario') ? ' is-invalid' : '' }}" value="{{ $contrato_item->valor_unitario}}" value= {{ old('valor_unitario')}}>
+                            @if ($errors->has('valor_unitario'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('valor_unitario') }}</strong>
+                                    </span>
+                              @endif
                           </div>
                         </div>
 
