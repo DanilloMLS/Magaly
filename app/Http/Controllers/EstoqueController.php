@@ -11,7 +11,7 @@ class EstoqueController extends Controller
     //$estoque = \App\Estoque::where('nome',$request->nome);
 
     $validator = Validator::make($request->all(), [
-      'nome' => ['required', 'string', 'max:255', 'unique:estoques'],
+      'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome'],
     ]);
 
     if ($validator->fails()) {
@@ -85,6 +85,17 @@ class EstoqueController extends Controller
     $estoque = \App\Estoque::find($request->id);
 
     if (isset($estoque)) {
+
+      $validator = Validator::make($request->all(), [
+        'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome,'.$estoque->id],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/estoque/editar',[$estoque->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $estoque->nome = $request->nome;
       $estoque->save();
       session()->flash('success', 'Estoque renomeado com sucesso.');
@@ -253,11 +264,23 @@ class EstoqueController extends Controller
     if (isset($estoque_item)) {
       $estoque = \App\Estoque::find($estoque_item->estoque_id);
       if (isset($estoque)) {
+
+        $validator = Validator::make($request->all(), [
+          'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
+          'quantidade' =>             ['required', 'numeric', 'min:0', 'max:5000000'],
+        ]);
+  
+        if ($validator->fails()) {
+            return redirect()->route('/estoque/inserirEntrada',[$estoque_item->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $estoque_item->quantidade += $request->quantidade;
         $estoque_item->quantidade_danificados += $request->quantidade_danificados;
-        $estoque_item->item_id = $request->item_id;
-        $estoque_item->estoque_id = $request->estoque_id;
-        $estoque_item->contrato_id = $request->contrato_id;
+        //$estoque_item->item_id = $request->item_id;
+        //$estoque_item->estoque_id = $request->estoque_id;
+        //$estoque_item->contrato_id = $request->contrato_id;
         
         $contrato_item = \App\Contrato_item::where('contrato_id','=',$estoque_item->contrato_id)
                                            ->where('item_id','=',$estoque_item->item_id)
@@ -302,6 +325,18 @@ class EstoqueController extends Controller
     if (isset($estoque_item)) {
       $estoque = \App\Estoque::find($estoque_item->estoque_id);
       if (isset($estoque)) {
+
+        $validator = Validator::make($request->all(), [
+          'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
+          'quantidade' =>             ['required', 'numeric', 'min:0', 'max:5000000'],
+        ]);
+  
+        if ($validator->fails()) {
+            return redirect()->route('/estoque/inserirSaida',[$estoque_item->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         if ($request->quantidade >= 0 && $request->quantidade_danificados >= 0) {
           if ($request->quantidade <= $estoque_item->quantidade &&
               $request->quantidade_danificados <= $estoque_item->quantidade_danificados) {

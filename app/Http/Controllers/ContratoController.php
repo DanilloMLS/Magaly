@@ -202,6 +202,18 @@ class ContratoController extends Controller
     if (isset($item_contrato)) {
       $contrato = \App\Contrato::find($item_contrato->contrato_id);
       if (isset($contrato)){
+
+        $validator = Validator::make($request->all(), [
+          'quantidade' =>      ['required', 'numeric', 'min:0', 'max:5000000'],
+          'valor_unitario' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->route('/itemContrato/editar',[$item_contrato->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $item_contrato->quantidade = $request->quantidade;
         $item_contrato->valor_unitario = $request->valor_unitario;
         $item_contrato->save();

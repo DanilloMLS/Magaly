@@ -24,6 +24,8 @@ class UpdateRefeicao extends Migration
   */
  public function down()
  {
-     Schema::dropIfExists('refeicaos');
+    Schema::table('refeicaos', function (Blueprint $table) {
+        $table->dropColumn('quantidade_total');
+    });
  }
 }

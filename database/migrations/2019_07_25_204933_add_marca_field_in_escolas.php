@@ -27,7 +27,6 @@ class AddMarcaFieldInEscolas extends Migration
     public function down()
     {
         Schema::table('escolas', function (Blueprint $table) {
-            $table->dropForeign('estoque_id');
             $table->dropColumn('estoque_id');
         });
     }

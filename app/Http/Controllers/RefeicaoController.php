@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Refeicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -97,6 +98,20 @@ class RefeicaoController extends Controller
 
   public function finalizarRefeicao(Request $request) {
     $refeicao = \App\Refeicao::find($request->id);
+    /* $itens_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)->get();
+    $quantidade = 0;
+    foreach ($itens_refeicao as $item_refeicao) {
+      $quantidade = $quantidade + $item_refeicao->quantidade;
+    }
+    $refeicao->quantidade_total = $quantidade;
+    $refeicao->save(); */
+    $this->calcularPeso($refeicao);
+    session()->flash('success', 'Refeição cadastrada.');
+    return redirect()->route('/refeicao/listar');
+  }
+
+  public function calcularPeso(Refeicao $refeicao){
+    $refeicao = \App\Refeicao::find($refeicao->id);
     $itens_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)->get();
     $quantidade = 0;
     foreach ($itens_refeicao as $item_refeicao) {
@@ -104,11 +119,7 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
-
-    session()->flash('success', 'Refeição cadastrada.');
-    return redirect()->route('/refeicao/listar');
   }
-
 
   public function exibirItensRefeicao(Request $request){
     $itens = \App\Refeicao_item::where('refeicao_id', '=', $request->id)->get();
@@ -134,8 +145,6 @@ class RefeicaoController extends Controller
     if (isset($item_refeicao)) {
       $validator = Validator::make($request->all(), [
         'quantidade' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
-        'item_id' =>     ['required', 'numeric', 'exists:items,id'],
-        'refeicao_id' => ['required', 'numeric', 'exists:refeicaos,id'],
       ]);
   
       if ($validator->fails()) {
@@ -146,8 +155,10 @@ class RefeicaoController extends Controller
   
       $item_refeicao->quantidade = $request->quantidade;
       $item_refeicao->save();
-  
+      $refeicao = Refeicao::find($item_refeicao->refeicao_id);
+      $this->calcularPeso($refeicao);
       session()->flash('success', 'Item da distribuição modificado com sucesso.');
+      //return redirect()->route('/refeicao/finalizarRefeicao',[$item_refeicao->refeicao_id]);
       return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);
     }
     
