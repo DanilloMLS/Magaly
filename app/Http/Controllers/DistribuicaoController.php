@@ -27,12 +27,12 @@ class DistribuicaoController extends Controller
   }
 
   public function cadastrar(Request $request) {
+    
     $validator = Validator::make($request->all(), [
       'observacao' =>   ['nullable', 'string', 'max:1500'],
-      'escola_id' =>    ['required', 'numeric', 'exists:escolas,id'],
-      'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
-      'proxima' =>      ['nullable', 'numeric', 'exists:distribuicaos,id'],
-      'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'],
+      'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
+      'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
+      'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
     ]);
 
     if ($validator->fails()) {
@@ -199,6 +199,18 @@ class DistribuicaoController extends Controller
   //atualiza as quantidades do item da distribuicação
   public function baixaItemDistribuicao(Request $request){
     $distribuicao_item = \App\Distribuicao_item::find($request->id);
+
+    $validator = Validator::make($request->all(), [
+      'quantidade_danificados' => ['required', 'integer', 'between:0,5000000'],
+      'quantidade_aceita' =>      ['required', 'integer', 'between:0,5000000'],
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->route('/distribuicao/baixaItem',[$distribuicao_item->id])
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
     $distribuicao_item->quantidade_aceita = $request->quantidade_aceita;
     $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total - $request->quantidade_aceita));
     $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
@@ -278,6 +290,7 @@ class DistribuicaoController extends Controller
       return redirect()->route('/distribuicao/listar');
   }
 
+  //fora de circulação
   public function salvar(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
 
@@ -393,6 +406,18 @@ class DistribuicaoController extends Controller
     $item_distribuicao = \App\Distribuicao_item::find($request->id);
     
     if (isset($item_distribuicao)) {
+
+      $validator = Validator::make($request->all(), [
+        'quantidade_total' => ['required', 'integer', 'between:0,5000000'],
+        
+      ]);
+  
+      if ($validator->fails()) {
+          return redirect()->route('/itemDistribuicao/editar',[$item_distribuicao->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $item_distribuicao->quantidade_total = $request->quantidade_total;
       $item_distribuicao->save();
 
