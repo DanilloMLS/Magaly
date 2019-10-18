@@ -19,7 +19,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}">
                             </div>
                         </div>
 
@@ -27,7 +27,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= {{ old('descricao')}}> {{ $errors->first('descricao')}}
+                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}">
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
+                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}">
                             </div>
                         </div>
 
@@ -43,7 +43,12 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Total ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number"  class="form-control" min="0"  value="{{ $item_refeicao->quantidade}}" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                              <input name="quantidade" id="quantidade" type="text"  class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}"  value="{{ $item_refeicao->quantidade}}">
+                              @if ($errors->has('quantidade'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 

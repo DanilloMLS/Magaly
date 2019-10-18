@@ -6,15 +6,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="card">
                 <div class="card-header">{{ __('Cadastrar Cardápio') }}</div>
 
@@ -26,7 +17,7 @@
                         <div class="form-group row">
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
                             <div class="col-md-6">
-                              <select required class="form-control" id="modalidade_ensino" name="modalidade_ensino">
+                              <select class="form-control{{ $errors->has('modalidade_ensino') ? ' is-invalid' : '' }}" id="modalidade_ensino" name="modalidade_ensino">
                                     <option value="">Selecione uma Modalidade de ensino</option>
                                     <option value="1">Creche Infantil Integral</option>
                                     <option value="2">Creche Infantil Parcial</option>
@@ -35,27 +26,47 @@
                                     <option value="5">EJA</option>
                                     <option value="6">Quilombola</option>
                               </select>
+                              @if ($errors->has('modalidade_ensino'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('modalidade_ensino') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                          </div>
 
                          <div class="form-group row">
                              <label for="data_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Data de início') }}</label>
                              <div class="col-md-2">
-                               <input type="date" id="data_inicio" required class="form-control"  name="data_inicio">
+                               <input type="date" id="data_inicio" class="form-control{{ $errors->has('data_inicio') ? ' is-invalid' : '' }}"  name="data_inicio">
+                               @if ($errors->has('data_inicio'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('data_inicio') }}</strong>
+                                    </span>
+                               @endif
                              </div>
                           </div>
 
                           <div class="form-group row">
                               <label for="data_fim" class="col-md-4 col-form-label text-md-right">{{ __('Data de fim') }}</label>
                               <div class="col-md-2">
-                                <input type="date" id="data_fim" required class="form-control"  name="data_fim">
+                                <input type="date" id="data_fim" class="form-control{{ $errors->has('data_fim') ? ' is-invalid' : '' }}"  name="data_fim">
+                                @if ($errors->has('data_fim'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('data_fim') }}</strong>
+                                    </span>
+                                @endif
                               </div>
                            </div>
 
                            <div class="form-group row">
                                <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
                                <div class="col-md-6">
-                                 <input id="nome" class="form-control" required name="nome">
+                                 <input id="nome" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome">
+                                 @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                                 @endif
                                </div>
                             </div>
 
