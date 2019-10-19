@@ -154,5 +154,6 @@ Route::get('/cardapioDiario/finalizarCardapio/{id}', 'CardapioController@finaliz
 Route::get('/cardapioMensal/finalizarCardapio', 'CardapioController@finalizarCardapioMensal')->name('/cardapioMensal/finalizarCardapio')->middleware('adm');
 Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('adm');
 Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCardapioMensal')->name('/cardapio/exibirItensCardapio')->middleware('auth');
-Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');
+
+Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
