@@ -13,7 +13,7 @@ $factory->define(\App\Escola::class, function (Faker $faker) {
     $atendimento = ['Manhã', 'Tarde', 'Noite', 'Manhã Tarde Noite',
                     'Manhã Tarde', 'Manhã Noite', 'Tarde Noite',];
     return [
-        'nome' => $faker->name,
+        'nome' => $faker->unique()->name,
         'modalidade_ensino' => $modalidade[$faker->numberBetween(0, 5)],
         'rota' => $rota[$faker->numberBetween(0, 9)],
         'periodo_atendimento' => $atendimento[$faker->numberBetween(0, 6)],

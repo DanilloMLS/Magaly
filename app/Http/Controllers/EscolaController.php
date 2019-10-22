@@ -15,10 +15,10 @@ class EscolaController extends Controller
       'modalidade_ensino' =>    ['required', 'between:1,6'],
       'rota' =>                 ['nullable', 'string', 'max:1500'],
       'periodo_atendimento' =>  ['nullable', 'string:255'],
-      'qtde_alunos' =>          ['required', 'numeric', 'min:0', 'max:500000'],
+      'qtde_alunos' =>          ['required', 'integer', 'between:0,500000'],
       'endereco' =>             ['nullable', 'string', 'max:1500'],
       'gestor' =>               ['nullable', 'string', 'max:255'],
-      'telefone' =>             ['nullable', 'string', 'max:15'],
+      'telefone' =>             ['nullable', 'digits_between:10,11'],
     ]);
 
     if ($validator->fails()) {
@@ -117,6 +117,24 @@ class EscolaController extends Controller
 
             
       if (isset($escola)) {
+
+        $validator = Validator::make($request->all(), [
+          'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome,'.$escola->id],
+          'modalidade_ensino' =>    ['required', 'between:1,6'],
+          'rota' =>                 ['nullable', 'string', 'max:1500'],
+          'periodo_atendimento' =>  ['nullable', 'string:255'],
+          'qtde_alunos' =>          ['required', 'integer', 'between:0,500000'],
+          'endereco' =>             ['nullable', 'string', 'max:1500'],
+          'gestor' =>               ['nullable', 'string', 'max:255'],
+          'telefone' =>             ['nullable', 'digits_between:10,11'],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->route('/escola/editar',[$escola->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $escola->nome = $request->nome;
         $escola->modalidade_ensino = $request->modalidade_ensino;
 

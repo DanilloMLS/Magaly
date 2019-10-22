@@ -10,6 +10,6 @@ $factory->define(\App\Fornecedor::class, function (Faker $faker) {
         'nome'=> $faker->name,
         'email' => $faker->email,
         'telefone' => $faker->phoneNumber,
-        'cnpj' => $faker->numberBetween(1010080000500, 999999999999)
+        'cnpj' => $faker->numerify('##############'),
     ];
 });

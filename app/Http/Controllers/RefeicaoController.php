@@ -10,8 +10,8 @@ class RefeicaoController extends Controller
 {
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
-      'nome' =>                 ['required', 'string', 'max:80', 'unique:refeicaos'],
-      'descricao' =>            ['nullable', 'string', 'max:255'],
+      'nome' =>      ['required', 'string', 'max:255', 'unique:refeicaos,nome'],
+      'descricao' => ['nullable', 'string', 'max:1500'],
     ]);
 
     if ($validator->fails()) {
@@ -64,9 +64,9 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($request->refeicao_id);
 
     $validator = Validator::make($request->all(), [
-      'quantidade' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
-      'item_id' =>     ['required', 'numeric', 'exists:items,id'],
-      'refeicao_id' => ['required', 'numeric', 'exists:refeicaos,id'],
+      'quantidade' =>  ['required', 'integer', 'between:0,5000000'],
+      'item_id' =>     ['required', 'integer', 'exists:items,id'],
+      'refeicao_id' => ['required', 'integer', 'exists:refeicaos,id'],
     ]);
 
     if ($validator->fails()) {
@@ -144,11 +144,12 @@ class RefeicaoController extends Controller
 
     if (isset($item_refeicao)) {
       $validator = Validator::make($request->all(), [
-        'quantidade' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+        'quantidade' => ['required', 'integer', 'between:0,5000000'],
+        'id' =>         ['required', 'integer', 'exists:refeicao_items,id'],
       ]);
   
       if ($validator->fails()) {
-          return redirect()->route('/refeicao/inserirItemRefeicao',[$item_refeicao->refeicao_id])
+          return redirect()->route('/itemRefeicao/editar',[$item_refeicao->id])
                       ->withErrors($validator)
                       ->withInput();
       }

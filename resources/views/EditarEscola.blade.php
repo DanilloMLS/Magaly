@@ -17,7 +17,12 @@
                             <label for="nome"  class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" readonly=“true” id="nome" type="text" class="form-control" required value="{{ $escola->nome}}" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ $escola->nome}}" value= {{ old('nome')}}>
+                              @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -25,7 +30,7 @@
                             <label for="modalidade_ensino" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade de ensino') }}</label>
 
                             <div class="col-md-6">
-                              <select class="form-control" id="modalidade_ensino" name="modalidade_ensino" required>
+                              <select class="form-control{{ $errors->has('modalidade_ensino') ? ' is-invalid' : '' }}" id="modalidade_ensino" name="modalidade_ensino">
                                     <option value="">Selecione uma Modalidade de ensino</option>
 
                                     <option value="1" @if(strcasecmp($escola->modalidade_ensino, 'Creche Infantil Integral') == 0) selected="selected" @endif> Creche Infantil Integral</option>
@@ -35,6 +40,11 @@
                                     <option value="5" @if(strcasecmp($escola->modalidade_ensino, 'EJA') == 0) selected="selected" @endif>EJA</option>
                                     <option value="6" @if(strcasecmp($escola->modalidade_ensino, 'Quilombola') == 0) selected="selected" @endif>Quilombola</option>
                               </select>
+                              @if ($errors->has('modalidade_ensino'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('modalidade_ensino') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -43,7 +53,12 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="endereco" id="endereco" type="text" class="form-control" required value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
+                              @if ($errors->has('endereco'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('endereco') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -53,7 +68,12 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="rota" id="rota" type="text" class="form-control" value= "{{ $escola->rota}}"><?php echo $escola->rota; ?></textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" value= "{{ $escola->rota}}"><?php echo $escola->rota; ?></textarea>
+                              @if ($errors->has('rota'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('rota') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -61,7 +81,12 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control" required value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}> {{ $errors->first('periodo_atendimento')}}
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control{{ $errors->has('periodo_atendimento') ? ' is-invalid' : '' }}" required value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}>
+                              @if ($errors->has('periodo_atendimento'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('periodo_atendimento') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -69,7 +94,12 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" pattern="^[-+]?[0-9]*" type="text" class="form-control" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}> {{ $errors->first('qtde_alunos')}}
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}>
+                              @if ($errors->has('qtde_alunos'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('qtde_alunos') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -77,7 +107,12 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control" required value="{{ $escola->gestor}}" value= {{ old('gestor')}}> {{ $errors->first('gestor')}}
+                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value="{{ $escola->gestor}}" value= {{ old('gestor')}}>
+                              @if ($errors->has('gestor'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gestor') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -85,7 +120,12 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control" value="{{ $escola->telefone}}" value= {{ old('telefone')}}> {{ $errors->first('telefone')}}
+                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value="{{ $escola->telefone}}" value= {{ old('telefone')}}>
+                              @if ($errors->has('telefone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 

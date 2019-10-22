@@ -19,8 +19,12 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" required value= {{ old('nome')}}> {{ $errors->first('nome')}}
-
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value= {{ old('nome')}}>
+                              @if ($errors->has('nome'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nome') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -28,8 +32,12 @@
                           <label for="marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="marca" id="marca" type="text" class="form-control" required value= {{ old('marca')}}> {{ $errors->first('marca')}}
-
+                            <input name="marca" id="marca" type="text" class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}" value= {{ old('marca')}}>
+                            @if ($errors->has('marca'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('marca') }}</strong>
+                                    </span>
+                              @endif
                           </div>
                         </div>
 
@@ -37,7 +45,12 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="text" class="form-control" value= {{ old('descricao')}}> {{ $errors->first('descricao')}}</textarea>
+                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}" value= {{ old('descricao')}}></textarea>
+                              @if ($errors->has('descricao'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('descricao') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -45,7 +58,12 @@
                           <label for="valor_unitario" class="col-md-4 col-form-label text-md-right">{{ __('Valor Unitário ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="valor_unitario" id="valor_unitario" placeholder="0.0" required type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= {{ old('valor_unitario')}}> {{ $errors->first('valor_unitario')}}
+                            <input name="valor_unitario" id="valor_unitario" type="text" class="form-control{{ $errors->has('valor_unitario') ? ' is-invalid' : '' }}" value= {{ old('valor_unitario')}}>
+                            @if ($errors->has('valor_unitario'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('valor_unitario') }}</strong>
+                                    </span>
+                              @endif
                           </div>
                       </div>
 
@@ -53,14 +71,24 @@
                           <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                           <div class="col-md-3">
-                            <input name="gramatura" id="n_lote" type="text" placeholder="ex: 100" pattern="^[-+]?[0-9]*" class="form-control" required value= {{ old('gramatura')}}> {{ $errors->first('gramatura')}}
+                            <input name="gramatura" id="n_lote" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" value= {{ old('gramatura')}}>
+                            @if ($errors->has('gramatura'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('gramatura') }}</strong>
+                                  </span>
+                            @endif
                           </div>
                           <div class="col-md-2">
-                            <select class="form-control" id="unidade" name="unidade" required>
+                            <select class="form-control{{ $errors->has('unidade') ? ' is-invalid' : '' }}" id="unidade" name="unidade">
                                   <option value="">Unidade</option>
                                   <option value="G">g</option>
                                   <option value="ML">ml</option>
                             </select>
+                            @if ($errors->has('unidade'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('unidade') }}</strong>
+                                  </span>
+                            @endif
                           </div>
                       </div>
 
@@ -68,7 +96,12 @@
                           <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="quantidade" id="quantidade" type="number" min="0" class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
+                            <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value= {{ old('quantidade')}}>
+                            @if ($errors->has('quantidade'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('quantidade') }}</strong>
+                                  </span>
+                            @endif
                           </div>
                         </div>
                         <div class="form-group row mb-0">

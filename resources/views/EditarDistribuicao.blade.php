@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Editar Distribuição') }}</div>
-
+                {{-- Fora de circulação --}}
                 <div class="card-body">
                     <form method="POST" action="{{ route('/distribuicao/salvar') }}">
                       <input type="hidden" name="id" value="{{ $distribuicao->id}}" />
@@ -17,7 +17,7 @@
                             <label for="observacao" class="col-md-4 col-form-label text-md-right">{{ __('Observação ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="observacao" id="observacao" type="text" class="form-control" value="{{ $distribuicao->observacao}}" > {{ $errors->first('observacao')}}
+                              <input name="observacao" id="observacao" type="text" class="form-control{{ $errors->has('observacao') ? ' is-invalid' : '' }}" value="{{ $distribuicao->observacao}}">
 
 
                             </div>

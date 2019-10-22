@@ -30,8 +30,12 @@
                             
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" min="0" max="{{$estoque_item->quantidade}}" autofocus required placeholder="Sáida máxima: {{$estoque_item->quantidade}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade')}}</input>
-
+                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}"></input>
+                                @if ($errors->has('quantidade'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     
@@ -39,8 +43,12 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" min="0" max="{{$estoque_item->quantidade_danificados}}" required placeholder="Saída máxima: {{$estoque_item->quantidade_danificados}}" pattern="[0-9]*" class="form-control"> {{ $errors->first('quantidade_danificados')}}</input>
-
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}"></input>
+                                @if ($errors->has('quantidade_danificados'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade_danificados') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

@@ -4,15 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="card">
                 <div class="card-header">{{ __('Inserir Item no Estoque') }}</div>
 
@@ -27,7 +18,7 @@
                             <label for="item_id" class="col-md-4 col-form-label text-md-right">{{ __('Item') }}</label>
                             @if(count($itens_contrato))
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_contrato_id">
+                              <select class="form-control{{ $errors->has('item_contrato_id') ? ' is-invalid' : '' }}" id="itens" name="item_contrato_id">
       								              <option value="">Selecione um Item</option>
                                     @foreach($itens_contrato as $item_contrato)
                                       @php
@@ -38,12 +29,22 @@
       									              <option value="{{$item_contrato->id}}">{{$item->nome}} - {{$item->gramatura}}{{$item->unidade}} - {{$fornecedor->nome}} - Contrato Nº {{$contrato->n_contrato}}</option>
       								              @endforeach
                               </select>
+                              @if ($errors->has('item_contrato_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('item_contrato_id') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control" id="itens" name="item_id">
+                              <select class="form-control{{ $errors->has('item_id') ? ' is-invalid' : '' }}" id="itens" name="item_id">
       								              <option value="">Não há itens cadastrados</option>
                               </select>
+                              @if ($errors->has('item_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('item_id') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                             @endif
                          </div>
@@ -52,8 +53,12 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="number" class="form-control" value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}</input>
-
+                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value= {{ old('quantidade')}}></input>
+                              @if ($errors->has('quantidade'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
                     
@@ -61,8 +66,12 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="number" class="form-control" value= {{ old('quantidade_danificados')}}> {{ $errors->first('quantidade_danificados')}}</input>
-
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value= {{ old('quantidade_danificados')}}> </input>
+                              @if ($errors->has('quantidade_danificados'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('quantidade_danificados') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                         </div>
 
@@ -70,7 +79,12 @@
                           <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de Validade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="data_validade" id="data_validade" type="date" class="form-control" value= {{ old('data_validade')}}> {{ $errors->first('data_validade')}}
+                            <input name="data_validade" id="data_validade" type="date" class="form-control{{ $errors->has('data_validade') ? ' is-invalid' : '' }}" value= {{ old('data_validade')}}>
+                            @if ($errors->has('data_validade'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('data_validade') }}</strong>
+                                  </span>
+                            @endif
                           </div>
                         </div>
 
@@ -78,7 +92,12 @@
                           <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Lote ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="n_lote" id="n_lote" type="text" class="form-control" value= {{ old('n_lote')}}> {{ $errors->first('n_lote')}}
+                            <input name="n_lote" id="n_lote" type="text" class="form-control{{ $errors->has('n_lote') ? ' is-invalid' : '' }}" value= {{ old('n_lote')}}>
+                            @if ($errors->has('n_lote'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('n_lote') }}</strong>
+                                  </span>
+                            @endif
                           </div>
                         </div>
 

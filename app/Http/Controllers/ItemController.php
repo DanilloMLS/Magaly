@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
 {
@@ -75,9 +76,9 @@ class ItemController extends Controller
             $validator = Validator::make($request->all(), [
                 'nome' =>       ['required', 'string', 'max:255'],
                 'marca' =>      ['required', 'string', 'max:255'],
-                'descricao' =>  ['required', 'string', 'max:1500'],
+                'descricao' =>  ['nullable', 'string', 'max:1500'],
                 'unidade' =>    ['required', 'string', 'max:2'],
-                'gramatura' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+                'gramatura' =>  ['required', 'integer', 'between:0,5000000'],
             ]);
       
             if ($validator->fails()) {

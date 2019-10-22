@@ -72,7 +72,7 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" pattern="[0-9]*\.?[0-9]+$" class="form-control" value= {{ old('quantidade')}}> 
+                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value= {{ old('quantidade')}}> 
                                   </div>
                                   <div class="col-md-1" style="padding-top:10px">
                                     @if ($item->unidade == 'G')
