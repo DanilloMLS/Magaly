@@ -147,9 +147,9 @@ class EstoqueController extends Controller
 
     if (isset($estoque)) {
       $validator = Validator::make($request->all(), [
-        'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
-        'quantidade' => ['required', 'numeric', 'min:0', 'max:5000000'],
-        'item_contrato_id' => ['required', 'numeric', 'exists:items,id'],
+        'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
+        'quantidade' => ['required', 'integer', 'min:0', 'max:5000000'],
+        'item_contrato_id' => ['required', 'integer', 'exists:items,id'],
         'n_lote' => ['required', 'string', 'max:255'],
         'data_validade' => ['required', 'date', 'after_or_equal:today'],
       ]);
@@ -265,9 +265,11 @@ class EstoqueController extends Controller
       $estoque = \App\Estoque::find($estoque_item->estoque_id);
       if (isset($estoque)) {
 
+        $contrato_item = \App\Contrato_item::find($estoque_item->contrato_id);
+
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
-          'quantidade' =>             ['required', 'numeric', 'min:0', 'max:5000000'],
+          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
+          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
         ]);
   
         if ($validator->fails()) {
@@ -327,8 +329,8 @@ class EstoqueController extends Controller
       if (isset($estoque)) {
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'numeric', 'min:0', 'max:5000000'],
-          'quantidade' =>             ['required', 'numeric', 'min:0', 'max:5000000'],
+          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
+          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$estoque_item->quantidade],
         ]);
   
         if ($validator->fails()) {
