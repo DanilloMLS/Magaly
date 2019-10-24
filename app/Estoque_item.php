@@ -10,7 +10,7 @@ class Estoque_item extends Model
   use SoftDeletes;
   protected $dates = ['deleted_at'];
   protected $fillable = [
-    'item_id', 'estoque_id', 'quantidade_danificados', 'quantidade', 'n_lote', 'data_validade',
+    'item_id', 'estoque_id', 'quantidade_danificados', 'quantidade', 'n_lote', 'data_validade', 'contrato_id'
   ];
 
   public function estoque(){

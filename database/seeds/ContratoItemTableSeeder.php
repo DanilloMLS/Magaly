@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EstoqueItemTableSeeder extends Seeder
+class ContratoItemTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class EstoqueItemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Estoque_item', 500)->create();
+        factory('App\Contrato_item', 400)->create();
     }
 }

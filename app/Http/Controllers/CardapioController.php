@@ -127,7 +127,10 @@ class CardapioController extends Controller
     $refeicoes = \App\Refeicao::all();
     session()->flash('success', 'Refeição adicionada.');
     /* return redirect()->route('/cardapio/inserirNovaRefeicao', [
-      $request->cardapio_diario, $request->cardapio_mensal, $request->cardapio_semanal]); */
+      "cardapio_diario" => $cardapio_diario->id, 
+      "cardapio_mensal" => $cardapio_mensal->id, 
+      "cardapio_semanal" => $cardapio_semanal->id
+    ]); */
    
     return view("InserirRefeicaoCardapio", ["cardapio_diario" => $cardapio_diario, "cardapio_mensal" => $cardapio_mensal, "cardapio_semanal" => $cardapio_semanal, "refeicoes" => $refeicoes]);
     //return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
