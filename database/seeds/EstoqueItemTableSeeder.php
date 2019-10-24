@@ -11,6 +11,6 @@ class EstoqueItemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Estoque', 1000)->create();
+        factory('App\Estoque_item', 500)->create();
     }
 }

@@ -7,7 +7,6 @@
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawChart2);
         google.charts.setOnLoadCallback(drawChart3);
-
         function drawChart() {
             var style = { role: "style" };
             var data = new google.visualization.DataTable();
@@ -49,10 +48,10 @@
             data3.addColumn({type:'string', role: 'style' });
             data3.addRows(<?= json_encode($data03)?>);
             var options = {
-                title: 'Contratos com menos itens',
-                legend: { position: "none" }
+                title: 'Ítens no estoque',
+                legend: { position: "none" },
+                name: {position: 'none'}
             };
-
             var chart = new google.visualization.BarChart(document.getElementById('chart_div3'));
 
             chart.draw(data3, options);
@@ -86,9 +85,9 @@
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <center><strong>Estoques</strong><center>
+                            <center><strong>{{$nome_stq}}</strong><center>
                         </div>
-                        <a href="{{route("/refeicao/listar")}}" >
+                        <a href="{{route("/estoque/listar")}}" >
                             <div id="chart_div3" class="chart_div"></div>
                         </a>
                     </div>
