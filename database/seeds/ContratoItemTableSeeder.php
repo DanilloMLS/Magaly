@@ -11,6 +11,6 @@ class ContratoItemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Contrato_item', 400)->create();
+        factory('App\Contrato_item', 500)->create();
     }
 }

@@ -11,6 +11,6 @@ $factory->define(\App\Refeicao_item::class, function (Faker $faker) {
     return [
         'quantidade' => $faker->numberBetween(1, 30),
         'item_id' => $itens[$faker->numberBetween(0, 1999)]->id,
-        'refeicao_id' => $refeicoes[$faker->numberBetween(0, 19)]->id
+        'refeicao_id' => $faker->randomElement($refeicoes)->id
     ];
 });
