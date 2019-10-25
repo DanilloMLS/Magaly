@@ -92,16 +92,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <center><strong>Grafico 04</strong><center>
-                        </div>
-                        <a href="#" >
-                            <div id="chart_div4" class="chart_div"></div>
-                        </a>
-                    </div>
-                </div>
                 <div class="sobre-magaly-home">
                     <br>
                     <div class="card">
