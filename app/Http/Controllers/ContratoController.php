@@ -25,6 +25,7 @@ class ContratoController extends Controller
       'modalidade' =>             ['required', 'string'],
       'descricao' =>              ['nullable', 'string', 'max:1500'],
       'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
+      //'valor_total' =>            ['nullable', 'numeric'],
     ]);
 
     if ($validator->fails()) {
@@ -38,7 +39,7 @@ class ContratoController extends Controller
     $contrato->n_contrato = $request->n_contrato;
     $contrato->n_processo_licitatorio = $request->n_processo_licitatorio;
     $contrato->descricao = $request->descricao;
-    $contrato->valor_total = $request->valor_total;
+    //$contrato->valor_total = $request->valor_total;
     $contrato->fornecedor_id = $request->fornecedor_id;
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
@@ -53,7 +54,7 @@ class ContratoController extends Controller
     return view("ListarContratos", ["contratos" => $contratos]);
   }
 
-public function listar_Falta(){
+  public function listar_Falta(){
     //$contratos = \App\Contrato::orderBy('id')->paginate(10);
     $contratos = [];
 
@@ -70,7 +71,6 @@ public function listar_Falta(){
 
     return view("ListarContratos", ["contratos" => $contratos]);
 }
-
 
   public function gerarRelatorio(){
     $contratos = \App\Contrato::all();
@@ -108,6 +108,24 @@ public function listar_Falta(){
     $contrato = \App\Contrato::find($request->contrato_id);
 
     if (isset($contrato)) {
+      
+      $validator = Validator::make($request->all(), [
+          'nome' =>           ['required', 'string', 'max:255'],
+          'marca' =>          ['required', 'string', 'max:255'],
+          'descricao' =>      ['nullable', 'string', 'max:1500'],
+          'unidade' =>        ['required', 'string', 'max:2'],
+          'gramatura' =>      ['required', 'integer', 'between:0,5000000'],
+          'quantidade' =>     ['required', 'integer', 'between:0,5000000'],
+          'valor_unitario' => ['required', 'numeric', 'between:0,5000000'],
+          'contrato_id' =>    ['required', 'integer', 'exists:contratos,id'],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/contrato/inserirItemContrato',[$contrato->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $contrato_item = new \App\Contrato_item();
       $item = \App\Item::where('nome','=',$request->nome)
                         ->where('marca','=',$request->marca)
@@ -118,7 +136,6 @@ public function listar_Falta(){
 
       if (!isset($item)) {
         $item = new \App\Item();
-
         $item->nome = $request->nome;
         $item->marca = $request->marca;
         $item->descricao = $request->descricao;
@@ -223,12 +240,14 @@ public function listar_Falta(){
       if (isset($contrato)){
 
         $validator = Validator::make($request->all(), [
-          'quantidade' =>      ['required', 'numeric', 'min:0', 'max:5000000'],
-          'valor_unitario' =>  ['required', 'numeric', 'min:0', 'max:5000000'],
+          'contrato_id' =>      ['required', 'integer', 'exists:contratos,id'],
+          'contrato_item_id' => ['required', 'integer', 'exists:contrato_items,id'],
+          'quantidade' =>       ['required', 'integer', 'min:0', 'max:5000000'],
+          'valor_unitario' =>   ['required', 'numeric', 'min:0', 'max:5000000'],
         ]);
     
         if ($validator->fails()) {
-            return redirect()->route('/itemContrato/editar',[$item_contrato->id])
+            return redirect()->route('/itemContrato/editar',['contrato_id'=>$contrato->id,'contrato_item_id'=>$item_contrato->id])
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -247,6 +266,17 @@ public function listar_Falta(){
   }
 
   public function buscarContratosFornecedor(Request $request){
+      
+      $validator = Validator::make($request->all(), [
+        'termo' => ['required', 'string'],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/contrato/buscar')
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
   		$fornecedor = \App\Fornecedor::where('nome', 'ilike', '%' . $request->termo . '%')
   													->first();
       $contratos = array();
@@ -257,6 +287,18 @@ public function listar_Falta(){
   }
 
   public function buscarContratosData(Request $request){
+
+      $validator = Validator::make($request->all(), [
+        'data_inicio' => ['required', 'date'],
+        'data_fim' =>    ['required', 'date', 'after:data_inicio'],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/contrato/buscar')
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $contratos =  \App\Contrato::where('data', '>=', $request->data_inicio)->where('data', '<=', $request->data_fim)->paginate(10);
       return view("ListarContratos", ["contratos" => $contratos]);
   }
@@ -284,6 +326,7 @@ public function listar_Falta(){
         'modalidade' =>             ['required', 'string'],
         'descricao' =>              ['nullable', 'string', 'max:1500'],
         'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
+        'valor_total' =>            ['nullable', 'numeric'],
       ]);
   
       if ($validator->fails()) {
