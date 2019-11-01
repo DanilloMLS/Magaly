@@ -70,7 +70,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}"  value= {{ old('descricao')}}></textarea>
+                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}">{{ old('descricao')}}</textarea>
                               @if ($errors->has('descricao'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('descricao') }}</strong>
@@ -86,7 +86,7 @@
                               <select class="form-control{{ $errors->has('fornecedor_id') ? ' is-invalid' : '' }}" id="fornecedores" name="fornecedor_id">
       								              <option value="">Selecione um Fornecedor</option>
       								              @foreach($fornecedores as $fornecedor)
-      									            <option value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
+      									            <option value="{{$fornecedor->id}}" {{ old('fornecedor_id') == $fornecedor->id ? 'selected' : '' }}>{{$fornecedor->nome}}</option>
       								              @endforeach
                               </select>
                               @if ($errors->has('fornecedor_id'))
