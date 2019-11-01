@@ -7,6 +7,7 @@
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawChart2);
         google.charts.setOnLoadCallback(drawChart3);
+        google.charts.setOnLoadCallback(drawChart4);
         function drawChart() {
             var style = { role: "style" };
             var data = new google.visualization.DataTable();
@@ -19,7 +20,7 @@
                 legend: { position: "none" }
             };
 
-            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 
             chart.draw(data, options);
         }
@@ -32,7 +33,9 @@
             data2.addRows(<?= json_encode($data02)?>);
             var options = {
                 title: 'Porcentagem de itens na refeição',
-                legend: { position: "none" }
+                is3D: true,
+                pieSliceText: 'label'
+
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
@@ -56,52 +59,73 @@
 
             chart.draw(data3, options);
         }
+
+        function drawChart4() {
+            var style = { role: "style" };
+            var data3 = new google.visualization.DataTable();
+            data3.addColumn('string', 'Topping');
+            data3.addColumn('number', 'Slices');
+            data3.addColumn({type:'string', role: 'style' });
+            data3.addRows(<?= json_encode($data04)?>);
+            var options = {
+                title: 'Ítens no estoque',
+                legend: { position: "none" }
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+
+            chart.draw(data3, options);
+        }
     </script>
 
     <div class="container">
         <div class="row justify-content-center">
 
             @if (Auth::guard()->check() && Auth::user()->is_adm)
-                <div class="col-md-3">
+                <div class="graph col-md-3">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="redireciona card-header" onclick='location.href="{{route('/contrato/listar_Falta')}}"'>
                             <center><strong>Contratos</strong><center>
                         </div>
-                        <a href="{{route('/contrato/listar_Falta')}}" >
-                            <div id="chart_div" class="chart_div"></div>
-                        </a>
+                        <div id="chart_div" class="chart_div"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="redireciona card-header" onclick='location.href="{{route("/refeicao/listar")}}"'>
                             <center><strong>{{$nome_ref}}</strong><center>
                         </div>
-                        <a href="{{route("/refeicao/listar")}}" >
-                            <div id="chart_div2" class="chart_div"></div>
-                        </a>
+                        <div id="chart_div2" class="chart_div"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="redireciona card-header" onclick='location.href="{{route("/estoque/listar")}}"'>
                             <center><strong>{{$nome_stq}}</strong><center>
                         </div>
-                        <a href="{{route("/estoque/listar")}}" >
                             <div id="chart_div3" class="chart_div"></div>
-                        </a>
+                    </div>
+                </div>
+                <div class="chart_div_est">
+                    <br>
+                    <div class="card">
+                        <div class="redireciona card-header"> <center><strong>{{$nome_stq_cent}} <center/><strong/>
+                        </div>
+                        <div id="chart_div4" class="chart_div"></div>
                     </div>
                 </div>
                 <div class="sobre-magaly-home">
                     <br>
                     <div class="card">
-                        <div class="card-header"><h3 align="center">Sistema Magaly</h3>
+                        <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
                         </div>
 
                         <div class="card-body">
                             <div class="panel-body">
                                 <p align="justify">
-                                    O Sistema de Gestão Alimentar <strong>Magaly</strong> tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, permitindo de forma simples o controle de estoque, de distribuições, a criação de refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
+                                    O Sistema de Gestão Alimentar <strong>Magaly</strong>
+                                    tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, 
+                                    permitindo de forma simples o controle de estoque, de distribuições, a criação de 
+                                    refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
                                     <br><br>
                                     seducdivtecnologia@gmail.com
                                 </p>
@@ -113,7 +137,7 @@
                 <div class="col-md-7">
                     <br>
                     <div class="card">
-                        <div class="card-header"><h3 align="center">Sistema Magaly</h3>
+                        <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
                         </div>
 
                         <div class="card-body">

@@ -28,12 +28,14 @@ class HomeController extends Controller
         $data01 = [];
         $data02 = [];
         $data03 = [];
+        $data04 = [];
         $cores = ["#fe9363","#fed948","#24fe8f", "#8a70b8", '#fec35e', "#8ad1fe", '#fecabe', '#8bf1fe', '#c0fe3f', '#8667fe', '#fe383f', '#aa1efe', '#dafe0c', '#38dcfe', '#a4f4fe', '#9fabfe'];
 
         $contratos_itens = \App\Contrato_item::orderBy('quantidade')->where('quantidade', '>', 0)->get();
         $refeicoes = \App\Refeicao::orderBy('nome')->get();
         $estoques = \App\Estoque::orderBy('nome')->get();
         $nome_estoque = 'Nada';
+        $nome_estoque_cent = 'Estoque Central';
 
 
         $aleatorio = 0;
@@ -92,7 +94,7 @@ class HomeController extends Controller
         if(count($estoques) > 1){
             $aleatorio = rand(0, count($estoques)-1);
             $estoque = $estoques[$aleatorio];
-            $itens_estoque = \App\Estoque_item::where('estoque_id', '=', $estoque->id)->get();
+            $itens_estoque = \App\Estoque_item::where('estoque_id', '=', $estoque->id)->paginate(10);
             $cont = 1;
             foreach($itens_estoque as $it){
                 $vall = [];
@@ -101,11 +103,7 @@ class HomeController extends Controller
                 array_push($vall, (int) $item->gramatura);
                 array_push($vall, (string)$cores[$cont%count($cores)]);
                 array_push($data03, $vall);
-                if($cont >= 10){
-                    break;
-                }else{
-                    $cont++;
-                }
+                $cont++;
 
             }
             $nome_estoque = $estoque->nome;
@@ -113,10 +111,28 @@ class HomeController extends Controller
             $data03 = $data_nada_03;
         }
 
+        /*Início da coleta de dados do gráfico 04*/
+        if(count($estoques) >= 1){
+            $estoque = \App\Estoque::find(1)->get()->first();
+            $itens_estoque= \App\Estoque_item::orderBy('quantidade')->where('estoque_id', '=', $estoque->id)->paginate(50);
+            $cont = 1;
+            foreach($itens_estoque as $it){
+                $vall = [];
+                $item = \App\Item::find($it->item_id);
+                array_push($vall, (string) $item->nome);
+                array_push($vall, (int) $item->gramatura);
+                array_push($vall, (string)$cores[$cont%count($cores)]);
+                array_push($data04, $vall);
+                $cont++;
 
+            }
+            $nome_estoque_cent = $estoque->nome;
+        }else{
+            $data04 = $data_nada_03;
+        }
 
         /*Início da coleta de dados do gráfico 04*/
 
-        return view('home', ['data01' => $data01, 'data02' => $data02, 'data03' => $data03, 'nome_ref' => $nome_refeicao, 'nome_stq' => $nome_estoque]);
+        return view('home', ['data01' => $data01, 'data02' => $data02, 'data03' => $data03, 'data04' => $data04, 'nome_ref' => $nome_refeicao, 'nome_stq' => $nome_estoque, 'nome_stq_cent' => $nome_estoque_cent]);
     }
 }
