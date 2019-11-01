@@ -146,9 +146,11 @@ class EstoqueController extends Controller
     $estoque = \App\Estoque::find($request->estoque_id);
 
     if (isset($estoque)) {
+      $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
+
       $validator = Validator::make($request->all(), [
-        'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
-        'quantidade' => ['required', 'integer', 'min:0', 'max:5000000'],
+        'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:'.($contrato_item->quantidade-$request->quantidade)],
+        'quantidade' => ['required', 'integer', 'min:0', 'max:'.($contrato_item->quantidade-$request->quantidade_danificados)],
         'item_contrato_id' => ['required', 'integer', 'exists:items,id'],
         'n_lote' => ['required', 'string', 'max:255'],
         'data_validade' => ['required', 'date', 'after_or_equal:today'],
@@ -159,8 +161,7 @@ class EstoqueController extends Controller
                       ->withErrors($validator)
                       ->withInput();
       }
-
-      $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
+      
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
                                        ->where('item_id','=',$contrato_item->item_id)
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
@@ -268,8 +269,8 @@ class EstoqueController extends Controller
         $contrato_item = \App\Contrato_item::find($estoque_item->contrato_id);
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
-          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:'.($contrato_item->quantidade-$request->quantidade)],
+          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.($contrato_item->quantidade-$request->quantidade_danificados)],
         ]);
   
         if ($validator->fails()) {

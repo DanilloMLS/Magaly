@@ -182,6 +182,8 @@ class DistribuicaoController extends Controller
           $estoque_escola_item->item_id = $distribuicao_item->item_id;
           $estoque_escola_item->estoque_id = $escola->estoque_id;
           $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
+          $estoque_escola_item->n_lote = $estoque_central_item->n_lote;
+          $estoque_escola_item->data_validade = $estoque_central_item->data_validade;
           $estoque_escola_item->save();
         }
       } else {

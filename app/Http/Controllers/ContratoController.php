@@ -242,8 +242,8 @@ class ContratoController extends Controller
         $validator = Validator::make($request->all(), [
           'contrato_id' =>      ['required', 'integer', 'exists:contratos,id'],
           'contrato_item_id' => ['required', 'integer', 'exists:contrato_items,id'],
-          'quantidade' =>       ['required', 'integer', 'min:0', 'max:5000000'],
-          'valor_unitario' =>   ['required', 'numeric', 'min:0', 'max:5000000'],
+          'quantidade' =>       ['required', 'integer', 'between:0,5000000'],
+          'valor_unitario' =>   ['required', 'numeric', 'minetween:0,5000000'],
         ]);
     
         if ($validator->fails()) {
@@ -326,7 +326,7 @@ class ContratoController extends Controller
         'modalidade' =>             ['required', 'string'],
         'descricao' =>              ['nullable', 'string', 'max:1500'],
         'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
-        'valor_total' =>            ['nullable', 'numeric'],
+        'valor_total' =>            ['nullable', 'numeric', 'min:0'],
       ]);
   
       if ($validator->fails()) {
