@@ -18,7 +18,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ $item->nome}}" >
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{old('nome', $item->nome)}}" >
                               @if ($errors->has('nome'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nome') }}</strong>
@@ -31,7 +31,7 @@
                           <label for="marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="marca" id="marca" type="text" class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}" value="{{ $item->marca}}" >
+                            <input name="marca" id="marca" type="text" class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}" value="{{old('marca', $item->marca)}}" >
                             @if ($errors->has('marca'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('marca') }}</strong>
@@ -44,7 +44,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}" value="{{ $item->descricao}}" >
+                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}">{{old('descricao', $item->descricao)}}</textarea>
                               @if ($errors->has('descricao'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('descricao') }}</strong>
@@ -57,7 +57,7 @@
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-3">
-                              <input name="gramatura" id="gramatura" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" value="{{ $item->gramatura}}">
+                              <input name="gramatura" id="gramatura" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" {{old('grmatura', $item->gramatura)}}>
                               @if ($errors->has('gramatura'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('gramatura') }}</strong>

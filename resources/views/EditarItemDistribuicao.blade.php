@@ -43,7 +43,7 @@
                             <label for="quantidade_total" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Total ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_total" id="quantidade_total" type="text"  class="form-control{{ $errors->has('quantidade_total') ? ' is-invalid' : '' }}" value="{{ $item_distribuicao->quantidade_total}}" value= {{ old('quantidade_total')}}>
+                              <input name="quantidade_total" id="quantidade_total" type="text"  class="form-control{{ $errors->has('quantidade_total') ? ' is-invalid' : '' }}" value="{{ $item_distribuicao->quantidade_total}}">
                               @if ($errors->has('quantidade_total'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade_total') }}</strong>
