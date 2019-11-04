@@ -64,7 +64,7 @@ class ContratoController extends Controller
     foreach($contratos_itens as $C_item){
         array_push($contratos, \App\Contrato::where('id',$C_item->contrato_id)->first());
         $cont++;
-        if($cont >=5){
+        if($cont >=50){
             break;
         }
     }

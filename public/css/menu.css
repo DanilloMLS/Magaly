@@ -64,3 +64,11 @@
     border-color: rgba(63,63,63,.2);
     margin-bottom: 5px;
 }
+
+.redireciona{
+    background-color:rgba(0,170,187);
+}
+
+.redireciona:hover{
+    background-color:rgba(0,170,187,.5);
+}
