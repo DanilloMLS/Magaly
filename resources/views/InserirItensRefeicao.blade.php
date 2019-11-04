@@ -69,12 +69,6 @@
                                   </div>
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
-                                  </div>
-
-                                  <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value= {{ old('quantidade')}}> 
-                                  </div>
-                                  <div class="col-md-1" style="padding-top:10px">
                                     @if ($item->unidade == 'G')
                                       g
                                     @endif
@@ -83,6 +77,9 @@
                                     @endif
                                   </div>
 
+                                  <div class="col-md-2">
+                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value= {{ old('quantidade')}}> 
+                                  </div>
 
                                   <div class="col-md-1">
                                     <?php
