@@ -18,7 +18,7 @@
                             <label for="observacao" class="col-md-4 col-form-label text-md-right">{{ __('Observação ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="observacao" id="observacao" type="text" class="form-control{{ $errors->has('observacao') ? ' is-invalid' : '' }}" value= {{ old('observacao')}}> </textarea>
+                              <textarea name="observacao" id="observacao" type="text" class="form-control{{ $errors->has('observacao') ? ' is-invalid' : '' }}">{{ old('observacao')}}</textarea>
                               @if ($errors->has('observacao'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('observacao') }}</strong>
@@ -35,7 +35,7 @@
                               <select class="form-control{{ $errors->has('escola_id') ? ' is-invalid' : '' }}" id="escolas" name="escola_id">
       								              <option value="">Selecione uma Escola</option>
       								              @foreach($escolas as $escola)
-      									            <option value="{{$escola->id}}">{{$escola->nome}}</option>
+      									            <option value="{{$escola->id}}" {{ old('escola_id') == $escola->id ? 'selected' : '' }}>{{$escola->nome}}</option>
       								              @endforeach
                               </select>
                               @if ($errors->has('escola_id'))
@@ -65,7 +65,7 @@
                                <select class="form-control{{ $errors->has('cardapio_id') ? ' is-invalid' : '' }}" id="cardapios" name="cardapio_id">
        								              <option value="">Selecione um Cardápio</option>
        								              @foreach($cardapios as $cardapio)
-       									            <option value="{{$cardapio->id}}">{{$cardapio->nome}}</option>
+       									            <option value="{{$cardapio->id}}" {{ old('cardapio_id') == $cardapio->id ? 'selected' : '' }}>{{$cardapio->nome}}</option>
        								              @endforeach
                                </select>
                                @if ($errors->has('cardapio_id'))
@@ -95,7 +95,7 @@
                               <select class="form-control{{ $errors->has('estoque_id') ? ' is-invalid' : '' }}" id="estoques" name="estoque_id">
                                     <option value="">Selecione um Estoque</option>
                                     @foreach($estoques as $estoque)
-                                    <option value="{{$estoque->id}}">{{$estoque->nome}}</option>
+                                    <option value="{{$estoque->id}}" {{ old('estoque_id') == $estoque->id ? 'selected' : '' }}>{{$estoque->nome}}</option>
                                     @endforeach
                               </select>
                               @if ($errors->has('estoque_id'))
