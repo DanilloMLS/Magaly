@@ -61,7 +61,7 @@
                                     </td>
                                     <td>
                                       <a title="Editar valor/qtde" class="btn btn-primary" href="{{ route ('/itemContrato/editar', ['contrato_id' => $item_contrato->contrato_id, 'contrato_item_id' => $item_contrato->id]) }}" >
-                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                        <img src="/img/edit.png" height="21" width="21" align = "right">
                                       </a>
                                     </td>
                                 </tr>
