@@ -146,9 +146,11 @@ class EstoqueController extends Controller
     $estoque = \App\Estoque::find($request->estoque_id);
 
     if (isset($estoque)) {
+      $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
+
       $validator = Validator::make($request->all(), [
-        'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
-        'quantidade' => ['required', 'integer', 'min:0', 'max:5000000'],
+        'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
+        'quantidade' => ['required', 'integer', 'between:0,99999'],
         'item_contrato_id' => ['required', 'integer', 'exists:items,id'],
         'n_lote' => ['required', 'string', 'max:255'],
         'data_validade' => ['required', 'date', 'after_or_equal:today'],
@@ -159,8 +161,7 @@ class EstoqueController extends Controller
                       ->withErrors($validator)
                       ->withInput();
       }
-
-      $contrato_item = \App\Contrato_item::find($request->item_contrato_id);
+      
       $estoque_item = \App\Estoque_item::where('estoque_id','=',$request->estoque_id)
                                        ->where('item_id','=',$contrato_item->item_id)
                                        ->where('contrato_id','=',$contrato_item->contrato_id)
@@ -168,7 +169,7 @@ class EstoqueController extends Controller
 
 
       //mudar para permitir a inserção com os Itens restantes
-      if ($contrato_item->quantidade < $request->quantidade or $contrato_item->quantidade <= 0) {
+      if ($contrato_item->quantidade < $request->quantidade+$request->quantidade_danificados or $contrato_item->quantidade <= 0) {
         session()->flash('success', 'Contrato não tem quantidade suficiente.');
         return redirect()->route('/estoque/listar');
       }
@@ -268,14 +269,19 @@ class EstoqueController extends Controller
         $contrato_item = \App\Contrato_item::find($estoque_item->contrato_id);
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
-          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+          'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
+          'quantidade' =>             ['required', 'integer', 'between:0,99999'],
         ]);
   
         if ($validator->fails()) {
             return redirect()->route('/estoque/inserirEntrada',[$estoque_item->id])
                         ->withErrors($validator)
                         ->withInput();
+        }
+
+        if ($contrato_item->quantidade < $request->quantidade+$request->quantidade_danificados or $contrato_item->quantidade <= 0) {
+          session()->flash('success', 'Contrato não tem quantidade suficiente.');
+          return redirect()->route('/estoque/listar');
         }
 
         $estoque_item->quantidade += $request->quantidade;

@@ -30,13 +30,13 @@
 
                               <div class="col-md-6">
                                 <select class="form-control{{ $errors->has('modalidade_ensino') ? ' is-invalid' : '' }}" id="modalidade_ensino" name="modalidade_ensino">
-        								              <option value="">Selecione uma Modalidade de ensino</option>
-        									            <option value="1">Creche Infantil Integral</option>
-                                      <option value="2">Creche Infantil Parcial</option>
-                                      <option value="3">Infantil</option>
-                                      <option value="4">Ensino Fundamental</option>
-                                      <option value="5">EJA</option>
-                                      <option value="6">Quilombola</option>
+        								<option value="">Selecione uma Modalidade de ensino</option>
+        							    <option value="1" {{ old('modalidade_ensino') == 1 ? 'selected' : '' }}>Creche Infantil Integral</option>
+                                        <option value="2" {{ old('modalidade_ensino') == 2 ? 'selected' : '' }}>Creche Infantil Parcial</option>
+                                        <option value="3" {{ old('modalidade_ensino') == 3 ? 'selected' : '' }}>Infantil</option>
+                                        <option value="4" {{ old('modalidade_ensino') == 4 ? 'selected' : '' }}>Ensino Fundamental</option>
+                                        <option value="5" {{ old('modalidade_ensino') == 5 ? 'selected' : '' }}>EJA</option>
+                                        <option value="6" {{ old('modalidade_ensino') == 6 ? 'selected' : '' }}>Quilombola</option>
                                 </select>
                                 @if ($errors->has('modalidade_ensino'))
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" value= {{ old('endereco')}}></textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" >{{ old('endereco')}}</textarea>
                               @if ($errors->has('endereco'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('endereco') }}</strong>
@@ -64,7 +64,7 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" value= {{ old('rota')}}></textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" >{{ old('rota')}}</textarea>
                               @if ($errors->has('rota'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('rota') }}</strong>
