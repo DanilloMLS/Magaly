@@ -45,7 +45,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}" value= {{ old('descricao')}}></textarea>
+                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}">{{ old('descricao')}}</textarea>
                               @if ($errors->has('descricao'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('descricao') }}</strong>
@@ -81,8 +81,8 @@
                           <div class="col-md-2">
                             <select class="form-control{{ $errors->has('unidade') ? ' is-invalid' : '' }}" id="unidade" name="unidade">
                                   <option value="">Unidade</option>
-                                  <option value="G">g</option>
-                                  <option value="ML">ml</option>
+                                  <option value="G" {{ old('unidade') == "G" ? 'selected' : '' }}>g</option>
+                                  <option value="ML" {{ old('unidade') == "ML" ? 'selected' : '' }}>ml</option>
                             </select>
                             @if ($errors->has('unidade'))
                                   <span class="invalid-feedback" role="alert">

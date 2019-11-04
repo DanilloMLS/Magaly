@@ -243,7 +243,7 @@ class ContratoController extends Controller
           'contrato_id' =>      ['required', 'integer', 'exists:contratos,id'],
           'contrato_item_id' => ['required', 'integer', 'exists:contrato_items,id'],
           'quantidade' =>       ['required', 'integer', 'between:0,5000000'],
-          'valor_unitario' =>   ['required', 'numeric', 'minetween:0,5000000'],
+          'valor_unitario' =>   ['required', 'numeric', 'between:0,5000000'],
         ]);
     
         if ($validator->fails()) {

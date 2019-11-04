@@ -50,7 +50,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" value= {{ old('endereco')}}>{{ old('rota')}}</textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" >{{ old('endereco')}}</textarea>
                               @if ($errors->has('endereco'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('endereco') }}</strong>
@@ -64,7 +64,7 @@
                             <label for="rota" class="col-md-4 col-form-label text-md-right">{{ __('Rota') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" value= {{ old('rota')}}>{{ old('rota')}}</textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" >{{ old('rota')}}</textarea>
                               @if ($errors->has('rota'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('rota') }}</strong>
