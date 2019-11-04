@@ -26,7 +26,7 @@
                                           $contrato = \App\Contrato::find($item_contrato->contrato_id);
                                           $fornecedor = \App\Fornecedor::find($contrato->fornecedor_id);
                                       @endphp
-      									              <option value="{{$item_contrato->id}}">{{$item->nome}} - {{$item->gramatura}}{{$item->unidade}} - {{$fornecedor->nome}} - Contrato Nº {{$contrato->n_contrato}}</option>
+      									              <option value="{{$item_contrato->id}}" {{ old('item_contrato_id') == $item_contrato->id ? 'selected' : '' }}>{{$item->nome}} - {{$item->gramatura}}{{$item->unidade}} - {{$fornecedor->nome}} - Contrato Nº {{$contrato->n_contrato}}</option>
       								              @endforeach
                               </select>
                               @if ($errors->has('item_contrato_id'))

@@ -44,7 +44,7 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="text"  class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value="{{ $contrato_item->quantidade}}" value= {{ old('quantidade')}}>
+                              <input name="quantidade" id="quantidade" type="text"  class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value="{{old('quantidade', $contrato_item->quantidade)}}">
                               @if ($errors->has('quantidade'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade') }}</strong>
@@ -57,7 +57,7 @@
                           <label for="valor_unitario" class="col-md-4 col-form-label text-md-right">{{ __('Valor Unitário ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="valor_unitario" id="valor_unitario" type="text" class="form-control{{ $errors->has('valor_unitario') ? ' is-invalid' : '' }}" value="{{ $contrato_item->valor_unitario}}" value= {{ old('valor_unitario')}}>
+                            <input name="valor_unitario" id="valor_unitario" type="text" class="form-control{{ $errors->has('valor_unitario') ? ' is-invalid' : '' }}" value="{{old('valor_unitario', $contrato_item->valor_unitario)}}">
                             @if ($errors->has('valor_unitario'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('valor_unitario') }}</strong>
