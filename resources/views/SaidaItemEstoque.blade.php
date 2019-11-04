@@ -30,7 +30,7 @@
                             
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}"></input>
+                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value="{{old('quantidade')}}"></input>
                                 @if ($errors->has('quantidade'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade') }}</strong>
@@ -43,7 +43,7 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}"></input>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value="{{old('quantidade_danificados')}}"></input>
                                 @if ($errors->has('quantidade_danificados'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade_danificados') }}</strong>

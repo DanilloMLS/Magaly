@@ -170,7 +170,7 @@ class EstoqueController extends Controller
 
       //mudar para permitir a inserção com os Itens restantes
       if ($contrato_item->quantidade < $request->quantidade+$request->quantidade_danificados or $contrato_item->quantidade <= 0) {
-        session()->flash('success', 'Contrato não tem quantidade suficiente.');
+        session()->flash('warning', 'Contrato não tem quantidade suficiente.');
         return redirect()->route('/estoque/listar');
       }
 

@@ -57,7 +57,7 @@
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-3">
-                              <input name="gramatura" id="gramatura" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" {{old('grmatura', $item->gramatura)}}>
+                              <input name="gramatura" id="gramatura" type="text" class="form-control{{ $errors->has('gramatura') ? ' is-invalid' : '' }}" value="{{old('grmatura', $item->gramatura)}}">
                               @if ($errors->has('gramatura'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('gramatura') }}</strong>

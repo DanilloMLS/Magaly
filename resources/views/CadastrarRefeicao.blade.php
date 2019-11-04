@@ -33,7 +33,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}"  value= {{ old('descricao')}}> </textarea>
+                              <textarea name="descricao" id="descricao" type="text" class="form-control{{ $errors->has('descricao') ? ' is-invalid' : '' }}"  >{{ old('descricao')}}</textarea>
                               @if ($errors->has('descricao'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('descricao') }}</strong>
