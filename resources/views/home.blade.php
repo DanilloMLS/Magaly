@@ -81,7 +81,7 @@
         <div class="row justify-content-center">
 
             @if (Auth::guard()->check() && Auth::user()->is_adm)
-                <div class="graph col-md-3">
+                <div class="graphcs col-md-3">
                     <div class="card">
                         <div class="redireciona card-header" onclick='location.href="{{route('/contrato/listar_Falta')}}"'>
                             <center><strong>Contratos</strong><center>
@@ -89,7 +89,7 @@
                         <div id="chart_div" class="chart_div"></div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="graphcs col-md-3">
                     <div class="card">
                         <div class="redireciona card-header" onclick='location.href="{{route("/refeicao/listar")}}"'>
                             <center><strong>{{$nome_ref}}</strong><center>
@@ -97,7 +97,7 @@
                         <div id="chart_div2" class="chart_div"></div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="graphcs col-md-3">
                     <div class="card">
                         <div class="redireciona card-header" onclick='location.href="{{route("/estoque/listar")}}"'>
                             <center><strong>{{$nome_stq}}</strong><center>

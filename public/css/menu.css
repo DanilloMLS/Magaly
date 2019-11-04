@@ -9,6 +9,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    transition:all 0.3s ease;
 }
 
 .dropdown-content {
@@ -71,4 +72,28 @@
 
 .redireciona:hover{
     background-color:rgba(0,170,187,.5);
+}
+.dropbtn{
+    background-color: transparent;
+}
+
+.navbar-brand{
+    font-size: 30px;
+}
+
+.navbar-laravel{
+    background-color: rgba(250,250,250,1);
+}
+
+.navbar-laravel:hover{
+    background-color: rgba(250,250,250,1);
+}
+
+
+.navbar:hover .dropdown{
+    display: block;
+}
+
+.navbar:hover .dropbtn{
+    display: block;
 }
