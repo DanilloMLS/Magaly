@@ -77,7 +77,7 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" title="Saída de Item" href="{{ route ("/estoque/inserirSaida", ['id' => $item_estoque->id])}}">
-                                          <img src="/img/exit.png" height="21" width="17" align = "right">                                          
+                                          <img src="/img/saida.png" height="21" width="17" align = "right">                                          
                                         </a>
                                     </td>
                                     <td>

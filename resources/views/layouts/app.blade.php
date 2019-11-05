@@ -80,17 +80,6 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
-                                    <div class="dropdown-content">
-                                        <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
-                                            Nova Distribuição
-                                        </a>
-                                        <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
-                                            Listar Distribuições
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
                                         <!-- <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
@@ -134,6 +123,17 @@
                                         </a>
                                         <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
                                             Listar Cardápios
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
+                                            Nova Distribuição
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
+                                            Listar Distribuições
                                         </a>
                                     </div>
                                 </div>

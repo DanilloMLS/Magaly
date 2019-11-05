@@ -41,7 +41,6 @@
                                   <th>Nº Contrato</th>
                                   <th>Nº Processo</th>
                                   <th>Modalidade</th>
-                                  <th>Descrição</th>
                                   <th>Data</th>
                                   <th>Valor Total</th>
                                   <th>Valor Restante</th>
@@ -56,7 +55,6 @@
                                     <td data-title="N_contrato">{{ $contrato->n_contrato }}</td>
                                     <td data-title="N_processo">{{ $contrato->n_processo_licitatorio }}</td>
                                     <td data-title="Modalidade">{{ $contrato->modalidade }}</td>
-                                    <td data-title="Descricao">{{ $contrato->descricao }}</td>
                                     <td data-title="Data">{{ $contrato->data }}</td>
                                     <td data-title="valor_total">
                                       @php
@@ -75,19 +73,14 @@
                                       @endphp
                                       </td>
                                     <td data-title="Ações">
-                                      <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}" >
-                                        <img src="/img/item.png" height="24" width="21" align = "right">
+                                      <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
+                                        <img src="/img/item.png" height="21" width="17" align = "right">
                                       </a>
-                                      
-                                    </td>
-                                    <td>
                                       <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
-                                        <img src="/img/edit.png" height="21" width="21" align = "center">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
-                                    </td>
-                                    <td>
                                       <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
-                                        <img src="/img/add_item.png" height="21" width="21" align = "center">
+                                        <img src="/img/add_item.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>
                                 </tr>

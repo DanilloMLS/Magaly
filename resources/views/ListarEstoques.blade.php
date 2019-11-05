@@ -50,15 +50,18 @@ function listarItens(id){
                               <tr>
                                   <th>Id</th>
                                   <th >Nome</th>
-                                  <th align="center">Ações</th>
+                                  <th class="right" >Ações</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($estoques as $estoque)
                                 <tr>
-                                    <td data-title="Id" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}})">{{ $estoque->id }}</td>
-                                    <td data-title="Nome" title="Clique para listar os itens" onClick="listarItens({{$estoque->id}});">{{ $estoque->nome }}</td>
-                                    <td>
+                                    <td data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
+                                    <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
+                                    <td class="right" >
+                                      <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
+                                        <img src="/img/item.png" height="21" width="17" align = "right">
+                                      </a>
                                       <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
                                         <img src="/img/add_item.png" height="21" width="21" align = "right">
                                       </a>
