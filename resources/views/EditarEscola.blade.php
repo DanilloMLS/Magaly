@@ -17,7 +17,7 @@
                             <label for="nome"  class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ $escola->nome}}" value= {{ old('nome')}}>
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{old('nome', $escola->nome)}}" autofocus>
                               @if ($errors->has('nome'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nome') }}</strong>
@@ -53,7 +53,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" value= "{{ $escola->endereco}}"><?php echo $escola->endereco; ?></textarea>
+                              <textarea name="endereco" id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" >{{old('endereco', $escola->endereco)}}</textarea>
                               @if ($errors->has('endereco'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('endereco') }}</strong>
@@ -68,7 +68,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" value= "{{ $escola->rota}}"><?php echo $escola->rota; ?></textarea>
+                              <textarea name="rota" id="rota" type="text" class="form-control{{ $errors->has('rota') ? ' is-invalid' : '' }}" >{{old('rota', $escola->rota)}}</textarea>
                               @if ($errors->has('rota'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('rota') }}</strong>
@@ -81,7 +81,7 @@
                             <label for="periodo_atendimento" class="col-md-4 col-form-label text-md-right">{{ __('Período de atendimento') }}</label>
 
                             <div class="col-md-6">
-                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control{{ $errors->has('periodo_atendimento') ? ' is-invalid' : '' }}" required value="{{ $escola->periodo_atendimento}}" value= {{ old('periodo_atendimento')}}>
+                              <input name="periodo_atendimento" id="periodo_atendimento" type="text" class="form-control{{ $errors->has('periodo_atendimento') ? ' is-invalid' : '' }}" value="{{old('periodo_atendimento', $escola->periodo_atendimento)}}">
                               @if ($errors->has('periodo_atendimento'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('periodo_atendimento') }}</strong>
@@ -94,7 +94,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value="{{ $escola->qtde_alunos}}" required value= {{ old('qtde_alunos')}}>
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value= {{ old('qtde_alunos', $escola->qtde_alunos)}}>
                               @if ($errors->has('qtde_alunos'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('qtde_alunos') }}</strong>
@@ -107,7 +107,7 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value="{{ $escola->gestor}}" value= {{ old('gestor')}}>
+                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value= {{ old('gestor', $escola->gestor)}}>
                               @if ($errors->has('gestor'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('gestor') }}</strong>
@@ -120,7 +120,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value="{{ $escola->telefone}}" value= {{ old('telefone')}}>
+                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value= {{ old('telefone', $escola->telefone)}}>
                               @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefone') }}</strong>
