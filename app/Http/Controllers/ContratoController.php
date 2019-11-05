@@ -62,8 +62,17 @@ class ContratoController extends Controller
 
     $cont = 0;
     foreach($contratos_itens as $C_item){
-        array_push($contratos, \App\Contrato::where('id',$C_item->contrato_id)->first());
-        $cont++;
+        $novo = \App\Contrato::where('id',$C_item->contrato_id)->first();
+        $contem = false;
+        foreach($contratos as $contr){
+          if($contr->id == $novo->id){
+            $contem = true;
+            break;
+          }
+        }if(!$contem){          
+          array_push($contratos, $novo);
+          $cont++;
+        }
         if($cont >=50){
             break;
         }
@@ -222,7 +231,7 @@ class ContratoController extends Controller
     $contrato = \App\Contrato::find($request->id);
     
     if (isset($contrato)) {
-      $itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->get();
+      $itens = \App\Contrato_item::where('contrato_id', '=', $contrato->id)->orderBy('quantidade')->get();
       if (isset($itens)) {
         return view("VisualizarItensContrato", ["itens" => $itens]);
       }
