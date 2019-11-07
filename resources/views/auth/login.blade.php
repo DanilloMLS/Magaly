@@ -53,7 +53,7 @@
           </div>
 
       <div class="d-flex justify-content-center mt-3 login_container">
-        <button type="submit" name="button" class="btn login_btn">{{ __('Login') }}</button>
+        <button type="submit" id="login" name="login" class="btn login_btn">{{ __('Login') }}</button>
       </div>
       <div class="d-flex justify-content-center mt-3 login_container">
         <a class="link" aling="center" href={{route ('password.request')}}>Esqueci minha senha</a>
