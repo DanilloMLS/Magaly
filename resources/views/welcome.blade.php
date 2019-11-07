@@ -20,7 +20,7 @@
                     @auth
                         <a class="links" href="{{ url('/home') }}"><div class="btn-text">Home</div><img class="btn-img" align="center" src="/img/login.png"></a>
                     @else
-                        <a class="links" href="{{ route('login') }}"><div class="btn-text">Login</div><img class="btn-img" align="center" src="/img/login.png"></a>
+                        <a class="links" id="login" name="login" href="{{ route('login') }}"><div class="btn-text">Login</div><img class="btn-img" align="center" src="/img/login.png"></a>
                     @endauth
                 </div>
             @endif
