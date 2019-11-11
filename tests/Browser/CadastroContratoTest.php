@@ -16,7 +16,7 @@ class CadastroContratoTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample(){
+    public function testCadastroValido(){
         $this->browse(function (Browser $browser) {
             $fornecedor = factory(Fornecedor::class)->create();
             $contrato = factory(Contrato::class)->make();

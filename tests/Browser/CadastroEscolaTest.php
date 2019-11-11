@@ -17,7 +17,7 @@ class CadastroEscolaTest extends DuskTestCase
      *
      * @return void
      */
-    public function testCadastro()
+    public function testCadastroValido()
     {
         $this->browse(function (Browser $browser) {
             $escola = factory(Escola::class)->make();
