@@ -94,7 +94,7 @@
                             <label for="qtde_alunos" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade de alunos') }}</label>
 
                             <div class="col-md-6">
-                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value= {{ old('qtde_alunos', $escola->qtde_alunos)}}>
+                              <input name="qtde_alunos" id="qtde_alunos" type="text" class="form-control{{ $errors->has('qtde_alunos') ? ' is-invalid' : '' }}" value= "{{ old('qtde_alunos', $escola->qtde_alunos)}}">
                               @if ($errors->has('qtde_alunos'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('qtde_alunos') }}</strong>
@@ -107,7 +107,7 @@
                             <label for="gestor" class="col-md-4 col-form-label text-md-right">{{ __('Nome do gestor') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value= {{ old('gestor', $escola->gestor)}}>
+                              <input name="gestor" id="gestor" type="text" class="form-control{{ $errors->has('gestor') ? ' is-invalid' : '' }}" value= "{{ old('gestor', $escola->gestor)}}">
                               @if ($errors->has('gestor'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('gestor') }}</strong>
@@ -120,7 +120,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value= {{ old('telefone', $escola->telefone)}}>
+                              <input name="telefone" id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" value= "{{ old('telefone', $escola->telefone)}}">
                               @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefone') }}</strong>

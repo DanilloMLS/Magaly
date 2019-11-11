@@ -19,7 +19,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" value= {{ old('nome')}}>
+                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" value= "{{ old('nome')}}">
                             </div>
                         </div>
 
@@ -27,7 +27,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= {{ old('descricao')}}>
+                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= "{{ old('descricao')}}">
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@
                             <label for="gramatura" class="col-md-4 col-form-label text-md-right">{{ __('Gramatura ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" value= {{ old('gramatura')}}>
+                              <input name="gramatura" id="gramatura" type="text" class="form-control" readonly=“true” value="{{ $item->gramatura}}{{ $item->unidade}}" value= "{{ old('gramatura')}}">
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Danificada ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="text"  class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value= {{ old('quantidade_danificados')}}>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="text"  class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value= "{{ old('quantidade_danificados')}}">
                               @if ($errors->has('quantidade_danificados'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade_danificados') }}</strong>
@@ -56,7 +56,7 @@
                             <label for="quantidade_aceita" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Aceita ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_aceita" id="quantidade_aceita" type="text" class="form-control{{ $errors->has('quantidade_aceita') ? ' is-invalid' : '' }}" value= {{ old('quantidade_aceita')}}>
+                              <input name="quantidade_aceita" id="quantidade_aceita" type="text" class="form-control{{ $errors->has('quantidade_aceita') ? ' is-invalid' : '' }}" value= "{{ old('quantidade_aceita')}}">
                               @if ($errors->has('quantidade_aceita'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade_aceita') }}</strong>

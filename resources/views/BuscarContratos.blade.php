@@ -19,7 +19,7 @@
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Nome do Fornecedor') }}</label>
 
                             <div class="col-md-6" >
-                              <input name="termo" termo="termo" type="text" class="form-control{{ $errors->has('termo') ? ' is-invalid' : '' }}" placeholder="Buscar por fornecedor" value= {{ old('termo')}}>
+                              <input name="termo" termo="termo" type="text" class="form-control{{ $errors->has('termo') ? ' is-invalid' : '' }}" placeholder="Buscar por fornecedor" value= "{{ old('termo')}}">
                               @if ($errors->has('termo'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('termo') }}</strong>
@@ -46,7 +46,7 @@
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Data de Início:') }}</label>
 
                             <div class="col-md-6">
-                              <input name="data_inicio" type="date" class="form-control{{ $errors->has('data_inicio') ? ' is-invalid' : '' }}" value= {{ old('data_inicio')}}>
+                              <input name="data_inicio" type="date" class="form-control{{ $errors->has('data_inicio') ? ' is-invalid' : '' }}" value= "{{ old('data_inicio')}}">
                               @if ($errors->has('data_inicio'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('data_inicio') }}</strong>
@@ -59,7 +59,7 @@
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Data de Fim:') }}</label>
 
                             <div class="col-md-6">
-                              <input name="data_fim" type="date" class="form-control{{ $errors->has('data_fim') ? ' is-invalid' : '' }}" value= {{ old('data_fim')}}>
+                              <input name="data_fim" type="date" class="form-control{{ $errors->has('data_fim') ? ' is-invalid' : '' }}" value= "{{ old('data_fim')}}">
                               @if ($errors->has('data_fim'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('data_fim') }}</strong>

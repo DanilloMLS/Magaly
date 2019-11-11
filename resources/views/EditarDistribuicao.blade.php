@@ -17,7 +17,7 @@
                             <label for="observacao" class="col-md-4 col-form-label text-md-right">{{ __('Observação ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="observacao" id="observacao" type="text" class="form-control{{ $errors->has('observacao') ? ' is-invalid' : '' }}" value="{{ $distribuicao->observacao}}">
+                              <input name="observacao" id="observacao" type="text" class="form-control{{ $errors->has('observacao') ? ' is-invalid' : '' }}" value="{{old('observacao', $distribuicao->observacao)}}">
 
 
                             </div>
