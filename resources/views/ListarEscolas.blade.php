@@ -54,7 +54,6 @@ function editar(id){
                                   <th>Quantidade de Alunos</th>
                                   <th>Gestor</th>
                                   <th>Telefone</th>
-                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -71,7 +70,7 @@ function editar(id){
                                     <td data-title="Telefone">{{ $escola->telefone }}</td>
 
 
-                                    <td>
+                                    <td align="right">
                                       <a class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>

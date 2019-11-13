@@ -49,7 +49,6 @@ function editar(id){
                                   <th>CNPJ</th>
                                   <th>Telefone</th>
                                   <th>Email</th>
-                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -60,7 +59,7 @@ function editar(id){
                                     <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
                                     <td data-title="Email">{{ $fornecedor->email }}</td>
 
-                                   <td>
+                                   <td align="right">
                                       <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>

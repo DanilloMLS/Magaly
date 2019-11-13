@@ -43,7 +43,6 @@ function avisoDeletar(id){
                                   <th>#</th>
                                   <th>Observação</th>
                                   <th>Escola</th>
-                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -54,7 +53,7 @@ function avisoDeletar(id){
                                     <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
                                     <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
 
-                                    <td>
+                                    <td align="right">
                                       <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
                                         <img src="/img/item.png" height="21" width="17" align = "right">
                                       </a>
@@ -66,8 +65,8 @@ function avisoDeletar(id){
                                           <img src="/img/down_arrow.png" height="21" width="17" align = "right">
                                         </a>
                                       @endif
-                                      <a class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
-                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      <a title="Visualizar" class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
+                                        <img src="/img/down.png" height="21" width="17" align = "right">
                                       </a>
                                     </td>
                                 </tr>
