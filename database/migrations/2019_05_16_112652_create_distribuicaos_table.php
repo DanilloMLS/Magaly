@@ -19,6 +19,7 @@ class CreateDistribuicaosTable extends Migration
             $table->integer('escola_id')->unsigned();
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
             $table->integer('cardapio_id')->unsigned();
+            $table->string('token')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

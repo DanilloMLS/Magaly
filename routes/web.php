@@ -62,7 +62,7 @@ Route::post('/distribuicao/inserirItem', 'DistribuicaoController@inserirItemDist
 Route::get('/distribuicao/removerItem/{id}', 'DistribuicaoController@removerItemDistribuicao')->name('/distribuicao/removerItem')->middleware('adm');
 Route::get('/distribuicao/finalizarDistribuicao/{id}', 'DistribuicaoController@finalizarDistribuicao')->name('/distribuicao/finalizarDistribuicao')->middleware('adm');
 Route::get('/distribuicao/exibirItensDistribuicao/{id}', 'DistribuicaoController@exibirItensDistribuicao')->name('/distribuicao/exibirItensDistribuicao')->middleware('auth');
-Route::get('/distribuicao/Relatorio_Distribuicoes', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes')->middleware('auth');
+Route::get('/distribuicao/Relatorio_Distribuicoes/{token}', 'DistribuicaoController@gerarRelatorio')->name('/distribuicao/RelatorioDistribuicoes');
 Route::get('/itemDistribuicao/editar/{id}', 'DistribuicaoController@editarItemDistribuicao')->name('/itemDistribuicao/editar')->middleware('adm');
 Route::post('/itemDistribuicao/salvar', 'DistribuicaoController@salvarItemDistribuicao')->name('/itemDistribuicao/salvar')->middleware('adm');
 Route::get('/distribuicao/novaBaixa/{id}', 'DistribuicaoController@buscarDistribuicao')->name('/distribuicao/novaBaixa')->middleware('adm');
