@@ -66,6 +66,9 @@ function avisoDeletar(id){
                                           <img src="/img/down_arrow.png" height="21" width="17" align = "right">
                                         </a>
                                       @endif
+                                      <a class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
+                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach
@@ -76,7 +79,6 @@ function avisoDeletar(id){
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/distribuicao/RelatorioDistribuicoes") }}">Relatório</a>
                       <a class="btn btn-primary" href="{{ route("/distribuicao/telaCadastrar") }}">Nova</a>
                   </div>
                 </div>
