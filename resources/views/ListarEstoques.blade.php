@@ -56,7 +56,6 @@ function listarItens(id){
                               <tr>
                                   <th>Id</th>
                                   <th >Nome</th>
-                                  <th class="right" >Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -64,7 +63,7 @@ function listarItens(id){
                                 <tr>
                                     <td data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
                                     <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
-                                    <td class="right" >
+                                    <td align="right" >
                                       <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
                                         <img src="/img/item.png" height="21" width="17" align = "right">
                                       </a>
