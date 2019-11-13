@@ -14,11 +14,11 @@ Rua: Siqueira Campos, 75 - Garanhuns PE</br>
 Tel: (87)3762-7060
                     </pre>
                 </td>
-                <td>
-                    <?php
-                    echo "<p>".date("H").":".date("i").":".date("s"). "</p>";
-                    echo "<p>".date("d")."/".date("m")."/".date("y"). "</p>";
-                    ?>
+                <td >
+                @foreach ($distribuicoes as $distribuicao)
+                    <img src="data:image/png;base64,
+                     {!! base64_encode(QrCode::format('png')->size(150)->generate("http://localhost:8000/distribuicao/Relatorio_Distribuicoes/"."$distribuicao->token")) !!} ">
+                @endforeach
                 </td>
             </tr>
         </table>

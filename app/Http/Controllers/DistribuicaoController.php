@@ -33,6 +33,7 @@ class DistribuicaoController extends Controller
       'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
+      //'token' => ['integer', 'required', 'unique:distribuicao,token','min:0'],
     ],[
       'observacao.max' => 'Observação deve ter no máximo 1500 caracteres',
       'escola_id.required' => 'Escolha uma escola',
@@ -46,11 +47,15 @@ class DistribuicaoController extends Controller
                     ->withInput();
     }
 
+    $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
+    $uniqueString = md5(time().$sffledStr).md5(time().$sffledStr);
+
     $distribuicao = new \App\Distribuicao();
     $distribuicao->observacao = $request->observacao;
     $distribuicao->escola_id = $request->escola_id;
     $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->estoque_id = $request->estoque_id;
+    $distribuicao->token =$uniqueString;
     $distribuicao->save();
     $escola = \App\Escola::find($request->escola_id);
 
@@ -261,14 +266,17 @@ class DistribuicaoController extends Controller
     return view("ListarDistribuicoes", ["distribuicoes" => $distribuicoes]);
   }
 
-    public function gerarRelatorio(){
-        $distribuicoes = \App\Distribuicao::All();
-        //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
-        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");
+    public function gerarRelatorio(Request $request){
+        $distribuicoes = \App\Distribuicao::where('token', '=', $request->token)->get();
+        if(count($distribuicoes) > 0){
+          //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
+          $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");
 
-        return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes'))
-            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->stream('relatorio_Distribuicao_'.$data.'.pdf');
+          return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes'))
+              // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+              ->stream('relatorio_Distribuicao_'.$data.'.pdf');
+        }
+        return abort(404); 
     }
 
   public function remover(Request $request){

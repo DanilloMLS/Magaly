@@ -4,11 +4,9 @@ namespace Tests\Browser;
 
 use App\Escola;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-
-use function PHPSTORM_META\type;
+use Laravel\Dusk\Browser;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CadastroEscolaTest extends DuskTestCase
 {
@@ -17,28 +15,34 @@ class CadastroEscolaTest extends DuskTestCase
      *
      * @return void
      */
-    public function testCadastroValido()
+    public function testExample()
     {
         $this->browse(function (Browser $browser) {
             $escola = factory(Escola::class)->make();
+            $escola->telefone = '87999999999';
             $browser->loginAs(User::find(1))
-                    ->visit('/escola/cadastrar')
-                    ->assertSee('Cadastrar Escola')
-                    ->pause(2000)
-                    ->type('nome', $escola->nome)
-                    ->select('modalidade_ensino')
-                    ->type('endereco', $escola->endereco)
-                    ->type('rota', $escola->rota)
-                    ->type('periodo_atendimento', $escola->periodo_atendimento)
-                    ->type('qtde_alunos', $escola->qtde_alunos)
-                    ->type('gestor', $escola->gestor)
-                    ->type('telefone', $escola->telefone)
-                    ->pause(2000)
-                    ->press('Cadastrar')
-                    ->pause(2000)
-                    ->visit('/escola/listar')
-                    ->assertSee($escola->nome)
-                    ->pause(2000);
+                ->visit('/escola/cadastrar')
+                ->assertSee('Cadastrar Escola')
+                ->type('nome', $escola->nome)
+                ->pause(1000)
+                ->select('modalidade_ensino')
+                ->pause(1000)
+                ->type('endereco', $escola->endereco)
+                ->pause(1000)
+                ->type('rota', $escola->rota)
+                ->pause(1000)
+                ->type('periodo_atendimento', $escola->periodo_atendimento)
+                ->pause(1000)
+                ->type('qtde_alunos', $escola->qtde_alunos)
+                ->pause(1000)
+                ->type('gestor', $escola->gestor)
+                ->pause(1000)
+                ->type('telefone', $escola->telefone)
+                ->pause(3000)
+                ->press('Cadastrar')
+                ->visit('/escola/listar')
+                ->assertSee($escola->nome)
+                ->pause(3000);
         });
     }
 }
