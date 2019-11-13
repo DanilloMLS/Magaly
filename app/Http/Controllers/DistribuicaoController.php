@@ -34,6 +34,11 @@ class DistribuicaoController extends Controller
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
       //'token' => ['integer', 'required', 'unique:distribuicao,token','min:0'],
+    ],[
+      'observacao.max' => 'Observação deve ter no máximo 1500 caracteres',
+      'escola_id.required' => 'Escolha uma escola',
+      'cardapio_id.required' => 'Escolha um cardápio',
+      'estoque_id.required' => 'Escolha um estoque',
     ]);
 
     if ($validator->fails()) {

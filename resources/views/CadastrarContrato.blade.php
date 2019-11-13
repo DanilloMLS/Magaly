@@ -37,7 +37,7 @@
                             <label for="n_contrato" class="col-md-4 col-form-label text-md-right">{{ __('Nº Contrato ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="n_contrato" id="n_contrato" type="text" class="form-control{{ $errors->has('n_contrato') ? ' is-invalid' : '' }}" value= {{ old('n_contrato')}}>
+                              <input name="n_contrato" id="n_contrato" type="text" class="form-control{{ $errors->has('n_contrato') ? ' is-invalid' : '' }}" value="{{ old('n_contrato')}}">
                               @if ($errors->has('n_contrato'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('n_contrato') }}</strong>
@@ -50,7 +50,7 @@
                             <label for="n_processo_licitatorio" class="col-md-4 col-form-label text-md-right">{{ __('Nº Processo Licitatório ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" class="form-control{{ $errors->has('n_processo_licitatorio') ? ' is-invalid' : '' }}" value= {{ old('n_processo_licitatorio')}}>
+                              <input name="n_processo_licitatorio" id="n_processo_licitatorio" type="text" class="form-control{{ $errors->has('n_processo_licitatorio') ? ' is-invalid' : '' }}" value="{{ old('n_processo_licitatorio')}}">
                               @if ($errors->has('n_processo_licitatorio'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('n_processo_licitatorio') }}</strong>
@@ -63,7 +63,7 @@
                           <label for="modalidade" class="col-md-4 col-form-label text-md-right">{{ __('Modalidade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="modalidade" id="modalidade" type="text" class="form-control{{ $errors->has('modalidade') ? ' is-invalid' : '' }}" value= {{ old('n_processo_licitatorio')}}>
+                            <input name="modalidade" id="modalidade" type="text" class="form-control{{ $errors->has('modalidade') ? ' is-invalid' : '' }}" value="{{ old('n_processo_licitatorio')}}">
                             @if ($errors->has('modalidade'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('modalidade') }}</strong>

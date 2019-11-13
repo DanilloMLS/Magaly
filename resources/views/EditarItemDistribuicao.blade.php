@@ -19,7 +19,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value="{{ $item->nome}}" value= {{ old('nome')}}>
+                              <input name="nome" id="nome" type="text" class="form-control" readonly=“true” value= "{{ old('nome', $item->nome)}}">
                             </div>
                         </div>
 
@@ -27,7 +27,7 @@
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Descrição ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value="{{ $item->descricao}}" value= {{ old('descricao')}}>
+                              <input name="descricao" id="descricao" type="text" class="form-control" readonly=“true” value= "{{ old('descricao',$item->descricao)}}">
                             </div>
                         </div>
 

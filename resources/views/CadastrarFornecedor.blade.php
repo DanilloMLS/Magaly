@@ -16,7 +16,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" autofocus value= {{ old('nome')}}>
+                              <input name="nome" id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" autofocus value="{{ old('nome')}}">
                               @if ($errors->has('nome'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nome') }}</strong>
@@ -42,7 +42,7 @@
                             <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                              <input name="telefone" id="telefone" type="text" placeholder="Somente dígitos, DDD sem zero" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}"  value= {{ old('telefone')}}>
+                              <input name="telefone" id="telefone" type="text" placeholder="Somente dígitos, DDD sem zero" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}"  value= "{{ old('telefone')}}">
                               @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefone') }}</strong>

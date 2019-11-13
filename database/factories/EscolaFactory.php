@@ -20,7 +20,7 @@ $factory->define(\App\Escola::class, function (Faker $faker) {
         'qtde_alunos' => $faker->numberBetween(10, 2000),
         'endereco' => $faker->address,
         'gestor' => $faker->name,
-        'telefone' => $faker->phoneNumber,
+        'telefone' => $faker->numerify('##########'),
         'estoque_id' => function(){return factory(\App\Estoque::class)->create()->id;}
     ];
 });

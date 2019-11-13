@@ -53,7 +53,7 @@
                             <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value= {{ old('quantidade')}}></input>
+                              <input name="quantidade" id="quantidade" type="text" class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value= "{{ old('quantidade')}}"></input>
                               @if ($errors->has('quantidade'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade') }}</strong>
@@ -66,7 +66,7 @@
                             <label for="quantidade_danificados" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade danificados') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value= {{ old('quantidade_danificados')}}> </input>
+                              <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control{{ $errors->has('quantidade_danificados') ? ' is-invalid' : '' }}" value= "{{ old('quantidade_danificados')}}"> </input>
                               @if ($errors->has('quantidade_danificados'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('quantidade_danificados') }}</strong>
@@ -79,7 +79,7 @@
                           <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de Validade ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="data_validade" id="data_validade" type="date" class="form-control{{ $errors->has('data_validade') ? ' is-invalid' : '' }}" value= {{ old('data_validade')}}>
+                            <input name="data_validade" id="data_validade" type="date" class="form-control{{ $errors->has('data_validade') ? ' is-invalid' : '' }}" value= "{{ old('data_validade')}}">
                             @if ($errors->has('data_validade'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('data_validade') }}</strong>
@@ -92,7 +92,7 @@
                           <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Lote ') }}</label>
 
                           <div class="col-md-6">
-                            <input name="n_lote" id="n_lote" type="text" class="form-control{{ $errors->has('n_lote') ? ' is-invalid' : '' }}" value= {{ old('n_lote')}}>
+                            <input name="n_lote" id="n_lote" type="text" class="form-control{{ $errors->has('n_lote') ? ' is-invalid' : '' }}" value= "{{ old('n_lote')}}">
                             @if ($errors->has('n_lote'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('n_lote') }}</strong>

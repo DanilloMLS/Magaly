@@ -49,7 +49,14 @@
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
                                     <td data-title="Qtde. Danificados">{{ $item_distribuicao->quantidade_danificados }}</td>
-                                    <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
+                                    <td data-title="Qtde. Falta">
+                                      @if ($item_distribuicao->quantidade_falta >= 0)
+                                        {{ $item_distribuicao->quantidade_falta }}
+                                      @else
+                                        {{"excesso ".$item_distribuicao->quantidade_falta*(-1) }}  
+                                      @endif
+                                      
+                                    </td>
                                     <td data-title="Quantidade_total">{{ $item_distribuicao->quantidade_total }}</td>
 
                                     <td>
