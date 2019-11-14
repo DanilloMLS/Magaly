@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Helpers\LogActivity;
 use App\Estoque;
 
 class EscolaController extends Controller
@@ -65,7 +66,7 @@ class EscolaController extends Controller
     $escola->estoque_id = $estoque->id;
 
     $escola->save();
-
+    LogActivity::addToLog('Cadastro de Escola');
     session()->flash('success', 'Escola cadastrada com sucesso.');
     return redirect()->route('/escola/listar');
   }
@@ -84,6 +85,7 @@ class EscolaController extends Controller
           ->stream('relatorio_Escolas_'.$data.'.pdf');
   }
 
+  //fora de circulação
   public function remover(Request $request){
       $escola = \App\Escola::find($request->id);
       $estoque = \App\Estoque::find($request->id);
@@ -103,6 +105,7 @@ class EscolaController extends Controller
       $escola = \App\Escola::find($request->id);
 
       if (isset($escola)) {
+        LogActivity::addToLog('Abriu Escola: '.$escola->nome.' para edição.');
         return view("EditarEscola", [
           "escola" => $escola,
         ]);
@@ -166,10 +169,11 @@ class EscolaController extends Controller
         $escola->gestor = $request->gestor;
         $escola->telefone = $request->telefone;
         $escola->save();
-
+        LogActivity::addToLog('Edição de Escola.');
         $estoque = \App\Estoque::find($escola->estoque_id);
         $estoque->nome = "Estoque da Escola ".$request->nome;
         $estoque->save();
+        LogActivity::addToLog('Estoque renomeado.');
 
         session()->flash('success', 'Escola modificada com sucesso.');
         return redirect()->route('/escola/listar');

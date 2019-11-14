@@ -198,17 +198,10 @@ class EstoqueController extends Controller
       $estoque_item->n_lote = $request->n_lote;
       $estoque_item->data_validade = $request->data_validade;
 
-      $estoque_es = new \App\Estoque_es();
-      $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-      $estoque_es->quantidade = $request->quantidade;
-      $estoque_es->operacao = "inserção";
-      $estoque_es->item_id = $contrato_item->item_id;
-      $estoque_es->estoque_id = $request->estoque_id;
 
       $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
       
       $estoque_item->save();
-      $estoque_es->save();
       $contrato_item->save();
 
       session()->flash('success', 'Inserção de novo item.');
@@ -227,15 +220,6 @@ class EstoqueController extends Controller
       $estoque = \App\Estoque::find($estoque_item->estoque_id);
 
       if (isset($estoque)) {
-        $estoque_es = new \App\Estoque_es();
-        $estoque_es->quantidade_danificados = 0;
-        $estoque_es->quantidade = 0;
-        $estoque_es->operacao = "removido";
-        $estoque_es->item_id = $estoque_item->item_id;
-        $estoque_es->estoque_id = $estoque_item->estoque_id;
-      
-      
-        $estoque_es->save();
         $estoque_item->delete();
 
         session()->flash('success', 'Remoção de item.');
@@ -295,15 +279,8 @@ class EstoqueController extends Controller
                                            ->first();
         $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
   
-        $estoque_es = new \App\Estoque_es();
-        $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-        $estoque_es->quantidade = $request->quantidade;
-        $estoque_es->operacao = "entrada";
-        $estoque_es->item_id = $request->item_id;
-        $estoque_es->estoque_id = $request->estoque_id;
         
         $estoque_item->save();
-        $estoque_es->save();
         $contrato_item->save();
         
         session()->flash('success', 'Entrada de item.');
@@ -354,15 +331,8 @@ class EstoqueController extends Controller
                 $estoque_item->item_id = $request->item_id;
                 $estoque_item->estoque_id = $request->estoque_id;
                 
-                $estoque_es = new \App\Estoque_es();
-                $estoque_es->quantidade_danificados = $request->quantidade_danificados;
-                $estoque_es->quantidade = $request->quantidade;
-                $estoque_es->operacao = "saida";
-                $estoque_es->item_id = $request->item_id;
-                $estoque_es->estoque_id = $request->estoque_id;
                 
                 $estoque_item->save();
-                $estoque_es->save();
           }
           elseif ($request->quantidade > $estoque_item->quantidade) {
             return redirect()->back() ->with('alert', 'Quantidade insuficiente');
@@ -385,10 +355,9 @@ class EstoqueController extends Controller
     //return redirect()->route('/estoque/listar');
   }
 
-  public function mostrarHistorico(Request $request){
-    //$itens_historico = \App\Estoque_es::find($request->id);
+  /* public function mostrarHistorico(Request $request){
     $itens_historico = \App\Estoque_es::where('estoque_id', '=', $request->id)->get();
 
     return view("HistoricoEstoque", ["itens_historico" => $itens_historico]);
-  }
+  } */
 }

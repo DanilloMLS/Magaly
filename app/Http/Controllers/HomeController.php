@@ -135,4 +135,39 @@ class HomeController extends Controller
 
         return view('home', ['data01' => $data01, 'data02' => $data02, 'data03' => $data03, 'data04' => $data04, 'nome_ref' => $nome_refeicao, 'nome_stq' => $nome_estoque, 'nome_stq_cent' => $nome_estoque_cent]);
     }
+
+    /**
+
+     * Show the application dashboard.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function myTestAddToLog() {
+
+        \LogActivity::addToLog('My Testing Add To Log.');
+        dd('log insert successfully.');
+
+    }
+
+
+    /**
+
+     * Show the application dashboard.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function logActivity() {
+
+        $logs = \LogActivity::logActivityLists();
+        return view('LogActivity',compact('logs'));
+
+    }
 }

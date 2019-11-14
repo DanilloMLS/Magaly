@@ -126,7 +126,7 @@ Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')
 Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('adm');
 Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@abrirSaidaItem')->name('/estoque/inserirSaida')->middleware('adm');
 Route::post('/estoque/abrirSaida', 'EstoqueController@saidaItem')->name('/estoque/abrirSaida')->middleware('adm');
-Route::get('/estoque/historicoEstoque/{id}', 'EstoqueController@mostrarHistorico')->name('/estoque/historicoEstoque')->middleware('auth');
+//Route::get('/estoque/historicoEstoque/{id}', 'EstoqueController@mostrarHistorico')->name('/estoque/historicoEstoque')->middleware('auth');
 Route::get('/estoque/Relatorio_Estoques', 'EstoqueController@gerarRelatorio')->name('/estoque/RelatorioEstoques')->middleware('auth');
 
 //Refeicao
@@ -165,3 +165,8 @@ Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCarda
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');
 
 Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
+
+
+//Log Activity
+//Route::get('add-to-log', 'HomeController@myTestAddToLog');
+Route::get('/LogActivity', 'HomeController@logActivity')->name('/logActivity')->middleware('adm');
