@@ -13,7 +13,7 @@ class CreateLogActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_activities', function (Blueprint $table) {
+        Schema::connection('pgsql2')->create('log_activities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('subject');
             $table->string('url');
