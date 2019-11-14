@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Helpers\LogActivity;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
@@ -43,6 +45,7 @@ class ContratoController extends Controller
     $contrato->fornecedor_id = $request->fornecedor_id;
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
+    LogActivity::addToLog('Cadastro de Contrato');
 
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -165,6 +168,7 @@ class ContratoController extends Controller
       $contrato->valor_total += $request->quantidade * $request->valor_unitario;
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->save();
+      LogActivity::addToLog('Inserir Item no Contrato.');
 
       session()->flash('success', 'Item adicionado.');
       return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -266,6 +270,7 @@ class ContratoController extends Controller
         $item_contrato->save();
         //$contrato->valor_total = $this->calcularTotal($contrato);
         //$contrato->save();
+        LogActivity::addToLog('Edição de Item de Contrato.');
         session()->flash('success', 'Valores alterados com sucesso.');
         return redirect()->route('/contrato/exibirItensContrato', ["id" => $item_contrato->contrato_id]);
       }
@@ -352,7 +357,7 @@ class ContratoController extends Controller
       $contrato->fornecedor_id = $request->fornecedor_id;
       $contrato->modalidade = $request->modalidade;
       $contrato->save();
-
+      LogActivity::addToLog('Edição de Contrato.');
       session()->flash('success', 'Contrato editado com sucesso.');
       return redirect()->route('/contrato/listar');
     }

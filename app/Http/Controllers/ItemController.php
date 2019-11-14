@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,6 +16,7 @@ class ItemController extends Controller
         ]);
     }
 
+    //fora de circulação
     public function cadastrar(Request $request) {
         $item = new \App\Item();
         $item->nome = $request->nome;
@@ -23,7 +25,6 @@ class ItemController extends Controller
         $item->unidade = $request->unidade;
         $item->gramatura = $request->gramatura;
         $item->save();
-
         session()->flash('success', 'Item cadastrado com sucesso.');
         return redirect()->route('/item/listar');
     }
@@ -59,6 +60,8 @@ class ItemController extends Controller
         $item = \App\Item::find($request->id);
 
         if (isset($item)) {
+            //$i = (string) $item->toJson();
+            LogActivity::addToLog('Abertura de Item para Edição.');
             return view("EditarItem", [
                 "item" => $item,
             ]);
@@ -93,7 +96,7 @@ class ItemController extends Controller
             $item->unidade = $request->unidade;
             $item->gramatura = $request->gramatura;
             $item->save();
-
+            LogActivity::addToLog('Edição de Item concluída.');
             session()->flash('success', 'Item modificado com sucesso.');
             return redirect()->route('/item/listar');
         }
