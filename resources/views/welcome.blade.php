@@ -13,8 +13,10 @@
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <img class=" logo-garanhuns top-left" src="/img/logo.png">
+        <div class="flex-center position-ref full-height">            
+            <footer class="container-fluid text-center" >
+                <img class=" logo-garanhuns top-left" src="/img/logo.png">
+            </footer>
             @if (Route::has('login'))
                 <div class="top-right">
                     @auth

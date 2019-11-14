@@ -44,7 +44,6 @@
                                   <th>Data</th>
                                   <th>Valor Total</th>
                                   <th>Valor Restante</th>
-                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -72,7 +71,7 @@
                                           echo "R$".number_format($valor_restante,2,',','.');
                                       @endphp
                                       </td>
-                                    <td data-title="Ações">
+                                    <td align="right">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
                                         <img src="/img/item.png" height="21" width="17" align = "right">
                                       </a>

@@ -33,7 +33,6 @@
                                   <th>Nome</th>
                                   <th>Descrição</th>
                                   <th>Quantidade</th>
-                                  <th>Itens</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -43,7 +42,7 @@
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
                                     <td data-title="Quantidade">{{ $refeicao->quantidade_total }}</td>
 
-                                    <td>
+                                    <td align="right">
                                       <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
                                         <img src="/img/item.png" height="21" width="21" align = "right">
                                       </a>

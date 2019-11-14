@@ -44,7 +44,7 @@
                                     <td data-title="Data_inicio">{{ $cardapio->data_inicio }}</td>
                                     <td data-title="Data_fim">{{ $cardapio->data_fim }}</td>
 
-                                    <td>
+                                    <td align="right">
                                       <a title="Ver Refeições" class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >
                                         <img src="/img/menu.png" height="21" width="21" align = "right">
                                       </a>

@@ -58,7 +58,7 @@ function editar(id){
 
                                     </td>
 
-                                    <td>
+                                    <td align="right">
                                         <a class="btn btn-primary" href="{{ route ("/item/editar", ['id' => $item->id])}}">
                                             <img src="/img/edit.png" height="21" width="17" align = "right">
                                         </a>

@@ -259,7 +259,12 @@
         </main>
     </div>
     <footer class="container-fluid text-center" >
-      <img class=" logo-garanhuns left" src="/img/logo.png">
+        <img class=" logo-garanhuns left" src="/img/logo.png"> 
+        <!-- <div class="content">
+            <div class="title2 m-b-md">
+                <h1 class="title-body-text">Villar</h1>
+            </div>
+        </div> -->
     </footer>
     <footer class="container-fluid text-center">
 
