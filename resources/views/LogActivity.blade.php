@@ -1,77 +1,79 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 
-<html>
-
-<head>
-
-	<title>Log Activity Lists</title>
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-
-</head>
-
-<body>
-
+@section('content')
 
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Logs') }}</div>
 
-	<h1>Log Activity Lists</h1>
+                <div class="card-body">
 
-	<table class="table table-bordered">
+                  @if (\Session::has('success'))
+                  <br>
+                      <div class="alert alert-success">
+                          {!! \Session::get('success') !!}
+                      </div>
+                  @endif
+                  <div class="panel-body">
+                          <br>
+                        <div id="tabela" class="table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>Subject</th>
+                                  <th>URL</th>
+                                  <th>Method</th>
+								  <th>IP</th>
+								  <th>User Agent</th>
+								  <th>User ID</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ($logs as $log)
+                                <tr>
+                                    <td data-title="#">{{ $log->id }}</td>
+                                    <td data-title="Subject">{{ $log->subject }}</td>
+                                    <td data-title="URL">{{ $log->url }}</td>
+                                    <td data-title="Method">{{ $log->method }}</td>
+									<td data-title="IP">{{ $log->ip }}</td>
+									<td data-title="User Agent">{{ $log->agent }}</td>
+									<td data-title="User ID">{{ $log->user_id }}</td>
+                                </tr>
+                              @endforeach
 
-		<tr>
-
-			<th>No</th>
-
-			<th>Subject</th>
-
-			<th>URL</th>
-
-			<th>Method</th>
-
-			<th>Ip</th>
-
-			<th width="300px">User Agent</th>
-
-			<th>User Id</th>
-
-			<th>Action</th>
-
-		</tr>
-
-		@if($logs->count())
-
-			@foreach($logs as $key => $log)
-
-			<tr>
-
-				<td>{{ ++$key }}</td>
-
-				<td>{{ $log->subject }}</td>
-
-				<td class="text-success">{{ $log->url }}</td>
-
-				<td><label class="label label-info">{{ $log->method }}</label></td>
-
-				<td class="text-warning">{{ $log->ip }}</td>
-
-				<td class="text-danger">{{ $log->agent }}</td>
-
-				<td>{{ $log->user_id }}</td>
-
-				<td><button class="btn btn-danger btn-sm">Delete</button></td>
-
-			</tr>
-
-			@endforeach
-
-		@endif
-
-	</table>
-
+                            </tbody>
+                          </table>
+                        </div>
+                      
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-</body>
-
-</html>
+<script type="text/javascript">
+    function buscar() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("termo");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tabela");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
+@endsection

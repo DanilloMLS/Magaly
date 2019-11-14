@@ -168,5 +168,5 @@ Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_men
 
 
 //Log Activity
-Route::get('add-to-log', 'HomeController@myTestAddToLog');
-Route::get('LogActivity', 'HomeController@logActivity');
+//Route::get('add-to-log', 'HomeController@myTestAddToLog');
+Route::get('/LogActivity', 'HomeController@logActivity')->name('/logActivity')->middleware('adm');
