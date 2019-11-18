@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distribuicao;
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -57,6 +58,7 @@ class DistribuicaoController extends Controller
     $distribuicao->estoque_id = $request->estoque_id;
     $distribuicao->token =$uniqueString;
     $distribuicao->save();
+    LogActivity::addToLog('Cadastro de Distribuição.');
     $escola = \App\Escola::find($request->escola_id);
 
     //todos os cardapios diários
@@ -99,6 +101,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item->quantidade_danificados = 0;
             $distribuicao_item->save();
           }
+          LogActivity::addToLog('Inserção de Item em Distribuição.');
         }
     }
 
@@ -204,6 +207,7 @@ class DistribuicaoController extends Controller
     $this->gerarDistribuicaoRest($distribuicao);
     $distribuicao->baixada = true;
     $distribuicao->save();
+    LogActivity::addToLog('Baixa em Distribuição realizada.');
     session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
     return redirect()->route('/distribuicao/listar');
   }
@@ -228,7 +232,7 @@ class DistribuicaoController extends Controller
     $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
     $distribuicao_item->baixado = true;
     $distribuicao_item->save();
-
+    LogActivity::addToLog('Alteração de quantidade do Item na baixa de Distribuição');
     return redirect()->route('/distribuicao/novaBaixa',[$distribuicao_item->distribuicao_id]);
   }
 
@@ -259,6 +263,7 @@ class DistribuicaoController extends Controller
         $novo_distribuicao_item->save();
       }
     }
+    LogActivity::addToLog('Criação de Distribuição com base em faltas de outra.');
   }
 
   public function listar(){
@@ -284,6 +289,7 @@ class DistribuicaoController extends Controller
 
       if (isset($distribuicao)) {
         $distribuicao->delete();
+        LogActivity::addToLog('Remoção de Distribuição.');
         session()->flash('success', 'Distribuicao removida com sucesso.');
         return redirect()->route('/distribuicao/listar');
       }
@@ -327,6 +333,7 @@ class DistribuicaoController extends Controller
         $distribuicao->observacao = $request->observacao;
         $distribuicao->escola_id = $request->escola_id;
         $distribuicao->save();
+        LogActivity::addToLog('Alteração em Distribuição.');
 
         session()->flash('success', 'Distribuicao modificada com sucesso.');
         return redirect()->route('/distribuicao/listar');
@@ -435,6 +442,7 @@ class DistribuicaoController extends Controller
 
       $item_distribuicao->quantidade_total = $request->quantidade_total;
       $item_distribuicao->save();
+      LogActivity::addToLog('Alteração da quantidade total de Item de Distribuição.');
 
       session()->flash('success', 'Item da distribuição modificado com sucesso.');
       return redirect()->route('/distribuicao/exibirItensDistribuicao', [

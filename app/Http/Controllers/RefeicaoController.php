@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LogActivity;
 use App\Refeicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +26,7 @@ class RefeicaoController extends Controller
     $refeicao->descricao = $request->descricao;
     $refeicao->quantidade_total = 0;
     $refeicao->save();
-
+    LogActivity::addToLog('Cadastro de Refeição.');
     session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -81,7 +82,7 @@ class RefeicaoController extends Controller
     $refeicao_item->item_id = $request->item_id;
 
     $refeicao_item->save();
-
+    LogActivity::addToLog('Inserção de Item em Refeição.');
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -91,7 +92,7 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($refeicao_item->refeicao_id);
 
     $refeicao_item->delete();
-
+    LogActivity::addToLog('Remoção de Item em Refeição.');
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -119,6 +120,7 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
+    LogActivity::addToLog('Cálculo de peso da Refeição.');
   }
 
   public function exibirItensRefeicao(Request $request){
@@ -156,6 +158,7 @@ class RefeicaoController extends Controller
   
       $item_refeicao->quantidade = $request->quantidade;
       $item_refeicao->save();
+      LogActivity::addToLog('Alteração de quantidade de Item em Refeição.');
       $refeicao = Refeicao::find($item_refeicao->refeicao_id);
       $this->calcularPeso($refeicao);
       session()->flash('success', 'Item da distribuição modificado com sucesso.');

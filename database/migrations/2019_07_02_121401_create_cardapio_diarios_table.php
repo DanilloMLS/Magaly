@@ -13,7 +13,7 @@ class CreateCardapioDiariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cardapio_diarios', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('cardapio_diarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('dia_semana');
             $table->integer('refeicao');

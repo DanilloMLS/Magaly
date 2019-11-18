@@ -70,9 +70,6 @@ function listarItens(id){
                                       <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
                                         <img src="/img/add_item.png" height="21" width="21" align = "right">
                                       </a>
-                                      <a title="Histórico de Movimentações" class="btn btn-primary" href="{{ route ("/estoque/historicoEstoque", ['id' => $estoque->id])}}">
-                                        <img src="/img/history.png" height="21" width="21" align = "right">
-                                      </a>
                                       <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>

@@ -45,7 +45,7 @@ class ContratoController extends Controller
     $contrato->fornecedor_id = $request->fornecedor_id;
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
-    LogActivity::addToLog('Cadastro de Contrato');
+    LogActivity::addToLog('Cadastro de Contrato.');
 
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -203,6 +203,7 @@ class ContratoController extends Controller
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
       $contratos = \App\Contrato::paginate(10);
+      LogActivity::addToLog('Remoção de Item de Contrato.');
       session()->flash('success', 'Contrato não existe.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
@@ -223,7 +224,7 @@ class ContratoController extends Controller
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->valor_total = $valorTotal;
       $contrato->save();
-
+      LogActivity::addToLog('Finalização de Contrato.');
       session()->flash('success', 'Contrato cadastrado.');
       return redirect()->route('/contrato/listar');
     }

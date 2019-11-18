@@ -13,7 +13,7 @@ class AddValidadeLoteFields extends Migration
      */
     public function up()
     {
-        Schema::table('estoque_items', function (Blueprint $table) {
+        Schema::connection('pgsql')->table('estoque_items', function (Blueprint $table) {
             $table->string('n_lote');
             $table->date('data_validade');
         });

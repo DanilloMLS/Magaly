@@ -13,7 +13,7 @@ class CreateCardapioDiarioRefeicaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cardapio_diario_refeicaos', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('cardapio_diario_refeicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cardapio_diario_id')->unsigned();
             $table->foreign('cardapio_diario_id')->references('id')->on('cardapio_diarios')->onDelete('cascade');

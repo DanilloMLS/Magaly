@@ -13,7 +13,7 @@ class AddCheckAndNextDistribuicao extends Migration
      */
     public function up()
     {
-        Schema::table('distribuicaos', function (Blueprint $table) {
+        Schema::connection('pgsql')->table('distribuicaos', function (Blueprint $table) {
             $table->boolean('baixada')->default(false);
             $table->bigInteger('proxima')->nullable();
         });

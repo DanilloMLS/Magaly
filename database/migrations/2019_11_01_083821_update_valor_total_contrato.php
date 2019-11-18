@@ -13,7 +13,7 @@ class UpdateValorTotalContrato extends Migration
      */
     public function up()
     {
-        Schema::table('contratos', function (Blueprint $table) {
+        Schema::connection('pgsql')->table('contratos', function (Blueprint $table) {
             $table->decimal('valor_total',20,2)->nullable()->change();
         });
     }

@@ -36,9 +36,9 @@ class FornecedorController extends Controller
     $fornecedor->telefone = $request->telefone;
     $fornecedor->save();
 
-    $nome_usuario = Auth::user()->name;
+    //$nome_usuario = Auth::user()->name;
     //Log::info('User ('.$nome_usuario.') cadastrou fornecedor '.$request->nome);
-    LogActivity::addToLog('Cadastro de fornecedor');
+    LogActivity::addToLog('Cadastro de Fornecedor');
 
     session()->flash('success', 'Fornecedor cadastrado com sucesso.');
     return redirect()->route('/fornecedor/listar');
@@ -106,7 +106,7 @@ class FornecedorController extends Controller
       $fornecedor->email = $request->email;
       $fornecedor->telefone = $request->telefone;
       $fornecedor->save();
-      LogActivity::addToLog('Edição de fornecedor');
+      LogActivity::addToLog('Edição de Fornecedor.');
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');
     }

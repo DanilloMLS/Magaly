@@ -13,7 +13,7 @@ class CreateRefeicaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('refeicaos', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('refeicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('descricao')->nullable();

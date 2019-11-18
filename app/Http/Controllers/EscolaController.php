@@ -31,6 +31,7 @@ class EscolaController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = "Estoque da Escola ".$request->nome;
     $estoque->save();
+    LogActivity::addToLog('Cadastro de Estoque de Escola.');
 
     $escola = new \App\Escola();
     $escola->nome = $request->nome;
@@ -66,7 +67,7 @@ class EscolaController extends Controller
     $escola->estoque_id = $estoque->id;
 
     $escola->save();
-    LogActivity::addToLog('Cadastro de Escola');
+    LogActivity::addToLog('Cadastro de Escola.');
     session()->flash('success', 'Escola cadastrada com sucesso.');
     return redirect()->route('/escola/listar');
   }
@@ -92,7 +93,9 @@ class EscolaController extends Controller
 
       if (isset($escola)) {
         $escola->delete();
+        LogActivity::addToLog('Remoção de Escola.');
         $estoque->delete();
+        LogActivity::addToLog('Remoção de Estoque.');
         session()->flash('success', 'Escola removida com sucesso.');
         return redirect()->route('/escola/listar');
       }
@@ -105,7 +108,6 @@ class EscolaController extends Controller
       $escola = \App\Escola::find($request->id);
 
       if (isset($escola)) {
-        LogActivity::addToLog('Abriu Escola: '.$escola->nome.' para edição.');
         return view("EditarEscola", [
           "escola" => $escola,
         ]);
