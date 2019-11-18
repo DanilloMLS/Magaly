@@ -32,6 +32,6 @@ class CreateLogActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_activities');
+        Schema::connection('pgsql2')->dropIfExists('log_activities');
     }
 }

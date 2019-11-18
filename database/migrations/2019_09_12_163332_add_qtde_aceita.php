@@ -13,7 +13,7 @@ class AddQtdeAceita extends Migration
      */
     public function up()
     {
-        Schema::table('distribuicao_items', function (Blueprint $table) {
+        Schema::connection('pgsql')->table('distribuicao_items', function (Blueprint $table) {
             $table->integer('quantidade_aceita')->unsigned()->default(0);
         });
     }

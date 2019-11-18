@@ -60,8 +60,6 @@ class ItemController extends Controller
         $item = \App\Item::find($request->id);
 
         if (isset($item)) {
-            //$i = (string) $item->toJson();
-            LogActivity::addToLog('Abertura de Item para Edição.');
             return view("EditarItem", [
                 "item" => $item,
             ]);
@@ -96,7 +94,7 @@ class ItemController extends Controller
             $item->unidade = $request->unidade;
             $item->gramatura = $request->gramatura;
             $item->save();
-            LogActivity::addToLog('Edição de Item concluída.');
+            LogActivity::addToLog('Edição de Item.');
             session()->flash('success', 'Item modificado com sucesso.');
             return redirect()->route('/item/listar');
         }

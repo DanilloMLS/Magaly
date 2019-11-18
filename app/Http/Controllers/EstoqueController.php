@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,6 +24,7 @@ class EstoqueController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();
+    LogActivity::addToLog('Cadastro de estoque.');
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
@@ -98,6 +100,7 @@ class EstoqueController extends Controller
 
       $estoque->nome = $request->nome;
       $estoque->save();
+      LogActivity::addToLog('Estoque renomeado.');
       session()->flash('success', 'Estoque renomeado com sucesso.');
       return redirect()->route('/estoque/listar');
     }
@@ -200,7 +203,7 @@ class EstoqueController extends Controller
 
 
       $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
-      
+      LogActivity::addToLog('Novo Item inserido no estoque.');
       $estoque_item->save();
       $contrato_item->save();
 
@@ -221,7 +224,7 @@ class EstoqueController extends Controller
 
       if (isset($estoque)) {
         $estoque_item->delete();
-
+        LogActivity::addToLog('Item removido do Estoque.');
         session()->flash('success', 'Remoção de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
@@ -282,7 +285,7 @@ class EstoqueController extends Controller
         
         $estoque_item->save();
         $contrato_item->save();
-        
+        LogActivity::addToLog('Entrada de Item no Estoque.');
         session()->flash('success', 'Entrada de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
@@ -333,6 +336,7 @@ class EstoqueController extends Controller
                 
                 
                 $estoque_item->save();
+                LogActivity::addToLog('Saída de Item do Estoque.');
           }
           elseif ($request->quantidade > $estoque_item->quantidade) {
             return redirect()->back() ->with('alert', 'Quantidade insuficiente');

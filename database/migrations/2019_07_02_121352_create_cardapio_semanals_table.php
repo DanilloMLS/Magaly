@@ -13,7 +13,7 @@ class CreateCardapioSemanalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cardapio_semanals', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('cardapio_semanals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('semana');
             $table->integer('cardapio_mensal_id')->unsigned();

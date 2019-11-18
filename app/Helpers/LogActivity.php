@@ -9,14 +9,11 @@ use App\LogActivity as LogActivityModel;
 
 
 class LogActivity
-
 {
 
-
     public static function addToLog($subject) {
-
-    	$log = [];
-    	$log['subject'] = $subject;
+		
+		$log['subject'] = $subject;
     	$log['url'] = Request::fullUrl();
     	$log['method'] = Request::method();
     	$log['ip'] = Request::ip();
@@ -26,10 +23,9 @@ class LogActivity
 
     }
 
-
     public static function logActivityLists() {
 
-    	return LogActivityModel::latest()->get();
+    	return LogActivityModel::all()->sortByDesc('created_at')->sortByDesc('id');
 
     }
 }

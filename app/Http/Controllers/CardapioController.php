@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,6 +54,7 @@ class CardapioController extends Controller
     for($i=1; $i<=5; $i++){
       $this->cadastrar_cardapio_semanal($cardapio_mensal, $i);
     }
+    LogActivity::addToLog('Cadastro de Cardápio.');
     session()->flash('success', 'Cardápio cadastrado com sucesso.');
     return redirect()->route('/cardapio/cadastrarCardapioSemanal',[$cardapio_mensal]);
     //return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
@@ -106,6 +108,7 @@ class CardapioController extends Controller
     $cardapio_diario->cardapio_semanals_id = $cardapio_semanal->id;
     $cardapio_diario->cardapio_mensal_id = $request->cardapio_mensal;
     $cardapio_diario->save();
+    LogActivity::addToLog('Inserção de Refeição em Cardápio.');
     $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
     $refeicoes = \App\Refeicao::all();
     
@@ -132,6 +135,7 @@ class CardapioController extends Controller
     $cardapio_diario_refeicao->cardapio_diario_id = $request->cardapio_diario;
     $cardapio_diario_refeicao->refeicao_id = $request->refeicao_id;
     $cardapio_diario_refeicao->save();
+    LogActivity::addToLog('Inserção de Item em Cardápio.');
     $cardapio_diario = \App\Cardapio_diario::find($request->cardapio_diario);
     $refeicoes = \App\Refeicao::all();
     session()->flash('success', 'Refeição adicionada.');
@@ -158,7 +162,7 @@ class CardapioController extends Controller
     $cardapio_semanal = \App\Cardapio_semanal::find($cardapio_diario->cardapio_semanals_id);
     $cardapio_mensal = \App\Cardapio_mensal::find($cardapio_semanal->cardapio_mensal_id);
     $cardapio_diario_refeicao->delete();
-
+    LogActivity::addToLog('Remoção de Refeição de Cardápio.');
     session()->flash('success', 'Item removido.');
     return redirect()->route('/cardapio/inserirNovaRefeicao', [
       $cardapio_diario->id, 
