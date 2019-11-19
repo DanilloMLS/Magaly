@@ -13,7 +13,7 @@ class CreateDistribuicaosTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('distribuicaos', function (Blueprint $table) {
+        Schema::create('distribuicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('observacao')->nullable();
             $table->integer('escola_id')->unsigned();

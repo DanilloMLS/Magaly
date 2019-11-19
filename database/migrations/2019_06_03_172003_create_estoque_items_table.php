@@ -13,7 +13,7 @@ class CreateEstoqueItemsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('estoque_items', function (Blueprint $table) {
+        Schema::create('estoque_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantidade_danificados')->unsigned()->default(0.0);
             $table->integer('quantidade')->unsigned()->default(0.0);

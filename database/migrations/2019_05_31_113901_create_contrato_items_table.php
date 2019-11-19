@@ -13,7 +13,7 @@ class CreateContratoItemsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('contrato_items', function (Blueprint $table) {
+        Schema::create('contrato_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantidade');
             $table->decimal('valor_unitario');

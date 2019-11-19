@@ -13,7 +13,7 @@ class CreateEscolasTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('escolas', function (Blueprint $table) {
+        Schema::create('escolas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome')->unique();
             $table->string('modalidade_ensino');

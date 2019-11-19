@@ -13,7 +13,7 @@ class AddMarcaFieldInEscolas extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->table('escolas', function (Blueprint $table) {
+        Schema::table('escolas', function (Blueprint $table) {
             $table->bigInteger('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques');
         });

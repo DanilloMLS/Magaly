@@ -13,7 +13,7 @@ class CreateDistribuicaoItemsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('distribuicao_items', function (Blueprint $table) {
+        Schema::create('distribuicao_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');

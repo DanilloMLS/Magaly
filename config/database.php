@@ -74,7 +74,7 @@ return [
         ],
 
 
-        'pgsql2' => [
+        /* 'pgsql2' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST_SECOND', '127.0.0.1'),
             'port' => env('DB_PORT_SECOND', '5432'),
@@ -86,7 +86,7 @@ return [
             'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
-        ],
+        ], */
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

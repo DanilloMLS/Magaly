@@ -13,7 +13,7 @@ class CreateRefeicaoItemsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('refeicao_items', function (Blueprint $table) {
+        Schema::create('refeicao_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('quantidade')->unsigned();
             $table->integer('item_id')->unsigned();

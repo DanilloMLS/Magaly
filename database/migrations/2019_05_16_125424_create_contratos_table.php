@@ -13,7 +13,7 @@ class CreateContratosTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('contratos', function (Blueprint $table) {
+        Schema::create('contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('data');
             $table->decimal('valor_total')->nullable();

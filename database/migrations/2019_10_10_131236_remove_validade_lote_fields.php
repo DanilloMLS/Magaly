@@ -13,7 +13,7 @@ class RemoveValidadeLoteFields extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->table('contrato_items', function (Blueprint $table) {
+        Schema::table('contrato_items', function (Blueprint $table) {
             $table->dropColumn('data_validade');
             $table->dropColumn('n_lote');
         });

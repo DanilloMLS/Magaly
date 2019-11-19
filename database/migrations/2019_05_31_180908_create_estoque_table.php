@@ -13,7 +13,7 @@ class CreateEstoqueTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('estoques', function (Blueprint $table) {
+        Schema::create('estoques', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->softDeletes();
