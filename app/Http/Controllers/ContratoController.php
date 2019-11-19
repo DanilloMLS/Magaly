@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogActivity;
+//use App\Helpers\LogActivity;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
@@ -25,9 +25,18 @@ class ContratoController extends Controller
       'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato'],
       'n_processo_licitatorio' => ['required', 'string'],
       'modalidade' =>             ['required', 'string'],
-      'descricao' =>              ['nullable', 'string', 'max:1500'],
+      'descricao' =>              ['nullable', 'string', 'max:255'],
       'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
       //'valor_total' =>            ['nullable', 'numeric'],
+    ],[
+      'data.required' => 'A data é obrigatória',
+      'data.date' => 'A data é inválida',
+      'data.after_or_equal' => 'A data deve ser posterior a hoje',
+      'n_contrato.required' => 'O Nº de contrato é obrigatório',
+      'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
+      'n_processo.required' => 'O nº de processo licitatório é obrigatório',
+      'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+      'fornecedor_id.required' => 'O fornecedor é obrigatório',
     ]);
 
     if ($validator->fails()) {
@@ -45,7 +54,7 @@ class ContratoController extends Controller
     $contrato->fornecedor_id = $request->fornecedor_id;
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
-    LogActivity::addToLog('Cadastro de Contrato.');
+    //LogActivity::addToLog('Cadastro de Contrato.');
 
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -168,7 +177,7 @@ class ContratoController extends Controller
       $contrato->valor_total += $request->quantidade * $request->valor_unitario;
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->save();
-      LogActivity::addToLog('Inserir Item no Contrato.');
+      //LogActivity::addToLog('Inserir Item no Contrato.');
 
       session()->flash('success', 'Item adicionado.');
       return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -203,7 +212,7 @@ class ContratoController extends Controller
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
       $contratos = \App\Contrato::paginate(10);
-      LogActivity::addToLog('Remoção de Item de Contrato.');
+      //LogActivity::addToLog('Remoção de Item de Contrato.');
       session()->flash('success', 'Contrato não existe.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
@@ -224,7 +233,7 @@ class ContratoController extends Controller
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->valor_total = $valorTotal;
       $contrato->save();
-      LogActivity::addToLog('Finalização de Contrato.');
+      //LogActivity::addToLog('Finalização de Contrato.');
       session()->flash('success', 'Contrato cadastrado.');
       return redirect()->route('/contrato/listar');
     }
@@ -271,7 +280,7 @@ class ContratoController extends Controller
         $item_contrato->save();
         //$contrato->valor_total = $this->calcularTotal($contrato);
         //$contrato->save();
-        LogActivity::addToLog('Edição de Item de Contrato.');
+        //LogActivity::addToLog('Edição de Item de Contrato.');
         session()->flash('success', 'Valores alterados com sucesso.');
         return redirect()->route('/contrato/exibirItensContrato', ["id" => $item_contrato->contrato_id]);
       }
@@ -358,7 +367,7 @@ class ContratoController extends Controller
       $contrato->fornecedor_id = $request->fornecedor_id;
       $contrato->modalidade = $request->modalidade;
       $contrato->save();
-      LogActivity::addToLog('Edição de Contrato.');
+      //LogActivity::addToLog('Edição de Contrato.');
       session()->flash('success', 'Contrato editado com sucesso.');
       return redirect()->route('/contrato/listar');
     }

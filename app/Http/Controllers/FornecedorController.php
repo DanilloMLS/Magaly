@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogActivity;
+//use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +17,21 @@ class FornecedorController extends Controller
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-            'cnpj' =>     ['required', 'digits:14', 'unique:fornecedors,cnpj'],
-            'email' =>    ['nullable', 'unique:fornecedors,email', 'email'],
-            'telefone' => ['nullable', 'digits_between:10,11'],
-            'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome'],
-        ]);
+      'cnpj' =>     ['required', 'digits:14', 'unique:fornecedors,cnpj'],
+      'email' =>    ['nullable', 'unique:fornecedors,email', 'email'],
+      'telefone' => ['nullable', 'digits_between:10,11'],
+      'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome'],
+    ],[
+      'cnpj.required' => 'O CNPJ é obrigatório',
+      'cnpj.digits' => 'O CNPJ deve ter 14 dígitos',
+      'cnpj.unique' => 'Esse CNPJ já está em uso',
+      'email.unique' => 'Esse e-mail já está em uso',
+      'email.email' => 'E-mail inválido',
+      'telefone.digits_between' => 'O telefone deve ter entre 10 e 11 dígitos',
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'Esse nome já está em uso',
+    ]);
 
         if ($validator->fails()) {
             return redirect('fornecedor/cadastrar')
@@ -38,7 +48,7 @@ class FornecedorController extends Controller
 
     //$nome_usuario = Auth::user()->name;
     //Log::info('User ('.$nome_usuario.') cadastrou fornecedor '.$request->nome);
-    LogActivity::addToLog('Cadastro de Fornecedor');
+    //LogActivity::addToLog('Cadastro de Fornecedor');
 
     session()->flash('success', 'Fornecedor cadastrado com sucesso.');
     return redirect()->route('/fornecedor/listar');
@@ -93,6 +103,16 @@ class FornecedorController extends Controller
           'email' =>    ['nullable', 'unique:fornecedors,email,'.$fornecedor->id, 'email'],
           'telefone' => ['nullable', 'digits_between:10,11'],
           'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome,'.$fornecedor->id],
+      ],[
+        'cnpj.required' => 'O CNPJ é obrigatório',
+        'cnpj.digits' => 'O CNPJ deve ter 14 dígitos',
+        'cnpj.unique' => 'Esse CNPJ já está em uso',
+        'email.unique' => 'Esse e-mail já está em uso',
+        'email.email' => 'E-mail inválido',
+        'telefone.digits_between' => 'O telefone deve ter entre 10 e 11 dígitos',
+        'nome.required' => 'O nome é obrigatório',
+        'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+        'nome.unique' => 'Esse nome já está em uso',
       ]);
 
       if ($validator->fails()) {
@@ -106,7 +126,7 @@ class FornecedorController extends Controller
       $fornecedor->email = $request->email;
       $fornecedor->telefone = $request->telefone;
       $fornecedor->save();
-      LogActivity::addToLog('Edição de Fornecedor.');
+      //LogActivity::addToLog('Edição de Fornecedor.');
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');
     }
