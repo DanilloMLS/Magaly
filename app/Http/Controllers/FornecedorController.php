@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-//use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FornecedorController extends Controller
 {
@@ -46,9 +46,12 @@ class FornecedorController extends Controller
     $fornecedor->telefone = $request->telefone;
     $fornecedor->save();
 
-    //$nome_usuario = Auth::user()->name;
-    //Log::info('User ('.$nome_usuario.') cadastrou fornecedor '.$request->nome);
-    //LogActivity::addToLog('Cadastro de Fornecedor');
+    $nome_usuario = Auth::user()->name;
+    /* Request::fullUrl();
+    	$log['method'] = Request::method();
+    	$log['ip'] = Request::ip();
+    	$log['agent'] = Request::header('user-agent'); */
+    Log::info('User ('.$nome_usuario.') cadastrou fornecedor '.$request->nome.' '.$request->ip());
 
     session()->flash('success', 'Fornecedor cadastrado com sucesso.');
     return redirect()->route('/fornecedor/listar');
