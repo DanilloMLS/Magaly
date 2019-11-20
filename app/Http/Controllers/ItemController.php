@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogActivity;
+//use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,7 +94,7 @@ class ItemController extends Controller
             $item->unidade = $request->unidade;
             $item->gramatura = $request->gramatura;
             $item->save();
-            LogActivity::addToLog('Edição de Item.');
+            //LogActivity::addToLog('Edição de Item.');
             session()->flash('success', 'Item modificado com sucesso.');
             return redirect()->route('/item/listar');
         }

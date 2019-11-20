@@ -146,12 +146,12 @@ class HomeController extends Controller
 
      */
 
-    public function myTestAddToLog() {
+    /* public function myTestAddToLog() {
 
         \LogActivity::addToLog('My Testing Add To Log.');
         dd('log insert successfully.');
 
-    }
+    } */
 
 
     /**
@@ -164,10 +164,10 @@ class HomeController extends Controller
 
      */
 
-    public function logActivity() {
+    /* public function logActivity() {
 
         $logs = \LogActivity::logActivityLists();
         return view('LogActivity',compact('logs'));
 
-    }
+    } */
 }

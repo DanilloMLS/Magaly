@@ -13,7 +13,7 @@ class CreateCardapioMensalsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('cardapio_mensals', function (Blueprint $table) {
+        Schema::create('cardapio_mensals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('data_inicio');
             $table->date('data_fim')->unsigned();

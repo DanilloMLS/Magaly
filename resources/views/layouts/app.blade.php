@@ -241,10 +241,10 @@
                                                 {{'Novo'}}
                                                 <img class="btn-img" src="/img/cadastro.png">
                                             </a>
-                                            <a class="dropdown-item" href="{{route('/logActivity')}}">
+                                            {{-- <a class="dropdown-item" href="{{route('/logActivity')}}">
                                                 {{'Logs'}}
                                                 <img class="btn-img" src="/img/history.png">
-                                            </a>
+                                            </a> --}}
                                     </div>
                                 </li>
                             @endif

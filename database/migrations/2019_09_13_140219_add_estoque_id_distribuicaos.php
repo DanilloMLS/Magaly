@@ -13,7 +13,7 @@ class AddEstoqueIdDistribuicaos extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->table('distribuicaos', function (Blueprint $table) {
+        Schema::table('distribuicaos', function (Blueprint $table) {
             $table->bigInteger('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
         });

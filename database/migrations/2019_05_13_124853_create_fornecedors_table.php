@@ -13,7 +13,7 @@ class CreateFornecedorsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('fornecedors', function (Blueprint $table) {
+        Schema::create('fornecedors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('email')->nullable();

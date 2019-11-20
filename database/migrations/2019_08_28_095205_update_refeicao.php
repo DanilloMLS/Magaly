@@ -13,7 +13,7 @@ class UpdateRefeicao extends Migration
      */
      public function up()
  {
-   Schema::connection('pgsql')->table('refeicaos', function (Blueprint $table) {
+   Schema::table('refeicaos', function (Blueprint $table) {
        $table->decimal('quantidade_total');
    });
  }
