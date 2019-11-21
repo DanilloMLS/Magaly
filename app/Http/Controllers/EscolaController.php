@@ -13,12 +13,26 @@ class EscolaController extends Controller
     $validator = Validator::make($request->all(), [
       'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome'],
       'modalidade_ensino' =>    ['required', 'between:1,6'],
-      'rota' =>                 ['nullable', 'string', 'max:1500'],
-      'periodo_atendimento' =>  ['nullable', 'string:255'],
-      'qtde_alunos' =>          ['required', 'integer', 'between:0,500000'],
-      'endereco' =>             ['nullable', 'string', 'max:1500'],
+      'rota' =>                 ['nullable', 'string', 'max:255'],
+      'periodo_atendimento' =>  ['nullable', 'string', 'max:255'],
+      'qtde_alunos' =>          ['required', 'integer', 'between:0,9999'],
+      'endereco' =>             ['nullable', 'string', 'max:255'],
       'gestor' =>               ['nullable', 'string', 'max:255'],
       'telefone' =>             ['nullable', 'digits_between:10,11'],
+    ],[
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso',
+      'modalidade_ensino.required' => 'A modalidade de ensino é obrigatória',
+      'modalidade_ensino.between' => 'Modalidade inválida',
+      'rota.max' => 'A rota deve ter no máximo 255 caracteres',
+      'periodo_atendimento.max' => 'O período de atendimento deve ter no máximo 255 caracteres',
+      'qtde_alunos.required' => 'A quantidade de alunos é obrigatória',
+      'qtde_alunos.integer' => 'A quantidade de alunos deve ser um número inteiro',
+      'qtde_alunos.between' => 'A quantidade de alunos deve estar entre 0 e 9999',
+      'endereco.max' => 'O endereço deve ter no máximo 255 caracteres',
+      'gestor.max' => 'O nome do gestor deve ter no máximo 255 caracteres',
+      'telefone.digits_between' => 'O telefone deve ter entre 10 e 11 dígitos',
     ]);
 
     if ($validator->fails()) {
@@ -142,6 +156,20 @@ class EscolaController extends Controller
           'endereco' =>             ['nullable', 'string', 'max:1500'],
           'gestor' =>               ['nullable', 'string', 'max:255'],
           'telefone' =>             ['nullable', 'digits_between:10,11'],
+        ],[
+          'nome.required' => 'O nome é obrigatório',
+          'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+          'nome.unique' => 'O nome já está em uso',
+          'modalidade_ensino.required' => 'A modalidade de ensino é obrigatória',
+          'modalidade_ensino.between' => 'Modalidade inválida',
+          'rota.max' => 'A rota deve ter no máximo 255 caracteres',
+          'periodo_atendimento.max' => 'O período de atendimento deve ter no máximo 255 caracteres',
+          'qtde_alunos.required' => 'A quantidade de alunos é obrigatória',
+          'qtde_alunos.integer' => 'A quantidade de alunos deve ser um número inteiro',
+          'qtde_alunos.between' => 'A quantidade de alunos deve estar entre 0 e 9999',
+          'endereco.max' => 'O endereço deve ter no máximo 255 caracteres',
+          'gestor.max' => 'O nome do gestor deve ter no máximo 255 caracteres',
+          'telefone.digits_between' => 'O telefone deve ter entre 10 e 11 dígitos',
         ]);
     
         if ($validator->fails()) {

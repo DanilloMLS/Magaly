@@ -14,6 +14,18 @@ class CardapioController extends Controller
       'nome' =>               ['required', 'string', 'max:255', 'unique:cardapio_mensals,nome'],
       'data_inicio' =>        ['required', 'date', 'after_or_equal:today'],
       'data_fim' =>           ['required', 'date', 'after:data_inicio'],
+    ],[
+      'modalidade_ensino.required' => 'A modalidade de ensino é obrigatória',
+      'modalidade_ensino.between' => 'Modalidade de ensino inválida',
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso',
+      'data_inicio.required' => 'A data de início é obrigatória',
+      'data_inicio.date' => 'Data de início em formato inválido',
+      'data_inicio.after_or_equal' => 'A Data de início deve ser igual ou posterior a hoje',
+      'data_fim.required' => 'A data final é obrigatória',
+      'data_fim.date' => 'Data final em formato inválido',
+      'data_fim.after_or_equal' => 'A Data final deve ser posterior à data de início',
     ]);
 
     if ($validator->fails()) {

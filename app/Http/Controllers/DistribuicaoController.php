@@ -30,13 +30,13 @@ class DistribuicaoController extends Controller
   public function cadastrar(Request $request) {
     
     $validator = Validator::make($request->all(), [
-      'observacao' =>   ['nullable', 'string', 'max:1500'],
+      'observacao' =>   ['nullable', 'string', 'max:255'],
       'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
-      'token' => ['integer', 'required', 'unique:distribuicao,token','min:0'],
+      'token' =>        ['integer', 'required', 'unique:distribuicao,token','min:0'],
     ],[
-      'observacao.max' => 'Observação deve ter no máximo 1500 caracteres',
+      'observacao.max' => 'Observação deve ter no máximo 255 caracteres',
       'escola_id.required' => 'Escolha uma escola',
       'cardapio_id.required' => 'Escolha um cardápio',
       'estoque_id.required' => 'Escolha um estoque',
@@ -240,8 +240,15 @@ class DistribuicaoController extends Controller
     $distribuicao_item = \App\Distribuicao_item::find($request->id);
 
     $validator = Validator::make($request->all(), [
-      'quantidade_danificados' => ['required', 'integer', 'between:0,5000000'],
-      'quantidade_aceita' =>      ['required', 'integer', 'between:0,5000000'],
+      'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
+      'quantidade_aceita' =>      ['required', 'integer', 'between:0,99999'],
+    ],[
+      'quantidade_danificados.required' => 'A quantiadade danificada é obrigatória',
+      'quantidade_danificados.integer' => 'A quantiadade danificada deve ser um inteiro',
+      'quantidade_danificados.between' => 'A quantiadade danificada deve estar entre 0 e 99999',
+      'quantidade_aceita.required' => 'A quantidade aceita é obrigatória',
+      'quantidade_aceita.integer' => 'A quantidade aceita deve ser um número inteiro',
+      'quantidade_aceita.between' => 'A quantiadade aceita deve estar entre 0 e 99999',
     ]);
 
     if ($validator->fails()) {
@@ -351,11 +358,14 @@ class DistribuicaoController extends Controller
 
       if (isset($distribuicao)) {
         $validator = Validator::make($request->all(), [
-          'observacao' =>   ['nullable', 'string', 'max:1500'],
+          'observacao' =>   ['nullable', 'string', 'max:max'],
           'escola_id' =>    ['required', 'numeric', 'exists:escolas,id'],
-          'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
+          /* 'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
           'proxima' =>      ['nullable', 'numeric', 'exists:distribuicaos,id'],
-          'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'],
+          'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'], */
+        ],[
+          'observacao.max' => 'A observação deve ter no máximo 255 caracteres',
+          'escola_id.required' => 'A escola é obrigatória',
         ]);
     
         if ($validator->fails()) {
@@ -466,6 +476,10 @@ class DistribuicaoController extends Controller
       $validator = Validator::make($request->all(), [
         'quantidade_total' => ['required', 'integer', 'between:0,5000000'],
         
+      ],[
+        'quantidade_total.required' => 'A quantidade total é obrigatória',
+        'quantidade_total.integer' => 'A quantidade total deve ser um número inteiro',
+        'quantidade_total.between' => 'A quantidade total deve estar entre 0 e 5000000',
       ]);
   
       if ($validator->fails()) {

@@ -12,7 +12,12 @@ class RefeicaoController extends Controller
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
       'nome' =>      ['required', 'string', 'max:255', 'unique:refeicaos,nome'],
-      'descricao' => ['nullable', 'string', 'max:1500'],
+      'descricao' => ['nullable', 'string', 'max:255'],
+    ],[
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso',
+      'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
     ]);
 
     if ($validator->fails()) {
@@ -71,9 +76,14 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($request->refeicao_id);
 
     $validator = Validator::make($request->all(), [
-      'quantidade' =>  ['required', 'integer', 'between:0,5000000'],
+      'quantidade' =>  ['required', 'integer', 'between:0,99999'],
       'item_id' =>     ['required', 'integer', 'exists:items,id'],
       'refeicao_id' => ['required', 'integer', 'exists:refeicaos,id'],
+    ],[
+      'quantidade.required' => 'A quantidade é obrigatória',
+      'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+      'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
+      'item_id.required' => 'O item é obrigatório',
     ]);
 
     if ($validator->fails()) {
@@ -170,8 +180,12 @@ class RefeicaoController extends Controller
 
     if (isset($item_refeicao)) {
       $validator = Validator::make($request->all(), [
-        'quantidade' => ['required', 'integer', 'between:0,5000000'],
+        'quantidade' => ['required', 'integer', 'between:0,99999'],
         'id' =>         ['required', 'integer', 'exists:refeicao_items,id'],
+      ],[
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
       ]);
   
       if ($validator->fails()) {

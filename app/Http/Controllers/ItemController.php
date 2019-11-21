@@ -77,10 +77,21 @@ class ItemController extends Controller
             $validator = Validator::make($request->all(), [
                 'nome' =>       ['required', 'string', 'max:255'],
                 'marca' =>      ['required', 'string', 'max:255'],
-                'descricao' =>  ['nullable', 'string', 'max:1500'],
+                'descricao' =>  ['nullable', 'string', 'max:255'],
                 'unidade' =>    ['required', 'string', 'max:2'],
                 'gramatura' =>  ['required', 'integer', 'between:0,5000000'],
-            ]);
+            ],[
+                'nome.required' => 'O nome é obrigatório',
+                'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+                'marca.required' => 'A marca é obrigatória',
+                'marca.max' => 'A marca deve ter no máximo 255 caracteres',
+                'descricao.max' => 'A descriçao deve ter no máximo 255 caracteres',
+                'unidade.required' => 'A unidade é obrigatória',
+                'unidade.max' => 'Unidade inválida',
+                'gramatura.required' => 'A gramatura é obrigatória',
+                'gramatura.integer' => 'A gramatura deve ser um número inteiro',
+                'gramatura.between' => 'A gramatura deve estar entre 0 e 5000000',
+              ]);
       
             if ($validator->fails()) {
                 return redirect()->route('/item/editar',[$item->id])

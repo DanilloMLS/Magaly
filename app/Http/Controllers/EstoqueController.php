@@ -13,6 +13,10 @@ class EstoqueController extends Controller
 
     $validator = Validator::make($request->all(), [
       'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome'],
+    ],[
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso'
     ]);
 
     if ($validator->fails()) {
@@ -95,6 +99,10 @@ class EstoqueController extends Controller
 
       $validator = Validator::make($request->all(), [
         'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome,'.$estoque->id],
+      ],[
+        'nome.required' => 'O nome é obrigatório',
+        'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+        'nome.unique' => 'O nome já está em uso'
       ]);
 
       if ($validator->fails()) {
@@ -168,6 +176,18 @@ class EstoqueController extends Controller
         'item_contrato_id' => ['required', 'integer', 'exists:items,id'],
         'n_lote' => ['required', 'string', 'max:255'],
         'data_validade' => ['required', 'date', 'after_or_equal:today'],
+      ],[
+        'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+        'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+        'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
+        'n_lote.required' => 'O lote é obrigatório',
+        'n_lote.max' => 'O lote deve ter no máximo 255 caracteres',
+        'data_validade.required' => 'A data é obrigatória',
+        'data_validade.date' => 'Formato de data inválido',
+        'data_validade.after_or_equal' => 'A data deve ser igual ou posterior a hoje',
       ]);
 
       if ($validator->fails()) {
@@ -281,6 +301,13 @@ class EstoqueController extends Controller
         $validator = Validator::make($request->all(), [
           'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
           'quantidade' =>             ['required', 'integer', 'between:0,99999'],
+        ],[
+          'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+          'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+          'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
         ]);
   
         if ($validator->fails()) {
@@ -344,11 +371,18 @@ class EstoqueController extends Controller
       if (isset($estoque)) {
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
+          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:99999'],
           'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$estoque_item->quantidade],
+        ],[
+          'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+          'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+          'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e '.$estoque_item->quantidade,
         ]);
   
-        if ($validator->fails(Cadastro_Estoque)) {
+        if ($validator->fails()) {
             return redirect()->route('/estoque/inserirSaida',[$estoque_item->id])
                         ->withErrors($validator)
                         ->withInput();

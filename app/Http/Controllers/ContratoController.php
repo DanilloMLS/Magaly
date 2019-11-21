@@ -138,12 +138,26 @@ class ContratoController extends Controller
       $validator = Validator::make($request->all(), [
           'nome' =>           ['required', 'string', 'max:255'],
           'marca' =>          ['required', 'string', 'max:255'],
-          'descricao' =>      ['nullable', 'string', 'max:1500'],
+          'descricao' =>      ['nullable', 'string', 'max:255'],
           'unidade' =>        ['required', 'string', 'max:2'],
           'gramatura' =>      ['required', 'integer', 'between:0,5000000'],
           'quantidade' =>     ['required', 'integer', 'between:0,5000000'],
           'valor_unitario' => ['required', 'numeric', 'between:0,5000000'],
           'contrato_id' =>    ['required', 'integer', 'exists:contratos,id'],
+      ],[
+        'nome.required' => 'O nome é obrigatório',
+        'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+        'marca.required' => 'A marca é obrigatória',
+        'marca.max' => 'A marca deve ter no máximo 255 caracteres',
+        'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+        'unidade.required' => 'A unidade é obrigatória',
+        'unidade.max' => 'Unidade inválida',
+        'gramatura.required' => 'A gramatura é obrigatória',
+        'gramatura.integer' => 'A gramatura deve ser um número inteiro',
+        'gramatura.between' => 'A gramatura deve estar entre 0 e 5000000',
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A gramatura deve estar entre 0 e 5000000',
       ]);
 
       if ($validator->fails()) {
@@ -289,6 +303,13 @@ class ContratoController extends Controller
           'contrato_item_id' => ['required', 'integer', 'exists:contrato_items,id'],
           'quantidade' =>       ['required', 'integer', 'between:0,5000000'],
           'valor_unitario' =>   ['required', 'numeric', 'between:0,5000000'],
+        ],[
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e 5000000',
+          'valor_unitario.required' => 'O valor unitário é obrigatória',
+          'valor_unitario.integer' => 'O valor unitário deve ser um número inteiro',
+          'valor_unitario.between' => 'O valor unitário deve estar entre 0 e 5000000',
         ]);
     
         if ($validator->fails()) {
@@ -379,6 +400,15 @@ class ContratoController extends Controller
         'descricao' =>              ['nullable', 'string', 'max:1500'],
         'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
         'valor_total' =>            ['nullable', 'numeric', 'min:0'],
+      ],[
+        'data.required' => 'A data é obrigatória',
+        'data.date' => 'A data é inválida',
+        'data.after_or_equal' => 'A data deve ser posterior a hoje',
+        'n_contrato.required' => 'O Nº de contrato é obrigatório',
+        'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
+        'n_processo.required' => 'O nº de processo licitatório é obrigatório',
+        'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+        'fornecedor_id.required' => 'O fornecedor é obrigatório',
       ]);
   
       if ($validator->fails()) {
