@@ -34,7 +34,7 @@ class DistribuicaoController extends Controller
       'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
-      //'token' => ['integer', 'required', 'unique:distribuicao,token','min:0'],
+      'token' => ['integer', 'required', 'unique:distribuicao,token','min:0'],
     ],[
       'observacao.max' => 'Observação deve ter no máximo 1500 caracteres',
       'escola_id.required' => 'Escolha uma escola',
@@ -204,8 +204,14 @@ class DistribuicaoController extends Controller
         $distribuicao_item->save();
       }
     }
+
+
+    $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
+    $uniqueString = md5(time().$sffledStr).md5(time().$sffledStr);
+
     $this->gerarDistribuicaoRest($distribuicao);
     $distribuicao->baixada = true;
+    $distribuicao->token =$uniqueString;
     $distribuicao->save();
     //LogActivity::addToLog('Baixa em Distribuição realizada.');
     session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
@@ -273,11 +279,16 @@ class DistribuicaoController extends Controller
 
     public function gerarRelatorio(Request $request){
         $distribuicoes = \App\Distribuicao::where('token', '=', $request->token)->get();
+        $production = "";
+        if($_SERVER['SERVER_NAME'] == "127.0.0.1"){
+          $production = ":8000";
+        }
+        $url = $_SERVER['SERVER_NAME'].$production.$_SERVER["REQUEST_URI"];
         if(count($distribuicoes) > 0){
           //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
           $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");
 
-          return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes'))
+          return  \PDF::loadView('RelatorioDistribuicoes', compact('distribuicoes', 'url'))
               // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
               ->stream('relatorio_Distribuicao_'.$data.'.pdf');
         }

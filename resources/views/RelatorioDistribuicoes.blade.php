@@ -16,8 +16,9 @@ Tel: (87)3762-7060
                 </td>
                 <td >
                 @foreach ($distribuicoes as $distribuicao)
-                    <img src="data:image/png;base64,
-                     {!! base64_encode(QrCode::format('png')->size(150)->generate("http://localhost:8000/distribuicao/Relatorio_Distribuicoes/"."$distribuicao->token")) !!} ">
+                <img src="data:image/png;base64,{!! base64_encode(QrCode::format('png')->size(150)->generate("
+                    $url
+                    ")) !!} ">
                 @endforeach
                 </td>
             </tr>
@@ -60,11 +61,11 @@ Tel: (87)3762-7060
             </table>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#00CED1" colspan=6 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
+                    <th bgcolor="#B0E0E6" colspan=6 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
                 </tr>
                 <tbody>
-                    <tr align="center">
-                        <th bgcolor="#dfdfdf">ID</th>
+                    <tr align="center" bgcolor="#dfdfdf">
+                        <th>ID</th>
                         <th>ITEM</th>
                         <th>UNIDADE</th>
                         <th>QUANTIDADE</th>
