@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use App\Refeicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +26,13 @@ class RefeicaoController extends Controller
     $refeicao->descricao = $request->descricao;
     $refeicao->quantidade_total = 0;
     $refeicao->save();
-    //LogActivity::addToLog('Cadastro de Refeição.');
+
+    Log::info('Cadastro_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -82,7 +88,13 @@ class RefeicaoController extends Controller
     $refeicao_item->item_id = $request->item_id;
 
     $refeicao_item->save();
-    //LogActivity::addToLog('Inserção de Item em Refeição.');
+
+    Log::info('Inserir_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -92,7 +104,13 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($refeicao_item->refeicao_id);
 
     $refeicao_item->delete();
-    //LogActivity::addToLog('Remoção de Item em Refeição.');
+    
+    Log::info('Remover_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -107,6 +125,13 @@ class RefeicaoController extends Controller
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save(); */
     $this->calcularPeso($refeicao);
+
+    Log::info('Calculo_Peso_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Refeição cadastrada.');
     return redirect()->route('/refeicao/listar');
   }
@@ -120,7 +145,6 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
-    //LogActivity::addToLog('Cálculo de peso da Refeição.');
   }
 
   public function exibirItensRefeicao(Request $request){
@@ -158,9 +182,16 @@ class RefeicaoController extends Controller
   
       $item_refeicao->quantidade = $request->quantidade;
       $item_refeicao->save();
-      //LogActivity::addToLog('Alteração de quantidade de Item em Refeição.');
+
       $refeicao = Refeicao::find($item_refeicao->refeicao_id);
       $this->calcularPeso($refeicao);
+
+      Log::info('Edicao_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Item da distribuição modificado com sucesso.');
       //return redirect()->route('/refeicao/finalizarRefeicao',[$item_refeicao->refeicao_id]);
       return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-//use App\Helpers\LogActivity;
-use App\Estoque;
+use Illuminate\Support\Facades\Log;
 
 class EscolaController extends Controller
 {
@@ -31,7 +30,12 @@ class EscolaController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = "Estoque da Escola ".$request->nome;
     $estoque->save();
-    //LogActivity::addToLog('Cadastro de Estoque de Escola.');
+
+    Log::info('Cadastro_Estoque_Escola. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
     $escola = new \App\Escola();
     $escola->nome = $request->nome;
@@ -67,7 +71,13 @@ class EscolaController extends Controller
     $escola->estoque_id = $estoque->id;
 
     $escola->save();
-    //LogActivity::addToLog('Cadastro de Escola.');
+
+    Log::info('Cadastro_Escola. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Escola cadastrada com sucesso.');
     return redirect()->route('/escola/listar');
   }
@@ -171,11 +181,16 @@ class EscolaController extends Controller
         $escola->gestor = $request->gestor;
         $escola->telefone = $request->telefone;
         $escola->save();
-        //LogActivity::addToLog('Edição de Escola.');
+
         $estoque = \App\Estoque::find($escola->estoque_id);
         $estoque->nome = "Estoque da Escola ".$request->nome;
         $estoque->save();
-        //LogActivity::addToLog('Estoque renomeado.');
+
+        Log::info('Edicao_Escola. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
 
         session()->flash('success', 'Escola modificada com sucesso.');
         return redirect()->route('/escola/listar');

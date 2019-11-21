@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +24,12 @@ class EstoqueController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();
-    //LogActivity::addToLog('Cadastro de estoque.');
+
+    Log::info('Cadastro_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
@@ -100,7 +105,13 @@ class EstoqueController extends Controller
 
       $estoque->nome = $request->nome;
       $estoque->save();
-      //LogActivity::addToLog('Estoque renomeado.');
+
+      Log::info('Edicao_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Estoque renomeado com sucesso.');
       return redirect()->route('/estoque/listar');
     }
@@ -203,7 +214,13 @@ class EstoqueController extends Controller
 
 
       $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
-      //LogActivity::addToLog('Novo Item inserido no estoque.');
+      
+      Log::info('Inserir_Item_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+      
       $estoque_item->save();
       $contrato_item->save();
 
@@ -224,7 +241,13 @@ class EstoqueController extends Controller
 
       if (isset($estoque)) {
         $estoque_item->delete();
-        //LogActivity::addToLog('Item removido do Estoque.');
+        
+        Log::info('Remover_Item_Estoque. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+
         session()->flash('success', 'Remoção de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
@@ -285,8 +308,14 @@ class EstoqueController extends Controller
         
         $estoque_item->save();
         $contrato_item->save();
-        //LogActivity::addToLog('Entrada de Item no Estoque.');
-        session()->flash('success', 'Entrada de item.');
+        
+        Log::info('Entrada_Item_Estoque. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+        
+          session()->flash('success', 'Entrada de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
       
@@ -319,7 +348,7 @@ class EstoqueController extends Controller
           'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$estoque_item->quantidade],
         ]);
   
-        if ($validator->fails()) {
+        if ($validator->fails(Cadastro_Estoque)) {
             return redirect()->route('/estoque/inserirSaida',[$estoque_item->id])
                         ->withErrors($validator)
                         ->withInput();
@@ -336,7 +365,13 @@ class EstoqueController extends Controller
                 
                 
                 $estoque_item->save();
-                //LogActivity::addToLog('Saída de Item do Estoque.');
+                
+                Log::info('Saida_Item_Estoque. User ['.$request->user()->id.
+                  ']. Method ['.$request->method().
+                  ']. Ip ['.$request->ip().
+                  ']. Agent ['.$request->header('user-agent').
+                  ']. Url ['.$request->path().']');
+
           }
           elseif ($request->quantidade > $estoque_item->quantidade) {
             return redirect()->back() ->with('alert', 'Quantidade insuficiente');

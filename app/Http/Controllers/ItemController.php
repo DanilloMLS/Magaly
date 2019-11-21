@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,7 +94,13 @@ class ItemController extends Controller
             $item->unidade = $request->unidade;
             $item->gramatura = $request->gramatura;
             $item->save();
-            //LogActivity::addToLog('Edição de Item.');
+            
+            Log::info('Edicao_Item. User ['.$request->user()->id.
+                ']. Method ['.$request->method().
+                ']. Ip ['.$request->ip().
+                ']. Agent ['.$request->header('user-agent').
+                ']. Url ['.$request->path().']');
+            
             session()->flash('success', 'Item modificado com sucesso.');
             return redirect()->route('/item/listar');
         }

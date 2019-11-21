@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distribuicao;
-//use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -59,6 +59,13 @@ class DistribuicaoController extends Controller
     $distribuicao->token =$uniqueString;
     $distribuicao->save();
     //LogActivity::addToLog('Cadastro de Distribuição.');
+    
+    Log::info('Cadastro_Distribuicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     $escola = \App\Escola::find($request->escola_id);
 
     //todos os cardapios diários
@@ -101,7 +108,11 @@ class DistribuicaoController extends Controller
             $distribuicao_item->quantidade_danificados = 0;
             $distribuicao_item->save();
           }
-          //LogActivity::addToLog('Inserção de Item em Distribuição.');
+          Log::info('Inserir_Itens_Distribuicao. User ['.$request->user()->id.
+            ']. Method ['.$request->method().
+            ']. Ip ['.$request->ip().
+            ']. Agent ['.$request->header('user-agent').
+            ']. Url ['.$request->path().']');
         }
     }
 
@@ -207,7 +218,13 @@ class DistribuicaoController extends Controller
     $this->gerarDistribuicaoRest($distribuicao);
     $distribuicao->baixada = true;
     $distribuicao->save();
-    //LogActivity::addToLog('Baixa em Distribuição realizada.');
+    
+    Log::info('Baixa_Distribuicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Baixa cadastrada. Movimentações nos estoques feitas automaticamente.');
     return redirect()->route('/distribuicao/listar');
   }
@@ -232,7 +249,13 @@ class DistribuicaoController extends Controller
     $distribuicao_item->quantidade_danificados = $request->quantidade_danificados;
     $distribuicao_item->baixado = true;
     $distribuicao_item->save();
-    //LogActivity::addToLog('Alteração de quantidade do Item na baixa de Distribuição');
+    
+    Log::info('Baixa_Item_Distribuicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     return redirect()->route('/distribuicao/novaBaixa',[$distribuicao_item->distribuicao_id]);
   }
 
