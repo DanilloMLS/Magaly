@@ -393,11 +393,11 @@ class ContratoController extends Controller
     if (isset($contrato)) {
 
       $validator = Validator::make($request->all(), [
-        'data' =>                   ['required', 'date', 'after_or_equal:today'],
+        'data' =>                   ['required', 'date', 'after_or_equal:-20 years'],
         'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato,'.$contrato->id],
         'n_processo_licitatorio' => ['required', 'string'],
         'modalidade' =>             ['required', 'string'],
-        'descricao' =>              ['nullable', 'string', 'max:1500'],
+        'descricao' =>              ['nullable', 'string', 'max:255'],
         'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
         'valor_total' =>            ['nullable', 'numeric', 'min:0'],
       ],[

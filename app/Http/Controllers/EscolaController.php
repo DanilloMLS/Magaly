@@ -150,10 +150,10 @@ class EscolaController extends Controller
         $validator = Validator::make($request->all(), [
           'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome,'.$escola->id],
           'modalidade_ensino' =>    ['required', 'between:1,6'],
-          'rota' =>                 ['nullable', 'string', 'max:1500'],
+          'rota' =>                 ['nullable', 'string', 'max:255'],
           'periodo_atendimento' =>  ['nullable', 'string:255'],
-          'qtde_alunos' =>          ['required', 'integer', 'between:0,500000'],
-          'endereco' =>             ['nullable', 'string', 'max:1500'],
+          'qtde_alunos' =>          ['required', 'integer', 'between:0,9999'],
+          'endereco' =>             ['nullable', 'string', 'max:255'],
           'gestor' =>               ['nullable', 'string', 'max:255'],
           'telefone' =>             ['nullable', 'digits_between:10,11'],
         ],[
