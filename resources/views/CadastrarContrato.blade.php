@@ -24,7 +24,7 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data ') }}</label>
 
                             <div class="col-md-6">
-                              <input name="data" id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" value="<?php echo date('Y-m-d'); ?>">
+                              <input name="data" id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" value="{{ old('data')}}">
                               @if ($errors->has('data'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('data') }}</strong>

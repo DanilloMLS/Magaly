@@ -8,7 +8,6 @@ use App\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 class CadastroContratoTest extends DuskTestCase
 {
     /**
@@ -18,12 +17,13 @@ class CadastroContratoTest extends DuskTestCase
      */
     public function testCadastroValido(){
         $this->browse(function (Browser $browser) {
-            $fornecedor = factory(Fornecedor::class)->create();
             $contrato = factory(Contrato::class)->make();
-            $today = now();
+            $today = $contrato->data->format('m').$contrato->data->format('d').$contrato->data->format('Y');
             $browser->loginAs(User::find(1))
                 ->visit('/contrato/telaCadastrar')
                 ->assertSee('Cadastrar Contrato')
+                ->pause(2000)
+                ->type('data',$today)
                 ->pause(2000)
                 ->type('n_contrato', $contrato->n_contrato)
                 ->pause(1000)
@@ -31,7 +31,7 @@ class CadastroContratoTest extends DuskTestCase
                 ->pause(1000)
                 ->type('modalidade', $contrato->modalidade)
                 ->pause(1000)
-                ->select('fornecedor_id')   
+                ->select('fornecedor_id')
                 ->pause(1000)
                 ->press('Cadastrar')
                 ->pause(2000)

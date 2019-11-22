@@ -19,7 +19,7 @@ class CadastroFornecedorTest extends DuskTestCase
     public function testCadastroValido(){
         $this->browse(function (Browser $browser) {
             $fornecedor = factory(Fornecedor::class)->make();
-            $fornecedor->telefone = '87999999999';
+            //$fornecedor->telefone = '87999999999';
             $browser->loginAs(User::find(1))
                 ->visit('/fornecedor/cadastrar')
                 ->assertSee('Cadastrar Fornecedor')
