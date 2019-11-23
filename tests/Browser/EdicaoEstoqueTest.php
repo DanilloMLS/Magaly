@@ -15,6 +15,24 @@ class EdicaoEstoqueTest extends DuskTestCase
      *
      * @return void
      */
+    public function testAberturaEdicao()
+    {
+        $this->browse(function (Browser $browser) {
+            //$estoque = Estoque::find(1);
+            $estoques = Estoque::all();
+            $estoque = Estoque::find(random_int(1,count($estoques)));
+            //$estoque_test = factory(Estoque::class)->make();
+            $browser->loginAs(User::find(1))
+                    ->visit('/estoque/listar')
+                    ->pause(1000)
+                    ->assertSee($estoque->nome)
+                    ->visit('/estoque/editar/'.$estoque->id)
+                    ->assertInputValue('nome',$estoque->nome)
+                    ->pause(2000)
+                    ;
+        });
+    }
+
     public function testEdicaoValida()
     {
         $this->browse(function (Browser $browser) {
@@ -26,7 +44,6 @@ class EdicaoEstoqueTest extends DuskTestCase
                     ->visit('/estoque/listar')
                     ->assertSee($estoque->nome)
                     ->visit('/estoque/editar/'.$estoque->id)
-                    ->assertInputValue('nome',$estoque->nome)
                     ->clear('nome')
                     ->type('nome',$estoque_test->nome)
                     ->press('Salvar')

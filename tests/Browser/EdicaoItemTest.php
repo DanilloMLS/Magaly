@@ -62,4 +62,33 @@ class EdicaoItemTest extends DuskTestCase
                     ;
         });
     }
+
+    public function testEdicaoInvalida()
+    {
+        $this->browse(function (Browser $browser) {
+            $itens = Item::all();
+            $item = Item::find(random_int(1,count($itens)));
+            $item_teste = factory(Item::class)->make();
+            $browser->loginAs(User::find(1))
+                    ->visit('/item/listar')
+                    ->assertSee($item->nome)
+                    ->visit('/item/editar/'.$item->id)
+                    ->clear('nome')
+                    //->type('nome',$item_teste->nome)
+                    ->clear('marca')
+                    //->type('marca',$item_teste->marca)
+                    ->clear('descricao')
+                    ->type('descricao',$item_teste->descricao)
+                    ->clear('gramatura')
+                    //->type('gramatura',$item_teste->gramatura)
+                    ->select('unidade')
+                    ->pause(1000)
+                    ->press('Salvar')
+                    ->assertSee('O nome é obrigatório')
+                    ->assertSee('A marca é obrigatória')
+                    ->assertSee('A gramatura é obrigatória')
+                    ->pause(2000)
+                    ;
+        });
+    }
 }

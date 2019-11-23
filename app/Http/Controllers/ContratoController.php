@@ -31,7 +31,8 @@ class ContratoController extends Controller
     ],[
       'data.required' => 'A data é obrigatória',
       'data.date' => 'A data é inválida',
-      'data.after_or_equal' => 'A data deve ser posterior a 20 anos',
+      'data.after_or_equal' => 'A data é muito antiga',
+      'modalidade.required' => 'A modalidade é obrigatória',
       'n_contrato.required' => 'O Nº de contrato é obrigatório',
       'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
       'n_processo.required' => 'O nº de processo licitatório é obrigatório',
@@ -404,6 +405,7 @@ class ContratoController extends Controller
         'data.required' => 'A data é obrigatória',
         'data.date' => 'A data é inválida',
         'data.after_or_equal' => 'A data deve ser posterior a hoje',
+        'modalidade.required' => 'A modalidade é obrigatória',
         'n_contrato.required' => 'O Nº de contrato é obrigatório',
         'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
         'n_processo.required' => 'O nº de processo licitatório é obrigatório',
