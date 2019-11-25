@@ -371,8 +371,8 @@ class EstoqueController extends Controller
       if (isset($estoque)) {
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:99999'],
-          'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$estoque_item->quantidade],
+          'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
+          'quantidade' =>             ['required', 'integer', 'between:0,'.$estoque_item->quantidade],
         ],[
           'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
           'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
