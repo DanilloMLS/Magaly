@@ -408,7 +408,7 @@ class ContratoController extends Controller
         'modalidade.required' => 'A modalidade é obrigatória',
         'n_contrato.required' => 'O Nº de contrato é obrigatório',
         'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
-        'n_processo.required' => 'O nº de processo licitatório é obrigatório',
+        'n_processo_licitatorio.required' => 'O nº de processo licitatório é obrigatório',
         'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
         'fornecedor_id.required' => 'O fornecedor é obrigatório',
       ]);
