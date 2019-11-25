@@ -9,7 +9,7 @@ $factory->define(\App\Fornecedor::class, function (Faker $faker) {
     return [
         'nome'=> $faker->name,
         'email' => $faker->email,
-        'telefone' => $faker->phoneNumber,
+        'telefone' => $faker->numerify('##########'),
         'cnpj' => $faker->numerify('##############'),
     ];
 });

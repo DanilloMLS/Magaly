@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,6 +14,18 @@ class CardapioController extends Controller
       'nome' =>               ['required', 'string', 'max:255', 'unique:cardapio_mensals,nome'],
       'data_inicio' =>        ['required', 'date', 'after_or_equal:today'],
       'data_fim' =>           ['required', 'date', 'after:data_inicio'],
+    ],[
+      'modalidade_ensino.required' => 'A modalidade de ensino é obrigatória',
+      'modalidade_ensino.between' => 'Modalidade de ensino inválida',
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso',
+      'data_inicio.required' => 'A data de início é obrigatória',
+      'data_inicio.date' => 'Data de início em formato inválido',
+      'data_inicio.after_or_equal' => 'A Data de início deve ser igual ou posterior a hoje',
+      'data_fim.required' => 'A data final é obrigatória',
+      'data_fim.date' => 'Data final em formato inválido',
+      'data_fim.after_or_equal' => 'A Data final deve ser posterior à data de início',
     ]);
 
     if ($validator->fails()) {
@@ -54,7 +66,13 @@ class CardapioController extends Controller
     for($i=1; $i<=5; $i++){
       $this->cadastrar_cardapio_semanal($cardapio_mensal, $i);
     }
-    //LogActivity::addToLog('Cadastro de Cardápio.');
+
+    Log::info('Cadastro_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Cardápio cadastrado com sucesso.');
     return redirect()->route('/cardapio/cadastrarCardapioSemanal',[$cardapio_mensal]);
     //return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
@@ -108,7 +126,13 @@ class CardapioController extends Controller
     $cardapio_diario->cardapio_semanals_id = $cardapio_semanal->id;
     $cardapio_diario->cardapio_mensal_id = $request->cardapio_mensal;
     $cardapio_diario->save();
-    //LogActivity::addToLog('Inserção de Refeição em Cardápio.');
+    
+    Log::info('Inserir_Refeicao_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+        
     $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
     $refeicoes = \App\Refeicao::all();
     
@@ -136,6 +160,13 @@ class CardapioController extends Controller
     $cardapio_diario_refeicao->refeicao_id = $request->refeicao_id;
     $cardapio_diario_refeicao->save();
     //LogActivity::addToLog('Inserção de Item em Cardápio.');
+
+    Log::info('Inserir_Item_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     $cardapio_diario = \App\Cardapio_diario::find($request->cardapio_diario);
     $refeicoes = \App\Refeicao::all();
     session()->flash('success', 'Refeição adicionada.');
@@ -163,6 +194,13 @@ class CardapioController extends Controller
     $cardapio_mensal = \App\Cardapio_mensal::find($cardapio_semanal->cardapio_mensal_id);
     $cardapio_diario_refeicao->delete();
     //LogActivity::addToLog('Remoção de Refeição de Cardápio.');
+
+    Log::info('Remover_Item_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Item removido.');
     return redirect()->route('/cardapio/inserirNovaRefeicao', [
       $cardapio_diario->id, 

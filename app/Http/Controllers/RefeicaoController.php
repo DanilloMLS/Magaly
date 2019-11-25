@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use App\Refeicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +12,12 @@ class RefeicaoController extends Controller
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
       'nome' =>      ['required', 'string', 'max:255', 'unique:refeicaos,nome'],
-      'descricao' => ['nullable', 'string', 'max:1500'],
+      'descricao' => ['nullable', 'string', 'max:255'],
+    ],[
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso',
+      'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
     ]);
 
     if ($validator->fails()) {
@@ -26,7 +31,13 @@ class RefeicaoController extends Controller
     $refeicao->descricao = $request->descricao;
     $refeicao->quantidade_total = 0;
     $refeicao->save();
-    //LogActivity::addToLog('Cadastro de Refeição.');
+
+    Log::info('Cadastro_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Refeição cadastrada com sucesso. Insira seus itens.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -65,9 +76,14 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($request->refeicao_id);
 
     $validator = Validator::make($request->all(), [
-      'quantidade' =>  ['required', 'integer', 'between:0,5000000'],
+      'quantidade' =>  ['required', 'integer', 'between:0,99999'],
       'item_id' =>     ['required', 'integer', 'exists:items,id'],
       'refeicao_id' => ['required', 'integer', 'exists:refeicaos,id'],
+    ],[
+      'quantidade.required' => 'A quantidade é obrigatória',
+      'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+      'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
+      'item_id.required' => 'O item é obrigatório',
     ]);
 
     if ($validator->fails()) {
@@ -82,7 +98,13 @@ class RefeicaoController extends Controller
     $refeicao_item->item_id = $request->item_id;
 
     $refeicao_item->save();
-    //LogActivity::addToLog('Inserção de Item em Refeição.');
+
+    Log::info('Inserir_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -92,7 +114,13 @@ class RefeicaoController extends Controller
     $refeicao = \App\Refeicao::find($refeicao_item->refeicao_id);
 
     $refeicao_item->delete();
-    //LogActivity::addToLog('Remoção de Item em Refeição.');
+    
+    Log::info('Remover_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Item adicionado.');
     return redirect()->route('/refeicao/inserirItemRefeicao',[$refeicao]);
   }
@@ -107,6 +135,13 @@ class RefeicaoController extends Controller
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save(); */
     $this->calcularPeso($refeicao);
+
+    Log::info('Calculo_Peso_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
     session()->flash('success', 'Refeição cadastrada.');
     return redirect()->route('/refeicao/listar');
   }
@@ -120,7 +155,6 @@ class RefeicaoController extends Controller
     }
     $refeicao->quantidade_total = $quantidade;
     $refeicao->save();
-    //LogActivity::addToLog('Cálculo de peso da Refeição.');
   }
 
   public function exibirItensRefeicao(Request $request){
@@ -146,8 +180,12 @@ class RefeicaoController extends Controller
 
     if (isset($item_refeicao)) {
       $validator = Validator::make($request->all(), [
-        'quantidade' => ['required', 'integer', 'between:0,5000000'],
+        'quantidade' => ['required', 'integer', 'between:0,99999'],
         'id' =>         ['required', 'integer', 'exists:refeicao_items,id'],
+      ],[
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
       ]);
   
       if ($validator->fails()) {
@@ -158,9 +196,16 @@ class RefeicaoController extends Controller
   
       $item_refeicao->quantidade = $request->quantidade;
       $item_refeicao->save();
-      //LogActivity::addToLog('Alteração de quantidade de Item em Refeição.');
+
       $refeicao = Refeicao::find($item_refeicao->refeicao_id);
       $this->calcularPeso($refeicao);
+
+      Log::info('Edicao_Item_Refeicao. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Item da distribuição modificado com sucesso.');
       //return redirect()->route('/refeicao/finalizarRefeicao',[$item_refeicao->refeicao_id]);
       return redirect()->route('/refeicao/exibirItensRefeicao',[$item_refeicao->refeicao_id]);

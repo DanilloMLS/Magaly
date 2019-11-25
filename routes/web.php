@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Log;
 */
 
 Route::get('/', function () {
-    Log::info('A user has arrived at the welcome page.');
     return view('welcome');
 });
 
@@ -26,8 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rotas de ADM
 //Fornecedor
 Route::get('/fornecedor/cadastrar', function(Request $request) {
-    $nome = Auth::user()->name;
-    Log::info('A user has arrived at the fornecedors reg page.'.$nome);
     return view('CadastrarFornecedor');
 })->name('/fornecedor/cadastrar')->middleware('adm');
 Route::post('/fornecedor/cadastrar', 'FornecedorController@cadastrar')->name('/fornecedor/cadastrar')->middleware('adm');

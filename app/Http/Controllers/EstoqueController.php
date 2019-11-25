@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Helpers\LogActivity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,6 +13,10 @@ class EstoqueController extends Controller
 
     $validator = Validator::make($request->all(), [
       'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome'],
+    ],[
+      'nome.required' => 'O nome é obrigatório',
+      'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+      'nome.unique' => 'O nome já está em uso'
     ]);
 
     if ($validator->fails()) {
@@ -24,7 +28,12 @@ class EstoqueController extends Controller
     $estoque = new \App\Estoque();
     $estoque->nome = $request->nome;
     $estoque->save();
-    //LogActivity::addToLog('Cadastro de estoque.');
+
+    Log::info('Cadastro_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
@@ -90,6 +99,10 @@ class EstoqueController extends Controller
 
       $validator = Validator::make($request->all(), [
         'nome' => ['required', 'string', 'max:255', 'unique:estoques,nome,'.$estoque->id],
+      ],[
+        'nome.required' => 'O nome é obrigatório',
+        'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+        'nome.unique' => 'O nome já está em uso'
       ]);
 
       if ($validator->fails()) {
@@ -100,7 +113,13 @@ class EstoqueController extends Controller
 
       $estoque->nome = $request->nome;
       $estoque->save();
-      //LogActivity::addToLog('Estoque renomeado.');
+
+      Log::info('Edicao_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Estoque renomeado com sucesso.');
       return redirect()->route('/estoque/listar');
     }
@@ -157,6 +176,18 @@ class EstoqueController extends Controller
         'item_contrato_id' => ['required', 'integer', 'exists:items,id'],
         'n_lote' => ['required', 'string', 'max:255'],
         'data_validade' => ['required', 'date', 'after_or_equal:today'],
+      ],[
+        'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+        'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+        'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
+        'n_lote.required' => 'O lote é obrigatório',
+        'n_lote.max' => 'O lote deve ter no máximo 255 caracteres',
+        'data_validade.required' => 'A data é obrigatória',
+        'data_validade.date' => 'Formato de data inválido',
+        'data_validade.after_or_equal' => 'A data deve ser igual ou posterior a hoje',
       ]);
 
       if ($validator->fails()) {
@@ -203,7 +234,13 @@ class EstoqueController extends Controller
 
 
       $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
-      //LogActivity::addToLog('Novo Item inserido no estoque.');
+      
+      Log::info('Inserir_Item_Estoque. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+      
       $estoque_item->save();
       $contrato_item->save();
 
@@ -224,7 +261,13 @@ class EstoqueController extends Controller
 
       if (isset($estoque)) {
         $estoque_item->delete();
-        //LogActivity::addToLog('Item removido do Estoque.');
+        
+        Log::info('Remover_Item_Estoque. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+
         session()->flash('success', 'Remoção de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
@@ -258,6 +301,13 @@ class EstoqueController extends Controller
         $validator = Validator::make($request->all(), [
           'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
           'quantidade' =>             ['required', 'integer', 'between:0,99999'],
+        ],[
+          'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+          'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+          'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
         ]);
   
         if ($validator->fails()) {
@@ -285,8 +335,14 @@ class EstoqueController extends Controller
         
         $estoque_item->save();
         $contrato_item->save();
-        //LogActivity::addToLog('Entrada de Item no Estoque.');
-        session()->flash('success', 'Entrada de item.');
+        
+        Log::info('Entrada_Item_Estoque. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+        
+          session()->flash('success', 'Entrada de item.');
         return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
       }
       
@@ -315,8 +371,15 @@ class EstoqueController extends Controller
       if (isset($estoque)) {
 
         $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:5000000'],
+          'quantidade_danificados' => ['required', 'integer', 'min:0', 'max:99999'],
           'quantidade' =>             ['required', 'integer', 'min:0', 'max:'.$estoque_item->quantidade],
+        ],[
+          'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+          'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+          'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e '.$estoque_item->quantidade,
         ]);
   
         if ($validator->fails()) {
@@ -336,7 +399,13 @@ class EstoqueController extends Controller
                 
                 
                 $estoque_item->save();
-                //LogActivity::addToLog('Saída de Item do Estoque.');
+                
+                Log::info('Saida_Item_Estoque. User ['.$request->user()->id.
+                  ']. Method ['.$request->method().
+                  ']. Ip ['.$request->ip().
+                  ']. Agent ['.$request->header('user-agent').
+                  ']. Url ['.$request->path().']');
+
           }
           elseif ($request->quantidade > $estoque_item->quantidade) {
             return redirect()->back() ->with('alert', 'Quantidade insuficiente');

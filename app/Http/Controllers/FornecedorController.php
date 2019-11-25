@@ -46,12 +46,11 @@ class FornecedorController extends Controller
     $fornecedor->telefone = $request->telefone;
     $fornecedor->save();
 
-    $nome_usuario = Auth::user()->name;
-    /* Request::fullUrl();
-    	$log['method'] = Request::method();
-    	$log['ip'] = Request::ip();
-    	$log['agent'] = Request::header('user-agent'); */
-    Log::info('User ('.$nome_usuario.') cadastrou fornecedor '.$request->nome.' '.$request->ip());
+    Log::info('Cadastro_Fornecedor. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Fornecedor cadastrado com sucesso.');
     return redirect()->route('/fornecedor/listar');
@@ -129,7 +128,11 @@ class FornecedorController extends Controller
       $fornecedor->email = $request->email;
       $fornecedor->telefone = $request->telefone;
       $fornecedor->save();
-      //LogActivity::addToLog('Edição de Fornecedor.');
+      Log::info('Edicao_Fornecedor. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 			session()->flash('success', 'Fornecedor modificado com sucesso.');
  			return redirect()->route('/fornecedor/listar');
     }

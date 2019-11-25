@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\Helpers\LogActivity;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
@@ -21,7 +21,7 @@ class ContratoController extends Controller
 
   public function cadastrar(Request $request) {
     $validator = Validator::make($request->all(), [
-      'data' =>                   ['required', 'date', 'after_or_equal:today'],
+      'data' =>                   ['required', 'date', 'after_or_equal:-20 years'],
       'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato'],
       'n_processo_licitatorio' => ['required', 'string'],
       'modalidade' =>             ['required', 'string'],
@@ -31,7 +31,8 @@ class ContratoController extends Controller
     ],[
       'data.required' => 'A data é obrigatória',
       'data.date' => 'A data é inválida',
-      'data.after_or_equal' => 'A data deve ser posterior a hoje',
+      'data.after_or_equal' => 'A data é muito antiga',
+      'modalidade.required' => 'A modalidade é obrigatória',
       'n_contrato.required' => 'O Nº de contrato é obrigatório',
       'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
       'n_processo.required' => 'O nº de processo licitatório é obrigatório',
@@ -54,7 +55,12 @@ class ContratoController extends Controller
     $contrato->fornecedor_id = $request->fornecedor_id;
     $contrato->modalidade = $request->modalidade;
     $contrato->save();
-    //LogActivity::addToLog('Cadastro de Contrato.');
+
+    Log::info('Cadastro_Contrato. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Contrato cadastrado com sucesso. Insira seus itens.');
     return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -133,12 +139,27 @@ class ContratoController extends Controller
       $validator = Validator::make($request->all(), [
           'nome' =>           ['required', 'string', 'max:255'],
           'marca' =>          ['required', 'string', 'max:255'],
-          'descricao' =>      ['nullable', 'string', 'max:1500'],
+          'descricao' =>      ['nullable', 'string', 'max:255'],
           'unidade' =>        ['required', 'string', 'max:2'],
           'gramatura' =>      ['required', 'integer', 'between:0,5000000'],
           'quantidade' =>     ['required', 'integer', 'between:0,5000000'],
-          'valor_unitario' => ['required', 'numeric', 'between:0,5000000'],
+          'valor_unitario' => ['required', 'numeric', 'min:0', 'max:1000000'],
           'contrato_id' =>    ['required', 'integer', 'exists:contratos,id'],
+      ],[
+        'nome.required' => 'O nome é obrigatório',
+        'nome.max' => 'O nome deve ter no máximo 255 caracteres',
+        'marca.required' => 'A marca é obrigatória',
+        'marca.max' => 'A marca deve ter no máximo 255 caracteres',
+        'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+        'unidade.required' => 'A unidade é obrigatória',
+        'unidade.max' => 'Unidade inválida',
+        'gramatura.required' => 'A gramatura é obrigatória',
+        'gramatura.integer' => 'A gramatura deve ser um número inteiro',
+        'gramatura.between' => 'A gramatura deve estar entre 0 e 5000000',
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 5000000',
+        'valor_unitario.min' => 'O valor unitário deve ser maior que zero',
       ]);
 
       if ($validator->fails()) {
@@ -177,7 +198,12 @@ class ContratoController extends Controller
       $contrato->valor_total += $request->quantidade * $request->valor_unitario;
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->save();
-      //LogActivity::addToLog('Inserir Item no Contrato.');
+
+      Log::info('Inserir_Item_Contrato. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
 
       session()->flash('success', 'Item adicionado.');
       return redirect()->route('/contrato/inserirItemContrato',[$contrato->id]);
@@ -212,7 +238,13 @@ class ContratoController extends Controller
         return view("InserirItensContrato", ["contrato" => $contrato, "itens" => $itens]);
       }
       $contratos = \App\Contrato::paginate(10);
-      //LogActivity::addToLog('Remoção de Item de Contrato.');
+
+      Log::info('Remover_Item_Contrato. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Contrato não existe.');
       return view("ListarContratos", ["contratos" => $contratos]);
     }
@@ -233,7 +265,13 @@ class ContratoController extends Controller
       //$contrato->valor_total = $this->calcularTotal($contrato);
       $contrato->valor_total = $valorTotal;
       $contrato->save();
-      //LogActivity::addToLog('Finalização de Contrato.');
+
+      Log::info('Finalizacao_Contrato. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+
       session()->flash('success', 'Contrato cadastrado.');
       return redirect()->route('/contrato/listar');
     }
@@ -267,6 +305,13 @@ class ContratoController extends Controller
           'contrato_item_id' => ['required', 'integer', 'exists:contrato_items,id'],
           'quantidade' =>       ['required', 'integer', 'between:0,5000000'],
           'valor_unitario' =>   ['required', 'numeric', 'between:0,5000000'],
+        ],[
+          'quantidade.required' => 'A quantidade é obrigatória',
+          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+          'quantidade.between' => 'A quantidade deve estar entre 0 e 5000000',
+          'valor_unitario.required' => 'O valor unitário é obrigatória',
+          'valor_unitario.integer' => 'O valor unitário deve ser um número inteiro',
+          'valor_unitario.between' => 'O valor unitário deve estar entre 0 e 5000000',
         ]);
     
         if ($validator->fails()) {
@@ -280,7 +325,13 @@ class ContratoController extends Controller
         $item_contrato->save();
         //$contrato->valor_total = $this->calcularTotal($contrato);
         //$contrato->save();
-        //LogActivity::addToLog('Edição de Item de Contrato.');
+
+        Log::info('Edicao_Item_Contrato. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+
         session()->flash('success', 'Valores alterados com sucesso.');
         return redirect()->route('/contrato/exibirItensContrato', ["id" => $item_contrato->contrato_id]);
       }
@@ -344,13 +395,23 @@ class ContratoController extends Controller
     if (isset($contrato)) {
 
       $validator = Validator::make($request->all(), [
-        'data' =>                   ['required', 'date', 'after_or_equal:today'],
+        'data' =>                   ['required', 'date', 'after_or_equal:-20 years'],
         'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato,'.$contrato->id],
         'n_processo_licitatorio' => ['required', 'string'],
         'modalidade' =>             ['required', 'string'],
-        'descricao' =>              ['nullable', 'string', 'max:1500'],
+        'descricao' =>              ['nullable', 'string', 'max:255'],
         'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
         'valor_total' =>            ['nullable', 'numeric', 'min:0'],
+      ],[
+        'data.required' => 'A data é obrigatória',
+        'data.date' => 'A data é inválida',
+        'data.after_or_equal' => 'A data deve ser posterior a hoje',
+        'modalidade.required' => 'A modalidade é obrigatória',
+        'n_contrato.required' => 'O Nº de contrato é obrigatório',
+        'n_contrato.unique' => 'Esse nº de contrato de já está em uso',
+        'n_processo_licitatorio.required' => 'O nº de processo licitatório é obrigatório',
+        'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+        'fornecedor_id.required' => 'O fornecedor é obrigatório',
       ]);
   
       if ($validator->fails()) {
@@ -367,7 +428,13 @@ class ContratoController extends Controller
       $contrato->fornecedor_id = $request->fornecedor_id;
       $contrato->modalidade = $request->modalidade;
       $contrato->save();
-      //LogActivity::addToLog('Edição de Contrato.');
+
+      Log::info('Edicao_Contrato. User ['.$request->user()->id.
+      ']. Method ['.$request->method().
+      ']. Ip ['.$request->ip().
+      ']. Agent ['.$request->header('user-agent').
+      ']. Url ['.$request->path().']');
+      
       session()->flash('success', 'Contrato editado com sucesso.');
       return redirect()->route('/contrato/listar');
     }
