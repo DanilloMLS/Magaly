@@ -143,7 +143,7 @@ class ContratoController extends Controller
           'unidade' =>        ['required', 'string', 'max:2'],
           'gramatura' =>      ['required', 'integer', 'between:0,5000000'],
           'quantidade' =>     ['required', 'integer', 'between:0,5000000'],
-          'valor_unitario' => ['required', 'numeric', 'between:0,5000000'],
+          'valor_unitario' => ['required', 'numeric', 'min:0', 'max:1000000'],
           'contrato_id' =>    ['required', 'integer', 'exists:contratos,id'],
       ],[
         'nome.required' => 'O nome é obrigatório',
@@ -158,7 +158,8 @@ class ContratoController extends Controller
         'gramatura.between' => 'A gramatura deve estar entre 0 e 5000000',
         'quantidade.required' => 'A quantidade é obrigatória',
         'quantidade.integer' => 'A quantidade deve ser um número inteiro',
-        'quantidade.between' => 'A gramatura deve estar entre 0 e 5000000',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 5000000',
+        'valor_unitario.min' => 'O valor unitário deve ser maior que zero',
       ]);
 
       if ($validator->fails()) {
