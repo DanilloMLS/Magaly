@@ -285,6 +285,9 @@ class DistribuicaoController extends Controller
       $nova_distribuicao->escola_id = $distribuicao->escola_id;
       $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
       $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
+      $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
+      $uniqueString = md5(time().$sffledStr).md5(time().$sffledStr);
+      $nova_distribuicao->token =$uniqueString;
       $nova_distribuicao->save();
       $distribuicao->proxima = $nova_distribuicao->id;
       $distribuicao->save();
@@ -494,7 +497,7 @@ class DistribuicaoController extends Controller
 
       session()->flash('success', 'Item da distribuição modificado com sucesso.');
       return redirect()->route('/distribuicao/exibirItensDistribuicao', [
-        "distribuicao" => $item_distribuicao->distribuicao_id
+        "id" => $item_distribuicao->distribuicao_id
         ]);
     }
     
