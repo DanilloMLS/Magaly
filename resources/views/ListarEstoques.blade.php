@@ -54,24 +54,24 @@ function listarItens(id){
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Id</th>
+                                  <th class="width">Id</th>
                                   <th >Nome</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($estoques as $estoque)
                                 <tr>
-                                    <td data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
+                                    <td class="width20px" data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
                                     <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
-                                    <td align="right" >
+                                    <td class="width3icons" align="right" >
                                       <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
-                                        <img src="/img/item.png" height="21" width="17" align = "right">
+                                        <img src="/img/item.png" class="tamIconsPadrao">
                                       </a>
                                       <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
-                                        <img src="/img/add_item.png" height="21" width="21" align = "right">
+                                        <img src="/img/add_item.png" class="tamIconsPadrao">
                                       </a>
                                       <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                        <img src="/img/edit.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
                                 </tr>
@@ -81,11 +81,6 @@ function listarItens(id){
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/estoque/RelatorioEstoques") }}">Relatório</a>
-
-                      <a class="btn btn-primary" href="{{ route("/estoque/cadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>

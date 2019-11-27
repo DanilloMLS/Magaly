@@ -106,7 +106,7 @@ class EscolaController extends Controller
       //return view("ListarEscolas", ["escolas" => $escolas]);
 
       $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");      return  \PDF::loadView('RelatorioEscolas', compact('escolas'))
-          // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+          ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
           ->stream('relatorio_Escolas_'.$data.'.pdf');
   }
 

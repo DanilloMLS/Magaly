@@ -34,8 +34,8 @@ class DistribuicaoController extends Controller
       'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
-      //'token' =>        ['integer', 'required', 'unique:distribuicao,token','min:0'],
-    ],[
+      ],[
+
       'observacao.max' => 'Observação deve ter no máximo 255 caracteres',
       'escola_id.required' => 'Escolha uma escola',
       'cardapio_id.required' => 'Escolha um cardápio',
@@ -310,10 +310,11 @@ class DistribuicaoController extends Controller
     public function gerarRelatorio(Request $request){
         $distribuicoes = \App\Distribuicao::where('token', '=', $request->token)->get();
         $production = "";
-        if($_SERVER['SERVER_NAME'] == "127.0.0.1"){
+        $serv = $_SERVER['SERVER_NAME'];
+        if($serv == "127.0.0.1"){
           $production = ":8000";
         }
-        $url = $_SERVER['SERVER_NAME'].$production.$_SERVER["REQUEST_URI"];
+        $url = $serv.$production.$_SERVER["REQUEST_URI"];
         if(count($distribuicoes) > 0){
           //return view("RelatorioDistribuicao", ["distribuicoes" => $distribuicoes]);
           $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");

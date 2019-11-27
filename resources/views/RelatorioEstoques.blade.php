@@ -42,6 +42,7 @@ Tel: (87)3762-7060
                       @php
                           $item = \App\Item::find($item_estoque->item_id);
                       @endphp
+                      <?php if(count($item) <= 0); @endforeach?>
                       <tr>
                           <td bgcolor="#dfdfdf" data-title="Id">{{ $item->id }}</td>
                           <td data-title="Nome">{{ $item->nome }}</td>

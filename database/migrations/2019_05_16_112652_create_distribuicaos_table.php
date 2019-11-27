@@ -15,7 +15,7 @@ class CreateDistribuicaosTable extends Migration
     {
         Schema::create('distribuicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('observacao')->nullable();
+            $table->string('observacao', 1500)->nullable();
             $table->integer('escola_id')->unsigned();
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
             $table->integer('cardapio_id')->unsigned();

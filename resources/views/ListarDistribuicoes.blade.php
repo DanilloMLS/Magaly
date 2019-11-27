@@ -40,33 +40,33 @@ function avisoDeletar(id){
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>#</th>
-                                  <th>Observação</th>
+                                  <th>Id</th>
                                   <th>Escola</th>
+                                  <th>Observação</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach ($distribuicoes as $distribuicao)
                                 <tr>
                                     <td data-title="Id">{{ $distribuicao->id }}</td>
-                                    <td data-title="Observação">{{ $distribuicao->observacao }}</td>
                                     <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
+                                    <td class="width15" data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
+                                    <td data-title="Observação" align="justify">{{ $distribuicao->observacao }}</td>
 
-                                    <td align="right">
+                                    <td class="width4icons" align="right">
                                       <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
-                                        <img src="/img/item.png" height="21" width="17" align = "right">
+                                        <img src="/img/item.png" class="tamIconsPadrao">
                                       </a>
                                       <a title="Remover" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
-                                        <img src="/img/delete.png" height="21" width="17" align = "right">
+                                        <img class="tamIconsPadrao" src="/img/delete.png" >
                                       </a>
                                       @if ($distribuicao->baixada == false)
                                         <a title="Dar baixa" class="btn btn-primary" href="{{ route("/distribuicao/novaBaixa", ['id' => $distribuicao->id]) }}">
-                                          <img src="/img/down_arrow.png" height="21" width="17" align = "right">
+                                          <img src="/img/down_arrow.png" class="tamIconsPadrao">
                                         </a>
                                       @endif
                                       <a title="Visualizar" class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
-                                        <img src="/img/down.png" height="21" width="17" align = "right">
+                                        <img src="/img/down.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
                                 </tr>
@@ -76,9 +76,6 @@ function avisoDeletar(id){
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{ route("/distribuicao/telaCadastrar") }}">Nova</a>
                   </div>
                 </div>
             </div>

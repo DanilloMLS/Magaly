@@ -46,7 +46,7 @@
 
                                     <td align="right">
                                       <a title="Ver Refeições" class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >
-                                        <img src="/img/menu.png" height="21" width="21" align = "right">
+                                        <img src="/img/menu.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
                                 </tr>
@@ -56,9 +56,6 @@
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{ route("/cardapio/cadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>
