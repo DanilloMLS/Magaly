@@ -34,6 +34,7 @@ class DistribuicaoController extends Controller
       'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
+      ],[
 
       'observacao.max' => 'Observação deve ter no máximo 255 caracteres',
       'escola_id.required' => 'Escolha uma escola',
