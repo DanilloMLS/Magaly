@@ -72,7 +72,7 @@ function editar(id){
 
                                     <td align="right">
                                       <a class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                        <img src="/img/edit.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
                                 </tr>
@@ -82,10 +82,6 @@ function editar(id){
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">Listar</a>
-                      <a class="btn btn-primary" href="{{ route("/escola/cadastrar") }}">Nova</a>
                   </div>
                 </div>
             </div>

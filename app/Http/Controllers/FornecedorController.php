@@ -66,7 +66,7 @@ class FornecedorController extends Controller
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("ListarFornecedores", ["fornecedores" => $fornecedores]);
 
         return  \PDF::loadView('RelatorioFornecedores', compact('fornecedores'))
-            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
             ->stream('Lista de Fornecedor_'.$data.'.pdf');
     }
 
