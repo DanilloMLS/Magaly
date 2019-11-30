@@ -59,7 +59,8 @@ class BaixaDistribuicaoTest extends DuskTestCase
                     ->type('quantidade_danificados',$q_d)
                     ->press('Salvar')
                     ->pause(1000)
-                    ->assertUrlIs('http://localhost:8000/distribuicao/novaBaixa/'.$distribuicao->id)
+                    ->assertSee('Baixa Distribuição - Lista de Itens')
+                    //->assertUrlIs('http://localhost:8000/distribuicao/novaBaixa/'.$distribuicao->id)
                     ;
         });
     }
@@ -88,7 +89,7 @@ class BaixaDistribuicaoTest extends DuskTestCase
                     ->press('Salvar')
                     ->pause(1000)
                     ->visit('/distribuicao/novaBaixa/'.$distribuicao->id)
-                    ->press('Concluir')
+                    ->click('#btnconcluir')
                     ->pause(2000)
                     ->assertSee('Baixa cadastrada. Movimentações nos estoques feitas automaticamente.')
                     ;
