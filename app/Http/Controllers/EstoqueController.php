@@ -50,7 +50,7 @@ class EstoqueController extends Controller
         //return view("ListarEstoques", ["estoques" => $estoques]);
 
         return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
-            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
             ->stream('relatorio_Estoque_'.$data.'.pdf');
     }
 

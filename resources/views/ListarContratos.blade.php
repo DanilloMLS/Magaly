@@ -27,7 +27,7 @@
                           <div>
                             <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca Simples">
                             <a class="btn btn-primary" href ="{{ route("/contrato/buscar") }}">
-                                <img src="/img/search.png" height="23" width="21" align = "right">
+                                <img src="/img/search.png" class="tamIconsPadrao">
                                 Detalhada
                             </a>
                           </div>
@@ -42,8 +42,8 @@
                                   <th>Nº Processo</th>
                                   <th>Modalidade</th>
                                   <th>Data</th>
-                                  <th>Valor Total</th>
-                                  <th>Valor Restante</th>
+                                  <th>Total</th>
+                                  <th>Restante</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -71,15 +71,15 @@
                                           echo "R$".number_format($valor_restante,2,',','.');
                                       @endphp
                                       </td>
-                                    <td align="right">
+                                    <td class="width3icons" align="right">
                                       <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
-                                        <img src="/img/item.png" height="21" width="17" align = "right">
+                                        <img src="/img/item.png" class="tamIconsPadrao">
                                       </a>
                                       <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                        <img src="/img/edit.png" class="tamIconsPadrao">
                                       </a>
                                       <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
-                                        <img src="/img/add_item.png" height="21" width="17" align = "right">
+                                        <img src="/img/add_item.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
                                 </tr>
@@ -89,10 +89,6 @@
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-
-                      <a class="btn btn-primary" href="{{ route("/contrato/telaCadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>

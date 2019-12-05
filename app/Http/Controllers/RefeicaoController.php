@@ -68,7 +68,7 @@ class RefeicaoController extends Controller
       $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("ListarRefeicoes", ["refeicoes" => $refeicoes]);
 
     return  \PDF::loadView('RelatorioRefeicoes', compact('refeicoes'))
-      // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+      ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
       ->stream('relatorio_Refeicao_'.$data.'.pdf');
   }
 

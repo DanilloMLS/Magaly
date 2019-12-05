@@ -55,6 +55,9 @@
                                         <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
                                             Listar Fornecedores
                                         </a>
+                                        <a class="dropdown-item" target="_blank" href="{{ route("/fornecedor/RelatorioFornecedores") }}">
+                                            Imprimir Fornecedores
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="dropdown">
@@ -76,6 +79,9 @@
                                         </a>
                                         <a class="dropdown-item" href="{{route('/escola/listar')}}">
                                             Listar Escolas
+                                        </a>
+                                        <a class="dropdown-item" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">
+                                            Imprimir Escolas
                                         </a>
                                     </div>
                                 </div>
@@ -111,6 +117,9 @@
                                         </a>
                                         <a class="dropdown-item" href="{{route('/refeicao/listar')}}">
                                             Listar Refeições
+                                        </a>
+                                        <a class="dropdown-item" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">
+                                            Imprimir Refeições
                                         </a>
                                     </div>
                                 </div>

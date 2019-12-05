@@ -32,7 +32,6 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Descrição</th>
-                                  <th>Quantidade</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -40,11 +39,10 @@
                                 <tr>
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
-                                    <td data-title="Quantidade">{{ $refeicao->quantidade_total }}</td>
 
                                     <td align="right">
                                       <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
-                                        <img src="/img/item.png" height="21" width="21" align = "right">
+                                        <img src="/img/item.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
 
@@ -56,10 +54,6 @@
                           </table>
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <a class="btn btn-primary" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">Listar</a>
-                      <a class="btn btn-primary" href="{{ route("/refeicao/cadastrar") }}">Novo</a>
                   </div>
                 </div>
             </div>

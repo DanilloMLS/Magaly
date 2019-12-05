@@ -33,24 +33,24 @@ Tel: (87)3762-7060
         @foreach ($distribuicoes as $distribuicao)
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
+                    <th bgcolor="#B0E0E6" colspan=4 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
                 </tr>
                 <tr bgcolor="#dfdfdf">
                     <th>ESCOLA</th>
                     <th>ROTA</th>
-                    <th>MODALIDADE DE ENSINO</th>
+                    <th colspan=2 >MODALIDADE DE ENSINO</th>
                 </tr>
                 <tbody>
                     <tr>
                         <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
                         <td data-title="Nome">{{ $escola->nome}}</td>
                         <td data-title="Rota">{{ $escola->rota}}</td>
-                        <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino}}</td>
+                        <td colspan=2 data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino}}</td>
                     </tr>
                 </tbody>
                 <tr bgcolor="#dfdfdf">
                     <th>PERÍODO DE ATENDIMENTO</th>
-                    <th colspan=2>OBSERVAÇÃO</th>
+                    <th colspan=3>OBSERVAÇÃO</th>
                 </tr>
                 <tbody>
                 <tr>
@@ -70,7 +70,7 @@ Tel: (87)3762-7060
                         <th>UNIDADE</th>
                         <th>QUANTIDADE</th>
                         <th>FALTAS</th>
-                        <th>DATA DA ENTREGA DA FALTA E ASSINATURA</th>
+                        <th>DATA e ASSINATURA</th>
                     </tr>
                     @foreach (\App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get() as $item_distribuicao)
                         <tr>
@@ -78,7 +78,7 @@ Tel: (87)3762-7060
                                 $item = \App\Item::find($item_distribuicao->item_id);
                             @endphp
                             <td data-title="Id">{{ $item->id }}</td>
-                            <td data-title="Nome">{{ $item->nome }}</td>
+                            <td width="25%" data-title="Nome">{{ $item->nome }}</td>
                             <td data-title="Unidade" align="center">{{$item->gramatura . "" . $item->unidade }}</td>
                             <td data-title="Quantidade" align="center">{{ $item_distribuicao->quantidade_total }}</td>
                             <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
