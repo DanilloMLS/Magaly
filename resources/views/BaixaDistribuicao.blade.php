@@ -93,7 +93,8 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" onClick="avisoBaixa({{$distribuicao->id}});">Concluir</a>
+                      <a id="btnconcluir" class="btn btn-primary" href="{{ route ('/distribuicao/concluirBaixa', ['id' => $distribuicao->id])}}">Concluir</a>
+                      {{-- onClick="avisoBaixa({{$distribuicao->id}});" --}}
                       <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
 
                   </div>
