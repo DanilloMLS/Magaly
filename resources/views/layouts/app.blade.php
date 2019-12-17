@@ -50,10 +50,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/fornecedor/cadastrar')}}">
-                                            Novo Fornecedor
+                                            Adicionar Fornecedor
                                         </a>
                                         <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
-                                            Listar Fornecedores
+                                            Listagem Fornecedores
                                         </a>
                                         <a class="dropdown-item" target="_blank" href="{{ route("/fornecedor/RelatorioFornecedores") }}">
                                             Imprimir Fornecedores
@@ -64,10 +64,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/contra.png"><div class="titulo-botao">Contrato</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/contrato/telaCadastrar')}}">
-                                            Novo Contrato
+                                            Adicionar Contrato
                                         </a>
                                         <a class="dropdown-item" href="{{route('/contrato/listar')}}">
-                                            Listar Contratos
+                                            Listagem Contratos
                                         </a>
                                     </div>
                                 </div>
@@ -75,10 +75,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
-                                            Nova Escola
+                                            Adicionar Escola
                                         </a>
                                         <a class="dropdown-item" href="{{route('/escola/listar')}}">
-                                            Listar Escolas
+                                            Listagem Escolas
                                         </a>
                                         <a class="dropdown-item" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">
                                             Imprimir Escolas
@@ -92,7 +92,7 @@
                                             Novo Item
                                         </a> -->
                                         <a class="dropdown-item" href="{{route('/item/listar')}}">
-                                            Listar Itens
+                                            Listagem Itens
                                         </a>
                                     </div>
                                 </div>
@@ -100,10 +100,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/estoq.png"><div class="titulo-botao">Estoque</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/estoque/cadastrar')}}">
-                                            Novo Estoque
+                                            Adicionar Estoque
                                         </a>
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
-                                            Listar Estoques
+                                            Listagem Estoques
                                         </a>
 
                                     </div>
@@ -113,10 +113,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/refeic.png"><div class="titulo-botao">Refeição</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/refeicao/cadastrar')}}">
-                                            Nova Refeição
+                                            Adicionar Refeição
                                         </a>
                                         <a class="dropdown-item" href="{{route('/refeicao/listar')}}">
-                                            Listar Refeições
+                                            Listagem Refeições
                                         </a>
                                         <a class="dropdown-item" target="_blank" href="{{ route("/refeicao/RelatorioRefeicoes") }}">
                                             Imprimir Refeições
@@ -128,10 +128,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/cardap.png"><div class="titulo-botao">Cardápio</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/cardapio/cadastrar')}}">
-                                            Novo Cardápio
+                                            Adicionar Cardápio
                                         </a>
                                         <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
-                                            Listar Cardápios
+                                            Listagem Cardápios
                                         </a>
                                     </div>
                                 </div>
@@ -139,10 +139,10 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/distribuicao/telaCadastrar')}}">
-                                            Nova Distribuição
+                                            Adicionar Distribuição
                                         </a>
                                         <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
-                                            Listar Distribuições
+                                            Listagem Distribuições
                                         </a>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/fornecedor/listar')}}">
-                                  Listar Fornecedores
+                                Listagem Fornecedores
                               </a>
                           </div>
                       </div>
@@ -159,7 +159,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/contra.png"><div class="titulo-botao">Contrato</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/contrato/listar')}}">
-                                  Listar Contratos
+                                Listagem Contratos
                               </a>
                           </div>
                       </div>
@@ -167,7 +167,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/escola/listar')}}">
-                                  Listar Escolas
+                                Listagem Escolas
                               </a>
                           </div>
                       </div>
@@ -175,7 +175,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/distri.png"><div class="titulo-botao">Distribuição</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/distribuicao/listar')}}">
-                                  Listar Distribuições
+                                Listagem Distribuições
                               </a>
                           </div>
                       </div>
@@ -183,7 +183,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/item/listar')}}">
-                                  Listar Itens
+                                Listagem Itens
                               </a>
                           </div>
                       </div>
@@ -191,7 +191,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/estoq.png"><div class="titulo-botao">Estoque</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/estoque/listar')}}">
-                                  Listar Estoques
+                                Listagem Estoques
                               </a>
 
                           </div>
@@ -201,7 +201,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/refeic.png"><div class="titulo-botao">Refeição</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/refeicao/listar')}}">
-                                  Listar Refeições
+                                Listagem Refeições
                               </a>
                           </div>
                       </div>
@@ -210,7 +210,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/cardap.png"><div class="titulo-botao">Cardápio</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/cardapio/listar')}}">
-                                  Listar Cardápios
+                                Listagem Cardápios
                               </a>
                           </div>
                       </div>
