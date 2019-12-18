@@ -15,9 +15,11 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    min-width: 200px;
+    min-width: 0px;
     z-index: 1;
     background:transparent;
+    text-align: justify;
+    font-size: 15px;
 }
 
 .dropdown-content a {
@@ -37,19 +39,20 @@
     background-color: rgba(250,250,250,1);
     color: #3f3f3f;
     border-radius: 15px;
-    font: 16px bold;
+    text-align: center;
 }
 
 
 .dropdown-content:hover a:hover {
-    background-color: rgba(240,240,240,1);
-    color: #3f3f3f;
     border-radius: 15px;
-    font: 16px bold;
-    border-width: 3px;
+    font: bolder;
+    border-width: 2px;
     border-style: solid;
-    border-color: rgba(63,63,63,.2);
+    border-color: #3f3f3f8e;
     margin-bottom: 2px;
+    background-color:rgba(220,220,220,1);
+    color: #3f3f3f;    
+    text-shadow: 1px 2px #f3f3f3;
 }
 
 .dropdown:hover .dropdown-content {
@@ -62,17 +65,20 @@
     background-color: rgba(250,250,250,1);
     border-width: 1px;
     border-style: solid;
-    border-color: rgba(63,63,63,.2);
-    margin-bottom: 5px;
+    border-color: 1px 1px rgba(63,63,63,.1);
 }
 
 .redireciona{
-    background-color:rgba(0,170,187);
+    background-color:rgba(0,170,187, .8);
 }
 
 .redireciona:hover{
-    background-color:rgba(0,170,187,.5);
+    text-transform: uppercase;  
+    background-color:rgba(0,170,187);
+    color: #f3f3f3;    
+    text-shadow: 2px 2px #3f3f3f;
 }
+
 .dropbtn{
     background-color: transparent;
 }

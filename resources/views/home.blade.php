@@ -108,7 +108,7 @@
                 <div class="chart_div_est">
                     <br>
                     <div class="card">
-                        <div class="redireciona card-header"> <center><strong>{{$nome_stq_cent}} <center/><strong/>
+                        <div class="card-header"> <center><strong>{{$nome_stq_cent}} <center/><strong/>
                         </div>
                         <div id="chart_div4" class="chart_div"></div>
                     </div>
