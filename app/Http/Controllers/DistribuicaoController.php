@@ -189,27 +189,28 @@ class DistribuicaoController extends Controller
           if ($qtde_restante <= 0) {
             break;
           }
+          $escola = \App\Escola::find($distribuicao->escola_id);
+          //adicionar ao estoque_escola (destino)
+          $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
+                                                  ->where('item_id','=',$distribuicao_item->item_id)
+                                                  ->first();
+          if (isset($estoque_escola_item)) {
+            $estoque_escola_item->quantidade += $distribuicao_item->quantidade_aceita;
+            $estoque_escola_item->save();
+          } else {
+            $estoque_escola_item = new \App\Estoque_item();
+            $estoque_escola_item->quantidade = $distribuicao_item->quantidade_aceita;
+            $estoque_escola_item->quantidade_danificados = 0;
+            $estoque_escola_item->item_id = $distribuicao_item->item_id;
+            $estoque_escola_item->estoque_id = $escola->estoque_id;
+            $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
+            $estoque_escola_item->n_lote = $estoque_central_item->n_lote;
+            $estoque_escola_item->data_validade = $estoque_central_item->data_validade;
+            $estoque_escola_item->save();
+          }
         }
 
-        $escola = \App\Escola::find($distribuicao->escola_id);
-        //adicionar ao estoque_escola (destino)
-        $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
-                                                ->where('item_id','=',$distribuicao_item->item_id)
-                                                ->first();
-        if (isset($estoque_escola_item)) {
-          $estoque_escola_item->quantidade += $distribuicao_item->quantidade_aceita;
-          $estoque_escola_item->save();
-        } else {
-          $estoque_escola_item = new \App\Estoque_item();
-          $estoque_escola_item->quantidade = $distribuicao_item->quantidade_aceita;
-          $estoque_escola_item->quantidade_danificados = 0;
-          $estoque_escola_item->item_id = $distribuicao_item->item_id;
-          $estoque_escola_item->estoque_id = $escola->estoque_id;
-          $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
-          $estoque_escola_item->n_lote = $estoque_central_item->n_lote;
-          $estoque_escola_item->data_validade = $estoque_central_item->data_validade;
-          $estoque_escola_item->save();
-        }
+        
       } else {
         $distribuicao_item->quantidade_falta += $qtde_restante;
         $distribuicao_item->save();
