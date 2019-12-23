@@ -63,17 +63,19 @@ function listarItens(id){
                                 <tr>
                                     <td class="width20px" data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
                                     <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
-                                    <td class="width3icons" align="right" >
-                                      <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
-                                        <img src="/img/item.png" class="tamIconsPadrao">
-                                      </a>
-                                      <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
-                                        <img src="/img/add_item.png" class="tamIconsPadrao">
-                                      </a>
-                                      <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
-                                        <img src="/img/edit.png" class="tamIconsPadrao">
-                                      </a>
-                                    </td>
+                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td class="width3icons" align="right" >
+                                        <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
+                                          <img src="/img/item.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
+                                          <img src="/img/add_item.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
+                                          <img src="/img/edit.png" class="tamIconsPadrao">
+                                        </a>
+                                      </td>
+                                    @endif
                                 </tr>
                               @endforeach
 

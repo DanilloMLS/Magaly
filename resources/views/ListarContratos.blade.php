@@ -70,18 +70,20 @@
                                           }
                                           echo "R$".number_format($valor_restante,2,',','.');
                                       @endphp
-                                      </td>
-                                    <td class="width3icons" align="right">
-                                      <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
-                                        <img src="/img/item.png" class="tamIconsPadrao">
-                                      </a>
-                                      <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
-                                        <img src="/img/edit.png" class="tamIconsPadrao">
-                                      </a>
-                                      <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
-                                        <img src="/img/add_item.png" class="tamIconsPadrao">
-                                      </a>
                                     </td>
+                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td class="width3icons" align="right">
+                                        <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
+                                          <img src="/img/item.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
+                                          <img src="/img/edit.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
+                                          <img src="/img/add_item.png" class="tamIconsPadrao">
+                                        </a>
+                                      </td>
+                                    @endif
                                 </tr>
                               @endforeach
 
