@@ -113,45 +113,27 @@
                         <div id="chart_div4" class="chart_div"></div>
                     </div>
                 </div>
-                <div class="sobre-magaly-home">
-                    <br>
-                    <div class="card">
-                        <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="panel-body">
-                                <p align="justify">
-                                    O Sistema de Gestão Alimentar <strong>Magaly</strong>
-                                    tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, 
-                                    permitindo de forma simples o controle de estoque, de distribuições, a criação de 
-                                    refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
-                                    <br><br>
-                                    seducdivtecnologia@gmail.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @else
-                <div class="col-md-7">
-                    <br>
-                    <div class="card">
-                        <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="panel-body">
-                                <p align="justify">
-                                    O Sistema de Gestão Alimentar <strong>Magaly</strong> tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, permitindo de forma simples o controle de estoque, de distribuições, a criação de refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
-                                    <br><br>
-                                    seducdivtecnologia@gmail.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             @endif
+            <div class="sobre-magaly-home">
+                <br>
+                <div class="card">
+                    <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="panel-body">
+                            <p align="justify">
+                                O Sistema de Gestão Alimentar <strong>Magaly</strong>
+                                tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, 
+                                permitindo de forma simples o controle de estoque, de distribuições, a criação de 
+                                refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
+                                <br><br>
+                                seducdivtecnologia@gmail.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -53,22 +53,24 @@ function avisoDeletar(id){
                                     <td class="width15" data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
                                     <td data-title="Observação" align="justify">{{ $distribuicao->observacao }}</td>
 
-                                    <td class="width4icons" align="right">
-                                      <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
-                                        <img src="/img/item.png" class="tamIconsPadrao">
-                                      </a>
-                                      <a title="Remover" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
-                                        <img class="tamIconsPadrao" src="/img/delete.png" >
-                                      </a>
-                                      @if ($distribuicao->baixada == false)
-                                        <a title="Dar baixa" class="btn btn-primary" href="{{ route("/distribuicao/novaBaixa", ['id' => $distribuicao->id]) }}">
-                                          <img src="/img/down_arrow.png" class="tamIconsPadrao">
+                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td class="width4icons" align="right">
+                                        <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
+                                          <img src="/img/item.png" class="tamIconsPadrao">
                                         </a>
-                                      @endif
-                                      <a title="Visualizar" class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
-                                        <img src="/img/down.png" class="tamIconsPadrao">
-                                      </a>
-                                    </td>
+                                        <a title="Remover" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                          <img class="tamIconsPadrao" src="/img/delete.png" >
+                                        </a>
+                                        @if ($distribuicao->baixada == false)
+                                          <a title="Dar baixa" class="btn btn-primary" href="{{ route("/distribuicao/novaBaixa", ['id' => $distribuicao->id]) }}">
+                                            <img src="/img/down_arrow.png" class="tamIconsPadrao">
+                                          </a>
+                                        @endif
+                                        <a title="Visualizar" class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
+                                          <img src="/img/down.png" class="tamIconsPadrao">
+                                        </a>
+                                      </td>
+                                    @endif
                                 </tr>
                               @endforeach
 

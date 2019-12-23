@@ -40,13 +40,13 @@
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
 
-                                    <td align="right">
-                                      <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
-                                        <img src="/img/item.png" class="tamIconsPadrao">
-                                      </a>
-                                    </td>
-
-
+                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td align="right">
+                                        <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
+                                          <img src="/img/item.png" class="tamIconsPadrao">
+                                        </a>
+                                      </td>
+                                    @endif
                                 </tr>
                               @endforeach
 

@@ -58,11 +58,13 @@ function editar(id){
 
                                     </td>
 
-                                    <td align="right">
-                                        <a class="btn btn-primary" href="{{ route ("/item/editar", ['id' => $item->id])}}">
-                                            <img src="/img/edit.png" class="tamIconsPadrao">
-                                        </a>
-                                    </td>
+                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td align="right">
+                                          <a class="btn btn-primary" href="{{ route ("/item/editar", ['id' => $item->id])}}">
+                                              <img src="/img/edit.png" class="tamIconsPadrao">
+                                          </a>
+                                      </td>
+                                    @endif
                                     <td></td>
                                 </tr>
                               @endforeach
