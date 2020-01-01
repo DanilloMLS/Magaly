@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
@@ -6,27 +7,29 @@ html, body {
     margin: 0;
     background: url("../img/BACKGROUND-PNG1.png");
 }
+
 .full-height {
     height: 100vh;
 }
 
-a{
-    text-decoration:none;
+a {
+    text-decoration: none;
 }
 
-.btn-text{
+.btn-text {
     text-shadow: 1px 1px #3f3f3f;
     font-size: 25px;
     font-family: 'Nunito', sans-serif;
     color: #00aabb;
-    font-weight:bold;
+    font-weight: bold;
     display: none;
 }
 
-.links:hover .btn-img{
+.links:hover .btn-img {
     display: none;
 }
-.links:hover .btn-text{
+
+.links:hover .btn-text {
     display: block;
 }
 
@@ -60,11 +63,12 @@ a{
     text-align: center;
 }
 
-.title  {
+.title {
     font-size: 84px;
     color: #00aabb;
     text-shadow: 3px 3px #3f3f3f;
 }
+
 .m-b-md {
     margin-bottom: 30px;
 }
@@ -72,18 +76,33 @@ a{
 .logo {
     background-image: url("../img/BACKGROUND-PNG1.png");
 }
-@media (max-width:1980px){
-    .title{font-size: 100px}
+
+@media (max-width:1980px) {
+    .title {
+        font-size: 100px
+    }
 }
-@media (max-width:1600px){
-    .title{font-size: 75px}
+
+@media (max-width:1600px) {
+    .title {
+        font-size: 75px
+    }
 }
-@media (max-width:1200px){
-    .title{font-size: 65px}
+
+@media (max-width:1200px) {
+    .title {
+        font-size: 65px
+    }
 }
-@media (max-width:900px){
-    .title{font-size: 55px}
+
+@media (max-width:900px) {
+    .title {
+        font-size: 55px
+    }
 }
-@media (max-width:768px){
-    .title{font-size: 45px}
+
+@media (max-width:768px) {
+    .title {
+        font-size: 45px
+    }
 }
