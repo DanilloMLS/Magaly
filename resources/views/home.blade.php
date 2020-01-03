@@ -83,7 +83,7 @@
             @if (Auth::guard()->check() && Auth::user()->is_adm)
                 <div class="graphcs col-md-3">
                     <div class="card">
-                        <div class="redireciona card-header" onclick='location.href="{{route('/contrato/listar_Falta')}}"'>
+                        <div class="card-modelo2 redireciona card-header" onclick='location.href="{{route('/contrato/listar_Falta')}}"'>
                             <center><strong>Contratos</strong><center>
                         </div>
                         <div id="chart_div" class="chart_div"></div>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="graphcs col-md-3">
                     <div class="card">
-                        <div class="redireciona card-header" onclick='location.href="{{route("/refeicao/listar")}}"'>
+                        <div class="card-modelo2 redireciona card-header" onclick='location.href="{{route("/refeicao/listar")}}"'>
                             <center><strong>{{$nome_ref}}</strong><center>
                         </div>
                         <div id="chart_div2" class="chart_div"></div>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="graphcs col-md-3">
                     <div class="card">
-                        <div class="redireciona card-header" onclick='location.href="{{route("/estoque/listar")}}"'>
+                        <div class="card-modelo2 redireciona card-header" onclick='location.href="{{route("/estoque/listar")}}"'>
                             <center><strong>{{$nome_stq}}</strong><center>
                         </div>
                             <div id="chart_div3" class="chart_div"></div>
@@ -108,7 +108,7 @@
                 <div class="chart_div_est">
                     <br>
                     <div class="card">
-                        <div class="card-header"> <center><strong>{{$nome_stq_cent}} <center/><strong/>
+                        <div class="card-modelo2 card-header"> <center><strong>{{$nome_stq_cent}} <center/><strong/>
                         </div>
                         <div id="chart_div4" class="chart_div"></div>
                     </div>
@@ -117,7 +117,7 @@
             <div class="sobre-magaly-home">
                 <br>
                 <div class="card">
-                    <div class="card-header"><center><strong>Sistema Magaly<center/><strong/>
+                    <div class="card-modelo2 card-header"><center><strong>Sistema Magaly<center/><strong/>
                     </div>
 
                     <div class="card-body">

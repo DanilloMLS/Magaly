@@ -6,9 +6,15 @@ use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(\App\Item::class, function (Faker $faker) {
-    $itens = ['Macarrão', 'Arroz', 'Tempero', 'Cebola', 'Carne', 'Macacheira', 'Ovo', 'Presunto', 'Salsicha', 'Queijo',
+    $itens = ['Macarrão', 'Arroz', 'Tempero', 'Cebola', 'Carne', 'Macaxeira', 'Ovo', 'Presunto', 'Salsicha', 'Queijo',
               'Miojo', 'Batata doce', 'Tomate', 'Pimentão', 'Creme de Leite', 'Farinha', 'Milho Verde', 'Ervilha', 'Azeitona',
-              'Feijão', 'Maçã', 'Melão', 'Peixe', 'Abacaxi', 'Acerola', 'Manga', 'Brocolis', 'Morango'];
+              'Feijão', 'Maçã', 'Melão', 'Peixe', 'Abacaxi', 'Acerola', 'Manga', 'Brocolis', 'Morango',"Banana", "Maçã", "Laranja", 
+              "Limão", "Morango", "Pera", "Mamão", "Tomate", "Cebola", "Alface", "Batata", "Cenoura", "Repolho", "Brócolis", 
+              "Couve", "Couve-flor", "Beterraba", "Berinjela", "Bovina", "Suína", "Frango", "Peixes", "Açúcar", "Arroz", "Feijão", 
+              "Farinha", "Azeite", "Óleo", "Café", "Chá", "Biscoitos", "Leite condensado", "Creme de leite", "Chocolate em pó", 
+              "Fubá", "Macarrão", "Molho de tomate", "Maisena", "Vinagre", "Pipoca", "Cereais", "Ovo", "Queijo", "Sal", "Pimenta",
+               "Alho", "Temperos prontos", "Orégano", "Salsinha", "Cebolinha", "Mostarda", "Hortelã", "Alecrim", "Pão", "Margarina",
+                "Maionese", "Frios fatiados", "Geleia", "Catchup", "Requeijão", "Fermento", "Amido ", "Baunilha", "Gelatina", "Iogurte"];
     $marcas = ['Nike', 'Adidas', 'Nestlé', 'Conga', 'Sony', 'Ericson', 'Philips', 'AOC', 'CCE', 'Lg', 'HP', 'ACER', 'DELL',
                'Mariano', 'Vitarela', 'Garoto', 'Trakinas', 'jatobá', 'Delícia', 'Salada', 'Soya', 'Primor', 'Cardeal', 'Coqueiro',
                'Danone'];
