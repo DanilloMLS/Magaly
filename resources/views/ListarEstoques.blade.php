@@ -47,7 +47,7 @@ function listarItens(id){
                               Não há nenhum estoque cadastrado no sistema.
                       </div>
                       @else
-                      <div id= "termoBusca" style="display: flex; justify-content: space-between">
+                      <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                           <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
                         <div id="tabela" class="table-responsive">
