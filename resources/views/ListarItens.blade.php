@@ -36,7 +36,7 @@ function editar(id){
                       </div>
                       @else
                         <div id="tabela" class="table-responsive">
-                            <div id= "termoBusca" style="display: flex; justify-content: space-between">
+                            <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                                 <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                             </div>
                           <table class="table table-hover">
