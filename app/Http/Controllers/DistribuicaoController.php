@@ -282,7 +282,7 @@ class DistribuicaoController extends Controller
 
     if (count($distribuicao_itens) > 0) {
       $nova_distribuicao = new \App\Distribuicao();
-      $nova_distribuicao->observacao = '#'.$distribuicao->id;
+      $nova_distribuicao->observacao = 'Complemento da GRR '.$distribuicao->id.', '.now()->format('d-m-Y');
       $nova_distribuicao->escola_id = $distribuicao->escola_id;
       $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
       $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
