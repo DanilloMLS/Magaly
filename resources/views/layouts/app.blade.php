@@ -223,14 +223,14 @@
                         <!-- Authentication Links -->
                         @guest
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                     @if (Auth::user()->is_adm)
                                         <img class="adm-img btn-img" src="/img/adm.png">   
                                     @endif
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-content" aria-labelledby="navbarDropdown">
 
                                 @if (Auth::user()->is_adm)
                                     <a class="dropdown-item" href="{{ route('register') }}">
@@ -261,12 +261,7 @@
         </main>
     </div>
     <footer class="container-fluid text-center" >
-        <img class=" logo-garanhuns left" src="/img/logo.png"> 
-        <!-- <div class="content">
-            <div class="title2 m-b-md">
-                <h1 class="title-body-text">Villar</h1>
-            </div>
-        </div> -->
+        <img class=" logo-garanhuns left" src="/img/logo.png">
     </footer>
     <footer class="container-fluid text-center">
 

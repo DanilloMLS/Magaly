@@ -58,7 +58,6 @@
                                   <div class="col-md-2">
                                     {{ $item->n_lote }}
                                   </div>
-
                                   <div class="col-md-2">
                                     <input name="valor" id="valor" placeholder="0.0" type="text" pattern="^[-+]?[0-9]*\.?[0-9]+$" class="form-control" required value= {{ old('valor')}}> {{ $errors->first('valor')}}
                                   </div>
@@ -66,23 +65,11 @@
                                     <input name="quantidade" id="quantidade" type="number"  class="form-control" required value= {{ old('quantidade')}}> {{ $errors->first('quantidade')}}
                                   </div>
                                   <div class="col-md-1">
-                                    <?php
-                                         ?>
-                                          <button class="btn btn-success" type="submit">+</button>
-                                      <?php ?>
-                                        <a class="btn btn-danger" href="">
-                                        -
-                                        </a>
-                                    <?php } ?>
-
+                                    <button class="btn btn-success" type="submit">+</button>
                                   </div>
                               </div>
-
                             </form>
-
-
-                              @endforeach
-
+                            @endforeach
                         </div>
                       @endif
                   </div>
