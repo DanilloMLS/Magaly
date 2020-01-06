@@ -47,6 +47,20 @@
                         @if (Auth::guard()->check())
                           @if (Auth::user()->is_adm)
                                 <div class="dropdown">
+                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
+                                            Adicionar Escola
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('/escola/listar')}}">
+                                            Listagem Escolas
+                                        </a>
+                                        <a class="dropdown-item" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">
+                                            Imprimir Escolas
+                                        </a>
+                                    </div>
+                                </div> 
+                                <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/fornec.png"><div class="titulo-botao">Fornecedor</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/fornecedor/cadastrar')}}">
@@ -72,20 +86,6 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
-                                    <div class="dropdown-content">
-                                        <a class="dropdown-item" href="{{route('/escola/cadastrar')}}">
-                                            Adicionar Escola
-                                        </a>
-                                        <a class="dropdown-item" href="{{route('/escola/listar')}}">
-                                            Listagem Escolas
-                                        </a>
-                                        <a class="dropdown-item" target="_blank" href="{{ route("/escola/RelatorioEscolas") }}">
-                                            Imprimir Escolas
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
                                         <!-- <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
@@ -95,7 +95,7 @@
                                             Listagem Itens
                                         </a>
                                     </div>
-                                </div>
+                                </div>                         
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/estoq.png"><div class="titulo-botao">Estoque</div></button>
                                     <div class="dropdown-content">
@@ -105,10 +105,8 @@
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
                                             Listagem Estoques
                                         </a>
-
                                     </div>
                                 </div>
-
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/refeic.png"><div class="titulo-botao">Refeição</div></button>
                                     <div class="dropdown-content">
