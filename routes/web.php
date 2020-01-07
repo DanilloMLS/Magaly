@@ -162,7 +162,7 @@ Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCarda
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');
 
 Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
-
+Route::get('/cardápio/editar/{id}', 'CardapioController@editar')->name('/cardapio/editar')->middleware('adm');
 
 //Log Activity
 //Route::get('add-to-log', 'HomeController@myTestAddToLog');

@@ -85,6 +85,19 @@ class CardapioController extends Controller
     $cardapio_semanal->save();
   }
 
+  public function editar(Request $request) {
+    $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
+    
+    if (isset($cardapio_mensal)) {
+      return view("EditarCardapio", [
+        "cardapio_mensal" => $cardapio_mensal,
+      ]);
+    }
+
+    session()->flash('success','Cardápio não existe.');
+    return redirect()->route('/cardapio/listar');
+  }
+
   public function buscarCardapio(Request $request){
     $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
