@@ -9,10 +9,10 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('/itemContrato/salvar') }}">
+                      {{ csrf_field() }}
+                      @csrf
                       <input type="hidden" name="contrato_id" value="{{ $contrato->id}}" />
                       <input type="hidden" name="contrato_item_id" value="{{ $contrato_item->id}}" />
-                      {{ csrf_field() }}
-                        @csrf
                         @php
                           $item = \App\Item::find($contrato_item->item_id);
                         @endphp
