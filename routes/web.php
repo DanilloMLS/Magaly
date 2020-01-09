@@ -164,6 +164,7 @@ Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscar
 Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
 Route::get('/cardápio/editar/{id}', 'CardapioController@editar')->name('/cardapio/editar')->middleware('adm');
 
-//Log Activity
-//Route::get('add-to-log', 'HomeController@myTestAddToLog');
-//Route::get('/LogActivity', 'HomeController@logActivity')->name('/logActivity')->middleware('adm');
+//Ordem de fornecimento
+Route::get('/ordemfornecimento/cadastrar/{id}', 'OrdemFornecimentoController@create')->name('/ordemfornecimento/cadastrar')->middleware('adm');
+Route::post('/ordemfornecedor/store', 'OrdemFornecimentoController@store')->name('/ordemfornecimento/store')->middleware('adm');
+Route::get('/ordemfornecimento/listar', 'OrdemFornecimentoController@index')->name('/ordemfornecimento/listar')->middleware('adm');

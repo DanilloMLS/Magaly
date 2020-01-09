@@ -4,16 +4,12 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm ('Esta ação removerá do sistema todos os contratos deste fornecedor. Deseja realmente excluí-lo? ')) {
-    location.href="/fornecedor/remover/"+id;
+  if(confirm (' Deseja realmente excluir esta ordem de fornecimento? ')) {
+    location.href="/ordemfornecimento/remover/"+id;
   }
   else {
     return false;
   }
-}
-
-function editar(id){
-  location.href="/fornecedor/editar/"+id;
 }
 </script>
 
@@ -21,7 +17,7 @@ function editar(id){
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Fornecedores') }}</div>
+                <div class="card-header">{{ __('Ordens de Fornecimento') }}</div>
 
                 <div class="card-body">
 
@@ -32,43 +28,49 @@ function editar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($fornecedores) == 0 and count($fornecedores) == 0)
+                      @if(count($ordem_fornecimentos) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhum fornecedor cadastrado no sistema.
+                              Não há ordens de fornecimento cadastradas no sistema.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
                           <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                          <br>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
-                                  <th>Nome</th>
-                                  <th>CNPJ</th>
-                                  <th>Telefone</th>
-                                  <th>Email</th>
+                                  <th>Id</th>
+                                  <th>Fornecedor</th>
+                                  <th>Observação</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($fornecedores as $fornecedor)
+                              @foreach ($ordem_fornecimentos as $ordem_fornecimento)
                                 <tr>
-                                    <td data-title="Nome">{{ $fornecedor->nome }}</td>
-                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
-                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
-                                    <td data-title="Email">{{ $fornecedor->email }}</td>
+                                    <td data-title="Id">{{ $ordem_fornecimento->id }}</td>
+                                    <?php $fornecedor = \App\Fornecedor::find($ordem_fornecimento->fornecedor_id)?>
+                                    <td class="width15" data-title="Fornecedor">{{ $fornecedor->nome }}</td>
+                                    <td data-title="Observação" align="justify">{{ $ordem_fornecimento->observacao }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
-                                      <td align="right">
-                                        <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
-                                          <img src="/img/edit.png" class="tamIconsPadrao">
+                                    {{-- @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                      <td class="width4icons" align="right">
+                                        <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
+                                          <img src="/img/item.png" class="tamIconsPadrao">
                                         </a>
-                                        <a class="btn btn-primary" title="Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/cadastrar", ['id' => $fornecedor->id])}}">
-                                          <img src="/img/down_arrow.png" class="tamIconsPadrao">
+                                        <a title="Remover" class="btn btn-primary" onClick="avisoDeletar({{$distribuicao->id}});">
+                                          <img class="tamIconsPadrao" src="/img/delete.png" >
+                                        </a>
+                                        @if ($distribuicao->baixada == false)
+                                          <a title="Dar baixa" class="btn btn-primary" href="{{ route("/distribuicao/novaBaixa", ['id' => $distribuicao->id]) }}">
+                                            <img src="/img/down_arrow.png" class="tamIconsPadrao">
+                                          </a>
+                                        @endif
+                                        <a title="Visualizar" class="btn btn-primary" target="_blank" href="{{ route ("/distribuicao/RelatorioDistribuicoes", ['token' => $distribuicao->token])}}">
+                                          <img src="/img/down.png" class="tamIconsPadrao">
                                         </a>
                                       </td>
-                                    @endif
+                                    @endif --}}
                                 </tr>
                               @endforeach
 
