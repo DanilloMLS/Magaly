@@ -15,17 +15,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
 </head>
@@ -41,9 +36,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      <!-- USer ADM -->
                         @if (Auth::guard()->check())
                           @if (Auth::user()->is_adm)
                                 <div class="dropdown">
@@ -88,9 +81,6 @@
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/item.png"><div class="titulo-botao">Item</div></button>
                                     <div class="dropdown-content">
-                                        <!-- <a class="dropdown-item" href="{{route('/item/telaCadastrar')}}">
-                                            Novo Item
-                                        </a> -->
                                         <a class="dropdown-item" href="{{route('/item/listar')}}">
                                             Listagem Itens
                                         </a>
@@ -215,13 +205,10 @@
                       @endif
                     @endif
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul align="center" class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                    <ul class="navbar-nav ml-auto">
                         @guest
                         @else
-                            <li class="dropdown">
+                            <li class="aligh-center dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                     @if (Auth::user()->is_adm)
@@ -231,10 +218,24 @@
                                 <div class="dropdown-content" aria-labelledby="navbarDropdown">
 
                                 @if (Auth::user()->is_adm)
-                                    <a class="dropdown-item" href="{{ route('register') }}">
+                                    <a class="dropdown-item" href="{{ route ("/pessoa/cadastrar")}}">
                                         {{'Novo'}}
                                         <img class="btn-img" src="/img/cadastro.png">
                                     </a>
+                                @endif
+                                <?php $pessoa = \App\Pessoa::where('usuario_id', Auth::user()->id)->first()?>
+                                @if(isset($pessoa))
+                                    <a class="dropdown-item" href="{{ route ("/pessoa/editar", ['id' => $pessoa->id])}}">
+                                        {{'Editar'}}
+                                        <img src="/img/edit.png" class="tamIconsPadrao">
+                                    </a>
+                                @endif
+                                @if (Auth::user()->is_adm)
+                                    <a class="dropdown-item" href="{{ route ("/pessoa/listar")}}">
+                                        {{'Listar'}}
+                                        <img class="btn-img" src="/img/listar.png">
+                                    </a>
+
                                 @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

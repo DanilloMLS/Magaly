@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ItemController extends Controller
-{
+class ItemController extends Controller{
     public function telaCadastrar() {
         $contratos = \App\Contrato::all();
 
