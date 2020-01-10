@@ -71,7 +71,7 @@
                                           echo "R$".number_format($valor_restante,2,',','.');
                                       @endphp
                                     </td>
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td class="width3icons" align="right">
                                         <a title="Ver Itens" class="btn btn-primary" href="{{ route ("/contrato/exibirItensContrato", ['id' => $contrato->id])}}">
                                           <img src="/img/item.png" class="tamIconsPadrao">

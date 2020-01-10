@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::guard()->check())
-                          @if (Auth::user()->is_adm)
+                          @if (Auth::user()->tipo_user == 'adm')
                                 <div class="dropdown">
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Escola</div></button>
                                     <div class="dropdown-content">
@@ -211,13 +211,13 @@
                             <li class="aligh-center dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                    @if (Auth::user()->is_adm)
+                                    @if (Auth::user()->tipo_user == 'adm')
                                         <img class="adm-img btn-img" src="/img/adm.png">   
                                     @endif
                                 </a>
                                 <div class="dropdown-content" aria-labelledby="navbarDropdown">
 
-                                @if (Auth::user()->is_adm)
+                                @if (Auth::user()->tipo_user == 'adm')
                                     <a class="dropdown-item" href="{{ route ("/pessoa/cadastrar")}}">
                                         {{'Novo'}}
                                         <img class="btn-img" src="/img/cadastro.png">
@@ -230,7 +230,7 @@
                                         <img src="/img/edit.png" class="tamIconsPadrao">
                                     </a>
                                 @endif
-                                @if (Auth::user()->is_adm)
+                                @if (Auth::user()->tipo_user == 'adm')
                                     <a class="dropdown-item" href="{{ route ("/pessoa/listar")}}">
                                         {{'Listar'}}
                                         <img class="btn-img" src="/img/listar.png">

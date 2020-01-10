@@ -63,7 +63,7 @@ function listarItens(id){
                                 <tr>
                                     <td class="width20px" data-title="Id" title="Clique para listar os itens" >{{ $estoque->id }}</td>
                                     <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td class="width3icons" align="right" >
                                         <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
                                           <img src="/img/item.png" class="tamIconsPadrao">

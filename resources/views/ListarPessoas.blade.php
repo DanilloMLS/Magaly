@@ -50,7 +50,7 @@
                                     <td data-title="Telefone">{{ $pessoa->telefone }}</td>
                                     <td data-title="Sexo">{{ $pessoa->sexo }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
                                         <a class="btn btn-primary" title="Editar pessoa" href="{{ route ("/pessoa/editar", ['id' => $pessoa->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">

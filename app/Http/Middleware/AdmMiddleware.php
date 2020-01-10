@@ -88,7 +88,7 @@ class AdmMiddleware
               "cardapioMensal/finalizarCardapio",
               "cardapio/removerItem/{id}",
               ];
-              if(!(\Auth::user()->is_adm)){
+              if(!(\Auth::user()->tipo_user == 'adm')){
                   return redirect("/home")->with('denied','Você tentou acessar uma página que você não tem permissão.');
               }
         }

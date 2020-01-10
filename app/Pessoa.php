@@ -17,7 +17,7 @@ class Pessoa extends Model{
         'endereco' => 'nullable|max:255|string',
         'descricao' => 'nullable|max:255|string',
         'email' => 'required|unique:users,email',
-        'is_adm' => 'nullable',
+        'tipo_user' => 'nullable',
         'sexo' => 'required|max:1|string'
     ];
     public static $messages = [

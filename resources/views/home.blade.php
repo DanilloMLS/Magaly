@@ -80,7 +80,7 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            @if (Auth::guard()->check() && Auth::user()->is_adm)
+            @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                 <div class="graphcs col-md-3">
                     <div class="card">
                         <div class="card-modelo2 redireciona card-header" onclick='location.href="{{route('/contrato/listar_Falta')}}"'>

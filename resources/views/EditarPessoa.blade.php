@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        @if (Auth::user()->is_adm)
+                        @if (Auth::user()->tipo_user == 'adm')
                             <div class="form-group row">
                                 <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
 
@@ -68,7 +68,7 @@
                             </div>
                         </div>
 
-                        @if (Auth::user()->is_adm)
+                        @if (Auth::user()->tipo_user == 'adm')
                             <div class="form-group row">
                                 <label for="sexo" class="col-md-4 col-form-label text-md-right">{{ __('Sexo') }}</label>
 
@@ -88,7 +88,7 @@
                             </div>
                         @endif
 
-                        @if (Auth::user()->is_adm)
+                        @if (Auth::user()->tipo_user == 'adm')
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
@@ -116,7 +116,7 @@
                             </div>
                         </div>
 
-                        @if (Auth::user()->is_adm)
+                        @if (Auth::user()->tipo_user == 'adm')
                             <div class="form-group row">
                                 <label for="descricao" class="col-md-4 col-form-label text-md-right">{{ __('Observações') }}</label>
 
@@ -131,19 +131,19 @@
                             </div>
                         @endif
 
-                        @if (Auth::user()->is_adm and (Auth::user()->id != $pessoa->usuario_id))
+                        @if (Auth::user()->tipo_user == 'adm' and (Auth::user()->id != $pessoa->usuario_id))
                             <div class="form-group row">
-                                <label for="is_adm" class="col-md-4 col-form-label text-md-right">{{ __('Usuário') }}</label>
+                                <label for="tipo_user" class="col-md-4 col-form-label text-md-right">{{ __('Usuário') }}</label>
                                 <div class="col-md-6">
-                                <select class="form-control{{ $errors->has('is_adm') ? ' is-invalid' : '' }}" id="is_adm" name="is_adm">
+                                <select class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}" id="tipo_user" name="tipo_user">
                                         <option value="">Selecione</option>
 
-                                        <option value='1' @if(strcasecmp($user->is_adm, true) == 0) selected="selected" @endif>Administrator</option>
-                                        <option value='2' @if(strcasecmp($user->is_adm, false) == 0) selected="selected" @endif>Comum</option>
+                                        <option value='adm' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
+                                        <option value='usr' @if(strcasecmp($user->tipo_user, 'usr') == 0) selected="selected" @endif>Comum</option>
                                 </select>
-                                @if ($errors->has('is_adm'))
+                                @if ($errors->has('tipo_user'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('is_adm') }}</strong>
+                                            <strong>{{ $errors->first('tipo_user') }}</strong>
                                         </span>
                                 @endif
                                 </div>
@@ -156,7 +156,7 @@
                               <button type="submit" class="btn btn-primary">
                                   Atualizar
                               </button>
-                              @if (Auth::user()->is_adm and (Auth::user()->id != $pessoa->usuario_id))
+                              @if (Auth::user()->tipo_user == 'adm' and (Auth::user()->id != $pessoa->usuario_id))
                                 <a class="btn btn-primary" href="{{route('/pessoa/block',['id' => $pessoa->usuario_id, 'user' => Auth::user()->id])}}">
                                     Bloquear
                                 </a>
