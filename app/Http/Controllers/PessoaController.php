@@ -11,12 +11,13 @@ class PessoaController extends Controller{
         $user = new \App\User();
         $pessoa = new \App\Pessoa();
         $request->validate($pessoa::$rules, $pessoa::$messages);
+        
 
         $user->name = $request->nome;  
         $user->email = $request->email; 
         $user->password = password_hash("12345678", PASSWORD_DEFAULT);
         $user->tipo_user = 'usr';
-        if($request->tipo_user == 'adm') $user->tipo_user = 'adm';
+        if($request->tipo_user == '1') $user->tipo_user = 'adm';
         $user->save();
         $pessoa->nome = $request->nome;
         $pessoa->cpf = $request->cpf;
@@ -101,14 +102,14 @@ class PessoaController extends Controller{
                 'endereco' => 'nullable|max:255|string',
                 'descricao' => 'nullable|max:255|string',
                 'email' => 'required', 'unique:users,email'.$user->email,
-                'tipo_user' => 'nullable',
+                'tipo_user' => 'required',
                 'sexo' => 'required|max:1|string'
             ];    
             $request->validate($rules, $pessoa::$messages);
             $user->name = $request->nome;  
             $user->email = $request->email; 
             $user->tipo_user = 'usr';
-            if($request->tipo_user == 'adm') $user->tipo_user = 'adm';
+            if($request->tipo_user == '1') $user->tipo_user = 'adm';
             $user->save();
 
     

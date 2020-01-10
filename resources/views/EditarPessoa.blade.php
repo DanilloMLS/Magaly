@@ -74,7 +74,7 @@
 
                                 <div class="col-md-6">
                                 <select class="form-control{{ $errors->has('sexo') ? ' is-invalid' : '' }}" id="sexo" name="sexo">
-                                        <option value="">Selecione o sexo</option>
+                                        <option value="">Selecione</option>
 
                                         <option value="M" @if(strcasecmp($pessoa->sexo, 'M') == 0) selected="selected" @endif>M</option>
                                         <option value="F" @if(strcasecmp($pessoa->sexo, 'F') == 0) selected="selected" @endif>F</option>
@@ -138,8 +138,8 @@
                                 <select class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}" id="tipo_user" name="tipo_user">
                                         <option value="">Selecione</option>
 
-                                        <option value='adm' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
-                                        <option value='usr' @if(strcasecmp($user->tipo_user, 'usr') == 0) selected="selected" @endif>Comum</option>
+                                        <option value='1' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
+                                        <option value='2' @if(strcasecmp($user->tipo_user, 'usr') == 0) selected="selected" @endif>Comum</option>
                                 </select>
                                 @if ($errors->has('tipo_user'))
                                         <span class="invalid-feedback" role="alert">

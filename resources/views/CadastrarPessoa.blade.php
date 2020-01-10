@@ -112,8 +112,8 @@
                               <div class="col-md-6">
                                 <select class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}" id="tipo_user" name="tipo_user">
         								<option value="">Selecione</option>
-        							    <option value= 'adm' {{ old('tipo_user') == 'adm'}}>Administrador</option>
-                                        <option value= 'usr' {{ old('tipo_user') == 'usr'}}>Comum</option>
+        							    <option value= '1'>Administrador</option>
+                                        <option value= '2'>Comum</option>
                                 </select>
                                 @if ($errors->has('tipo_user'))
                                     <span class="invalid-feedback" role="alert">
