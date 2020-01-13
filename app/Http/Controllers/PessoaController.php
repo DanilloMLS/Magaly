@@ -108,8 +108,12 @@ class PessoaController extends Controller{
             $request->validate($rules, $pessoa::$messages);
             $user->name = $request->nome;  
             $user->email = $request->email; 
-            $user->tipo_user = 'usr';
             if($request->tipo_user == '1') $user->tipo_user = 'adm';
+            else if($request->tipo_user == '2') $user->tipo_user = 'usr';
+            else if($request->tipo_user == '3') $user->tipo_user = 'ntr';
+            else if($request->tipo_user == '4') $user->tipo_user = 'fsc';
+            else if($request->tipo_user == '5') $user->tipo_user = 'fnc';
+            else if($request->tipo_user == '6') $user->tipo_user = 'stq';
             $user->save();
 
     

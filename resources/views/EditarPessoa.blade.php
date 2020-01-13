@@ -8,17 +8,19 @@
                 <div class="card-header">{{ __('Editar Pessoa') }}</div>
 
                 <div class="card-body">
-                    @if (\Session::has('success'))
-                    <br>
-                        <div class="alert alert-success">
-                            {!! \Session::get('success') !!}
-                        </div>
-                    @endif
-                    @if (\Session::has('warning'))
-                        <div class="alert alert-warning" role="alert">
-                            {!! \Session::get('warning') !!}
-                        </div>
-                    @endif
+                    <div>
+                        @if (\Session::has('success'))
+                        <br>
+                            <div class="alert alert-success">
+                                {!! \Session::get('success') !!}
+                            </div>
+                        @endif
+                        @if (\Session::has('warning'))
+                            <div class="alert alert-warning" role="alert">
+                                {!! \Session::get('warning') !!}
+                            </div>
+                        @endif
+                    </div>
                     <form method="POST" action="{{ route('/pessoa/salvar') }}">
                       {{ csrf_field() }}
                         @csrf
@@ -137,9 +139,12 @@
                                 <div class="col-md-6">
                                 <select class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}" id="tipo_user" name="tipo_user">
                                         <option value="">Selecione</option>
-
-                                        <option value='1' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
                                         <option value='2' @if(strcasecmp($user->tipo_user, 'usr') == 0) selected="selected" @endif>Comum</option>
+                                        <option value= '4' @if(strcasecmp($user->tipo_user, 'fsc') == 0) selected="selected" @endif>Fiscal</option>
+                                        <option value= '6' @if(strcasecmp($user->tipo_user, 'stq') == 0) selected="selected" @endif>Estoque</option>
+                                        <option value= '3' @if(strcasecmp($user->tipo_user, 'ntr') == 0) selected="selected" @endif>Nutrição</option>
+                                        <option value= '5' @if(strcasecmp($user->tipo_user, 'fnc') == 0) selected="selected" @endif>Financeiro</option>
+                                        <option value='1' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
                                 </select>
                                 @if ($errors->has('tipo_user'))
                                         <span class="invalid-feedback" role="alert">

@@ -112,8 +112,12 @@
                               <div class="col-md-6">
                                 <select class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}" id="tipo_user" name="tipo_user">
         								<option value="">Selecione</option>
-        							    <option value= '1'>Administrador</option>
                                         <option value= '2'>Comum</option>
+                                        <option value= '4'>Fiscal</option>
+                                        <option value= '6'>Estoque</option>
+                                        <option value= '3'>Nutrição</option>
+                                        <option value= '5'>Financeiro</option>
+        							    <option value= '1'>Administrador</option>
                                 </select>
                                 @if ($errors->has('tipo_user'))
                                     <span class="invalid-feedback" role="alert">
