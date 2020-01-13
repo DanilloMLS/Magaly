@@ -13,7 +13,7 @@ class OrdemFornecimentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function listar()
     {
         $ordem_fornecimentos = \App\OrdemFornecimento::all();
         return view("ListarOrdemFornecimentos", [
@@ -26,7 +26,7 @@ class OrdemFornecimentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function telaCadastrar(Request $request)
     {
         $fornecedor = \App\Fornecedor::find($request->id);
         $escolas = \App\Escola::all();
@@ -55,7 +55,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function cadastrar(Request $request)
     {
         $fornecedor = \App\Fornecedor::find($request->fornecedor_id);
 
@@ -68,7 +68,7 @@ class OrdemFornecimentoController extends Controller
           ]);
       
           if ($validator->fails()) {
-              return redirect()->route('/ordemfornecimento/cadastrar', ['id' => $fornecedor->id])
+              return redirect()->route('/ordemfornecimento/telaCadastrar', ['id' => $fornecedor->id])
                           ->withErrors($validator)
                           ->withInput();
           }
@@ -89,7 +89,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function show(OrdemFornecimento $ordemFornecimento)
+    public function exibir(OrdemFornecimento $ordemFornecimento)
     {
         //
     }
@@ -100,7 +100,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrdemFornecimento $ordemFornecimento)
+    public function editar(OrdemFornecimento $ordemFornecimento)
     {
         //
     }
@@ -112,7 +112,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrdemFornecimento $ordemFornecimento)
+    public function salvar(Request $request, OrdemFornecimento $ordemFornecimento)
     {
         //
     }
@@ -123,7 +123,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrdemFornecimento $ordemFornecimento)
+    public function removerOrdem(OrdemFornecimento $ordemFornecimento)
     {
         //
     }

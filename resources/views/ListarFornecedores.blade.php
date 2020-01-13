@@ -64,7 +64,7 @@ function editar(id){
                                         <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
-                                        <a class="btn btn-primary" title="Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/cadastrar", ['id' => $fornecedor->id])}}">
+                                        <a class="btn btn-primary" title="Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/telaCadastrar", ['id' => $fornecedor->id])}}">
                                           <img src="/img/down_arrow.png" class="tamIconsPadrao">
                                         </a>
                                       </td>

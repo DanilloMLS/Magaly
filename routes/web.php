@@ -165,6 +165,6 @@ Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_men
 Route::get('/cardápio/editar/{id}', 'CardapioController@editar')->name('/cardapio/editar')->middleware('adm');
 
 //Ordem de fornecimento
-Route::get('/ordemfornecimento/cadastrar/{id}', 'OrdemFornecimentoController@create')->name('/ordemfornecimento/cadastrar')->middleware('adm');
-Route::post('/ordemfornecedor/store', 'OrdemFornecimentoController@store')->name('/ordemfornecimento/store')->middleware('adm');
-Route::get('/ordemfornecimento/listar', 'OrdemFornecimentoController@index')->name('/ordemfornecimento/listar')->middleware('adm');
+Route::get('/ordemfornecimento/telaCadastrar/{id}', 'OrdemFornecimentoController@telaCadastrar')->name('/ordemfornecimento/telaCadastrar')->middleware('adm');
+Route::post('/ordemfornecedor/store', 'OrdemFornecimentoController@cadastrar')->name('/ordemfornecimento/cadastrar')->middleware('adm');
+Route::get('/ordemfornecimento/listar', 'OrdemFornecimentoController@listar')->name('/ordemfornecimento/listar')->middleware('adm');

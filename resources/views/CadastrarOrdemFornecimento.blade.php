@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Cadastrar Ordem de Fornecimento') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('/ordemfornecimento/store') }}">
+                    <form method="POST" action="{{ route('/ordemfornecimento/cadastrar') }}">
                       {{ csrf_field() }}
                         @csrf
 
