@@ -63,11 +63,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $isAdm = false;
+      $tipo_user = 'usr';
       if(isset($data['perfil'])){
           $fields = $data['perfil'];
           if($fields == 'adm'){
-            $isAdm = true;
+            $tipo_user = 'adm';
           }
       }
 
@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_adm' => $isAdm,
+            'tipo_user' => $tipo_user,
         ]);
     }
 }

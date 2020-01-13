@@ -23,6 +23,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Rotas de ADM
+
+//Pessoa
+Route::get('/pessoa/cadastrar', function(Request $request) {
+    return view('CadastrarPessoa');
+})->name('/pessoa/cadastrar')->middleware('adm');
+Route::post('/pessoa/cadastrar', 'PessoaController@cadastrar')->name('/pessoa/cadastrar')->middleware('adm');
+Route::get('/pessoa/listar', 'PessoaController@listar')->name('/pessoa/listar')->middleware('adm');
+Route::get('/pessoa/editar/{id}', 'PessoaController@editar')->name('/pessoa/editar')->middleware('auth');
+Route::post('/pessoa/salvar', 'PessoaController@salvar')->name('/pessoa/salvar')->middleware('auth');
+Route::get('/pessoa/block/{id}', 'PessoaController@password_block')->name('/pessoa/block')->middleware('adm');
+Route::get('/pessoa/password/{id}', 'PessoaController@view_password_to_change')->name('/pessoa/password')->middleware('auth');
+Route::post('/pessoa/changepass', 'PessoaController@password_to_change')->name('/pessoa/changepass')->middleware('auth');
+Route::get('/pessoa/resetpassword', 'PessoaController@password_reset')->name('/pessoa/resetpassword')->middleware('adm');
+
+
+
 //Fornecedor
 Route::get('/fornecedor/cadastrar', function(Request $request) {
     return view('CadastrarFornecedor');

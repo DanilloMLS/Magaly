@@ -17613,5 +17613,7 @@ a.text-dark:hover {
     max-width: 20px;
 }
 
-
+.aligh-center {
+    align-self: center;
+}
 >>>>>>>Stashed changes

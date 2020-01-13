@@ -59,7 +59,7 @@ function editar(id){
                                     <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
                                     <td data-title="Email">{{ $fornecedor->email }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
                                         <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">

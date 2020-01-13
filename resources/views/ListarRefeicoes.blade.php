@@ -40,7 +40,7 @@
                                     <td data-title="Nome">{{ $refeicao->nome }}</td>
                                     <td data-title="Descricao">{{ $refeicao->descricao }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
                                         <a title="Listar Itens" class="btn btn-primary" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $refeicao->id])}}" >
                                           <img src="/img/item.png" class="tamIconsPadrao">
