@@ -68,20 +68,23 @@ Tel: (87)3762-7060
                         <th>ID</th>
                         <th>ITEM</th>
                         <th>UNIDADE</th>
-                        <th>QUANTIDADE</th>
-                        <th>FALTAS</th>
+                        <th>VALIDADE</th>
+                        <th>FALTA</th>
                         <th>DATA e ASSINATURA</th>
                     </tr>
+
                     @foreach (\App\Distribuicao_item::where('distribuicao_id', '=', $distribuicao->id)->get() as $item_distribuicao)
                         <tr>
                             @php
                                 $item = \App\Item::find($item_distribuicao->item_id);
+                                $estoque_item = \App\Estoque_item::where('estoque_id', $distribuicao->estoque_id)
+                                ->where('item_id', $item->id)->first();
                             @endphp
-                            <td data-title="Id">{{ $item->id }}</td>
-                            <td width="25%" data-title="Nome">{{ $item->nome }}</td>
+                            <td data-title="Id" align="justify">{{ $item->id }}</td>
+                            <td width="25%" align="center" data-title="Nome">{{ $item->nome }}</td>
                             <td data-title="Unidade" align="center">{{$item->gramatura . "" . $item->unidade }}</td>
-                            <td data-title="Quantidade" align="center">{{ $item_distribuicao->quantidade_total }}</td>
-                            <td data-title="Qtde. Falta">{{ $item_distribuicao->quantidade_falta }}</td>
+                            <td data-title="Validade" align="center">{{ date('d/m/Y', strtotime($estoque_item->data_validade)) }}</td>
+                            <td data-title="Qtde. Falta" align="center">{{ $item_distribuicao->quantidade_falta }}</td>
                             <td></td>
                             </td>
                         </tr>
