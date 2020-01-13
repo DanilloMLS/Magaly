@@ -11,12 +11,13 @@ class PessoaController extends Controller{
         $user = new \App\User();
         $pessoa = new \App\Pessoa();
         $request->validate($pessoa::$rules, $pessoa::$messages);
+        
 
         $user->name = $request->nome;  
         $user->email = $request->email; 
         $user->password = password_hash("12345678", PASSWORD_DEFAULT);
-        $user->is_adm = false;
-        if($request->is_adm == '1') $user->is_adm = true;
+        $user->tipo_user = 'usr';
+        if($request->tipo_user == '1') $user->tipo_user = 'adm';
         $user->save();
         $pessoa->nome = $request->nome;
         $pessoa->cpf = $request->cpf;
@@ -76,7 +77,7 @@ class PessoaController extends Controller{
 
     public function password_block(Request $request){
         $user_auth = \App\User::where('id', $request->user)->first();
-        if($user_auth->is_adm){
+        if($user_auth->tipo_user == 'adm'){
             $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
             $uniqueString = md5(time().$sffledStr).md5(time().$sffledStr);
             $user = \App\User::where('id', $request->id)->first();
@@ -92,7 +93,7 @@ class PessoaController extends Controller{
     public function salvar(Request $request)
     {   
         $user_auth = \App\User::where('id', $request->us_au)->first();
-        if($user_auth->is_adm or $request->us_au == $request->usuario_id){
+        if($user_auth->tipo_user == 'adm' or $request->us_au == $request->usuario_id){
             $user = \App\User::where('id', $request->usuario_id)->first();
             $pessoa = \App\Pessoa::where('id', $request->pessoa_id)->first();
             $rules = [
@@ -101,17 +102,18 @@ class PessoaController extends Controller{
                 'endereco' => 'nullable|max:255|string',
                 'descricao' => 'nullable|max:255|string',
                 'email' => 'required', 'unique:users,email'.$user->email,
-                'is_adm' => 'nullable',
+                'tipo_user' => 'required',
                 'sexo' => 'required|max:1|string'
-            ];
-    
-            echo $request->is_adm;
-    
+            ];    
             $request->validate($rules, $pessoa::$messages);
             $user->name = $request->nome;  
             $user->email = $request->email; 
-            $user->is_adm = false;
-            if($request->is_adm == '1') $user->is_adm = true;
+            if($request->tipo_user == '1') $user->tipo_user = 'adm';
+            else if($request->tipo_user == '2') $user->tipo_user = 'usr';
+            else if($request->tipo_user == '3') $user->tipo_user = 'ntr';
+            else if($request->tipo_user == '4') $user->tipo_user = 'fsc';
+            else if($request->tipo_user == '5') $user->tipo_user = 'fnc';
+            else if($request->tipo_user == '6') $user->tipo_user = 'stq';
             $user->save();
 
     

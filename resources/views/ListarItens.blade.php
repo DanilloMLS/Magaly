@@ -58,7 +58,7 @@ function editar(id){
 
                                     </td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
                                           <a class="btn btn-primary" href="{{ route ("/item/editar", ['id' => $item->id])}}">
                                               <img src="/img/edit.png" class="tamIconsPadrao">

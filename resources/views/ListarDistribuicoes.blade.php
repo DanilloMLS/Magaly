@@ -53,7 +53,7 @@ function avisoDeletar(id){
                                     <td class="width15" data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
                                     <td data-title="Observação" align="justify">{{ $distribuicao->observacao }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->is_adm)
+                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td class="width4icons" align="right">
                                         <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">
                                           <img src="/img/item.png" class="tamIconsPadrao">
