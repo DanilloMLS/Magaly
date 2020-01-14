@@ -4,9 +4,9 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages':['table']});
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawChart2);
-        google.charts.setOnLoadCallback(drawChart3);
         google.charts.setOnLoadCallback(drawChart4);
         function drawChart() {
             var style = { role: "style" };
@@ -35,29 +35,11 @@
                 title: 'Porcentagem de itens na refeição',
                 is3D: true,
                 pieSliceText: 'label'
-
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
 
             chart.draw(data2, options);
-        }
-
-        function drawChart3() {
-            var style = { role: "style" };
-            var data3 = new google.visualization.DataTable();
-            data3.addColumn('string', 'Topping');
-            data3.addColumn('number', 'Slices');
-            data3.addColumn({type:'string', role: 'style' });
-            data3.addRows(<?= json_encode($data03)?>);
-            var options = {
-                title: 'Ítens no estoque',
-                legend: { position: "none" },
-                name: {position: 'none'}
-            };
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div3'));
-
-            chart.draw(data3, options);
         }
 
         function drawChart4() {
@@ -102,7 +84,30 @@
                         <div class="card-modelo2 redireciona card-header" onclick='location.href="{{route("/estoque/listar")}}"'>
                             <center><strong>{{$nome_stq}}</strong><center>
                         </div>
-                            <div id="chart_div3" class="chart_div"></div>
+                        <div id="chart_div3" class="chart_div">
+                            <div id="tabela">
+                                <table class="graph-table">
+                                    <thead>
+                                    <tr align="center">
+                                        <th>Nome</th>
+                                        <th>Gram.</th>
+                                        <th>Quant.</th>
+                                        <th>Val.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($data03 as $data)
+                                        <tr>
+                                            <td width="45%" data-title="Nome">{{ $data[0] }}</td>
+                                            <td class="graph-table-right" data-title="Gramatura">{{ $data[1] }}</td>
+                                            <td class="graph-table-right" data-title="Quantidade">{{ $data[2] }}</td>
+                                            <td class="graph-table-right" data-title="Validade">{{ $data[3] }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="chart_div_est">
