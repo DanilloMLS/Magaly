@@ -66,13 +66,6 @@
 .dropdown:hover .dropbtn {
     font: 16px bolder;
 }
-
-.card-modelo2 {
-    background-color: rgba(0, 170, 187);
-    color: #f3f3f3;
-    text-shadow: 1px 1px #000;
-}
-
 .redireciona:hover {
     text-transform: uppercase;
     background-color: rgba(0, 170, 187);
