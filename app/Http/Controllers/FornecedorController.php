@@ -141,4 +141,13 @@ class FornecedorController extends Controller
     return redirect()->route('/fornecedor/listar');
   }
 
+  public function relatorioContratoItens(Request $request){
+    $contratos = \App\Contrato::where('fornecedor_id', $request->id)->get();
+    $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");
+
+    return  \PDF::loadView('RelatorioFornecedoresItensContrato', compact('contratos'))
+        ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
+        ->stream('Lista de Contratos_'.$data.'.pdf');
+  }
+
 }

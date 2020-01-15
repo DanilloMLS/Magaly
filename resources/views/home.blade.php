@@ -92,16 +92,16 @@
                                         <th>Nome</th>
                                         <th>Gram.</th>
                                         <th>Quant.</th>
-                                        <th>Val.</th>
+                                        <th>Validade</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($data03 as $data)
                                         <tr>
                                             <td width="45%" data-title="Nome">{{ $data[0] }}</td>
-                                            <td class="graph-table-right" data-title="Gramatura">{{ $data[1] }}</td>
-                                            <td class="graph-table-right" data-title="Quantidade">{{ $data[2] }}</td>
-                                            <td class="graph-table-right" data-title="Validade">{{ $data[3] }}</td>
+                                            <td align="center" data-title="Gramatura">{{ $data[1] }}</td>
+                                            <td align="center" data-title="Quantidade">{{ $data[2] }}</td>
+                                            <td align="center" data-title="Validade">{{ $data[3] }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
