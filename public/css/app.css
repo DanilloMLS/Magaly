@@ -17652,6 +17652,15 @@ a.text-dark:hover {
     text-shadow: 1px 1px #000;
 }
 
+.col-md-descricao-cardapio {
+    flex: 0 0 75%;
+    max-width: 75%
+}
+
+.col-md-peso-cardapio {
+    flex: 0 0 5%;
+    max-width: 5%
+}
 
 
 >>>>>>>Stashed changes
