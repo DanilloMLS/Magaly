@@ -184,3 +184,6 @@ Route::get('/cardápio/editar/{id}', 'CardapioController@editar')->name('/cardap
 Route::get('/ordemfornecimento/telaCadastrar/{id}', 'OrdemFornecimentoController@telaCadastrar')->name('/ordemfornecimento/telaCadastrar')->middleware('adm');
 Route::post('/ordemfornecedor/store', 'OrdemFornecimentoController@cadastrar')->name('/ordemfornecimento/cadastrar')->middleware('adm');
 Route::get('/ordemfornecimento/listar', 'OrdemFornecimentoController@listar')->name('/ordemfornecimento/listar')->middleware('adm');
+Route::get('/ordemfornecimento/inserirItemOrdem/{id}', 'OrdemFornecimentoController@buscarOrdem')->name('/ordemfornecimento/inserirItemOrdem')->middleware('adm');
+Route::post('/ordemfornecimento/inserirItem', 'OrdemFornecimentoController@inserirItem')->name('/ordemfornecimento/inserirItem')->middleware('adm');
+Route::get('/ordemfornecimento/removerItem/{id}', 'OrdemFornecimentoController@removerItem')->name('/ordemfornecimento/removerItem')->middleware('adm');

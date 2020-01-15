@@ -17,10 +17,10 @@ class CreateOrdemItemsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('ordem_fornecimento_id')->unsigned();
             $table->foreign('ordem_fornecimento_id')->references('id')->on('ordem_fornecimentos');
-            $table->bigInteger('contrato_id')->unsigned();
-            $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->integer('quantidade')->unsigned();
-            $table->integer('quantidade_danificados')->unsigned();
+            $table->bigInteger('contratoitem_id')->unsigned();
+            $table->foreign('contratoitem_id')->references('id')->on('contrato_items');
+            $table->integer('quantidade')->unsigned()->default(0);
+            $table->integer('quantidade_danificados')->unsigned()->nullable()->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

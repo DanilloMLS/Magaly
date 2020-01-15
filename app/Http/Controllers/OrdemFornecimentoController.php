@@ -80,7 +80,63 @@ class OrdemFornecimentoController extends Controller
         $ordem_fornecimento->save();
 
         session()->flash('success','Ordem de Fornecimento cadsatrada com sucesso.');
-        return redirect()->route('/ordemfornecimento/listar');
+        return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
+            'id' => $ordem_fornecimento->id,
+        ]);//chamada de rota para inserir itens
+    }
+
+    /**
+     * Procura uma ordem para inserir itens nela
+     * 
+     */
+    public function buscarOrdem(Request $request)
+    {
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
+
+        if (isset($ordem_fornecimento)) {
+            $fornecedor = \App\Fornecedor::find($ordem_fornecimento->fornecedor_id);
+            $contratos = \App\Contrato::where('fornecedor_id', '=', $fornecedor->id)->get('id');
+
+            if (isset($contratos)) {
+                $contrato_itens = \App\Contrato_item::whereIn('contrato_id', $contratos)->get();
+    
+                return view("InserirItensOrdem", [
+                    "id" => $ordem_fornecimento->id,
+                    "contratos" => $contrato_itens
+                ]);   
+            }
+        }
+
+        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe.');
+    }
+
+    /**
+     * Inserir um item de um contrato em uma Ordem de serviço
+     *  */    
+    public function inserirItem(Request $request)
+    {
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->ordem_fornecimento_id);
+
+        $ordem_item = new \App\Ordem_item();
+        $ordem_item->ordem_fornecimento_id = $ordem_fornecimento->id;
+        $ordem_item->contratoitem_id = $request->contratoitem_id;
+        $ordem_item->quantidade = $request->quantidade;
+        $ordem_item->save();
+
+        return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
+            'id' => $ordem_fornecimento->id,
+        ]);
+    }
+
+    public function removerItem(Request $request)
+    {
+        $ordem_item = \App\Ordem_item::find($request->id);
+        $ordem_fornecimento = \App\OrdemFornecimento::find($ordem_item->ordem_fornecimento_id);
+
+        $ordem_item->delete();
+        return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
+            'id' => $ordem_fornecimento->id,
+        ]);
     }
 
     /**
