@@ -43,6 +43,7 @@ function avisoDeletar(id){
                                   <th>Id</th>
                                   <th>Fornecedor</th>
                                   <th>Observação</th>
+                                  <th>Ações</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -53,6 +54,12 @@ function avisoDeletar(id){
                                     <td class="width15" data-title="Fornecedor">{{ $fornecedor->nome }}</td>
                                     <td data-title="Observação" align="justify">{{ $ordem_fornecimento->observacao }}</td>
 
+                                    <td class="width4icons" align="right">
+                                      <a title="Listar Itens" class="btn btn-primary" href="{{route("/ordemfornecimento/listarItensOrdem", ['id' => $ordem_fornecimento->id])}}">
+                                        <img src="/img/item.png" class="tamIconsPadrao">
+                                      </a>
+                                    </td>
+                                    
                                     {{-- @if (Auth::guard()->check() && Auth::user()->is_adm)
                                       <td class="width4icons" align="right">
                                         <a title="Exibir Itens" class="btn btn-primary" href="{{ route ("/distribuicao/exibirItensDistribuicao", ['id' => $distribuicao->id])}}">

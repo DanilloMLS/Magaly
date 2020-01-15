@@ -9,13 +9,24 @@ use Illuminate\Support\Facades\Validator;
 class OrdemFornecimentoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista de todas as ordem de fornecimento
      *
      * @return \Illuminate\Http\Response
      */
     public function listar()
     {
         $ordem_fornecimentos = \App\OrdemFornecimento::all();
+        return view("ListarOrdemFornecimentos", [
+            "ordem_fornecimentos" => $ordem_fornecimentos,
+        ]);
+    }
+
+    /**
+     * Exibe uma lista de ordens de fornecimento de um único estoque
+     */
+    public function listarOrdemEstoque(Request $request)
+    {
+        $ordem_fornecimentos = \App\OrdemFornecimento::where('estoque_id', $request->id)->get();
         return view("ListarOrdemFornecimentos", [
             "ordem_fornecimentos" => $ordem_fornecimentos,
         ]);
@@ -112,6 +123,7 @@ class OrdemFornecimentoController extends Controller
 
     /**
      * Inserir um item de um contrato em uma Ordem de serviço
+     * 
      *  */    
     public function inserirItem(Request $request)
     {
@@ -128,6 +140,10 @@ class OrdemFornecimentoController extends Controller
         ]);
     }
 
+    /**
+     * Remove um item de uma ordem de fornecimento
+     * 
+     */
     public function removerItem(Request $request)
     {
         $ordem_item = \App\Ordem_item::find($request->id);
@@ -137,6 +153,25 @@ class OrdemFornecimentoController extends Controller
         return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
             'id' => $ordem_fornecimento->id,
         ]);
+    }
+
+    /**
+     * Lista os itens de uma ordem de serrviço
+     * 
+     */
+    public function listarItensOrdem(Request $request)
+    {
+        $ordem_fornecimento = \App\OrdemFornecimento::where('id',$request->id)->first();
+
+        if (isset($ordem_fornecimento)) {
+            $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
+
+            return view("VisualizarItensOrdem", [
+                'ordem_itens' => $ordem_itens
+            ]);
+        }
+        
+        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe.');
     }
 
     /**
@@ -159,6 +194,40 @@ class OrdemFornecimentoController extends Controller
     public function editar(OrdemFornecimento $ordemFornecimento)
     {
         //
+    }
+
+    /**
+     * Abre o formulário para edição da quantidade de um item de ordem de fornecimento
+     * que ainda não teve baixa no estoque
+     */
+    public function editarOrdemItem(Request $request)
+    {
+        $ordem_item = \App\Ordem_item::find($request->id);
+
+        if (isset($ordem_item)) {
+            return view("EditarOrdemItemQuantidade", [
+                'ordem_item' => $ordem_item
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'Item não encontrado.');
+    }
+
+    public function salvarItem(Request $request)
+    {
+        $ordem_item = \App\Ordem_item::find($request->id);
+
+        if (isset($ordem_item)) {
+            $ordem_item->quantidade = $request->quantidade;
+            $ordem_item->save();
+
+            session()->flash('success', 'Item alterado com sucesso.');
+            return redirect()->route('/ordemfornecimento/listarItensOrdem', [
+                'id' => $ordem_item->ordem_fornecimento_id
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'Item não encontrado.');
     }
 
     /**

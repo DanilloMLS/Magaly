@@ -133,7 +133,7 @@ Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque
 Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('adm');
 Route::get('/estoque/exibirItensEstoque/{id}', 'EstoqueController@exibirItensEstoque')->name('/estoque/exibirItensEstoque')->middleware('auth');
 Route::post('/estoque/novoItem', 'EstoqueController@novoItem')->name('/estoque/novoItem')->middleware('adm');
-Route::get('/estoque/novoItemEstoque/{id}', 'EstoqueController@buscarEstoque')->name('/estoque/novoItemEstoque')->middleware('adm');
+//Route::get('/estoque/novoItemEstoque/{id}', 'EstoqueController@buscarEstoque')->name('/estoque/novoItemEstoque')->middleware('adm'); //retirar de circulação
 Route::get('/estoque/removerItem/{id}', 'EstoqueController@removerItem')->name('/estoque/removerItem')->middleware('adm');
 Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')->name('/estoque/inserirEntrada')->middleware('adm');
 Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('adm');
@@ -187,3 +187,5 @@ Route::get('/ordemfornecimento/listar', 'OrdemFornecimentoController@listar')->n
 Route::get('/ordemfornecimento/inserirItemOrdem/{id}', 'OrdemFornecimentoController@buscarOrdem')->name('/ordemfornecimento/inserirItemOrdem')->middleware('adm');
 Route::post('/ordemfornecimento/inserirItem', 'OrdemFornecimentoController@inserirItem')->name('/ordemfornecimento/inserirItem')->middleware('adm');
 Route::get('/ordemfornecimento/removerItem/{id}', 'OrdemFornecimentoController@removerItem')->name('/ordemfornecimento/removerItem')->middleware('adm');
+Route::get('/ordemfornecimento/listarOrdemEstoque/{id}', 'OrdemFornecimentoController@listarOrdemEstoque')->name('/ordemfornecimento/listarOrdemEstoque')->middleware('adm');
+Route::get('/ordemfornecimento/listarItensOrdem/{id}', 'OrdemFornecimentoController@listarItensOrdem')->name('/ordemfornecimento/listarItensOrdem')->middleware('adm');

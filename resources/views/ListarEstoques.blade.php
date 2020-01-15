@@ -65,10 +65,10 @@ function listarItens(id){
                                     <td data-title="Nome" title="Clique para listar os itens" >{{ $estoque->nome }}</td>
                                     @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td class="width3icons" align="right" >
-                                        <a title="Listar Ítens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
+                                        <a title="Listar Itens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
                                           <img src="/img/item.png" class="tamIconsPadrao">
                                         </a>
-                                        <a title="Inserir Novo Item" class="btn btn-primary" href="{{ route ("/estoque/novoItemEstoque", ['id' => $estoque->id])}}">
+                                        <a title="Ordens de Fornecimento" class="btn btn-primary" href="{{ route ("/ordemfornecimento/listarOrdemEstoque", ['id' => $estoque->id])}}">
                                           <img src="/img/add_item.png" class="tamIconsPadrao">
                                         </a>
                                         <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
