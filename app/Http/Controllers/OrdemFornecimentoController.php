@@ -69,7 +69,7 @@ class OrdemFornecimentoController extends Controller
     public function cadastrar(Request $request)
     {
         $fornecedor = \App\Fornecedor::find($request->fornecedor_id);
-
+        
         $validator = Validator::make($request->all(), [
             'observacao' => ['nullable', 'string', 'max:255'],
             'estoque_id' => ['required', 'integer', 'exists:estoques,id'],
@@ -78,11 +78,11 @@ class OrdemFornecimentoController extends Controller
             'estoque_id.required' => 'Escolha um estoque',
           ]);
       
-          if ($validator->fails()) {
-              return redirect()->route('/ordemfornecimento/telaCadastrar', ['id' => $fornecedor->id])
-                          ->withErrors($validator)
-                          ->withInput();
-          }
+        if ($validator->fails()) {
+            return redirect()->route('/ordemfornecimento/telaCadastrar', ['id' => $fornecedor->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $ordem_fornecimento = new \App\OrdemFornecimento();
         $ordem_fornecimento->fornecedor_id = $request->fornecedor_id;
@@ -93,7 +93,7 @@ class OrdemFornecimentoController extends Controller
         session()->flash('success','Ordem de Fornecimento cadsatrada com sucesso.');
         return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
             'id' => $ordem_fornecimento->id,
-        ]);//chamada de rota para inserir itens
+        ]);
     }
 
     /**
@@ -122,12 +122,28 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Inserir um item de um contrato em uma Ordem de serviço
+     * Inserir um item de um contrato em uma Ordem de Fornecimento
      * 
      *  */    
     public function inserirItem(Request $request)
     {
         $ordem_fornecimento = \App\OrdemFornecimento::find($request->ordem_fornecimento_id);
+        $contrato_item = \App\Contrato_item::find($request->contratoitem_id);
+
+        $validator = Validator::make($request->all(), [
+            'quantidade' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+            ],[
+            'quantidade.required' => 'Quantidade é obrigatória',
+            'quantidade.integer' => 'Quantidade deve ser um número',
+            'quantidade.min' => 'Quantidade não pode ser inferior a zero',
+            'quantidade.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
+          ]);
+      
+        if ($validator->fails()) {
+            return redirect()->route('/ordemfornecimento/inserirItemOrdem', ['id' => $ordem_fornecimento->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $ordem_item = new \App\Ordem_item();
         $ordem_item->ordem_fornecimento_id = $ordem_fornecimento->id;
@@ -147,12 +163,17 @@ class OrdemFornecimentoController extends Controller
     public function removerItem(Request $request)
     {
         $ordem_item = \App\Ordem_item::find($request->id);
-        $ordem_fornecimento = \App\OrdemFornecimento::find($ordem_item->ordem_fornecimento_id);
 
-        $ordem_item->delete();
-        return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
-            'id' => $ordem_fornecimento->id,
-        ]);
+        if (isset($ordem_item)) {
+            $ordem_fornecimento = \App\OrdemFornecimento::find($ordem_item->ordem_fornecimento_id);
+
+            $ordem_item->delete();
+            return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
+                'id' => $ordem_fornecimento->id,
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'O item não existe.');
     }
 
     /**
@@ -180,7 +201,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function exibir(OrdemFornecimento $ordemFornecimento)
+    public function exibirOrdem(OrdemFornecimento $ordemFornecimento)
     {
         //
     }
@@ -191,7 +212,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function editar(OrdemFornecimento $ordemFornecimento)
+    public function editarOrdem(OrdemFornecimento $ordemFornecimento)
     {
         //
     }
@@ -216,6 +237,22 @@ class OrdemFornecimentoController extends Controller
     public function salvarItem(Request $request)
     {
         $ordem_item = \App\Ordem_item::find($request->id);
+        $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
+
+        $validator = Validator::make($request->all(), [
+            'quantidade' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+            ],[
+            'quantidade.required' => 'Quantidade é obrigatória',
+            'quantidade.integer' => 'Quantidade deve ser um número',
+            'quantidade.min' => 'Quantidade não pode ser inferior a zero',
+            'quantidade.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
+          ]);
+      
+        if ($validator->fails()) {
+            return redirect()->route('/ordemfornecimento/editarOrdemItem', ['id' => $ordem_item->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         if (isset($ordem_item)) {
             $ordem_item->quantidade = $request->quantidade;
@@ -237,7 +274,7 @@ class OrdemFornecimentoController extends Controller
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function salvar(Request $request, OrdemFornecimento $ordemFornecimento)
+    public function salvarOrdem(Request $request, OrdemFornecimento $ordemFornecimento)
     {
         //
     }

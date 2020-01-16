@@ -8,12 +8,13 @@
                 <div class="card-header">{{ __('Editar Item de Ordem de Fornecimento') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('/ordemfornecimento/salvar') }}">
-                      <input type="hidden" name="id" value="{{ $item_distribuicao->id}}" />
+                    <form method="POST" action="{{ route('/ordemfornecimento/salvarItem') }}">
+                      <input type="hidden" name="id" value="{{ $ordem_item->id}}" />
                       {{ csrf_field() }}
                         @csrf
                         @php
-                          $item = \App\Item::find($item_distribuicao->item_id);
+                          $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
+                          $item = \App\Item::find($contrato_item->item_id);
                         @endphp
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome ') }}</label>
@@ -40,13 +41,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="quantidade_total" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade Total ') }}</label>
+                            <label for="quantidade" class="col-md-4 col-form-label text-md-right">{{ __('Quantidade') }}</label>
 
                             <div class="col-md-6">
-                              <input name="quantidade_total" id="quantidade_total" type="text"  class="form-control{{ $errors->has('quantidade_total') ? ' is-invalid' : '' }}" value="{{ $item_distribuicao->quantidade_total}}">
-                              @if ($errors->has('quantidade_total'))
+                              <input name="quantidade" id="quantidade" type="text"  class="form-control{{ $errors->has('quantidade') ? ' is-invalid' : '' }}" value="{{ $ordem_item->quantidade}}">
+                              @if ($errors->has('quantidade'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('quantidade_total') }}</strong>
+                                        <strong>{{ $errors->first('quantidade') }}</strong>
                                     </span>
                               @endif
                             </div>

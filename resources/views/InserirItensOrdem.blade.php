@@ -51,9 +51,9 @@
                                 <div class="col-md-2">
                                   <center>Quantidade</center>
                                 </div>
-                                <div class="col-md-2">
+                                {{-- <div class="col-md-2">
                                   <center>Quantidade Danif.</center>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-3">
                                   <center></center>
                                 </div>
@@ -96,11 +96,11 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value= {{ old('quantidade')}}> 
+                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value=""> 
                                   </div>
-                                  <div class="col-md-2">
+                                  {{-- <div class="col-md-2">
                                     <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control" value= {{ old('quantidade_danificados')}}> 
-                                  </div>
+                                  </div> --}}
 
                                   <div class="col-md-1">
                                     <?php
