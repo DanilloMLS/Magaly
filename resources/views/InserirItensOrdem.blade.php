@@ -96,7 +96,7 @@
                                   </div>
 
                                   <div class="col-md-2">
-                                    <input name="quantidade" id="quantidade" type="text" class="form-control" value=""> 
+                                    <input name="quantidade_pedida" id="quantidade_pedida" type="text" class="form-control" value=""> 
                                   </div>
                                   {{-- <div class="col-md-2">
                                     <input name="quantidade_danificados" id="quantidade_danificados" type="text" class="form-control" value= {{ old('quantidade_danificados')}}> 

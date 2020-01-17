@@ -20,6 +20,7 @@ class CreateOrdemFornecimentosTable extends Migration
             $table->bigInteger('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->string('observacao')->nullable();
+            $table->boolean('ehcompleta')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

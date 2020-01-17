@@ -2,12 +2,22 @@
 
 @section('content')
 
+<script language= 'javascript'>
+    function avisoBaixa(id){
+      if(confirm (' Deseja realmente dar baixa? ')) {
+        location.href="/ordemfornecimento/concluirBaixa/"+id;
+      }
+      else {
+        return false;
+      }
+    }
+</script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Itens desta ordem de fornecimento') }}</div>
+                <div class="card-header">{{ __('Baixa Ordem de Fornecimento - Lista de Itens') }}</div>
 
                 <div class="card-body">
 
@@ -20,7 +30,7 @@
                   <div class="panel-body">
                       @if(count($ordem_itens) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhum item nesta ordem de fornecimento.
+                              Não há itens nesta ordem de fornecimento.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
@@ -31,10 +41,11 @@
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th>Marca</th>
                                   <th>Descrição</th>
                                   <th>Gramatura</th>
-                                  <th>Quantidade</th>
+                                  <th>Qtde. Pedida</th>
+                                  <th>Qtde. Aceita</th>
+                                  <th>Qtde. Restante</th>
                                   <th colspan="2">Ações</th>
                               </tr>
                             </thead>
@@ -46,15 +57,24 @@
                                       $item = \App\Item::find($contrato_item->item_id);
                                     @endphp
                                     <td data-title="Nome">{{ $item->nome }}</td>
-                                    <td data-title="Marca">{{ $item->marca }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
-                                    <td data-title="Quantidade">{{ $ordem_item->quantidade_pedida }}</td>
+                                    <td data-title="Qtde. Pedida">{{ $ordem_item->quantidade_pedida }}</td>
+                                    <td data-title="Qtde. Aceita">{{ $ordem_item->quantidade_aceita }}</td>
+                                    <td data-title="Qtde. Restante">{{ $ordem_item->quantidade_restante }}</td>
 
                                     <td>
-                                      <a class="btn btn-primary" href="{{route('/ordemfornecimento/editarOrdemItem',['id' => $ordem_item->id])}}">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
-                                      </a>
+                                      @if ($ordem_item->quantidade_restante > 0)
+                                        @if ($ordem_item->quantidade_aceita == 0)
+                                          <a title="Revisar quantidade" class="btn btn-primary" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
+                                            <img src="/img/edit.png" height="21" width="17" align = "right">
+                                          </a>
+                                        @else
+                                          <a title="Corrigir" class="btn btn-success" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
+                                            <img src="/img/contra.png" height="21" width="17" align = "right">
+                                          </a>
+                                        @endif
+                                      @endif
                                     </td>
 
 
@@ -68,7 +88,10 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{route ('/ordemfornecimento/listar')}}">Voltar</a>
+                      <a id="btnconcluir" class="btn btn-primary" href="{{ route ('/ordemfornecimento/novaBaixa', ['id' => $ordem_item->ordem_fornecimento_id])}}">Concluir</a>
+                      {{-- onClick="avisoBaixa({{$distribuicao->id}});" --}}
+                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
+
                   </div>
                 </div>
             </div>

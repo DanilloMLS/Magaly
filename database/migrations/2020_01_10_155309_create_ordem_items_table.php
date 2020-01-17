@@ -19,8 +19,9 @@ class CreateOrdemItemsTable extends Migration
             $table->foreign('ordem_fornecimento_id')->references('id')->on('ordem_fornecimentos');
             $table->bigInteger('contratoitem_id')->unsigned();
             $table->foreign('contratoitem_id')->references('id')->on('contrato_items');
-            $table->integer('quantidade')->unsigned()->default(0);
-            $table->integer('quantidade_danificados')->unsigned()->nullable()->default(0);
+            $table->integer('quantidade_pedida')->unsigned()->default(0);
+            $table->integer('quantidade_aceita')->unsigned()->default(0);
+            $table->integer('quantidade_restante')->nullable()->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

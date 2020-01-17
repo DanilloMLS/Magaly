@@ -131,12 +131,12 @@ class OrdemFornecimentoController extends Controller
         $contrato_item = \App\Contrato_item::find($request->contratoitem_id);
 
         $validator = Validator::make($request->all(), [
-            'quantidade' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+            'quantidade_pedida' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
             ],[
-            'quantidade.required' => 'Quantidade é obrigatória',
-            'quantidade.integer' => 'Quantidade deve ser um número',
-            'quantidade.min' => 'Quantidade não pode ser inferior a zero',
-            'quantidade.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
+            'quantidade_pedida.required' => 'Quantidade é obrigatória',
+            'quantidade_pedida.integer' => 'Quantidade deve ser um número',
+            'quantidade_pedida.min' => 'Quantidade não pode ser inferior a zero',
+            'quantidade_pedida.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
           ]);
       
         if ($validator->fails()) {
@@ -148,7 +148,8 @@ class OrdemFornecimentoController extends Controller
         $ordem_item = new \App\Ordem_item();
         $ordem_item->ordem_fornecimento_id = $ordem_fornecimento->id;
         $ordem_item->contratoitem_id = $request->contratoitem_id;
-        $ordem_item->quantidade = $request->quantidade;
+        $ordem_item->quantidade_pedida = $request->quantidade_pedida;
+        $ordem_item->quantidade_restante = $request->quantidade_pedida;
         $ordem_item->save();
 
         return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
@@ -240,12 +241,12 @@ class OrdemFornecimentoController extends Controller
         $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
 
         $validator = Validator::make($request->all(), [
-            'quantidade' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
+            'quantidade_pedida' => ['required', 'integer', 'min:0', 'max:'.$contrato_item->quantidade],
             ],[
-            'quantidade.required' => 'Quantidade é obrigatória',
-            'quantidade.integer' => 'Quantidade deve ser um número',
-            'quantidade.min' => 'Quantidade não pode ser inferior a zero',
-            'quantidade.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
+            'quantidade_pedida.required' => 'Quantidade é obrigatória',
+            'quantidade_pedida.integer' => 'Quantidade deve ser um número',
+            'quantidade_pedida.min' => 'Quantidade não pode ser inferior a zero',
+            'quantidade_pedida.max' => 'Quantidade deve ser máximo '.$contrato_item->quantidade.', o que no momento tem disponível desse produto',
           ]);
       
         if ($validator->fails()) {
@@ -255,7 +256,7 @@ class OrdemFornecimentoController extends Controller
         }
 
         if (isset($ordem_item)) {
-            $ordem_item->quantidade = $request->quantidade;
+            $ordem_item->quantidade_pedida = $request->quantidade_pedida;
             $ordem_item->save();
 
             session()->flash('success', 'Item alterado com sucesso.');
@@ -276,7 +277,7 @@ class OrdemFornecimentoController extends Controller
      */
     public function salvarOrdem(Request $request, OrdemFornecimento $ordemFornecimento)
     {
-        //
+        //distribuição
     }
 
     /**
@@ -288,5 +289,85 @@ class OrdemFornecimentoController extends Controller
     public function removerOrdem(OrdemFornecimento $ordemFornecimento)
     {
         //
+    }
+
+    /**
+     * Abre o formulário para dar baixa na ordem de fornecimento
+     */
+    public function abreBaixa(Request $request)
+    {
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
+        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id);
+
+        if (isset($ordem_fornecimento)) {
+            $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
+
+            return view("BaixaOrdemFornecimento", [
+                'ordem_itens' => $ordem_itens
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe.');
+    }
+
+    /**
+     * Abre o formulário para atualização da quantidade aceita de um item de ordem de fornecimento
+     */
+    public function abreItem(Request $request)
+    {
+        $ordem_item = \App\Ordem_item::find($request->id);
+
+        if (isset($ordem_item)) {
+            return view("BaixaOrdemItem", [
+                'ordem_item' => $ordem_item
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'O item não existe.');
+    }
+
+    /**
+     * 
+     */
+    public function baixaOrdem(Request $request)
+    {
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
+        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id);
+
+        if (isset($ordem_fornecimento)) {
+            
+        }
+    }
+
+    public function revisaItem(Request $request)
+    {
+        $ordem_item = \App\Ordem_item::find($request->id);
+
+        $validator = Validator::make($request->all(), [
+            'quantidade_aceita' => ['required', 'integer', 'min:0', 'max:'.$ordem_item->quantidade_restante],
+            ],[
+            'quantidade_aceita.required' => 'Quantidade é obrigatória',
+            'quantidade_aceita.integer' => 'Quantidade deve ser um número',
+            'quantidade_aceita.min' => 'Quantidade não pode ser inferior a zero',
+            'quantidade_aceita.max' => 'Quantidade deve ser máximo '.$ordem_item->quantidade_restante.', o que ainda resta adquirir desse produto.',
+          ]);
+      
+        if ($validator->fails()) {
+            return redirect()->route('/ordemfornecimento/baixaItem', ['id' => $ordem_item->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        if (isset($ordem_item)) {
+            $ordem_item->quantidade_aceita = $request->quantidade_aceita;
+            //$ordem_item->quantidade_restante -= $request->quantidade_aceita;
+            $ordem_item->save();
+
+            return redirect()->route('/ordemfornecimento/novaBaixa', [
+                'id' => $ordem_item->ordem_fornecimento_id
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'O item não existe');
     }
 }
