@@ -74,15 +74,9 @@
                               </div>
 
                             </form>
-
-
                               @endforeach
-
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="/cardapioDiario/finalizarCardapio/{{$cardapio_mensal->id}}">Concluir</a></center>
                   </div>
             </div>
         </div>

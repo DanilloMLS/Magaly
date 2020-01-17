@@ -17650,6 +17650,7 @@ a.text-dark:hover {
     background-color: rgba(0, 170, 187);
     color: #f3f3f3;
     text-shadow: 1px 1px #000;
+    height: 50px;
 }
 
 .col-md-descricao-cardapio {
@@ -17660,6 +17661,16 @@ a.text-dark:hover {
 .col-md-peso-cardapio {
     flex: 0 0 5%;
     max-width: 5%
+}
+
+.cardapio_semana_20{
+    width: 20%;
+}
+
+
+.cardapio_semana_20-justify{
+    width: 20%;
+    text-align: justify;
 }
 
 
