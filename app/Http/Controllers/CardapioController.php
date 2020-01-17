@@ -90,6 +90,11 @@ class CardapioController extends Controller
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
   }
 
+  public function editarCardapio(Request $request){
+    $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
+    return view("EditarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
+  }
+
   public function listar(){
     $cardapios = \App\Cardapio_mensal::orderBy('data_inicio')->get();
     return view("ListarCardapios", ["cardapios" => $cardapios]);
@@ -107,6 +112,25 @@ class CardapioController extends Controller
     return redirect()->route('/cardapio/listar'); */
 
     return view("InserirRefeicaoCardapio", [
+      "refeicao" => $refeicao, 
+      "cardapio_diario" => $cardapio_diario, 
+      "cardapio_mensal" => $cardapio_mensal, 
+      "cardapio_semanal" => $cardapio_semanal,
+      "refeicoes" => $refeicoes,
+    ]);
+  }
+
+  public function editarInserirRefeicao(Request $request){    
+    $cardapio_diario = \App\Cardapio_diario::find($request->dia);
+    $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
+    $cardapio_semanal = \App\Cardapio_semanal::find($request->cardapio_semanal);
+    $refeicao = \App\Refeicao::find($request->refeicao);
+    $refeicoes = \App\Refeicao::all();
+
+    /* session()->flash('success', 'Cardápio cadastrado com sucesso.'.$cardapio_mensal->id);
+    return redirect()->route('/cardapio/listar'); */
+
+    return view("EditarRefeicaoCardapio", [
       "refeicao" => $refeicao, 
       "cardapio_diario" => $cardapio_diario, 
       "cardapio_mensal" => $cardapio_mensal, 
@@ -143,18 +167,45 @@ class CardapioController extends Controller
       $cardapio_semanal->id,
       $cardapio_mensal->id,
     ]);
-    /* return view("InserirRefeicaoCardapio", [
-      "refeicao" => $request->refeicao, 
-      "cardapio_diario" => $cardapio_diario, 
-      "cardapio_mensal" => $cardapio_mensal, 
-      "cardapio_semanal" => $cardapio_semanal, 
-      "refeicoes" => $refeicoes
-    ]); */
+  }
+
+  public function editarRefeicaoCardapio (Request $request){
+    $dia = $request->dia;
+
+    $cardapio_semanal = \App\Cardapio_semanal::where('cardapio_mensal_id', '=', $request->cardapio_mensal)->where('semana', '=', $request->cardapio_semanal)->first();
+    $cardapio_diario = \App\Cardapio_diario::where('dia_semana', $dia)->where('cardapio_semanals_id', $cardapio_semanal->id)->where('cardapio_mensal_id', $request->cardapio_mensal)->where('refeicao', $request->refeicao)->first();
+    
+    if(empty($cardapio_diario)){
+      $cardapio_diario = new \App\Cardapio_diario();
+      $cardapio_diario->dia_semana = $dia;
+      $cardapio_diario->refeicao = $request->refeicao;
+      $cardapio_diario->cardapio_semanals_id = $cardapio_semanal->id;
+      $cardapio_diario->cardapio_mensal_id = $request->cardapio_mensal;
+      $cardapio_diario->save();
+    }else{
+      $cardapio_diario->refeicao = $request->refeicao;
+      $cardapio_diario->save();
+    }
+    
+    Log::info('Editar_Refeicao_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+        
+    $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
+    $refeicoes = \App\Refeicao::all();
+    
+    $refeicao = \App\Refeicao::find($request->refeicao);
+    
+    return redirect()->route('/cardapio/editarNovaRefeicao', [
+      $cardapio_diario->id,
+      $cardapio_semanal->id,
+      $cardapio_mensal->id,
+    ]);
   }
 
   public function inserirItemCardapio(Request $request) {
-    $cardapio_semanal = \App\Cardapio_semanal::find($request->cardapio_semanal);
-    $cardapio_mensal = \App\Cardapio_mensal::find($request->cardapio_mensal);
     $cardapio_diario_refeicao = new \App\cardapio_diario_refeicao();
     $cardapio_diario_refeicao->cardapio_diario_id = $request->cardapio_diario;
     $cardapio_diario_refeicao->refeicao_id = $request->refeicao_id;
@@ -167,34 +218,32 @@ class CardapioController extends Controller
         ']. Agent ['.$request->header('user-agent').
         ']. Url ['.$request->path().']');
 
-    $cardapio_diario = \App\Cardapio_diario::find($request->cardapio_diario);
-    $refeicoes = \App\Refeicao::all();
-    session()->flash('success', 'Refeição adicionada.');
-/*     return redirect()->route('/cardapio/inserirNovaRefeicao', [
-      $cardapio_diario->id, 
-      $cardapio_semanal->id, 
-      $cardapio_mensal->id
-    ]); */
-   
-    /* return view("InserirRefeicaoCardapio", [
-      "cardapio_diario" => $cardapio_diario, 
-      "cardapio_mensal" => $cardapio_mensal, 
-      "cardapio_semanal" => $cardapio_semanal, 
-      "refeicoes" => $refeicoes
-    ]); */
+    return redirect("/cardapio/cadastrarCardapioSemanal/".$request->cardapio_mensal);
+  }
 
-    //return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
-    return redirect("/cardapio/cadastrarCardapioSemanal/".$cardapio_mensal->id);
+  public function editarItemCardapio(Request $request) {
+    $cardapio_diario_refeicao = new \App\cardapio_diario_refeicao();
+    $cardapio_diario_refeicao->cardapio_diario_id = $request->cardapio_diario;
+    $cardapio_diario_refeicao->refeicao_id = $request->refeicao_id;
+    $cardapio_diario_refeicao->save();
+    //LogActivity::addToLog('Inserção de Item em Cardápio.');
+
+    Log::info('Inserir_Item_Cardapio. User ['.$request->user()->id.
+        ']. Method ['.$request->method().
+        ']. Ip ['.$request->ip().
+        ']. Agent ['.$request->header('user-agent').
+        ']. Url ['.$request->path().']');
+
+    return redirect("/cardapio/editarCardapioSemanal/".$request->cardapio_mensal);
   }
 
 
   public function removerItemCardapio(Request $request) {
     $cardapio_diario_refeicao = \App\cardapio_diario_refeicao::find($request->id);
-    $refeicoes = \App\Refeicao::all();
     $cardapio_diario = \App\Cardapio_diario::find($cardapio_diario_refeicao->cardapio_diario_id);
     $cardapio_semanal = \App\Cardapio_semanal::find($cardapio_diario->cardapio_semanals_id);
     $cardapio_mensal = \App\Cardapio_mensal::find($cardapio_semanal->cardapio_mensal_id);
-    $cardapio_diario_refeicao->delete();
+    $cardapio_diario->delete();
     //LogActivity::addToLog('Remoção de Refeição de Cardápio.');
 
     Log::info('Remover_Item_Cardapio. User ['.$request->user()->id.
@@ -204,11 +253,7 @@ class CardapioController extends Controller
         ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Item removido.');
-    return redirect()->route('/cardapio/inserirNovaRefeicao', [
-      $cardapio_diario->id, 
-      $cardapio_semanal->id, 
-      $cardapio_mensal->id
-    ]);
+    return redirect()->route('/cardapio/editarCardapioSemanal',[$cardapio_mensal]);
     //return view("InserirRefeicaoCardapio", ["cardapio_diario" => $cardapio_diario, "cardapio_mensal" => $cardapio_mensal, "cardapio_semanal" => $cardapio_semanal, "refeicoes" => $refeicoes]);
   }
 

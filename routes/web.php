@@ -162,6 +162,7 @@ Route::get('/refeicao/Relatorio_Refeicoes', 'RefeicaoController@gerarRelatorio')
 Route::get('/itemRefeicao/editar/{id}', 'RefeicaoController@editarItemRefeicao')->name('/itemRefeicao/editar')->middleware('adm');
 Route::post('/itemRefeicao/salvar', 'RefeicaoController@salvarItemRefeicao')->name('/itemRefeicao/salvar')->middleware('adm');
 
+
 //Cardapio
 Route::get('/cardapio/cadastrar', function(Request $request) {
     return view('CadastrarCardapio');
@@ -178,8 +179,12 @@ Route::get('/cardapioMensal/finalizarCardapio', 'CardapioController@finalizarCar
 Route::get('/cardapio/removerItem/{id}', 'CardapioController@removerItemCardapio')->name('/cardapio/removerItem')->middleware('adm');
 Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCardapioMensal')->name('/cardapio/exibirItensCardapio')->middleware('auth');
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');
-
 Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
+
+Route::get('/cardapio/editarCardapioSemanal/{id}', 'CardapioController@editarCardapio')->name('/cardapio/editarCardapioSemanal')->middleware('adm');
+Route::get('/cardapio/editarRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}/{refeicao}', 'CardapioController@editarRefeicaoCardapio')->name('/cardapio/editarRefeicao')->middleware('adm');
+Route::get('/cardapio/editarNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@editarInserirRefeicao')->name('/cardapio/editarNovaRefeicao')->middleware('adm');
+Route::post('/cardapio/editarItem', 'CardapioController@editarItemCardapio')->name('/cardapio/editarItem')->middleware('adm');
 
 
 //Log Activity

@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Cardápio Mensal') }}</div>
+                <div class="card-header">{{ __('Cardápio Mensal - '.$cardapio->nome) }}</div>
 
                 <div class="card-body">
                       {{ csrf_field() }}
@@ -26,9 +26,9 @@
                             @endphp
                             <center><strong><h4 style="background-color:powderblue;">Semana {{$i}}</h4><strong></center>
                             <div id="tabela_integral" class="table-responsive">
-                              <table class="table table-hover">
+                              <table class="no-background table table-hover">
                                 <thead>
-                                  <tr>
+                                  <tr align="center">
                                       <th>Segunda</th>
                                       <th>Terça</th>
                                       <th>Quarta</th>
@@ -37,172 +37,247 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr align=center>
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
-                                        <td data-title="Segunda" style="color:green">
-                                          1ª Refeição
+                                        <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">               
+                                          <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                            <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                              $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                              echo $refeicao->nome;
+                                            ?>
+                                          </a>
+
                                         </td>
                                         @else
-                                        <td data-title="Segunda">
-                                          <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                        <td class="cardapio_semana_20" data-title="Segunda">
+                                          <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
-
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
-                                        <td data-title="Terça" style="color:green">
-                                          Refeição 1
+                                        <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                          <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                            <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                              $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                              echo $refeicao->nome;
+                                            ?>
+                                          </a>
                                         </td>
                                         @else
-                                        <td data-title="Terça">
-                                          <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                        <td class="cardapio_semana_20" data-title="Terça">
+                                          <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
 
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
-                                        <td data-title="Quarta" style="color:green">
-                                          Refeição 1
+                                        <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                          <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                            <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                              $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                              echo $refeicao->nome;
+                                            ?>
+                                          </a>
                                         </td>
                                         @else
-                                        <td data-title="Quarta">
-                                          <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                        <td class="cardapio_semana_20" data-title="Quarta">
+                                          <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
 
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
-                                        <td data-title="Quinta" style="color:green">
-                                          Refeição 1
+                                        <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                          <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                            <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                              $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                              echo $refeicao->nome;
+                                            ?>
+                                          </a>
                                         </td>
                                         @else
-                                        <td data-title="Quinta">
-                                          <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                        <td class="cardapio_semana_20" data-title="Quinta">
+                                          <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
 
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
-                                        <td data-title="Sexta" style="color:green">
-                                          Refeição 1
+                                        <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                          <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                            <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                              $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                              echo $refeicao->nome;
+                                            ?>
+                                          </a>
                                         </td>
                                         @else
-                                        <td data-title="Sexta">
-                                          <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                        <td class="cardapio_semana_20" data-title="Sexta">
+                                          <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
 
                                     </tr>
-                                    <tr>
+                                    <tr align=center>
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 2)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Segunda" style="color:green">
-                                        Refeição 2
+                                      <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Segunda">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                      <td class="cardapio_semana_20" data-title="Segunda">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 2)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Terça" style="color:green">
-                                        Refeição 2
+                                      <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Terça">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                      <td class="cardapio_semana_20" data-title="Terça">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 2)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Quarta" style="color:green">
-                                        Refeição 2
+                                      <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Quarta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                      <td class="cardapio_semana_20" data-title="Quarta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 2)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Quinta" style="color:green">
-                                        Refeição 2
+                                      <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Quinta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                      <td class="cardapio_semana_20" data-title="Quinta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 2)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Sexta" style="color:green">
-                                        Refeição 2
+                                      <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Sexta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                      <td class="cardapio_semana_20" data-title="Sexta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                       </td>
                                       @endif
                                     </tr>
-                                    <tr>
+                                    <tr align=center>
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 3)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Segunda" style="color:green">
-                                        Refeição 3
+                                      <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Segunda">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Refeição 3</a>
+                                      <td class="cardapio_semana_20" data-title="Segunda">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 3)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Terça" style="color:green">
-                                        Refeição 3
+                                      <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Terça">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Refeição 3</a>
+                                      <td class="cardapio_semana_20" data-title="Terça">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 3)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Quarta" style="color:green">
-                                        Refeição 3
+                                      <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Quarta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Refeição 3</a>
+                                      <td class="cardapio_semana_20" data-title="Quarta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 3)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Quinta" style="color:green">
-                                        Refeição 3
+                                      <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Quinta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Refeição 3</a>
+                                      <td class="cardapio_semana_20" data-title="Quinta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Adicionar</a>
                                       </td>
                                       @endif
 
                                       <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 3)->first();?>
                                       @if(!empty($cardapio_diario))
-                                      <td data-title="Sexta" style="color:green">
-                                        Refeição 3
+                                      <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                        <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">
+                                          <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                            $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                            echo $refeicao->nome;
+                                          ?>
+                                        </a>
                                       </td>
                                       @else
-                                      <td data-title="Sexta">
-                                        <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Refeição 3</a>
+                                      <td class="cardapio_semana_20" data-title="Sexta">
+                                        <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 3]) }}">Adicionar</a>
                                       </td>
                                       @endif
                                     </tr>
@@ -229,7 +304,7 @@
                           <div id="tabela_parcial" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
-                                <tr>
+                                <tr align=center>
                                     <th>Segunda</th>
                                     <th>Terça</th>
                                     <th>Quarta</th>
@@ -238,59 +313,84 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
+                                <tr align=center>
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Segunda" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Segunda">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Segunda">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Terça" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Terça">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Terça">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Quarta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Quarta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Quarta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Quinta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Quinta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Quinta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Sexta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Sexta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Sexta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
@@ -298,56 +398,81 @@
                                 <tr>
                                   <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 2)->first();?>
                                   @if(!empty($cardapio_diario))
-                                  <td data-title="Segunda" style="color:green">
-                                    Refeição 2
+                                  <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">
+                                    <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                      <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                        $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                        echo $refeicao->nome;
+                                      ?>
+                                    </a>
                                   </td>
                                   @else
-                                  <td data-title="Segunda">
-                                    <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                  <td class="cardapio_semana_20" data-title="Segunda">
+                                    <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                   </td>
                                   @endif
 
                                   <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 2)->first();?>
                                   @if(!empty($cardapio_diario))
-                                  <td data-title="Terça" style="color:green">
-                                    Refeição 2
+                                  <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                    <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                      <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                        $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                        echo $refeicao->nome;
+                                      ?>
+                                    </a>
                                   </td>
                                   @else
-                                  <td data-title="Terça">
-                                    <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                  <td class="cardapio_semana_20" data-title="Terça">
+                                    <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                   </td>
                                   @endif
 
                                   <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 2)->first();?>
                                   @if(!empty($cardapio_diario))
-                                  <td data-title="Quarta" style="color:green">
-                                    Refeição 2
+                                  <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                    <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                      <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                        $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                        echo $refeicao->nome;
+                                      ?>
+                                    </a>
                                   </td>
                                   @else
-                                  <td data-title="Quarta">
-                                    <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                  <td class="cardapio_semana_20" data-title="Quarta">
+                                    <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                   </td>
                                   @endif
 
                                   <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 2)->first();?>
                                   @if(!empty($cardapio_diario))
-                                  <td data-title="Quinta" style="color:green">
-                                    Refeição 2
+                                  <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                    <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                      <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                        $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                        echo $refeicao->nome;
+                                      ?>
+                                    </a>
                                   </td>
                                   @else
-                                  <td data-title="Quinta">
-                                    <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                  <td class="cardapio_semana_20" data-title="Quinta">
+                                    <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                   </td>
                                   @endif
 
                                   <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 2)->first();?>
                                   @if(!empty($cardapio_diario))
-                                  <td data-title="Sexta" style="color:green">
-                                    Refeição 2
+                                  <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                    <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">
+                                      <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                        $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                        echo $refeicao->nome;
+                                      ?>
+                                    </a>
                                   </td>
                                   @else
-                                  <td data-title="Sexta">
-                                    <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Refeição 2</a>
+                                  <td class="cardapio_semana_20" data-title="Sexta">
+                                    <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 2]) }}">Adicionar</a>
                                   </td>
                                   @endif
                                 </tr>
@@ -373,7 +498,7 @@
                           <div id="tabela_infantil" class="table-responsive">
                             <table class="table table-hover">
                               <thead>
-                                <tr>
+                                <tr align=center>
                                     <th><strong>Segunda</strong></th>
                                     <th><strong>Terça</strong></th>
                                     <th><strong>Quarta</strong></th>
@@ -382,59 +507,84 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
+                                <tr align=center>
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 1)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Segunda" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Segunda" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Segunda">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Segunda">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Terça" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Terça">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Terça">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 2, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 3)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Quarta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Quarta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Quarta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Quarta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 3, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 4)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Quinta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Quinta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Quinta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Quinta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 4, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
                                     <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 5)->where('refeicao', '=' , 1)->first();?>
                                     @if(!empty($cardapio_diario))
-                                    <td data-title="Sexta" style="color:green">
-                                      Refeição 1
+                                    <td class="cardapio_semana_20-justify" data-title="Sexta" style="color:green">
+                                      <a class="green-link link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">
+                                        <?php $cardapio_diario_refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', '=', $cardapio_diario->id)->first();
+                                          $refeicao = \App\Refeicao::where('id', $cardapio_diario_refeicoes->refeicao_id)->first();
+                                          echo $refeicao->nome;
+                                        ?>
+                                      </a>
                                     </td>
                                     @else
-                                    <td data-title="Sexta">
-                                      <a href="{{ route("/cardapio/inserirRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Refeição 1</a>
+                                    <td class="cardapio_semana_20" data-title="Sexta">
+                                      <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 5, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                     </td>
                                     @endif
 
@@ -450,7 +600,7 @@
                         @endif
 
                               <div class="panel-footer">
-                                  <center><a class="btn btn-primary" href="{{route ('/cardapioMensal/finalizarCardapio')}}">Concluir</a></center>
+                                  <center><a class="link" class="btn btn-primary" href="{{route ('/cardapioMensal/finalizarCardapio')}}">Concluir</a></center>
                               </div>
                 </div>
             </div>

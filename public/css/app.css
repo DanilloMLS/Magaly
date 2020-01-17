@@ -17653,9 +17653,14 @@ a.text-dark:hover {
     height: 50px;
 }
 
+.col-md-nome-cardapio{
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
 .col-md-descricao-cardapio {
-    flex: 0 0 75%;
-    max-width: 75%
+    flex: 0 0 65%;
+    max-width: 65%
 }
 
 .col-md-peso-cardapio {
@@ -17671,6 +17676,38 @@ a.text-dark:hover {
 .cardapio_semana_20-justify{
     width: 20%;
     text-align: justify;
+}
+
+.cardapio_semana_20:hover{
+    background: #3f3f3f15;
+    border-radius: 40px;
+}
+
+.cardapio_semana_20-justify:hover{
+    background: #3f3f3f15;
+    border-radius: 40px;
+}
+
+.link{
+    color: #2176bd;
+    text-decoration: none;
+}
+
+.link:hover{
+    text-decoration: none;
+}
+
+.green-link{
+    color: teal;
+}
+
+.green-link:hover{
+    color: teal;
+}
+
+.no-background:hover tr:hover{
+    background-color: transparent;
+    background: transparent;
 }
 
 
