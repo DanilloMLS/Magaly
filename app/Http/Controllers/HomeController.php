@@ -117,17 +117,19 @@ class HomeController extends Controller
         if(count($estoques) > 1){
             $aleatorio = rand(0, count($estoques)-1);
             $estoque = $estoques[$aleatorio];
-            $itens_estoque = \App\Estoque_item::where('estoque_id', '=', $estoque->id)->paginate(10);
+            $itens_estoque = \App\Estoque_item::orderBy('data_validade')->where('estoque_id', '=', $estoque->id)->get();
             $cont = 1;
             foreach($itens_estoque as $it){
-                $vall = [];
-                $item = \App\Item::find($it->item_id);
-                array_push($vall, (string) $item->nome);
-                array_push($vall, (int) $item->gramatura);
-                array_push($vall, (string)$cores[rand(0, $quantidade_cores)]);
-                array_push($data03, $vall);
-                $cont++;
-
+                if($cont <= 6 and $it->quantidade > 0){
+                    $vall = [];
+                    $item = \App\Item::find($it->item_id);
+                    array_push($vall, (string)($item->nome));
+                    array_push($vall, (string)($item->gramatura." ".$item->unidade));
+                    array_push($vall, (string)($it->quantidade));
+                    array_push($vall, (string)(date('d/m/Y', strtotime($it->data_validade))));
+                    array_push($data03, $vall);
+                    $cont++;
+                }
             }
             $nome_estoque = $estoque->nome;
         }else{

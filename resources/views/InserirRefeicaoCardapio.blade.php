@@ -24,14 +24,14 @@
                       </div>
                       @else
                               <div class="form-group row">
-                                <div class="col-md-3">
-                                  <center>Nome</center>
+                                <div align="left" class="col-md-2">
+                                  Nome
                                 </div>
-                                <div class="col-md-2">
+                                <div align="left"class="col-md-descricao-cardapio">
                                   Descrição
                                 </div>
-                                <div class="col-md-2">
-                                  Quantidade Total
+                                <div class="col-md-peso-cardapio">
+                                  Peso
                                 </div>
                               </div>
                               @foreach ($refeicoes as $refeicao)
@@ -46,16 +46,16 @@
 
                               <div class="form-group row">
 
-                                  <div class="col-md-3">
+                                  <div align="left" class="col-md-2">
                                     {{ $refeicao->nome }}
                                   </div>
-                                  <div class="col-md-2">
+                                  <div class="col-md-descricao-cardapio">
                                     {{ $refeicao->descricao }}
                                   </div>
-                                  <div class="col-md-2">
+                                  <div class="col-md-peso-cardapio">
                                     {{ $refeicao->quantidade_total }}
                                   </div>
-                                  <div class="col-md-2">
+                                  <div float="right" class="col-md-1">
 
                                     <?php
                                         $cardapio_refeicao = \App\cardapio_diario_refeicao::where('refeicao_id', '=', $refeicao->id)
@@ -74,15 +74,9 @@
                               </div>
 
                             </form>
-
-
                               @endforeach
-
                         </div>
                       @endif
-                  </div>
-                  <div class="panel-footer">
-                      <center><a class="btn btn-primary" href="/cardapioDiario/finalizarCardapio/{{$cardapio_mensal->id}}">Concluir</a></center>
                   </div>
             </div>
         </div>

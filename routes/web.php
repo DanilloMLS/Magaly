@@ -49,6 +49,8 @@ Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('/for
 Route::post('/fornecedor/salvar', 'FornecedorController@salvar')->name('/fornecedor/salvar')->middleware('adm');
 Route::get('/fornecedor/remover/{id}', 'FornecedorController@remover')->name('/fornecedor/remover')->middleware('adm');
 Route::get('/fornecedor/Relatorio_Fornecedores', 'FornecedorController@gerarRelatorio')->name('/fornecedor/RelatorioFornecedores')->middleware('auth');
+Route::get('/fornecedor/RelatorioContratos/{id}', 'FornecedorController@relatorioContratoItens')->name('/fornecedor/RelatorioContratos')->middleware('adm');
+
 
 //Escola
 Route::get('/escola/cadastrar', function(Request $request) {

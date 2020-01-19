@@ -12,9 +12,9 @@ $factory->define(Estoque_item::class, function (Faker $faker) {
         'quantidade_danificados' => 0,
         'quantidade' => $faker->numberBetween(10,2000),
         'item_id' => $contrato_item->item_id,
-        'estoque_id' => $faker->numberBetween(1,19),
+        'estoque_id' => $faker->numberBetween(1,20),
         'contrato_id' => $contrato_item->contrato_id,
         'n_lote' => $faker->numerify('########'),
-        'data_validade' => $faker->dateTimeBetween('now','+3 years'),
+        'data_validade' => $faker->dateTimeBetween('now','+5 years'),
     ];
 });
