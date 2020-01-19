@@ -27,7 +27,7 @@
                             <div id="tabela_integral" class="table-responsive">
                               <table class="table table-hover">
                                 <thead>
-                                  <tr>
+                                  <tr align="center">
                                       <th style="width:200px;"><strong>Segunda</strong></th>
                                       <th style="width:200px;">Terça</th>
                                       <th style="width:200px;">Quarta</th>
@@ -35,8 +35,8 @@
                                       <th style="width:200px;">Sexta</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody align="justify">
+                                    <tr >
                                       <td data-title="Segunda">
                                         <?php
                                         $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('refeicao', '=', 1)->where('dia_semana', '=', 1)->first();
@@ -50,7 +50,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a>
                                          <br>
@@ -72,7 +72,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -92,7 +92,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -112,7 +112,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -132,7 +132,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -154,7 +154,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -174,7 +174,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -194,7 +194,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -214,7 +214,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -234,7 +234,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -256,7 +256,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -276,7 +276,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -296,7 +296,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -316,7 +316,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -336,7 +336,7 @@
 
                                         ?>
                                         @foreach($refeicaoLista as $lista)
-                                        <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                        <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                           {{$lista->nome}}
                                         </a> <br>
                                         @endforeach
@@ -390,7 +390,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -411,7 +411,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -431,7 +431,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -451,7 +451,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -471,7 +471,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -493,7 +493,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -513,7 +513,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -533,7 +533,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -553,7 +553,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -573,7 +573,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -626,7 +626,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -647,7 +647,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -667,7 +667,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -687,7 +687,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
@@ -707,7 +707,7 @@
 
                                     ?>
                                     @foreach($refeicaoLista as $lista)
-                                    <a href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}" style = "color:#3A4E69;">
+                                    <a class="green-link link" href="{{ route ("/refeicao/exibirItensRefeicao", ['id' => $lista->id])}}">
                                       {{$lista->nome}}
                                     </a> <br>
                                     @endforeach
