@@ -196,3 +196,5 @@ Route::post('/ordemfornecimento/salvarItem', 'OrdemFornecimentoController@salvar
 Route::get('/ordemfornecimento/novaBaixa/{id}', 'OrdemFornecimentoController@abreBaixa')->name('/ordemfornecimento/novaBaixa')->middleware('adm');
 Route::get('/ordemfornecimento/baixaItem/{id}', 'OrdemFornecimentoController@abreItem')->name('/ordemfornecimento/baixaItem')->middleware('adm');
 Route::post('/ordemfornecimento/revisaItem', 'OrdemFornecimentoController@revisaItem')->name('/ordemfornecimento/revisaItem')->middleware('adm');
+Route::get('/ordemfornecimento/editarOrdem/{id}', 'OrdemFornecimentoController@editarOrdem')->name('/ordemfornecimento/editarOrdem')->middleware('adm');
+Route::post('/ordemfornecimento/salvarOrdem', 'OrdemFornecimentoController@salvarOrdem')->name('/ordemfornecimento/salvarOrdem')->middleware('adm');

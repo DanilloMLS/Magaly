@@ -208,14 +208,31 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Apresenta o formulário para edição da Ordem de Fornecimento.
      *
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function editarOrdem(OrdemFornecimento $ordemFornecimento)
+    public function editarOrdem(Request $request)
     {
-        //
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
+        $escolas = \App\Escola::all();
+
+        $ids_escolas = [];
+        foreach ($escolas as $escola) {
+            $ids_escolas[] = $escola->estoque_id;
+        }
+
+        $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
+
+        if (isset($ordem_fornecimento)) {
+            return view("EditarOrdemFornecimento", [
+                'ordem_fornecimento' => $ordem_fornecimento,
+                'estoques' => $estoques
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe');
     }
 
     /**
@@ -257,6 +274,7 @@ class OrdemFornecimentoController extends Controller
 
         if (isset($ordem_item)) {
             $ordem_item->quantidade_pedida = $request->quantidade_pedida;
+            $ordem_item->quantidade_restante = $request->quantidade_pedida;
             $ordem_item->save();
 
             session()->flash('success', 'Item alterado com sucesso.');
@@ -269,15 +287,25 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Grava as alterações dos dados da ordem.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\OrdemFornecimento  $ordemFornecimento
      * @return \Illuminate\Http\Response
      */
-    public function salvarOrdem(Request $request, OrdemFornecimento $ordemFornecimento)
+    public function salvarOrdem(Request $request)
     {
-        //distribuição
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
+        
+        if (isset($ordem_fornecimento)) {
+            $ordem_fornecimento->observacao = $request->observacao;
+            $ordem_fornecimento->estoque_id = $request->estoque_id;
+            $ordem_fornecimento->save();
+
+            return redirect()->route('/ordemfornecimento/listar');
+        }
+        
+        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe');
     }
 
     /**
@@ -327,7 +355,7 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * 
+     * Realiza a baixa na Ordem de Fornecimento
      */
     public function baixaOrdem(Request $request)
     {
@@ -335,7 +363,21 @@ class OrdemFornecimentoController extends Controller
         $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id);
 
         if (isset($ordem_fornecimento)) {
-            
+            if (isset($ordem_itens)) {
+                foreach ($ordem_itens as $ordem_item) {
+                    $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
+                    if ($ordem_item->quantidade_restante <= $contrato_item->quantidade) {
+                        
+                        $estoque_item = \App\Estoque_item::find();
+
+                        //return redirect()->back()->with('alert', 'O contrato não tem itens suficientes.');
+                        if (condition) {
+                            # code...
+                        }
+                    }
+                }
+
+            }
         }
     }
 

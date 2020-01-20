@@ -69,6 +69,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                          <label for="n_lote" class="col-md-4 col-form-label text-md-right">{{ __('Nº Lote ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="n_lote" id="n_lote" type="text" class="form-control{{ $errors->has('n_lote') ? ' is-invalid' : '' }}" value= "{{old('n_lote', $ordem_item->n_lote)}}">
+                            @if ($errors->has('n_lote'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('n_lote') }}</strong>
+                                  </span>
+                            @endif
+                          </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
