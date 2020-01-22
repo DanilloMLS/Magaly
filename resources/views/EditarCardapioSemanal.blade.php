@@ -54,6 +54,7 @@
                                           <a class="link" href="{{ route("/cardapio/editarRefeicao", ['dia' => 1, 'cardapio_semanal' => $i, 'cardapio_mensal' => $cardapio->id, 'refeicao' => 1]) }}">Adicionar</a>
                                         </td>
                                         @endif
+                                        
                                         <?php $cardapio_diario = \App\Cardapio_diario::where('cardapio_semanals_id', '=', $cardapio_semanal->id)->where('dia_semana', '=', 2)->where('refeicao', '=' , 1)->first();?>
                                         @if(!empty($cardapio_diario))
                                         <td class="cardapio_semana_20-justify" data-title="Terça" style="color:green">
