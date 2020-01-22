@@ -87,6 +87,15 @@ class CardapioController extends Controller
 
   public function buscarCardapio(Request $request){
     $cardapio_mensal = \App\Cardapio_mensal::find($request->id);
+
+    $card_diario = \App\Cardapio_diario::where('cardapio_mensal_id', $request->id)->get();
+
+    foreach($card_diario as $diario){
+      $refeicoes = \App\cardapio_diario_refeicao::where('cardapio_diario_id', $diario->id)->first();
+      if(empty($refeicoes)){
+        $diario->delete();
+      }
+    }
     return view("CadastrarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
   }
 
@@ -150,6 +159,7 @@ class CardapioController extends Controller
     $cardapio_diario->cardapio_semanals_id = $cardapio_semanal->id;
     $cardapio_diario->cardapio_mensal_id = $request->cardapio_mensal;
     $cardapio_diario->save();
+
     
     Log::info('Inserir_Refeicao_Cardapio. User ['.$request->user()->id.
         ']. Method ['.$request->method().
