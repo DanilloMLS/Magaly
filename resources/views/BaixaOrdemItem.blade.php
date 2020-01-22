@@ -82,6 +82,19 @@
                           </div>
                         </div>
 
+                        <div class="form-group row">
+                          <label for="data_validade" class="col-md-4 col-form-label text-md-right">{{ __('Data de Validade ') }}</label>
+
+                          <div class="col-md-6">
+                            <input name="data_validade" id="data_validade" type="date" class="form-control{{ $errors->has('data_validade') ? ' is-invalid' : '' }}" value= "{{old('data_validade', $ordem_item->data_validade)}}">
+                            @if ($errors->has('data_validade'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('data_validade') }}</strong>
+                                  </span>
+                            @endif
+                          </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

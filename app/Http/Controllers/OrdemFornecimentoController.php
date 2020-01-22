@@ -360,25 +360,52 @@ class OrdemFornecimentoController extends Controller
     public function baixaOrdem(Request $request)
     {
         $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
-        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id);
+        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
 
         if (isset($ordem_fornecimento)) {
+            $estoque = \App\Estoque::find($ordem_fornecimento->estoque_id);
             if (isset($ordem_itens)) {
                 foreach ($ordem_itens as $ordem_item) {
+                    //tratar os itens de contrato removidos antes da baixa
                     $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
-                    if ($ordem_item->quantidade_restante <= $contrato_item->quantidade) {
-                        
-                        $estoque_item = \App\Estoque_item::find();
+                    $contrato_item->quantidade -= $ordem_item->quantidade_aceita;
+                    
+                    $estoque_item = \App\Estoque_item::where('item_id', $contrato_item->item_id)
+                                                     ->where('contrato_id', $contrato_item->contrato_id)
+                                                     ->where('data_validade', $ordem_item->data_validade)
+                                                     ->where('n_lote', $ordem_item->n_lote)->first();
 
-                        //return redirect()->back()->with('alert', 'O contrato não tem itens suficientes.');
-                        if (condition) {
-                            # code...
-                        }
+                    //Verifica se o item existia no estoque ou se criará um novo item
+                    if (isset($estoque_item)) {
+                        $estoque_item->quantidade += $ordem_item->quantidade_aceita;
+                        $estoque_item->save();
+                    } else {
+                        $estoque_item = new \App\Estoque_item();
+                        $estoque_item->item_id = $contrato_item->item_id;
+                        $estoque_item->quantidade_danificados = 0;
+                        $estoque_item->quantidade = $ordem_item->quantidade_aceita;
+                        $estoque_item->estoque_id = $estoque->id;
+                        $estoque_item->contrato_id = $contrato_item->contrato_id;
+                        $estoque_item->n_lote = $ordem_item->n_lote;
+                        $estoque_item->data_validade = $ordem_item->data_validade;
+                        $estoque_item->save();
                     }
-                }
 
+                    session()->flash('success', 'Baixa realizada com sucesso.');
+                    return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
+                        'id' => $estoque->id
+                    ]);
+                }
             }
+            session()->flash('success', 'Não há itens.');
+            return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
+                'id' => $estoque->id
+            ]);
         }
+        session()->flash('success', 'A ordem não existe.');
+        return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
+            'id' => $estoque->id
+        ]);
     }
 
     public function revisaItem(Request $request)
@@ -387,6 +414,8 @@ class OrdemFornecimentoController extends Controller
 
         $validator = Validator::make($request->all(), [
             'quantidade_aceita' => ['required', 'integer', 'min:0', 'max:'.$ordem_item->quantidade_restante],
+            'n_lote' =>            ['required', 'string', 'max:255'],
+            'data_validade' =>     ['required', 'after_or_equal:today']
             ],[
             'quantidade_aceita.required' => 'Quantidade é obrigatória',
             'quantidade_aceita.integer' => 'Quantidade deve ser um número',
@@ -402,6 +431,8 @@ class OrdemFornecimentoController extends Controller
 
         if (isset($ordem_item)) {
             $ordem_item->quantidade_aceita = $request->quantidade_aceita;
+            $ordem_item->n_lote = $request->n_lote;
+            $ordem_item->data_validade = $request->data_validade;
             //$ordem_item->quantidade_restante -= $request->quantidade_aceita;
             $ordem_item->save();
 

@@ -22,6 +22,8 @@ class CreateOrdemItemsTable extends Migration
             $table->integer('quantidade_pedida')->unsigned()->default(0);
             $table->integer('quantidade_aceita')->unsigned()->default(0);
             $table->integer('quantidade_restante')->nullable()->default(0)->unsigned();
+            $table->string('n_lote')->nullable();
+            $table->date('data_validade')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

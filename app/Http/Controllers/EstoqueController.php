@@ -36,7 +36,7 @@ class EstoqueController extends Controller
       ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
-    return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
+    return redirect()->route('/estoque/listar');
   }
 
   public function listar(){
