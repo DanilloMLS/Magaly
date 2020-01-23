@@ -65,7 +65,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{route ('/refeicao/listar')}}">Voltar</a>
+                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                   </div>
                 </div>
             </div>
