@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Inserir Refeição') }}</div>
+                <div class="card-header">{{ __('Editar Refeição') }}</div>
 
                 <div class="card-body">
 
@@ -35,7 +35,7 @@
                                 </div>
                               </div>
                               @foreach ($refeicoes as $refeicao)
-                              <form method="POST" action="{{route ('/cardapio/inserirItem')}}">
+                              <form method="POST" action="{{route ('/cardapio/editarItem')}}">
                                 {{ csrf_field() }}
                                   @csrf
                               <input type="hidden" name="cardapio_diario" value="{{ $cardapio_diario->id}}" />

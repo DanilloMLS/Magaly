@@ -48,7 +48,7 @@
                                       <a title="Ver Refeições" class="btn btn-primary" href="{{ route ("/cardapio/exibirItensCardapio", ['id' => $cardapio->id])}}" >
                                         <img src="/img/menu.png" class="tamIconsPadrao">
                                       </a>
-                                      <a title="Editar Cardápio" class="btn btn-primary" href="{{ route ("/cardapio/editar", ['id' => $cardapio->id]) }}">
+                                      <a title="Editar Cardapio" class="btn btn-primary" href="{{ route ("/cardapio/editarCardapioSemanal", ['id' => $cardapio->id])}}" >
                                         <img src="/img/edit.png" class="tamIconsPadrao">
                                       </a>
                                     </td>
