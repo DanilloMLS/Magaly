@@ -160,6 +160,7 @@ class DistribuicaoController extends Controller
       //com os ids acho os Itens no Estoque que tenham o mesmo nome
       $estoque_central_itens = \App\Estoque_item::whereIn('item_id',$itens_nome)
                                                 ->where('estoque_id','=',$distribuicao->estoque_id)
+                                                ->orderBy('data_validade')
                                                 ->get();
                                               
       

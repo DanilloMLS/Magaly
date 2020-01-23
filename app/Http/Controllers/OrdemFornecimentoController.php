@@ -408,6 +408,10 @@ class OrdemFornecimentoController extends Controller
         ]);
     }
 
+    /**
+     * Atualiza as informações de um item de uma Ordem de Fornecimento
+     * incluindo data de validade e lote
+     */
     public function revisaItem(Request $request)
     {
         $ordem_item = \App\Ordem_item::find($request->id);
@@ -433,7 +437,6 @@ class OrdemFornecimentoController extends Controller
             $ordem_item->quantidade_aceita = $request->quantidade_aceita;
             $ordem_item->n_lote = $request->n_lote;
             $ordem_item->data_validade = $request->data_validade;
-            //$ordem_item->quantidade_restante -= $request->quantidade_aceita;
             $ordem_item->save();
 
             return redirect()->route('/ordemfornecimento/novaBaixa', [

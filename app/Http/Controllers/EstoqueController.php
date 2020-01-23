@@ -208,21 +208,6 @@ class EstoqueController extends Controller
         return redirect()->route('/estoque/listar');
       }
 
-      //quantidade atualizada se o Item já existir
-      /* if (isset($estoque_item)){
-        $estoque_item->quantidade += $request->quantidade;
-        $estoque_item->quantidade_danificados += $request->quantidade_danificados;
-      } else {
-        $estoque_item = new \App\Estoque_item();
-        $estoque_item->quantidade = $request->quantidade;
-        $estoque_item->quantidade_danificados = $request->quantidade_danificados;
-        $estoque_item->item_id = $contrato_item->item_id;
-        $estoque_item->estoque_id = $request->estoque_id;
-        $estoque_item->contrato_id = $contrato_item->contrato_id;
-        $estoque_item->n_lote = $request->n_lote;
-        $estoque_item->data_validade = $request->data_validade;
-      } */
-
       $estoque_item = new \App\Estoque_item();
       $estoque_item->quantidade = $request->quantidade;
       $estoque_item->quantidade_danificados = $request->quantidade_danificados;
@@ -280,82 +265,6 @@ class EstoqueController extends Controller
     session()->flash('success', 'Item não existe.');
     return redirect()->route('/estoque/listar');
   }
-
-  //Fora de circulação
-  /* public function abrirEntradaItem(Request $request){
-    $estoque_item = \App\Estoque_item::find($request->id);
-    
-    return view("EntradaItemEstoque", [
-        "estoque_item" => $estoque_item
-    ]);
-  } */
-
-  //Fora de circulação
-  /* public function entradaItem(Request $request){
-    $estoque_item = \App\Estoque_item::find($request->id);
-
-    if (isset($estoque_item)) {
-      $estoque = \App\Estoque::find($estoque_item->estoque_id);
-      if (isset($estoque)) {
-
-        $contrato_item = \App\Contrato_item::find($estoque_item->contrato_id);
-
-        $validator = Validator::make($request->all(), [
-          'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
-          'quantidade' =>             ['required', 'integer', 'between:0,99999'],
-        ],[
-          'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
-          'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
-          'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
-          'quantidade.required' => 'A quantidade é obrigatória',
-          'quantidade.integer' => 'A quantidade deve ser um número inteiro',
-          'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
-        ]);
-  
-        if ($validator->fails()) {
-            return redirect()->route('/estoque/inserirEntrada',[$estoque_item->id])
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-
-        if ($contrato_item->quantidade < $request->quantidade+$request->quantidade_danificados or $contrato_item->quantidade <= 0) {
-          session()->flash('success', 'Contrato não tem quantidade suficiente.');
-          return redirect()->route('/estoque/listar');
-        }
-
-        $estoque_item->quantidade += $request->quantidade;
-        $estoque_item->quantidade_danificados += $request->quantidade_danificados;
-        //$estoque_item->item_id = $request->item_id;
-        //$estoque_item->estoque_id = $request->estoque_id;
-        //$estoque_item->contrato_id = $request->contrato_id;
-        
-        $contrato_item = \App\Contrato_item::where('contrato_id','=',$estoque_item->contrato_id)
-                                           ->where('item_id','=',$estoque_item->item_id)
-                                           ->first();
-        $contrato_item->quantidade -= ($request->quantidade + $request->quantidade_danificados);
-  
-        
-        $estoque_item->save();
-        $contrato_item->save();
-        
-        Log::info('Entrada_Item_Estoque. User ['.$request->user()->id.
-          ']. Method ['.$request->method().
-          ']. Ip ['.$request->ip().
-          ']. Agent ['.$request->header('user-agent').
-          ']. Url ['.$request->path().']');
-        
-          session()->flash('success', 'Entrada de item.');
-        return redirect()->route('/estoque/exibirItensEstoque',[$estoque]);
-      }
-      
-  
-      session()->flash('success', 'Estoque não existe.');
-      return redirect()->route('/estoque/listar');
-    }
-  
-    session()->flash('success', 'Item não existe.');
-    return redirect()->route('/estoque/listar');
-  } */
 
   public function abrirSaidaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
@@ -424,10 +333,7 @@ class EstoqueController extends Controller
       return redirect()->back() ->with('alert', 'Estoque não existe.');
     }
     
-
-    //session()->flash('success', 'Item não existe.');
     return redirect()->back() ->with('alert', 'Item não existe.');
-    //return redirect()->route('/estoque/listar');
   }
 
   /* public function mostrarHistorico(Request $request){
