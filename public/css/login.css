@@ -1,10 +1,14 @@
-	/* Coded with love by Mutiullah Samim */
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+
+/* Coded with love by Mutiullah Samim */
 		body,
 		html {
 			margin: 0;
 			padding: 0;
 			height: 100%;
 			background: url("../img/BACKGROUND-PNG1.png");
+			--font-family-sans-serif: "Nunito", sans-serif;
 		}
 		.user_card {
 			height: 400px;
