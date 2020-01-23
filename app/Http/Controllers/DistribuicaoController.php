@@ -221,11 +221,11 @@ class DistribuicaoController extends Controller
     $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
     $uniqueString = md5(time().$sffledStr).md5(time().$sffledStr);
 
-    $this->gerarDistribuicaoRest($distribuicao);
     $distribuicao->baixada = true;
     $distribuicao->token =$uniqueString;
     $distribuicao->save();
-    
+    $this->gerarDistribuicaoRest($distribuicao);
+
     Log::info('Baixa_Distribuicao. User ['.$request->user()->id.
         ']. Method ['.$request->method().
         ']. Ip ['.$request->ip().
@@ -282,7 +282,7 @@ class DistribuicaoController extends Controller
 
     if (count($distribuicao_itens) > 0) {
       $nova_distribuicao = new \App\Distribuicao();
-      $nova_distribuicao->observacao = '#'.$distribuicao->id;
+      $nova_distribuicao->observacao = 'Complemento da GRR '.$distribuicao->id.', '.now()->format('d-m-Y');
       $nova_distribuicao->escola_id = $distribuicao->escola_id;
       $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
       $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
@@ -299,7 +299,7 @@ class DistribuicaoController extends Controller
         $novo_distribuicao_item->quantidade = $distribuicao_item->quantidade;
         $novo_distribuicao_item->quantidade_danificados = $distribuicao_item->quantidade_danificados;
         $novo_distribuicao_item->quantidade_falta = $distribuicao_item->quantidade_falta;
-        $novo_distribuicao_item->quantidade_total = $distribuicao_item->quantidade_total;
+        $novo_distribuicao_item->quantidade_total = $distribuicao_item->quantidade_falta;
         $novo_distribuicao_item->save();
       }
     }

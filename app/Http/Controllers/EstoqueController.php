@@ -36,7 +36,7 @@ class EstoqueController extends Controller
       ']. Url ['.$request->path().']');
 
     session()->flash('success', 'Estoque cadastrado com sucesso. Insira seus itens.');
-    return redirect()->route('/estoque/novoItemEstoque',[$estoque]);
+    return redirect()->route('/estoque/listar');
   }
 
   public function listar(){
@@ -252,7 +252,7 @@ class EstoqueController extends Controller
     return redirect()->route('/estoque/listar');
   }
 
-  public function removerItem(Request $request){
+  public function removerItem(Request $request){//Essa operação deve gerar uma GRR?
     $estoque_item = \App\Estoque_item::find($request->id);
     
 
@@ -281,15 +281,17 @@ class EstoqueController extends Controller
     return redirect()->route('/estoque/listar');
   }
 
-  public function abrirEntradaItem(Request $request){
+  //Fora de circulação
+  /* public function abrirEntradaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
     
     return view("EntradaItemEstoque", [
         "estoque_item" => $estoque_item
     ]);
-  }
+  } */
 
-  public function entradaItem(Request $request){
+  //Fora de circulação
+  /* public function entradaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
 
     if (isset($estoque_item)) {
@@ -353,7 +355,7 @@ class EstoqueController extends Controller
   
     session()->flash('success', 'Item não existe.');
     return redirect()->route('/estoque/listar');
-  }
+  } */
 
   public function abrirSaidaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);

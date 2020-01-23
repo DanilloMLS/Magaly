@@ -2,26 +2,12 @@
 
 @section('content')
 
-<script language= 'javascript'>
-function avisoDeletar(id){
-  if(confirm ('Esta ação removerá do sistema todos os contratos deste fornecedor. Deseja realmente excluí-lo? ')) {
-    location.href="/fornecedor/remover/"+id;
-  }
-  else {
-    return false;
-  }
-}
-
-function editar(id){
-  location.href="/fornecedor/editar/"+id;
-}
-</script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Fornecedores') }}</div>
+                <div class="card-header">{{ __('Itens desta ordem de fornecimento') }}</div>
 
                 <div class="card-body">
 
@@ -32,43 +18,47 @@ function editar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($fornecedores) == 0 and count($fornecedores) == 0)
+                      @if(count($ordem_itens) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhum fornecedor cadastrado no sistema.
+                              Não há nenhum item nesta ordem de fornecimento.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
-                          <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
+                      <input type="text" id="termo" onkeyup="buscar()" placeholder="Busca">
                       </div>
-                          <br>
                         <div id="tabela" class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
                                   <th>Nome</th>
-                                  <th>CNPJ</th>
-                                  <th>Telefone</th>
-                                  <th>Email</th>
+                                  <th>Marca</th>
+                                  <th>Descrição</th>
+                                  <th>Gramatura</th>
+                                  <th>Quantidade</th>
+                                  <th colspan="2">Ações</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($fornecedores as $fornecedor)
+                              @foreach ($ordem_itens as $ordem_item)
                                 <tr>
-                                    <td data-title="Nome">{{ $fornecedor->nome }}</td>
-                                    <td data-title="CNPJ">{{ $fornecedor->cnpj }}</td>
-                                    <td data-title="Telefone">{{ $fornecedor->telefone }}</td>
-                                    <td data-title="Email">{{ $fornecedor->email }}</td>
+                                    @php
+                                      $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
+                                      $item = \App\Item::find($contrato_item->item_id);
+                                    @endphp
+                                    <td data-title="Nome">{{ $item->nome }}</td>
+                                    <td data-title="Marca">{{ $item->marca }}</td>
+                                    <td data-title="Descrição">{{ $item->descricao }}</td>
+                                    <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
+                                    <td data-title="Quantidade">{{ $ordem_item->quantidade_pedida }}</td>
 
-                                    @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
-                                      <td align="right">
-                                        <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
-                                          <img src="/img/edit.png" class="tamIconsPadrao">
-                                        </a>
-                                        <a class="btn btn-primary" title="Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/telaCadastrar", ['id' => $fornecedor->id])}}">
-                                          <img src="/img/down_arrow.png" class="tamIconsPadrao">
-                                        </a>
-                                      </td>
-                                    @endif
+                                    <td>
+                                      <a class="btn btn-primary" href="{{route('/ordemfornecimento/editarOrdemItem',['id' => $ordem_item->id])}}">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
+                                    </td>
+
+
+                                    <td></td>
                                 </tr>
                               @endforeach
 
@@ -76,6 +66,9 @@ function editar(id){
                           </table>
                         </div>
                       @endif
+                  </div>
+                  <div class="panel-footer">
+                      <a class="btn btn-primary" href="{{route ('/ordemfornecimento/listar')}}">Voltar</a>
                   </div>
                 </div>
             </div>
