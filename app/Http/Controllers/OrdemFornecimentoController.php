@@ -33,6 +33,17 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
+     * Exibe uma lista de ordens de fornecimento de um fornecedor
+     */
+    public function listarOrdemForn(Request $request)
+    {
+        $ordem_fornecimentos = \App\OrdemFornecimento::where('fornecedor_id', $request->id)->get();
+        return view("ListarOrdemFornecimentos", [
+            "ordem_fornecimentos" => $ordem_fornecimentos,
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -324,18 +335,19 @@ class OrdemFornecimentoController extends Controller
      */
     public function abreBaixa(Request $request)
     {
-        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
-        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id);
+        $ordem_fornecimento = \App\OrdemFornecimento::find($request->id); 
 
         if (isset($ordem_fornecimento)) {
             $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
 
-            return view("BaixaOrdemFornecimento", [
-                'ordem_itens' => $ordem_itens
-            ]);
+            if (count($ordem_itens) > 0) {
+                return view("BaixaOrdemFornecimento", [
+                    'ordem_itens' => $ordem_itens
+                ]);
+            }
+            return redirect()->back()->with('success', 'Não há itens nessa ordem.');
         }
-
-        return redirect()->back()->with('alert', 'A ordem de fornecimento não existe.');
+        return redirect()->back()->with('success', 'A ordem de fornecimento não existe.');
     }
 
     /**
@@ -355,54 +367,71 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Realiza a baixa na Ordem de Fornecimento
+     * Realiza as movimentações referentes à baixa da Ordem de Fornecimento
      */
     public function baixaOrdem(Request $request)
     {
         $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
         $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
 
-        if (isset($ordem_fornecimento)) {
+        if (isset($ordem_fornecimento) || $ordem_fornecimento->ehcompleta == false) {
             $estoque = \App\Estoque::find($ordem_fornecimento->estoque_id);
+            
             if (isset($ordem_itens)) {
                 foreach ($ordem_itens as $ordem_item) {
-                    //tratar os itens de contrato removidos antes da baixa
-                    $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
-                    $contrato_item->quantidade -= $ordem_item->quantidade_aceita;
-                    
-                    $estoque_item = \App\Estoque_item::where('item_id', $contrato_item->item_id)
-                                                     ->where('contrato_id', $contrato_item->contrato_id)
-                                                     ->where('data_validade', $ordem_item->data_validade)
-                                                     ->where('n_lote', $ordem_item->n_lote)->first();
+                    if ($ordem_item->quantidade_restante > 0 && $ordem_item->quantidade_aceita > 0) {
+                        //Itens de contrato removidos antes da baixa
+                        $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
+                        $contrato_item->quantidade -= $ordem_item->quantidade_aceita;
+                        $contrato_item->save();
+                        
+                        $estoque_item = \App\Estoque_item::where('item_id', $contrato_item->item_id)
+                                                        ->where('contrato_id', $contrato_item->contrato_id)
+                                                        ->where('data_validade', $ordem_item->data_validade)
+                                                        ->where('n_lote', $ordem_item->n_lote)->first();
 
-                    //Verifica se o item existia no estoque ou se criará um novo item
-                    if (isset($estoque_item)) {
-                        $estoque_item->quantidade += $ordem_item->quantidade_aceita;
-                        $estoque_item->save();
-                    } else {
-                        $estoque_item = new \App\Estoque_item();
-                        $estoque_item->item_id = $contrato_item->item_id;
-                        $estoque_item->quantidade_danificados = 0;
-                        $estoque_item->quantidade = $ordem_item->quantidade_aceita;
-                        $estoque_item->estoque_id = $estoque->id;
-                        $estoque_item->contrato_id = $contrato_item->contrato_id;
-                        $estoque_item->n_lote = $ordem_item->n_lote;
-                        $estoque_item->data_validade = $ordem_item->data_validade;
-                        $estoque_item->save();
+                        //Verifica se o item existia no estoque ou se criará um novo item
+                        if (isset($estoque_item)) {
+                            $estoque_item->quantidade += $ordem_item->quantidade_aceita;
+                            $estoque_item->save();
+                        } else {
+                            $estoque_item = new \App\Estoque_item();
+                            $estoque_item->item_id = $contrato_item->item_id;
+                            $estoque_item->quantidade_danificados = 0;
+                            $estoque_item->quantidade = $ordem_item->quantidade_aceita;
+                            $estoque_item->estoque_id = $estoque->id;
+                            $estoque_item->contrato_id = $contrato_item->contrato_id;
+                            $estoque_item->n_lote = $ordem_item->n_lote;
+                            $estoque_item->data_validade = $ordem_item->data_validade;
+                            $estoque_item->save();
+                        }
+
+                        $ordem_item->quantidade_restante -= $ordem_item->quantidade_aceita;
+
+                        $ordem_servicos = \App\OrdemServico::where('ordem_item_id', $ordem_item->id)->get();
+                        $ordem_servico = new \App\OrdemServico();
+                        $ordem_servico->ordem_item_id = $ordem_item->id;
+                        $ordem_servico->quantidade = $ordem_item->quantidade_aceita;
+                        $ordem_servico->observacao = $ordem_item->osbervacao;
+                        $ordem_servico->n_ordem = count($ordem_servicos) + 1;
+                        $ordem_servico->save();
+
+                        $ordem_item->quantidade_aceita = 0;
+                        $ordem_item->save();
                     }
-
-                    session()->flash('success', 'Baixa realizada com sucesso.');
-                    return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
-                        'id' => $estoque->id
-                    ]);
                 }
+                $this->verificaRestante($ordem_fornecimento);
+                session()->flash('success', 'Baixa realizada com sucesso.');
+                return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
+                    'id' => $estoque->id
+                ]);
             }
             session()->flash('success', 'Não há itens.');
             return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
                 'id' => $estoque->id
             ]);
         }
-        session()->flash('success', 'A ordem não existe.');
+        session()->flash('success', 'A ordem não existe ou está completa.');
         return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
             'id' => $estoque->id
         ]);
@@ -445,5 +474,27 @@ class OrdemFornecimentoController extends Controller
         }
 
         return redirect()->back()->with('alert', 'O item não existe');
+    }
+
+    /**
+     * Verifica se a Ordem de Fornecimento tem algum item restante
+     */
+    private function verificaRestante(OrdemFornecimento $ordem_fornecimento)
+    {
+        $ordem_flag = true;
+        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)->get();
+
+        if (isset($request)) {
+            foreach ($ordem_itens as $ordem_item) {
+                if ($ordem_item->quantidade_restante != 0) {
+                    $ordem_fornecimento->ehcompleta = false;
+                    return null;
+                } else {
+                    
+                }
+            }
+            $ordem_fornecimento->ehcompleta = true;
+            $ordem_fornecimento->save();
+        }
     }
 }
