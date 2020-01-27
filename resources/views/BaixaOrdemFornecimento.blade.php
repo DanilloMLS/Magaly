@@ -66,13 +66,19 @@
                                     <td>
                                       @if ($ordem_item->quantidade_restante > 0)
                                         @if ($ordem_item->quantidade_aceita == 0)
-                                          <a title="Revisar quantidade" class="btn btn-primary" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
-                                            <img src="/img/edit.png" height="21" width="17" align = "right">
+                                          <a title="Revisar quantidade" class="btn btn-secondary" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
+                                            <img src="/img/item_rev.png" height="21" width="17" align = "right">
                                           </a>
                                         @else
-                                          <a title="Corrigir" class="btn btn-success" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
-                                            <img src="/img/contra.png" height="21" width="17" align = "right">
-                                          </a>
+                                          @if ($ordem_item->quantidade_aceita < $ordem_item->quantidade_restante)
+                                            <a title="Corrigir" class="btn btn-warning" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
+                                              <img src="/img/item_correct.png" height="21" width="17" align = "right">
+                                            </a>
+                                          @else
+                                            <a title="Corrigir" class="btn btn-success" href="{{ route ("/ordemfornecimento/baixaItem", ['id' => $ordem_item->id])}}">
+                                              <img src="/img/item_correct.png" height="21" width="17" align = "right">
+                                            </a>
+                                          @endif
                                         @endif
                                       @endif
                                     </td>
@@ -89,8 +95,7 @@
                   </div>
                   <div class="panel-footer">
                       <a id="btnconcluir" class="btn btn-primary" href="{{ route ('/ordemfornecimento/baixaOrdem', ['id' => $ordem_item->ordem_fornecimento_id])}}">Concluir</a>
-                      {{-- onClick="avisoBaixa({{$distribuicao->id}});" --}}
-                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
+                      <a class="btn btn-primary" href="{{ route ('/ordemfornecimento/listar') }}">Voltar</a>
 
                   </div>
                 </div>

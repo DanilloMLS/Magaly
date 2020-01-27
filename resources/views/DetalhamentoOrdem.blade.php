@@ -53,7 +53,7 @@
                   </div>
 
                   <div class="panel-footer">
-                      <a class="btn btn-primary" href="{{route ('/ordemfornecimento/listarItensOrdem', ['id' => $ordem_servico->ordem_item_id])}}">Voltar</a>
+                      <a class="btn btn-primary" href="{{URL::previous()}}">Voltar</a>
                   </div>
                 </div>
             </div>
