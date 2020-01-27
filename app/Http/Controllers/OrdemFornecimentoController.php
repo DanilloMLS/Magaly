@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\OrdemFornecimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class OrdemFornecimentoController extends Controller
 {
@@ -101,6 +102,12 @@ class OrdemFornecimentoController extends Controller
         $ordem_fornecimento->estoque_id = $request->estoque_id;
         $ordem_fornecimento->save();
 
+        Log::info('Cadastro_Ordem_Fornecimento. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+
         session()->flash('success','Ordem de Fornecimento cadsatrada com sucesso.');
         return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
             'id' => $ordem_fornecimento->id,
@@ -163,6 +170,12 @@ class OrdemFornecimentoController extends Controller
         $ordem_item->quantidade_restante = $request->quantidade_pedida;
         $ordem_item->save();
 
+        Log::info('Item_Inserido_Ordem. User ['.$request->user()->id.
+          ']. Method ['.$request->method().
+          ']. Ip ['.$request->ip().
+          ']. Agent ['.$request->header('user-agent').
+          ']. Url ['.$request->path().']');
+
         return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
             'id' => $ordem_fornecimento->id,
         ]);
@@ -180,6 +193,13 @@ class OrdemFornecimentoController extends Controller
             $ordem_fornecimento = \App\OrdemFornecimento::find($ordem_item->ordem_fornecimento_id);
 
             $ordem_item->delete();
+
+            Log::info('Item_Removido_Ordem. User ['.$request->user()->id.
+                ']. Method ['.$request->method().
+                ']. Ip ['.$request->ip().
+                ']. Agent ['.$request->header('user-agent').
+                ']. Url ['.$request->path().']');
+
             return redirect()->route('/ordemfornecimento/inserirItemOrdem', [
                 'id' => $ordem_fornecimento->id,
             ]);
@@ -290,6 +310,12 @@ class OrdemFornecimentoController extends Controller
             $ordem_item->quantidade_restante = $request->quantidade_pedida;
             $ordem_item->save();
 
+            Log::info('Item_Alterado_Ordem. User ['.$request->user()->id.
+                ']. Method ['.$request->method().
+                ']. Ip ['.$request->ip().
+                ']. Agent ['.$request->header('user-agent').
+                ']. Url ['.$request->path().']');
+
             session()->flash('success', 'Item alterado com sucesso.');
             return redirect()->route('/ordemfornecimento/listarItensOrdem', [
                 'id' => $ordem_item->ordem_fornecimento_id
@@ -315,6 +341,13 @@ class OrdemFornecimentoController extends Controller
             $ordem_fornecimento->estoque_id = $request->estoque_id;
             $ordem_fornecimento->save();
 
+            Log::info('Ordem_Alterada. User ['.$request->user()->id.
+                ']. Method ['.$request->method().
+                ']. Ip ['.$request->ip().
+                ']. Agent ['.$request->header('user-agent').
+                ']. Url ['.$request->path().']');
+
+            session()->flash('success', 'Ordem de Fornecimento alterada.');
             return redirect()->route('/ordemfornecimento/listar');
         }
         
@@ -423,6 +456,13 @@ class OrdemFornecimentoController extends Controller
                     }
                 }
                 $this->verificaRestante($ordem_fornecimento);
+
+                Log::info('Baixa_Ordem. User ['.$request->user()->id.
+                    ']. Method ['.$request->method().
+                    ']. Ip ['.$request->ip().
+                    ']. Agent ['.$request->header('user-agent').
+                    ']. Url ['.$request->path().']');
+                    
                 session()->flash('success', 'Baixa realizada com sucesso.');
                 return redirect()->route('/ordemfornecimento/listarOrdemEstoque', [
                     'id' => $estoque->id
@@ -470,6 +510,12 @@ class OrdemFornecimentoController extends Controller
             $ordem_item->data_validade = $request->data_validade;
             $ordem_item->save();
 
+            Log::info('Revisao_Item_Ordem. User ['.$request->user()->id.
+                ']. Method ['.$request->method().
+                ']. Ip ['.$request->ip().
+                ']. Agent ['.$request->header('user-agent').
+                ']. Url ['.$request->path().']');
+                
             return redirect()->route('/ordemfornecimento/novaBaixa', [
                 'id' => $ordem_item->ordem_fornecimento_id
             ]);
