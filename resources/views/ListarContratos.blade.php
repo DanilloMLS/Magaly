@@ -79,7 +79,7 @@
                                         <a title="Editar Contrato" class="btn btn-primary" href="{{ route ("/contrato/editar", ['id' => $contrato->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
-                                        <a class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
+                                        <a title="Adicionar Item" class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
                                           <img src="/img/add_item.png" class="tamIconsPadrao">
                                         </a>
                                       </td>
