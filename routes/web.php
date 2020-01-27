@@ -197,6 +197,7 @@ Route::get('/ordemfornecimento/removerItem/{id}', 'OrdemFornecimentoController@r
 Route::get('/ordemfornecimento/listarOrdemEstoque/{id}', 'OrdemFornecimentoController@listarOrdemEstoque')->name('/ordemfornecimento/listarOrdemEstoque')->middleware('adm');
 Route::get('/ordemfornecimento/listarOrdemForn/{id}', 'OrdemFornecimentoController@listarOrdemForn')->name('/ordemfornecimento/listarOrdemForn')->middleware('adm');
 Route::get('/ordemfornecimento/listarItensOrdem/{id}', 'OrdemFornecimentoController@listarItensOrdem')->name('/ordemfornecimento/listarItensOrdem')->middleware('adm');
+Route::get('/ordemfornecimento/listarOrdemServ/{id}', 'OrdemFornecimentoController@listarOrdemServ')->name('/ordemfornecimento/listarOrdemServ')->middleware('adm');
 Route::get('/ordemfornecimento/editarOrdemItem/{id}', 'OrdemFornecimentoController@editarOrdemItem')->name('/ordemfornecimento/editarOrdemItem')->middleware('adm');
 Route::post('/ordemfornecimento/salvarItem', 'OrdemFornecimentoController@salvarItem')->name('/ordemfornecimento/salvarItem')->middleware('adm');
 Route::get('/ordemfornecimento/novaBaixa/{id}', 'OrdemFornecimentoController@abreBaixa')->name('/ordemfornecimento/novaBaixa')->middleware('adm');

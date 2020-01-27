@@ -55,6 +55,9 @@
                                       <a class="btn btn-primary" href="{{route('/ordemfornecimento/editarOrdemItem',['id' => $ordem_item->id])}}">
                                         <img src="/img/edit.png" height="21" width="17" align = "right">
                                       </a>
+                                      <a class="btn btn-primary" href="{{route('/ordemfornecimento/listarOrdemServ',['id' => $ordem_item->id])}}">
+                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                      </a>
                                     </td>
 
 

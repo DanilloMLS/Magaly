@@ -208,15 +208,17 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\OrdemFornecimento  $ordemFornecimento
-     * @return \Illuminate\Http\Response
+     * Exibe uma lista com as Ordens de Serviço de um item de uma Ordem de Fornecimento
      */
-    public function exibirOrdem(OrdemFornecimento $ordemFornecimento)
+    public function listarOrdemServ(Request $request)
     {
-        //
+        $ordem_servicos = \App\OrdemServico::where('ordem_item_id', $request->id)->get();
+        //$ordem_servicos = \App\OrdemServico::all();
+        return view("DetalhamentoOrdem", [
+            "ordem_servicos" => $ordem_servicos,
+        ]);
     }
+
 
     /**
      * Apresenta o formulário para edição da Ordem de Fornecimento.
