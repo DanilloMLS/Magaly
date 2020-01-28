@@ -134,11 +134,13 @@ Route::post('/estoque/salvar', 'EstoqueController@salvar')->name('/estoque/salva
 Route::get('/estoque/remover/{id}', 'EstoqueController@remover')->name('/estoque/remover')->middleware('adm');
 Route::get('/estoque/finalizarEstoque/{id}', 'EstoqueController@finalizarEstoque')->name('/estoque/finalizarEstoque')->middleware('adm');
 Route::get('/estoque/exibirItensEstoque/{id}', 'EstoqueController@exibirItensEstoque')->name('/estoque/exibirItensEstoque')->middleware('auth');
-Route::post('/estoque/novoItem', 'EstoqueController@novoItem')->name('/estoque/novoItem')->middleware('adm');
+Route::get('/estoque/abreCorrItem/{id}', 'EstoqueController@abreCorrItem')->name('/estoque/abreCorrItem')->middleware('adm');
+Route::post('/estoque/correcaoItem', 'EstoqueController@correcaoItem')->name('/estoque/correcaoItem')->middleware('adm');
+//Route::post('/estoque/novoItem', 'EstoqueController@novoItem')->name('/estoque/novoItem')->middleware('adm');
 //Route::get('/estoque/novoItemEstoque/{id}', 'EstoqueController@buscarEstoque')->name('/estoque/novoItemEstoque')->middleware('adm'); //retirar de circulação
 Route::get('/estoque/removerItem/{id}', 'EstoqueController@removerItem')->name('/estoque/removerItem')->middleware('adm');
-Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')->name('/estoque/inserirEntrada')->middleware('adm');
-Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('adm');
+//Route::get('/estoque/inserirEntrada/{id}', 'EstoqueController@abrirEntradaItem')->name('/estoque/inserirEntrada')->middleware('adm');
+//Route::post('/estoque/abrirEntrada', 'EstoqueController@entradaItem')->name('/estoque/abrirEntrada')->middleware('adm');
 Route::get('/estoque/inserirSaida/{id}', 'EstoqueController@abrirSaidaItem')->name('/estoque/inserirSaida')->middleware('adm');
 Route::post('/estoque/abrirSaida', 'EstoqueController@saidaItem')->name('/estoque/abrirSaida')->middleware('adm');
 //Route::get('/estoque/historicoEstoque/{id}', 'EstoqueController@mostrarHistorico')->name('/estoque/historicoEstoque')->middleware('auth');

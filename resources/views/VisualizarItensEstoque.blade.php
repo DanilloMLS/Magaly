@@ -71,8 +71,8 @@
                                     <td data-title="Quantidade disponível">{{ $item_estoque->quantidade }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary" title="Entrada de Item" href="{{ route ("/estoque/inserirEntrada", ['id' => $item_estoque->id])}}">
-                                          <img src="/img/entrance.png" height="21" width="17" align = "right">                                          
+                                        <a class="btn btn-primary" title="Corrigir Quantidade" href="{{ route ("/estoque/abreCorrItem", ['id' => $item_estoque->id]) }}">
+                                          <img src="/img/stoc_rev.png" height="21" width="17" align = "right">                                          
                                         </a>
                                     </td>
                                     <td>

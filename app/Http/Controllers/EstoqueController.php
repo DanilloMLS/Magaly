@@ -274,6 +274,9 @@ class EstoqueController extends Controller
     ]);
   }
 
+  /**
+   * 
+   */
   public function saidaItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
 
@@ -334,6 +337,57 @@ class EstoqueController extends Controller
     }
     
     return redirect()->back() ->with('alert', 'Item não existe.');
+  }
+
+  /**
+   * Abre o formulário para correção na quantidade de um item do Estoque
+   */
+  public function abreCorrItem(Request $request)
+  {
+    $estoque_item = \App\Estoque_item::find($request->id);
+
+    return view("CorrigirItemEstoque", [
+      'estoque_item' => $estoque_item
+    ]);
+  }
+
+  public function correcaoItem(Request $request)
+  {
+    $estoque_item = \App\Estoque_item::find($request->id);
+
+    if (isset($estoque_item)) {
+      $validator = Validator::make($request->all(), [
+        'quantidade_danificados' => ['required', 'integer', 'between:0,99999'],
+        'quantidade' =>             ['required', 'integer', 'between:0,99999'],
+      ],[
+        'quantidade_danificados.required' => 'A quantidade danificada é obrigatória',
+        'quantidade_danificados.integer' => 'A quantidade danificada deve ser um número inteiro',
+        'quantidade_danificados.between' => 'A quantidade danificada deve estar entre 0 e 99999',
+        'quantidade.required' => 'A quantidade é obrigatória',
+        'quantidade.integer' => 'A quantidade deve ser um número inteiro',
+        'quantidade.between' => 'A quantidade deve estar entre 0 e 99999',
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('/estoque/abreCorrItem',[$estoque_item->id])
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
+      $estoque_item->quantidade = $request->quantidade;
+      $estoque_item->quantidade_danificados = $request->quantidade_danificados;
+      $estoque_item->save();
+
+      session()->flash('success', 'Quantidades atualizadas com sucesso.');
+      return redirect()->route('/estoque/exibirItensEstoque', [
+        'id' => $estoque_item->estoque_id
+      ]);
+    }
+
+    session()->flash('success', 'O item não existe.');
+    return redirect()->route('/estoque/exibirItensEstoque', [
+      'id' => $estoque_item->estoque_id
+    ]);
   }
 
   /* public function mostrarHistorico(Request $request){
