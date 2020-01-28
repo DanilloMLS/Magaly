@@ -181,6 +181,11 @@ Route::get('/cardapio/exibirItensCardapio/{id}', 'CardapioController@exibirCarda
 Route::get('/cardapio/cadastrarCardapioSemanal/{id}', 'CardapioController@buscarCardapio')->name('/cardapio/cadastrarCardapioSemanal')->middleware('adm');
 Route::get('/cardapio/inserirNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@buscarInserirRefeicao')->name('/cardapio/inserirNovaRefeicao')->middleware('adm');
 Route::get('/cardápio/editar/{id}', 'CardapioController@editar')->name('/cardapio/editar')->middleware('adm');
+Route::get('/cardapio/editarCardapioSemanal/{id}', 'CardapioController@editarCardapio')->name('/cardapio/editarCardapioSemanal')->middleware('adm');
+Route::get('/cardapio/editarRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}/{refeicao}', 'CardapioController@editarRefeicaoCardapio')->name('/cardapio/editarRefeicao')->middleware('adm');
+Route::get('/cardapio/editarNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@editarInserirRefeicao')->name('/cardapio/editarNovaRefeicao')->middleware('adm');
+Route::post('/cardapio/editarItem', 'CardapioController@editarItemCardapio')->name('/cardapio/editarItem')->middleware('adm');
+
 
 //Ordem de fornecimento
 Route::get('/ordemfornecimento/telaCadastrar/{id}', 'OrdemFornecimentoController@telaCadastrar')->name('/ordemfornecimento/telaCadastrar')->middleware('adm');
@@ -190,7 +195,9 @@ Route::get('/ordemfornecimento/inserirItemOrdem/{id}', 'OrdemFornecimentoControl
 Route::post('/ordemfornecimento/inserirItem', 'OrdemFornecimentoController@inserirItem')->name('/ordemfornecimento/inserirItem')->middleware('adm');
 Route::get('/ordemfornecimento/removerItem/{id}', 'OrdemFornecimentoController@removerItem')->name('/ordemfornecimento/removerItem')->middleware('adm');
 Route::get('/ordemfornecimento/listarOrdemEstoque/{id}', 'OrdemFornecimentoController@listarOrdemEstoque')->name('/ordemfornecimento/listarOrdemEstoque')->middleware('adm');
+Route::get('/ordemfornecimento/listarOrdemForn/{id}', 'OrdemFornecimentoController@listarOrdemForn')->name('/ordemfornecimento/listarOrdemForn')->middleware('adm');
 Route::get('/ordemfornecimento/listarItensOrdem/{id}', 'OrdemFornecimentoController@listarItensOrdem')->name('/ordemfornecimento/listarItensOrdem')->middleware('adm');
+Route::get('/ordemfornecimento/listarOrdemServ/{id}', 'OrdemFornecimentoController@listarOrdemServ')->name('/ordemfornecimento/listarOrdemServ')->middleware('adm');
 Route::get('/ordemfornecimento/editarOrdemItem/{id}', 'OrdemFornecimentoController@editarOrdemItem')->name('/ordemfornecimento/editarOrdemItem')->middleware('adm');
 Route::post('/ordemfornecimento/salvarItem', 'OrdemFornecimentoController@salvarItem')->name('/ordemfornecimento/salvarItem')->middleware('adm');
 Route::get('/ordemfornecimento/novaBaixa/{id}', 'OrdemFornecimentoController@abreBaixa')->name('/ordemfornecimento/novaBaixa')->middleware('adm');
@@ -199,13 +206,3 @@ Route::post('/ordemfornecimento/revisaItem', 'OrdemFornecimentoController@revisa
 Route::get('/ordemfornecimento/editarOrdem/{id}', 'OrdemFornecimentoController@editarOrdem')->name('/ordemfornecimento/editarOrdem')->middleware('adm');
 Route::post('/ordemfornecimento/salvarOrdem', 'OrdemFornecimentoController@salvarOrdem')->name('/ordemfornecimento/salvarOrdem')->middleware('adm');
 Route::get('/ordemfornecimento/baixaOrdem/{id}', 'OrdemFornecimentoController@baixaOrdem')->name('/ordemfornecimento/baixaOrdem')->middleware('adm');
-
-Route::get('/cardapio/editarCardapioSemanal/{id}', 'CardapioController@editarCardapio')->name('/cardapio/editarCardapioSemanal')->middleware('adm');
-Route::get('/cardapio/editarRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}/{refeicao}', 'CardapioController@editarRefeicaoCardapio')->name('/cardapio/editarRefeicao')->middleware('adm');
-Route::get('/cardapio/editarNovaRefeicao/{dia}/{cardapio_semanal}/{cardapio_mensal}','CardapioController@editarInserirRefeicao')->name('/cardapio/editarNovaRefeicao')->middleware('adm');
-Route::post('/cardapio/editarItem', 'CardapioController@editarItemCardapio')->name('/cardapio/editarItem')->middleware('adm');
-
-
-//Log Activity
-//Route::get('add-to-log', 'HomeController@myTestAddToLog');
-//Route::get('/LogActivity', 'HomeController@logActivity')->name('/logActivity')->middleware('adm');

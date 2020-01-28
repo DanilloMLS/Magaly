@@ -32,6 +32,7 @@
                               <tr>
                                   <th>Nome</th>
                                   <th>Marca</th>
+                                  <th>Contrato</th>
                                   <th>Descrição</th>
                                   <th>Gramatura</th>
                                   <th>Quantidade</th>
@@ -44,16 +45,21 @@
                                     @php
                                       $contrato_item = \App\Contrato_item::find($ordem_item->contratoitem_id);
                                       $item = \App\Item::find($contrato_item->item_id);
+                                      $contrato = \App\Contrato::find($contrato_item->contrato_id);
                                     @endphp
                                     <td data-title="Nome">{{ $item->nome }}</td>
                                     <td data-title="Marca">{{ $item->marca }}</td>
+                                    <td data-title="Contrato">{{ $contrato->n_contrato }}</td>
                                     <td data-title="Descrição">{{ $item->descricao }}</td>
                                     <td data-title="Gramatura">{{ $item->gramatura }}{{ $item->unidade }}</td>
                                     <td data-title="Quantidade">{{ $ordem_item->quantidade_pedida }}</td>
 
-                                    <td>
-                                      <a class="btn btn-primary" href="{{route('/ordemfornecimento/editarOrdemItem',['id' => $ordem_item->id])}}">
-                                        <img src="/img/edit.png" height="21" width="17" align = "right">
+                                    <td class="width4icons" align="left">
+                                      <a title="Editar Item" class="btn btn-primary" href="{{route('/ordemfornecimento/editarOrdemItem',['id' => $ordem_item->id])}}">
+                                        <img src="/img/edit.png" height="21" width="17">
+                                      </a>
+                                      <a title="Listar Ordens" class="btn btn-primary" href="{{route('/ordemfornecimento/listarOrdemServ',['id' => $ordem_item->id])}}">
+                                        <img src="/img/list.png" height="21" width="17">
                                       </a>
                                     </td>
 
@@ -68,6 +74,7 @@
                       @endif
                   </div>
                   <div class="panel-footer">
+                      <a class="btn btn-primary" href="{{route ('/ordemfornecimento/inserirItemOrdem', ['id' => $ordem_item->ordem_fornecimento_id])}}">Inserir Itens</a>
                       <a class="btn btn-primary" href="{{route ('/ordemfornecimento/listar')}}">Voltar</a>
                   </div>
                 </div>

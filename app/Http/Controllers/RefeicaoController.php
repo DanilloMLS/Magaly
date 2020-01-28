@@ -127,13 +127,7 @@ class RefeicaoController extends Controller
 
   public function finalizarRefeicao(Request $request) {
     $refeicao = \App\Refeicao::find($request->id);
-    /* $itens_refeicao = \App\Refeicao_item::where('refeicao_id', '=', $refeicao->id)->get();
-    $quantidade = 0;
-    foreach ($itens_refeicao as $item_refeicao) {
-      $quantidade = $quantidade + $item_refeicao->quantidade;
-    }
-    $refeicao->quantidade_total = $quantidade;
-    $refeicao->save(); */
+    
     $this->calcularPeso($refeicao);
 
     Log::info('Calculo_Peso_Refeicao. User ['.$request->user()->id.

@@ -75,7 +75,6 @@ class CardapioController extends Controller
 
     session()->flash('success', 'Cardápio cadastrado com sucesso.');
     return redirect()->route('/cardapio/editarCardapioSemanal',[$cardapio_mensal]);
-    //return view("EditarCardapioSemanal", ["cardapio" => $cardapio_mensal]);
   }
   
   public function cadastrar_cardapio_semanal($cardapio_mensal, $semana) {
