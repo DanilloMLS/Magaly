@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public static function index()
     {
+        $data_nada_04 = [["Nada", 1, 0, "Nada"],["Nada", 1, 0, "Nada"],["Nada", 1, 0, "Nada"],["Nada", 1, 0, "Nada"],["Nada", 1, 0, "Nada"]];
         $data_nada_03 = [["Nada", 1, "#fe9363"], ["Nada", 1, "#fed948"],["Nada", 1, "#24fe8f"], ["Nada", 1, "#8a70b8"],["Nada", 1, "#8ad1fe"]];
         $data_nada_02 = [["Nada", 1], ["Nada", 1],["Nada", 1], ["Nada", 1],["Nada", 1]];
         $data01 = [];
@@ -133,7 +134,7 @@ class HomeController extends Controller
             }
             $nome_estoque = $estoque->nome;
         }else{
-            $data03 = $data_nada_03;
+            $data03 = $data_nada_04;
         }
 
         /*Início da coleta de dados do gráfico 04*/
