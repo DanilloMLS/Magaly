@@ -24,7 +24,7 @@ class OrdemFornecimentoController extends Controller
             ]);
         }
 
-        session()->flash('alert', 'Não há ordens de fornecimento');
+        session()->flash('success', 'Não há ordens de fornecimento');
         return redirect()->route('/estoque/listar');
     }
 
@@ -42,7 +42,7 @@ class OrdemFornecimentoController extends Controller
             ]);
         }
 
-        session()->flash('alert', 'Não há ordens de fornecimento');
+        session()->flash('success', 'Não há ordens de fornecimento para esse estoque');
         return redirect()->route('/estoque/listar');
     }
 
@@ -60,8 +60,8 @@ class OrdemFornecimentoController extends Controller
             ]);
         }
 
-        session()->flash('alert', 'Não há ordens de fornecimento');
-        return redirect()->route('/estoque/listar');
+        session()->flash('success', 'Não há ordens de fornecimento');
+        return redirect()->route('/fornecedor/listar');
     }
 
     /**

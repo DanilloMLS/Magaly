@@ -63,7 +63,7 @@ function avisoDeletar(id){
                                       </a>
                                       @if ($ordem_fornecimento->ehcompleta == FALSE)
                                         <a title="Dar Baixa" class="btn btn-primary" href="{{route("/ordemfornecimento/novaBaixa", ['id' => $ordem_fornecimento->id])}}">
-                                          <img src="/img/down_order.png" class="tamIconsPadrao">
+                                          <img src="/img/rec_order.png" class="tamIconsPadrao">
                                         </a>
                                       @endif
                                     </td>
