@@ -105,6 +105,7 @@ class OrdemFornecimentoController extends Controller
         $validator = Validator::make($request->all(), [
             'observacao' => ['nullable', 'string', 'max:255'],
             'estoque_id' => ['required', 'integer', 'exists:estoques,id'],
+            'data'       => ['required', 'after_or_equal:-5 years']
             ],[
             'observacao.max' => 'Observação deve ter no máximo 255 caracteres',
             'estoque_id.required' => 'Escolha um estoque',
@@ -120,6 +121,7 @@ class OrdemFornecimentoController extends Controller
         $ordem_fornecimento->fornecedor_id = $request->fornecedor_id;
         $ordem_fornecimento->observacao = $request->observacao;
         $ordem_fornecimento->estoque_id = $request->estoque_id;
+        $ordem_fornecimento->data = $request->data;
         $ordem_fornecimento->save();
 
         Log::info('Cadastro_Ordem_Fornecimento. User ['.$request->user()->id.
@@ -363,6 +365,7 @@ class OrdemFornecimentoController extends Controller
         if (isset($ordem_fornecimento)) {
             $ordem_fornecimento->observacao = $request->observacao;
             $ordem_fornecimento->estoque_id = $request->estoque_id;
+            $ordem_fornecimento->data = $request->data;
             $ordem_fornecimento->save();
 
             Log::info('Ordem_Alterada. User ['.$request->user()->id.

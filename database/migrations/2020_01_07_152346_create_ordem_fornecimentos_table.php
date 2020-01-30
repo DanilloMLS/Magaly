@@ -21,6 +21,7 @@ class CreateOrdemFornecimentosTable extends Migration
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->string('observacao')->nullable();
             $table->boolean('ehcompleta')->default(false);
+            $table->date('data');
             $table->softDeletes();
             $table->timestamps();
         });
