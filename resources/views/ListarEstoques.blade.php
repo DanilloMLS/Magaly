@@ -68,9 +68,14 @@ function listarItens(id){
                                         <a title="Listar Itens" class="btn btn-primary" onClick="listarItens({{$estoque->id}});">
                                           <img src="/img/item.png" class="tamIconsPadrao">
                                         </a>
-                                        <a title="Ordens de Fornecimento" class="btn btn-primary" href="{{ route ("/ordemfornecimento/listarOrdemEstoque", ['id' => $estoque->id])}}">
-                                          <img src="/img/add_item.png" class="tamIconsPadrao">
-                                        </a>
+                                        @php
+                                            $ordem_fornecimento = \App\OrdemFornecimento::where('estoque_id', $estoque->id)->get();
+                                        @endphp
+                                        @if (count($ordem_fornecimento) > 0)
+                                          <a title="Ordens de Fornecimento" class="btn btn-primary" href="{{ route ("/ordemfornecimento/listarOrdemEstoque", ['id' => $estoque->id])}}">
+                                            <img src="/img/list_orders.png" class="tamIconsPadrao">
+                                          </a>
+                                        @endif
                                         <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>

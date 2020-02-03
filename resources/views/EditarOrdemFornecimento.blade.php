@@ -16,6 +16,19 @@
                         <input type="hidden" name="id" value="{{ $ordem_fornecimento->id}}" />
 
                         <div class="form-group row">
+                            <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data ') }}</label>
+
+                            <div class="col-md-6">
+                              <input name="data" id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" value="{{old('data', $ordem_fornecimento->data)}}">
+                              @if ($errors->has('data'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('data') }}</strong>
+                                    </span>
+                              @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="observacao" class="col-md-4 col-form-label text-md-right">{{ __('Observação ') }}</label>
 
                             <div class="col-md-6">

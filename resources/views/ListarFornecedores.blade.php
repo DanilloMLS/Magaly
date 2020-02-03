@@ -64,8 +64,11 @@ function editar(id){
                                         <a class="btn btn-primary" title="Editar fornecedor" href="{{ route ("/fornecedor/editar", ['id' => $fornecedor->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
-                                        <a class="btn btn-primary" title="Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/telaCadastrar", ['id' => $fornecedor->id])}}">
-                                          <img src="/img/down_arrow.png" class="tamIconsPadrao">
+                                        <a class="btn btn-primary" title="Criar Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/telaCadastrar", ['id' => $fornecedor->id])}}">
+                                          <img src="/img/add_order.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a class="btn btn-primary" title="Listar Ordens" href="{{ route ("/ordemfornecimento/listarOrdemForn", ['id' => $fornecedor->id])}}">
+                                          <img src="/img/list_orders.png" class="tamIconsPadrao">
                                         </a>
                                       </td>
                                     @endif

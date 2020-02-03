@@ -61,9 +61,11 @@ function avisoDeletar(id){
                                       <a title="Editar Ordem" class="btn btn-primary" href="{{route("/ordemfornecimento/editarOrdem", ['id' => $ordem_fornecimento->id])}}">
                                         <img src="/img/edit.png" class="tamIconsPadrao">
                                       </a>
-                                      <a title="Dar Baixa" class="btn btn-primary" href="{{route("/ordemfornecimento/novaBaixa", ['id' => $ordem_fornecimento->id])}}">
-                                        <img src="/img/down_order.png" class="tamIconsPadrao">
-                                      </a>
+                                      @if ($ordem_fornecimento->ehcompleta == FALSE)
+                                        <a title="Dar Baixa" class="btn btn-primary" href="{{route("/ordemfornecimento/novaBaixa", ['id' => $ordem_fornecimento->id])}}">
+                                          <img src="/img/rec_order.png" class="tamIconsPadrao">
+                                        </a>
+                                      @endif
                                     </td>
                                     
                                     {{-- @if (Auth::guard()->check() && Auth::user()->is_adm)
