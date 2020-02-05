@@ -147,7 +147,7 @@ class EstoqueController extends Controller
   }
 
   //usado quando se insere itens no Estoque atráves do botão 'Inserir Itens'
-  public function buscarEstoque(Request $request){
+  /* public function buscarEstoque(Request $request){
     $estoque = \App\Estoque::find($request->id);
     $itens_contrato = \App\Contrato_item::orderBy('id')->where('quantidade','>',0)->get();
     //$itens_contrato = \App\Contrato_item::all();
@@ -162,9 +162,9 @@ class EstoqueController extends Controller
 
     session()->flash('success', 'Estoque não existe.');
     return redirect()->route('/estoque/listar'); 
-  }
+  } */
 
-  public function novoItem(Request $request){
+  /* public function novoItem(Request $request){
     $estoque = \App\Estoque::find($request->estoque_id);
 
     if (isset($estoque)) {
@@ -235,9 +235,9 @@ class EstoqueController extends Controller
     
     session()->flash('success', 'Estoque não existe.');
     return redirect()->route('/estoque/listar');
-  }
+  } */
 
-  public function removerItem(Request $request){//Essa operação deve gerar uma GRR?
+  public function removerItem(Request $request){
     $estoque_item = \App\Estoque_item::find($request->id);
     
 
