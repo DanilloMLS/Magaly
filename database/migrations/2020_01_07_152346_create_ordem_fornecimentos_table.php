@@ -15,8 +15,8 @@ class CreateOrdemFornecimentosTable extends Migration
     {
         Schema::create('ordem_fornecimentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('fornecedor_id')->unsigned();
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
+            $table->bigInteger('contrato_id')->unsigned();
+            $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->bigInteger('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->string('observacao')->nullable();

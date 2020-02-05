@@ -27,9 +27,9 @@
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($contratos) == 0)
+                      @if(count($contrato_itens) == 0)
                       <div class="alert alert-danger">
-                              O fornecedor não possui contratos.
+                              O contrato não possui itens.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
@@ -58,7 +58,7 @@
                                   <center></center>
                                 </div>
                               </div> </strong>
-                              @foreach ($contratos as $contrato_item)
+                              @foreach ($contrato_itens as $contrato_item)
                               <form method="POST" action="{{route ('/ordemfornecimento/inserirItem')}}">
                                 {{ csrf_field() }}
                                   @csrf
