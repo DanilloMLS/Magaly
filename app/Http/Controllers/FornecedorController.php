@@ -17,13 +17,13 @@ class FornecedorController extends Controller
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'cnpj' =>     ['required', 'digits:18', 'unique:fornecedors,cnpj'],
+      'cnpj' =>     ['required', 'max:18', 'unique:fornecedors,cnpj'],
       'email' =>    ['nullable', 'unique:fornecedors,email', 'email'],
-      'telefone' => ['nullable', 'digits_between:11,15'],
+      'telefone' => ['nullable', 'min:11','max:15'],
       'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome'],
     ],[
       'cnpj.required' => 'O CNPJ é obrigatório',
-      'cnpj.digits' => 'Verifique se o CNPJ está no seguinte modelo: 00.000.000/0000-00',
+      'cnpj.max' => 'Verifique se o CNPJ está no seguinte modelo: 00.000.000/0000-00',
       'cnpj.unique' => 'Esse CNPJ já está em uso',
       'email.unique' => 'Esse e-mail já está em uso',
       'email.email' => 'E-mail inválido',
@@ -101,13 +101,13 @@ class FornecedorController extends Controller
 
     if (isset($fornecedor)) {
       $validator = Validator::make($request->all(), [
-          'cnpj' =>     ['required', 'digits:14', 'unique:fornecedors,cnpj,'.$fornecedor->id],
+          'cnpj' =>     ['required', 'max:18', 'unique:fornecedors,cnpj,'.$fornecedor->id],
           'email' =>    ['nullable', 'unique:fornecedors,email,'.$fornecedor->id, 'email'],
-          'telefone' => ['nullable', 'digits_between:10,11'],
+          'telefone' => ['nullable', 'min:11','max:15'],
           'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome,'.$fornecedor->id],
       ],[
         'cnpj.required' => 'O CNPJ é obrigatório',
-        'cnpj.digits' => 'O CNPJ deve ter 14 dígitos',
+        'cnpj.max' => 'Verifique se o CNPJ está no seguinte modelo: 00.000.000/0000-00',
         'cnpj.unique' => 'Esse CNPJ já está em uso',
         'email.unique' => 'Esse e-mail já está em uso',
         'email.email' => 'E-mail inválido',

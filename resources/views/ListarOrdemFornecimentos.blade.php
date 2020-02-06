@@ -66,6 +66,9 @@ function avisoDeletar(id){
                                           <img src="/img/rec_order.png" class="tamIconsPadrao">
                                         </a>
                                       @endif
+                                      <a title="Imprimir Ordem" class="btn btn-primary" href="{{route("/ordemfornecimento/imprimir", ['ordem_fornecimento_id' => $ordem_fornecimento->id])}}">
+                                        <img src="/img/down.png" class="tamIconsPadrao">
+                                      </a>
                                     </td>
                                     
                                     {{-- @if (Auth::guard()->check() && Auth::user()->is_adm)

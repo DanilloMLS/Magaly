@@ -425,7 +425,7 @@ class OrdemFornecimentoController extends Controller
                 'ordem_item' => $ordem_item
             ]);
         }
-        session()->flash('success', 'O Item não existe.');
+        session()->flash('error', 'O Item não existe.');
         return redirect()->back();
     }
 
@@ -578,5 +578,45 @@ class OrdemFornecimentoController extends Controller
             }
             $ordem_fornecimento->save();
         }
+    }
+
+    /* Recebe o id da ordem de fornecimento e redireciona para a pagina do PDF */
+    public function geraPdfOrdemFornecimento(Request $request){
+        $ordem_Fornecimento = \App\OrdemFornecimento::where('id', $request->ordem_fornecimento_id)->first();
+        $item_contratos = [];
+        if (!isset($ordem_Fornecimento)) {
+            session()->flash('error', 'A Ordem de fornecimento não existe.');
+            return redirect()->back();
+        }
+        $contrato_ordem = \App\Contrato::where('id', $ordem_Fornecimento->contrato_id)->first();
+        if (!isset($contrato_ordem)) {
+            session()->flash('error', 'O contrato não existe.');
+            return redirect()->back();
+        }
+        $fornecedor = \App\Fornecedor::where('id', $contrato_ordem->fornecedor_id)->first();
+        if (!isset($fornecedor)) {
+            session()->flash('error', 'O fornecedor não existe.');
+            return redirect()->back();
+        }
+        $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_Fornecimento->id)->get();
+
+        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("RelatorioContratos", ["contratos" => $contratos]);
+        return  \PDF::loadView("RelatorioOrdemFornecimento", [
+            'ordem_Fornecimento' => $ordem_Fornecimento,
+            'contrato_ordem' => $contrato_ordem,
+            'fornecedor' => $fornecedor,
+            'ordem_itens' => $ordem_itens,
+        ])
+        // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+        ->stream('relatorio_Contrato_'.$data.'.pdf');
+
+        /*
+        return view("RelatorioOrdemFornecimento", [
+            'ordem_Fornecimento' => $ordem_Fornecimento,
+            'contrato_ordem' => $contrato_ordem,
+            'fornecedor' => $fornecedor,
+            'ordem_itens' => $ordem_itens,
+        ]);
+        */
     }
 }

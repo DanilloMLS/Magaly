@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         //É possível executar um seeder mais de uma vez
         //É necessário referenciar aqui cada seeder que será executado
         $this->call(UserTableSeeder::class);
+        /*
         $this->call(EstoqueTableSeeder::class);
         $this->call(ItensTableSeeder::class);
         $this->call(EscolaTableSeeder::class);
@@ -22,6 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ContratoItemTableSeeder::class);
         $this->call(Refeicao_ItemTableSeeder::class);
         $this->call(EstoqueItemTableSeeder::class);
-
+        */
     }
 }

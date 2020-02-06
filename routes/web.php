@@ -208,3 +208,4 @@ Route::post('/ordemfornecimento/revisaItem', 'OrdemFornecimentoController@revisa
 Route::get('/ordemfornecimento/editarOrdem/{id}', 'OrdemFornecimentoController@editarOrdem')->name('/ordemfornecimento/editarOrdem')->middleware('adm');
 Route::post('/ordemfornecimento/salvarOrdem', 'OrdemFornecimentoController@salvarOrdem')->name('/ordemfornecimento/salvarOrdem')->middleware('adm');
 Route::get('/ordemfornecimento/baixaOrdem/{id}', 'OrdemFornecimentoController@baixaOrdem')->name('/ordemfornecimento/baixaOrdem')->middleware('adm');
+Route::get('/ordemfornecimento/imprimir/{ordem_fornecimento_id}', 'OrdemFornecimentoController@geraPdfOrdemFornecimento')->name('/ordemfornecimento/imprimir')->middleware('adm');
