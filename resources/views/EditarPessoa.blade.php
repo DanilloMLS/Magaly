@@ -144,7 +144,7 @@
                                         <option value= '6' @if(strcasecmp($user->tipo_user, 'stq') == 0) selected="selected" @endif>Estoque</option>
                                         <option value= '3' @if(strcasecmp($user->tipo_user, 'ntr') == 0) selected="selected" @endif>Nutrição</option>
                                         <option value= '5' @if(strcasecmp($user->tipo_user, 'fnc') == 0) selected="selected" @endif>Financeiro</option>
-                                        <option value='1' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrator</option>
+                                        <option value='1' @if(strcasecmp($user->tipo_user, 'adm') == 0) selected="selected" @endif>Administrador</option>
                                 </select>
                                 @if ($errors->has('tipo_user'))
                                         <span class="invalid-feedback" role="alert">

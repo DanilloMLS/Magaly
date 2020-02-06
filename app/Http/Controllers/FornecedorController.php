@@ -17,17 +17,17 @@ class FornecedorController extends Controller
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'cnpj' =>     ['required', 'digits:14', 'unique:fornecedors,cnpj'],
+      'cnpj' =>     ['required', 'digits:18', 'unique:fornecedors,cnpj'],
       'email' =>    ['nullable', 'unique:fornecedors,email', 'email'],
-      'telefone' => ['nullable', 'digits_between:10,11'],
+      'telefone' => ['nullable', 'digits_between:11,15'],
       'nome' =>     ['required', 'string', 'max:255', 'unique:fornecedors,nome'],
     ],[
       'cnpj.required' => 'O CNPJ é obrigatório',
-      'cnpj.digits' => 'O CNPJ deve ter 14 dígitos',
+      'cnpj.digits' => 'Verifique se o CNPJ está no seguinte modelo: 00.000.000/0000-00',
       'cnpj.unique' => 'Esse CNPJ já está em uso',
       'email.unique' => 'Esse e-mail já está em uso',
       'email.email' => 'E-mail inválido',
-      'telefone.digits_between' => 'O telefone deve ter entre 10 e 11 dígitos',
+      'telefone.digits_between' => 'Verifique se o telefone está no seguinte modelo: (00)90000-0000',
       'nome.required' => 'O nome é obrigatório',
       'nome.max' => 'O nome deve ter no máximo 255 caracteres',
       'nome.unique' => 'Esse nome já está em uso',

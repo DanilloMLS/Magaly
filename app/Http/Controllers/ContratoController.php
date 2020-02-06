@@ -25,7 +25,7 @@ class ContratoController extends Controller
       'n_contrato' =>             ['required', 'string', 'unique:contratos,n_contrato'],
       'n_processo_licitatorio' => ['required', 'string'],
       'modalidade' =>             ['required', 'string'],
-      'descricao' =>              ['nullable', 'string', 'max:255'],
+      'descricao' =>              ['nullable', 'string', 'max:5000'],
       'fornecedor_id' =>          ['required', 'numeric', 'exists:fornecedors,id'],
       //'valor_total' =>            ['nullable', 'numeric'],
     ],[
