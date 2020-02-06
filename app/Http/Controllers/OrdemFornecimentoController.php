@@ -47,11 +47,11 @@ class OrdemFornecimentoController extends Controller
     }
 
     /**
-     * Exibe uma lista de ordens de fornecimento de um fornecedor
+     * Exibe uma lista de ordens de fornecimento de um contrato
      */
-    public function listarOrdemForn(Request $request)
+    public function listarOrdemCont(Request $request)
     {
-        $ordem_fornecimentos = \App\OrdemFornecimento::where('fornecedor_id', $request->id)
+        $ordem_fornecimentos = \App\OrdemFornecimento::where('contrato_id', $request->id)
                                                     ->get();
 
         if (count($ordem_fornecimentos) > 0) {
@@ -61,7 +61,7 @@ class OrdemFornecimentoController extends Controller
         }
 
         session()->flash('success', 'Não há ordens de fornecimento');
-        return redirect()->route('/fornecedor/listar');
+        return redirect()->route('/contrato/listar');
     }
 
     /**
@@ -71,7 +71,7 @@ class OrdemFornecimentoController extends Controller
      */
     public function telaCadastrar(Request $request)
     {
-        $fornecedor = \App\Fornecedor::find($request->id);
+        $contrato = \App\Contrato::find($request->id);
         $escolas = \App\Escola::all();
 
         $ids_escolas = [];
@@ -81,15 +81,15 @@ class OrdemFornecimentoController extends Controller
 
         $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
 
-        if (isset($fornecedor)) {
+        if (isset($contrato)) {
             return view("CadastrarOrdemFornecimento", [
-                "fornecedor" => $fornecedor,
+                "contrato" => $contrato,
                 "estoques" => $estoques
             ]);
         }
         
-        session()->flash('success', 'Fornecedor não existe.');
-        return redirect()->route('/fornecedor/listar');
+        session()->flash('success', 'Contrato não existe.');
+        return redirect()->route('/contrato/listar');
     }
 
     /**
@@ -100,7 +100,7 @@ class OrdemFornecimentoController extends Controller
      */
     public function cadastrar(Request $request)
     {
-        $fornecedor = \App\Fornecedor::find($request->fornecedor_id);
+        $contrato = \App\Contrato::find($request->contrato_id);
         
         $validator = Validator::make($request->all(), [
             'observacao' => ['nullable', 'string', 'max:255'],
@@ -112,13 +112,13 @@ class OrdemFornecimentoController extends Controller
           ]);
       
         if ($validator->fails()) {
-            return redirect()->route('/ordemfornecimento/telaCadastrar', ['id' => $fornecedor->id])
+            return redirect()->route('/ordemfornecimento/telaCadastrar', ['id' => $contrato->id])
                         ->withErrors($validator)
                         ->withInput();
         }
 
         $ordem_fornecimento = new \App\OrdemFornecimento();
-        $ordem_fornecimento->fornecedor_id = $request->fornecedor_id;
+        $ordem_fornecimento->contrato_id = $request->contrato_id;
         $ordem_fornecimento->observacao = $request->observacao;
         $ordem_fornecimento->estoque_id = $request->estoque_id;
         $ordem_fornecimento->data = $request->data;
@@ -145,15 +145,14 @@ class OrdemFornecimentoController extends Controller
         $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
 
         if (isset($ordem_fornecimento)) {
-            $fornecedor = \App\Fornecedor::find($ordem_fornecimento->fornecedor_id);
-            $contratos = \App\Contrato::where('fornecedor_id', '=', $fornecedor->id)->get('id');
+            $contrato = \App\Contrato::find($ordem_fornecimento->contrato_id);
 
-            if (isset($contratos)) {
-                $contrato_itens = \App\Contrato_item::whereIn('contrato_id', $contratos)->get();
+            if (isset($contrato)) {
+                $contrato_itens = \App\Contrato_item::where('contrato_id', $contrato->id)->get();
     
                 return view("InserirItensOrdem", [
                     "id" => $ordem_fornecimento->id,
-                    "contratos" => $contrato_itens
+                    "contrato_itens" => $contrato_itens
                 ]);   
             }
         }
@@ -564,7 +563,6 @@ class OrdemFornecimentoController extends Controller
     {
         
         $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_fornecimento->id)
-                                    ->where('quantidade_restante', 0)
                                     ->get();
 
         if (isset($ordem_itens)) {

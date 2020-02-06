@@ -82,6 +82,12 @@
                                         <a title="Adicionar Item" class="btn btn-primary" href="{{ route ('/contrato/inserirItemContrato', ['id' => $contrato->id])}}">
                                           <img src="/img/add_item.png" class="tamIconsPadrao">
                                         </a>
+                                        <a class="btn btn-primary" title="Criar Ordem de Fornecimento" href="{{ route ("/ordemfornecimento/telaCadastrar", ['id' => $contrato->id])}}">
+                                          <img src="/img/add_order.png" class="tamIconsPadrao">
+                                        </a>
+                                        <a class="btn btn-primary" title="Listar Ordens" href="{{ route ("/ordemfornecimento/listarOrdemCont", ['id' => $contrato->id])}}">
+                                          <img src="/img/list_orders.png" class="tamIconsPadrao">
+                                        </a>
                                       </td>
                                     @endif
                                 </tr>

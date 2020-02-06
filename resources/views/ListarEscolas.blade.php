@@ -71,7 +71,7 @@ function editar(id){
 
                                     @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
-                                        <a class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
+                                        <a title="Editar escola" class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
                                       </td>

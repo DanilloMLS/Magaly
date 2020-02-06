@@ -26,9 +26,9 @@ class RemoveValidadeLoteFields extends Migration
      */
     public function down()
     {
-        Schema::table('contrato_items', function (Blueprint $table) {
+        /* Schema::table('contrato_items', function (Blueprint $table) {
             $table->string('n_lote');
             $table->date('data_validade');
-        });
+        }); */
     }
 }

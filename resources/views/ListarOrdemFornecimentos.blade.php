@@ -41,7 +41,7 @@ function avisoDeletar(id){
                             <thead>
                               <tr>
                                   <th>Id</th>
-                                  <th>Fornecedor</th>
+                                  <th>Contrato</th>
                                   <th>Observação</th>
                                   <th>Ações</th>
                               </tr>
@@ -50,8 +50,8 @@ function avisoDeletar(id){
                               @foreach ($ordem_fornecimentos as $ordem_fornecimento)
                                 <tr>
                                     <td data-title="Id">{{ $ordem_fornecimento->id }}</td>
-                                    <?php $fornecedor = \App\Fornecedor::find($ordem_fornecimento->fornecedor_id)?>
-                                    <td class="width15" data-title="Fornecedor">{{ $fornecedor->nome }}</td>
+                                    <?php $contrato = \App\Contrato::find($ordem_fornecimento->contrato_id)?>
+                                    <td class="width15" data-title="Contrato">{{ $contrato->n_contrato }}</td>
                                     <td data-title="Observação" align="justify">{{ $ordem_fornecimento->observacao }}</td>
 
                                     <td class="width4icons" align="left">

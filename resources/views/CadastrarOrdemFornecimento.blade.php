@@ -13,7 +13,7 @@
                       {{ csrf_field() }}
                         @csrf
 
-                        <input type="hidden" name="fornecedor_id" value="{{ $fornecedor->id}}" />
+                        <input type="hidden" name="contrato_id" value="{{ $contrato->id}}" />
 
                         <div class="form-group row">
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data ') }}</label>
