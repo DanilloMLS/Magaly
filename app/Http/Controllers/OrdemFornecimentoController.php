@@ -600,12 +600,24 @@ class OrdemFornecimentoController extends Controller
         }
         $ordem_itens = \App\Ordem_item::where('ordem_fornecimento_id', $ordem_Fornecimento->id)->get();
 
+
+        $add_zeros = "";
+        $quant_ordem_contrato = count(\App\OrdemFornecimento::where('contrato_id', $contrato_ordem->id)->get());
+        if($quant_ordem_contrato > 10 && $quant_ordem_contrato < 100){
+            $add_zeros = "0";
+        }else if($quant_ordem_contrato >= 1 && $quant_ordem_contrato < 10){
+            $add_zeros = "00";
+        }
+
+        $num_ordem = $add_zeros.$ordem_Fornecimento->id."/".date("Y");
+
         $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");    //return view("RelatorioContratos", ["contratos" => $contratos]);
         return  \PDF::loadView("RelatorioOrdemFornecimento", [
             'ordem_Fornecimento' => $ordem_Fornecimento,
             'contrato_ordem' => $contrato_ordem,
             'fornecedor' => $fornecedor,
             'ordem_itens' => $ordem_itens,
+            'num_ordem' => $num_ordem,
         ])
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         ->stream('relatorio_Contrato_'.$data.'.pdf');

@@ -1,5 +1,14 @@
 <html>
     <head>
+        <title>Impressão Ordem de Fornecimento</title>
+        <style type="text/css">
+            .footer {
+                position:absolute;
+                bottom:0;
+                width:100%;
+            }
+            </style>
+
         <?php 
         function extenso($value, $uppercase = 0)
 {
@@ -84,13 +93,9 @@ Tel: (87)3762-7060
             </tr>
             <br>
         </table>
-
             <div class="cabecalho">
                 <p class="cabecalho-titulo" align="center">
-                    @php
-                        $num_ordem = $ordem_Fornecimento->id."/".date("Y")
-                    @endphp
-                    <font size="20px"><b>ORDEM DE FORNECIMENTO<br>Nº <?php echo "00".$num_ordem?><font color="red" size="20px"></font></b></font>
+                    <font size="20px"><b>ORDEM DE FORNECIMENTO<br>Nº <?php echo $num_ordem?><font color="red" size="20px"></font></b></font>
                 </p>
                 <p class="cabecalho-nota" align="justify">
                     <font size="13px">Pelo presente, autorizo a Empresa <b>{{$fornecedor->nome}}</b> vencedora do processo licitatório nº <b>{{$contrato_ordem->n_processo_licitatorio}}</b>,
@@ -118,16 +123,27 @@ Tel: (87)3762-7060
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $total = 0?>
-                    @foreach ($ordem_itens as $ordem_item)           
+                    @php
+                        $total = 0;
+                        $cont = 0;
+                    @endphp
+                    @foreach ($ordem_itens as $ordem_item)                                   
                         @php         
+                            $cont++;
                             $item_contrato = \App\Contrato_item::where('id', $ordem_item->contratoitem_id)->first();
                             $item = \App\Item::where('id', $item_contrato->item_id)->first();
+
+                            $unidade = $item->unidade;
+                            if($item->gramatura >= 1000000){
+                                $unidade = "TON";
+                            }else if($item->gramatura >= 1000){
+                                $unidade = "KG";
+                            }
                         @endphp
                         <tr>
-                            <td bgcolor="#dfdfdf" data-title="Nº" align="center">{{ $item->id }}</td>
+                            <td bgcolor="#dfdfdf" data-title="Nº" align="center">{{ $cont }}</td>
                             <td data-title="Descricao" align="justify">{{ $item->descricao }}</td>
-                            <td data-title="Unidade" align="center">{{ $item->unidade }}</td>
+                            <td data-title="Unidade" align="center">{{  $unidade }}</td>
                             <td data-title="Gramatura" align="center">{{ $item->marca }}</td>
                             <td data-title="Quantidade" align="center">{{ $ordem_item->quantidade_pedida }}</td>
                             <td data-title="ValorUnitario" align="center">{{ "R$ ". number_format($item_contrato->valor_unitario,2,",",".") }}</td>
@@ -145,16 +161,19 @@ Tel: (87)3762-7060
                     </tr>
                 </tbody>
             </table>
-            <p align="justify"><font size="13px">
-                <?php echo "OBS:. ".$ordem_Fornecimento->observacao?>
-            </font></p>
-            <br>
-            <p align="right"><font size="13px" color="red">
-                <?php echo data_extensa()?>
-            </font>
-            </p>
-            <br>
-            <p align="center"><font size="13px">
+            <>
+            <div class="observacao-ordem-fornecimento">
+                <p align="justify"><font size="13px">
+                    <?php echo "OBS:. ".$ordem_Fornecimento->observacao?>
+                </font></p>
+                <br>
+                <p align="right"><font size="13px" color="red">
+                    <?php echo data_extensa()?>
+                </font>
+                </p>
+            </div>
+            <div class="footer">
+            <p align="center"><font size="13px">                
                 <?php echo "______________________________________________________________________________"?>
                 <br>
                 <br>
@@ -163,6 +182,7 @@ Tel: (87)3762-7060
                 <?php echo "MATRÍCULA - 14502" ?>
                 <br>
                 <?php echo "GERENTE DE ALIMENTAÇÃO" ?>
-            </font></p>
+            </p>
+            </div>
     </body>
 </html>
