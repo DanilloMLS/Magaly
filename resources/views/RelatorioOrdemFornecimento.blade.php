@@ -7,6 +7,10 @@
                 bottom:0;
                 width:100%;
             }
+
+            .itens{
+                font-size: 13px;
+            }
             </style>
 
         <?php 
@@ -141,19 +145,19 @@ Tel: (87)3762-7060
                             }
                         @endphp
                         <tr>
-                            <td bgcolor="#dfdfdf" data-title="Nº" align="center">{{ $cont }}</td>
-                            <td data-title="Descricao" align="justify">{{ $item->descricao }}</td>
-                            <td data-title="Unidade" align="center">{{  $unidade }}</td>
-                            <td data-title="Gramatura" align="center">{{ $item->marca }}</td>
-                            <td data-title="Quantidade" align="center">{{ $ordem_item->quantidade_pedida }}</td>
-                            <td data-title="ValorUnitario" align="center">{{ "R$ ". number_format($item_contrato->valor_unitario,2,",",".") }}</td>
-                            <td data-title="Valor_Total" align="center">{{ "R$ ". number_format($ordem_item->quantidade_pedida * $item_contrato->valor_unitario,2,",",".") }}</td>
+                            <td class="itens" bgcolor="#dfdfdf" data-title="Nº" align="center">{{ $cont }}</td>
+                            <td class="itens" data-title="Descricao" align="justify">{{ $item->descricao }}</td>
+                            <td class="itens" data-title="Unidade" align="center">{{  $unidade }}</td>
+                            <td class="itens" data-title="Gramatura" align="center">{{ $item->marca }}</td>
+                            <td class="itens" data-title="Quantidade" align="center">{{ $ordem_item->quantidade_pedida }}</td>
+                            <td class="itens" data-title="ValorUnitario" align="center">{{ "R$ ". number_format($item_contrato->valor_unitario,2,",",".") }}</td>
+                            <td class="itens" data-title="Valor_Total" align="center">{{ "R$ ". number_format($ordem_item->quantidade_pedida * $item_contrato->valor_unitario,2,",",".") }}</td>
                             <?php $total += $ordem_item->quantidade_pedida * $item_contrato->valor_unitario?>
                         </tr>
                     @endforeach
                     <tr align="center"><font size="20px">
-                        <td colspan=6 data-title="TOTAL" align="center">{{ "TOTAL"}}</td>
-                        <td data-title="SOMATORIO_TOTAL">{{ "R$ ". number_format($total,2,",",".") }}</td>
+                        <td class="itens" colspan=6 data-title="TOTAL" align="center">{{ "TOTAL"}}</td>
+                        <td class="itens" data-title="SOMATORIO_TOTAL">{{ "R$ ". number_format($total,2,",",".") }}</td>
                     </tr>
                     <tr align="center">
                         <td colspan=7><font size="10px"><?php echo "VALOR R$".number_format($total,2,",",".")." (".strtoupper(extenso($total, 1).")")?>
