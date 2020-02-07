@@ -49,7 +49,7 @@ class CardapioController extends Controller
   			$cardapio_mensal->modalidade_ensino = "Creche Infantil Parcial";
    			break;
       case "3":
-    		$cardapio_mensal->modalidade_ensino = "Infantil (Pré-escola)";
+    		$cardapio_mensal->modalidade_ensino = "Infantil (Pré-instituicao)";
    			break;
       case "4":
       	$cardapio_mensal->modalidade_ensino = "Ensino Fundamental";

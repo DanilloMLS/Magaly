@@ -4,8 +4,8 @@
 
 <script language= 'javascript'>
 function avisoDeletar(id){
-  if(confirm ('Esta ação removerá do sistema todas as distribuições dessa escola. Deseja realmente excluí-la? ')) {
-    location.href="/escola/remover/"+id;
+  if(confirm ('Esta ação removerá do sistema todas as distribuições dessa instituicao. Deseja realmente excluí-la? ')) {
+    location.href="/instituicao/remover/"+id;
   }
   else {
     return false;
@@ -13,7 +13,7 @@ function avisoDeletar(id){
 }
 
 function editar(id){
-  location.href="/escola/editar/"+id;
+  location.href="/instituicao/editar/"+id;
 }
 </script>
 
@@ -21,7 +21,7 @@ function editar(id){
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Escolas') }}</div>
+                <div class="card-header">{{ __('Instituicaos') }}</div>
 
                 <div class="card-body">
 
@@ -32,9 +32,9 @@ function editar(id){
                       </div>
                   @endif
                   <div class="panel-body">
-                      @if(count($escolas) == 0 and count($escolas) == 0)
+                      @if(count($instituicaos) == 0 and count($instituicaos) == 0)
                       <div class="alert alert-danger">
-                              Não há nenhuma escola cadastrada no sistema.
+                              Não há nenhuma instituicao cadastrada no sistema.
                       </div>
                       @else
                       <div id= "termoBusca" style="display: flex; justify-content: flex-end">
@@ -57,21 +57,21 @@ function editar(id){
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($escolas as $escola)
+                              @foreach ($instituicaos as $instituicao)
                                 <tr>
-                                    <td data-title="Nº">{{ $escola->id }}</td>
-                                    <td data-title="Nome">{{ $escola->nome }}</td>
-                                    <td data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino }}</td>
-                                    <td data-title="Rota">{{ $escola->rota }}</td>
-                                    <td data-title="Endereco">{{ $escola->endereco }}</td>
-                                    <td data-title="Período de Atendimento">{{ $escola->periodo_atendimento }}</td>
-                                    <td data-title="Quantidade de Alunos">{{ $escola->qtde_alunos }}</td>
-                                    <td data-title="Gestor">{{ $escola->gestor }}</td>
-                                    <td data-title="Telefone">{{ $escola->telefone }}</td>
+                                    <td data-title="Nº">{{ $instituicao->id }}</td>
+                                    <td data-title="Nome">{{ $instituicao->nome }}</td>
+                                    <td data-title="Modalidade de Ensino">{{ $instituicao->modalidade_ensino }}</td>
+                                    <td data-title="Rota">{{ $instituicao->rota }}</td>
+                                    <td data-title="Endereco">{{ $instituicao->endereco }}</td>
+                                    <td data-title="Período de Atendimento">{{ $instituicao->periodo_atendimento }}</td>
+                                    <td data-title="Quantidade de Alunos">{{ $instituicao->qtde_alunos }}</td>
+                                    <td data-title="Gestor">{{ $instituicao->gestor }}</td>
+                                    <td data-title="Telefone">{{ $instituicao->telefone }}</td>
 
                                     @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')
                                       <td align="right">
-                                        <a title="Editar escola" class="btn btn-primary" href="{{ route ("/escola/editar", ['id' => $escola->id])}}">
+                                        <a title="Editar instituicao" class="btn btn-primary" href="{{ route ("/instituicao/editar", ['id' => $instituicao->id])}}">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
                                       </td>

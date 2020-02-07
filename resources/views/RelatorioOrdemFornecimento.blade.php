@@ -9,6 +9,10 @@
             }
 
             .itens{
+                font-size: 10px;
+            }
+
+            .cabecalho-itens{
                 font-size: 13px;
             }
             </style>
@@ -103,7 +107,7 @@ Tel: (87)3762-7060
                 </p>
                 <p class="cabecalho-nota" align="justify">
                     <font size="13px">Pelo presente, autorizo a Empresa <b>{{$fornecedor->nome}}</b> vencedora do processo licitatório nº <b>{{$contrato_ordem->n_processo_licitatorio}}</b>,
-                        modalidade <b>{{$contrato_ordem->modalidade}}</b>, destinados ao preparo de merenda escolar para os alunos de Rede Municipal
+                        modalidade <b>{{$contrato_ordem->modalidade}}</b>, destinados ao preparo de merenda instituicaor para os alunos de Rede Municipal
                         de Ensino deste Município, conforme especificações, quantidades e demais condições previstas no Contrato nº <b>{{$contrato_ordem->n_contrato}}</b></font>
                 </p>
                 <p class="cabecalho-empresa">
@@ -116,14 +120,13 @@ Tel: (87)3762-7060
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
                 <thead>
                     <tr bgcolor="#B0E0E6" colspan=3 align="center"><font size="20px">
-                        <td><b>Nº</b></td>
-                        <td><b>ITEM</b></td>
-                        <td><b>UNIDADE</b></td>
-                        <td><b>MARCA</b></td>
-                        <td><b>Qtid. TOTAL</b></td>
-
-                        <td><b>VALOR UNIT.</b></td>
-                        <td><b>VALOR TOT.</b></td>
+                        <td class="cabecalho-itens"><b>Nº</b></td>
+                        <td class="cabecalho-itens"><b>ITEM</b></td>
+                        <td class="cabecalho-itens"><b>UNIDADE</b></td>
+                        <td class="cabecalho-itens"><b>MARCA</b></td>
+                        <td class="cabecalho-itens"><b>Qtid. TOTAL</b></td>
+                        <td class="cabecalho-itens"><b>VALOR UNIT.</b></td>
+                        <td class="cabecalho-itens"><b>VALOR TOT.</b></td>
                     </tr>
                 </thead>
                 <tbody>

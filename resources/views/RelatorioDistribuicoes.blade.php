@@ -33,19 +33,19 @@ Tel: (87)3762-7060
         @foreach ($distribuicoes as $distribuicao)
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#B0E0E6" colspan=4 align="center"><font size="20px">IDENTIFICAÇÃO DA ESCOLA</font></th>
+                    <th bgcolor="#B0E0E6" colspan=4 align="center"><font size="20px">IDENTIFICAÇÃO DA INSTITUIÇÃO</font></th>
                 </tr>
                 <tr bgcolor="#dfdfdf">
-                    <th>ESCOLA</th>
+                    <th>INSTITUIÇÃO</th>
                     <th>ROTA</th>
                     <th colspan=2 >MODALIDADE DE ENSINO</th>
                 </tr>
                 <tbody>
                     <tr>
-                        <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
-                        <td data-title="Nome">{{ $escola->nome}}</td>
-                        <td data-title="Rota">{{ $escola->rota}}</td>
-                        <td colspan=2 data-title="Modalidade de Ensino">{{ $escola->modalidade_ensino}}</td>
+                        <?php $instituicao = \App\Instituicao::find($distribuicao->instituicao_id)?>
+                        <td data-title="Nome">{{ $instituicao->nome}}</td>
+                        <td data-title="Rota">{{ $instituicao->rota}}</td>
+                        <td colspan=2 data-title="Modalidade de Ensino">{{ $instituicao->modalidade_ensino}}</td>
                     </tr>
                 </tbody>
                 <tr bgcolor="#dfdfdf">
@@ -54,7 +54,7 @@ Tel: (87)3762-7060
                 </tr>
                 <tbody>
                 <tr>
-                    <td data-title="Periodo de Atendimento">{{ $escola->periodo_atendimento}}</td>
+                    <td data-title="Periodo de Atendimento">{{ $instituicao->periodo_atendimento}}</td>
                     <td colspan=3 data-title="Observação">{{ $distribuicao->observacao }}</td>
                 </tr>
                 </tbody>

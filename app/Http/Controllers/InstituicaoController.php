@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
-class EscolaController extends Controller
+class InstituicaoController extends Controller
 {
   public function cadastrar(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome'],
+      'nome' =>                 ['required', 'string', 'max:255', 'unique:instituicaos,nome'],
       'modalidade_ensino' =>    ['required', 'between:1,6'],
       'rota' =>                 ['nullable', 'string', 'max:255'],
       'periodo_atendimento' =>  ['nullable', 'string', 'max:255'],
@@ -36,119 +36,119 @@ class EscolaController extends Controller
     ]);
 
     if ($validator->fails()) {
-        return redirect('escola/cadastrar')
+        return redirect('instituicao/cadastrar')
                     ->withErrors($validator)
                     ->withInput();
     }
 
     $estoque = new \App\Estoque();
-    $estoque->nome = "Estoque da Escola ".$request->nome;
+    $estoque->nome = "Estoque da Instituicao ".$request->nome;
     $estoque->save();
 
-    Log::info('Cadastro_Estoque_Escola. User ['.$request->user()->id.
+    Log::info('Cadastro_Estoque_Instituicao. User ['.$request->user()->id.
       ']. Method ['.$request->method().
       ']. Ip ['.$request->ip().
       ']. Agent ['.$request->header('user-agent').
       ']. Url ['.$request->path().']');
 
-    $escola = new \App\Escola();
-    $escola->nome = $request->nome;
+    $instituicao = new \App\Instituicao();
+    $instituicao->nome = $request->nome;
 
     switch ($request->modalidade_ensino) {
   		case "1":
-  			$escola->modalidade_ensino = "Creche Infantil Integral";
+  			$instituicao->modalidade_ensino = "Creche Infantil Integral";
    			break;
   		case "2":
-  			$escola->modalidade_ensino = "Creche Infantil Parcial";
+  			$instituicao->modalidade_ensino = "Creche Infantil Parcial";
    			break;
       case "3":
-    		$escola->modalidade_ensino = "Infantil";
+    		$instituicao->modalidade_ensino = "Infantil";
    			break;
       case "4":
-      	$escola->modalidade_ensino = "Ensino Fundamental";
+      	$instituicao->modalidade_ensino = "Ensino Fundamental";
      		break;
       case "5":
-        $escola->modalidade_ensino = "EJA";
+        $instituicao->modalidade_ensino = "EJA";
        	break;
       case "6":
-        $escola->modalidade_ensino = "Quilombola";
+        $instituicao->modalidade_ensino = "Quilombola";
         break;
    	}
 
-    $escola->rota = $request->rota;
-    $escola->periodo_atendimento = $request->periodo_atendimento;
-    $escola->qtde_alunos = $request->qtde_alunos;
-    $escola->endereco = $request->endereco;
+    $instituicao->rota = $request->rota;
+    $instituicao->periodo_atendimento = $request->periodo_atendimento;
+    $instituicao->qtde_alunos = $request->qtde_alunos;
+    $instituicao->endereco = $request->endereco;
 
-    $escola->gestor = $request->gestor;
-    $escola->telefone = $request->telefone;
-    $escola->estoque_id = $estoque->id;
+    $instituicao->gestor = $request->gestor;
+    $instituicao->telefone = $request->telefone;
+    $instituicao->estoque_id = $estoque->id;
 
-    $escola->save();
+    $instituicao->save();
 
-    Log::info('Cadastro_Escola. User ['.$request->user()->id.
+    Log::info('Cadastro_Instituicao. User ['.$request->user()->id.
       ']. Method ['.$request->method().
       ']. Ip ['.$request->ip().
       ']. Agent ['.$request->header('user-agent').
       ']. Url ['.$request->path().']');
 
-    session()->flash('success', 'Escola cadastrada com sucesso.');
-    return redirect()->route('/escola/listar');
+    session()->flash('success', 'Instituicao cadastrada com sucesso.');
+    return redirect()->route('/instituicao/listar');
   }
 
   public function listar(){
-    $escolas = \App\Escola::orderBy('id')->get();
-    return view("ListarEscolas", ["escolas" => $escolas]);
+    $instituicaos = \App\Instituicao::orderBy('id')->get();
+    return view("ListarInstituicaos", ["instituicaos" => $instituicaos]);
   }
 
   public function gerarRelatorio(){
-      $escolas = \App\Escola::all();
-      //return view("ListarEscolas", ["escolas" => $escolas]);
+      $instituicaos = \App\Instituicao::all();
+      //return view("ListarInstituicaos", ["instituicaos" => $instituicaos]);
 
-      $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");      return  \PDF::loadView('RelatorioEscolas', compact('escolas'))
+      $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");      return  \PDF::loadView('RelatorioInstituicaos', compact('instituicaos'))
           ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
-          ->stream('relatorio_Escolas_'.$data.'.pdf');
+          ->stream('relatorio_Instituicaos_'.$data.'.pdf');
   }
 
   //fora de circulação
   public function remover(Request $request){
-      $escola = \App\Escola::find($request->id);
+      $instituicao = \App\Instituicao::find($request->id);
       $estoque = \App\Estoque::find($request->id);
 
-      if (isset($escola)) {
-        $escola->delete();
-        //LogActivity::addToLog('Remoção de Escola.');
+      if (isset($instituicao)) {
+        $instituicao->delete();
+        //LogActivity::addToLog('Remoção de Instituicao.');
         $estoque->delete();
         //LogActivity::addToLog('Remoção de Estoque.');
-        session()->flash('success', 'Escola removida com sucesso.');
-        return redirect()->route('/escola/listar');
+        session()->flash('success', 'Instituicao removida com sucesso.');
+        return redirect()->route('/instituicao/listar');
       }
 
-      session()->flash('success', 'Escola não existe.');
-      return redirect()->route('/escola/listar');
+      session()->flash('success', 'Instituicao não existe.');
+      return redirect()->route('/instituicao/listar');
   }
 
   public function editar(Request $request){
-      $escola = \App\Escola::find($request->id);
+      $instituicao = \App\Instituicao::find($request->id);
 
-      if (isset($escola)) {
-        return view("EditarEscola", [
-          "escola" => $escola,
+      if (isset($instituicao)) {
+        return view("EditarInstituicao", [
+          "instituicao" => $instituicao,
         ]);
       }
 
-      session()->flash('success', 'Escola não existe.');
-      return redirect()->route('/escola/listar');
+      session()->flash('success', 'Instituicao não existe.');
+      return redirect()->route('/instituicao/listar');
   }
 
   public function salvar(Request $request){
-      $escola = \App\Escola::find($request->id);
+      $instituicao = \App\Instituicao::find($request->id);
 
             
-      if (isset($escola)) {
+      if (isset($instituicao)) {
 
         $validator = Validator::make($request->all(), [
-          'nome' =>                 ['required', 'string', 'max:255', 'unique:escolas,nome,'.$escola->id],
+          'nome' =>                 ['required', 'string', 'max:255', 'unique:instituicaos,nome,'.$instituicao->id],
           'modalidade_ensino' =>    ['required', 'between:1,6'],
           'rota' =>                 ['nullable', 'string', 'max:255'],
           'periodo_atendimento' =>  ['nullable', 'string:255'],
@@ -173,58 +173,58 @@ class EscolaController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return redirect()->route('/escola/editar',[$escola->id])
+            return redirect()->route('/instituicao/editar',[$instituicao->id])
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        $escola->nome = $request->nome;
-        $escola->modalidade_ensino = $request->modalidade_ensino;
+        $instituicao->nome = $request->nome;
+        $instituicao->modalidade_ensino = $request->modalidade_ensino;
 
         switch ($request->modalidade_ensino) {
           case "1":
-            $escola->modalidade_ensino = "Creche Infantil Integral";
+            $instituicao->modalidade_ensino = "Creche Infantil Integral";
             break;
           case "2":
-            $escola->modalidade_ensino = "Creche Infantil Parcial";
+            $instituicao->modalidade_ensino = "Creche Infantil Parcial";
             break;
           case "3":
-            $escola->modalidade_ensino = "Infantil";
+            $instituicao->modalidade_ensino = "Infantil";
             break;
           case "4":
-            $escola->modalidade_ensino = "Ensino Fundamental";
+            $instituicao->modalidade_ensino = "Ensino Fundamental";
             break;
           case "5":
-            $escola->modalidade_ensino = "EJA";
+            $instituicao->modalidade_ensino = "EJA";
             break;
           case "6":
-            $escola->modalidade_ensino = "Quilombola";
+            $instituicao->modalidade_ensino = "Quilombola";
             break;
         }
 
-        $escola->rota = $request->rota;
-        $escola->periodo_atendimento = $request->periodo_atendimento;
-        $escola->qtde_alunos = $request->qtde_alunos;
-        $escola->endereco = $request->endereco;
-        $escola->gestor = $request->gestor;
-        $escola->telefone = $request->telefone;
-        $escola->save();
+        $instituicao->rota = $request->rota;
+        $instituicao->periodo_atendimento = $request->periodo_atendimento;
+        $instituicao->qtde_alunos = $request->qtde_alunos;
+        $instituicao->endereco = $request->endereco;
+        $instituicao->gestor = $request->gestor;
+        $instituicao->telefone = $request->telefone;
+        $instituicao->save();
 
-        $estoque = \App\Estoque::find($escola->estoque_id);
-        $estoque->nome = "Estoque da Escola ".$request->nome;
+        $estoque = \App\Estoque::find($instituicao->estoque_id);
+        $estoque->nome = "Estoque da Instituicao ".$request->nome;
         $estoque->save();
 
-        Log::info('Edicao_Escola. User ['.$request->user()->id.
+        Log::info('Edicao_Instituicao. User ['.$request->user()->id.
           ']. Method ['.$request->method().
           ']. Ip ['.$request->ip().
           ']. Agent ['.$request->header('user-agent').
           ']. Url ['.$request->path().']');
 
-        session()->flash('success', 'Escola modificada com sucesso.');
-        return redirect()->route('/escola/listar');
+        session()->flash('success', 'Instituicao modificada com sucesso.');
+        return redirect()->route('/instituicao/listar');
       }
 
-      session()->flash('success', 'Escola não existe.');
-      return redirect()->route('/escola/listar');
+      session()->flash('success', 'Instituicao não existe.');
+      return redirect()->route('/instituicao/listar');
   }
 }
