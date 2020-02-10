@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSaidaItemsTable extends Migration
+class CreateSaidaItensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,14 @@ class CreateSaidaItemsTable extends Migration
     {
         Schema::create('saida_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('observacao')->nullable();
-            $table->unsignedBigInteger('estoque_id');
-            $table->foreign('estoque_id')->references('id')->on('estoques');
-            $table->unsignedInteger('quantidade');
-            $table->unsignedBigInteger('saida_id');
-            $table->foreign('saida_id')->references('id')->on('saida_avulsas');
+            $table->unsignedInteger('quantidade_aceita');
+            $table->unsignedInteger('quantidade_pedida');
+            $table->unsignedInteger('quantidade_restante');
+            $table->boolean('sem_destino')->default(FALSE);
+            $table->unsignedBigInteger('saida_avulsa_id');
+            $table->foreign('saida_avulsa_id')->references('id')->on('saida_avulsas');
+            $table->unsignedBigInteger('avulso_estoque_id');
+            $table->foreign('avulso_estoque_id')->references('id')->on('avulso_estoques');
             $table->softDeletes();
             $table->timestamps();
         });

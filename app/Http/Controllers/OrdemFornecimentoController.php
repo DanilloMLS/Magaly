@@ -310,6 +310,9 @@ class OrdemFornecimentoController extends Controller
         return redirect()->back()->with('alert', 'Item não encontrado.');
     }
 
+    /**
+     * Armazena a nova quantidade pedida de um item que não teve baixa no banco de dados
+     */
     public function salvarItem(Request $request)
     {
         $ordem_item = \App\Ordem_item::find($request->id);
