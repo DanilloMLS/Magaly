@@ -29,29 +29,29 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="id_escola" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
-                            @if(count($escolas) != 0 and count($escolas) != 0)
+                            <label for="id_instituicao" class="col-md-4 col-form-label text-md-right">{{ __('Instituicao') }}</label>
+                            @if(count($instituicaos) != 0 and count($instituicaos) != 0)
                             <div class="col-md-6">
-                              <select class="form-control{{ $errors->has('escola_id') ? ' is-invalid' : '' }}" id="escolas" name="escola_id">
-      								              <option value="">Selecione uma Escola</option>
-      								              @foreach($escolas as $escola)
-      									            <option value="{{$escola->id}}" {{ old('escola_id') == $escola->id ? 'selected' : '' }}>{{$escola->nome}}</option>
+                              <select class="form-control{{ $errors->has('instituicao_id') ? ' is-invalid' : '' }}" id="instituicaos" name="instituicao_id">
+      								              <option value="">Selecione uma Instituicao</option>
+      								              @foreach($instituicaos as $instituicao)
+      									            <option value="{{$instituicao->id}}" {{ old('instituicao_id') == $instituicao->id ? 'selected' : '' }}>{{$instituicao->nome}}</option>
       								              @endforeach
                               </select>
-                              @if ($errors->has('escola_id'))
+                              @if ($errors->has('instituicao_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('escola_id') }}</strong>
+                                        <strong>{{ $errors->first('instituicao_id') }}</strong>
                                     </span>
                               @endif
                             </div>
                             @else
                             <div class="col-md-6">
-                              <select class="form-control{{ $errors->has('escola_id') ? ' is-invalid' : '' }}" id="escolas" name="escola_id">
-      								              <option value="">Não há escolas cadastradas</option>
+                              <select class="form-control{{ $errors->has('instituicao_id') ? ' is-invalid' : '' }}" id="instituicaos" name="instituicao_id">
+      								              <option value="">Não há instituicaos cadastradas</option>
                               </select>
-                              @if ($errors->has('escola_id'))
+                              @if ($errors->has('instituicao_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('escola_id') }}</strong>
+                                        <strong>{{ $errors->first('instituicao_id') }}</strong>
                                     </span>
                               @endif
                             </div>

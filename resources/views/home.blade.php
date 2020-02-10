@@ -129,7 +129,7 @@
                         <div class="panel-body">
                             <p align="justify">
                                 O Sistema de Gestão Alimentar <strong>Magaly</strong>
-                                tem como objetivo facilitar as atividades de gerenciamento da merenda escolar, 
+                                tem como objetivo facilitar as atividades de gerenciamento da merenda instituicaor, 
                                 permitindo de forma simples o controle de estoque, de distribuições, a criação de 
                                 refeições e cardápios e o acesso rápido aos dados cadastrados no sistema.
                                 <br><br>

@@ -31,7 +31,7 @@ Tel: (87)3762-7060
                 </p>
                 <p class="cabecalho-nota" align="justify">
                     <font size="11px">Pelo presente, autorizo a Empresa <b>{{$fornecedor->nome}}</b> vencedora do processo licitatório nº <b>{{$contrato->n_processo_licitatorio}}</b>,
-                        modalidade <b>{{$contrato->modalidade}}</b>, destinados ao preparo de merenda escolar oara os alunos de Rede Municipal
+                        modalidade <b>{{$contrato->modalidade}}</b>, destinados ao preparo de merenda instituicaor oara os alunos de Rede Municipal
                         de Ensino deste Município, conforme especificações, quantidades e demais condições previstas no Contrato nº <b>{{$contrato->n_contrato}}</b></font>
                 </p>
                 <p class="cabecalho-empresa">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMarcaFieldInEscolas extends Migration
+class AddMarcaFieldInInstituicaos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddMarcaFieldInEscolas extends Migration
      */
     public function up()
     {
-        Schema::table('escolas', function (Blueprint $table) {
+        Schema::table('instituicaos', function (Blueprint $table) {
             $table->bigInteger('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques');
         });
@@ -26,7 +26,7 @@ class AddMarcaFieldInEscolas extends Migration
      */
     public function down()
     {
-        Schema::table('escolas', function (Blueprint $table) {
+        Schema::table('instituicaos', function (Blueprint $table) {
             $table->dropColumn('estoque_id');
         });
     }

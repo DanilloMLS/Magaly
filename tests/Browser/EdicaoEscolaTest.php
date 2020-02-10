@@ -5,10 +5,10 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use App\Escola;
+use App\Instituicao;
 use App\User;
 
-class EdicaoEscolaTest extends DuskTestCase
+class EdicaoInstituicaoTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -18,20 +18,20 @@ class EdicaoEscolaTest extends DuskTestCase
     public function testAberturaEdicao()
     {
         $this->browse(function (Browser $browser) {
-            $escolas = Escola::all();
-            $escola = Escola::find(random_int(1,count($escolas)));
+            $instituicaos = Instituicao::all();
+            $instituicao = Instituicao::find(random_int(1,count($instituicaos)));
             $browser->loginAs(User::find(1))
-                    ->visit('/escola/listar')
-                    ->assertSee($escola->nome)
-                    ->visit('/escola/editar/'.$escola->id)
-                    ->assertInputValue('nome',$escola->nome)
-                    //->assertSelected('modalidade_ensino',$escola->modalidade_ensino)
-                    //->assertInputValue('endereco',$escola->endereco)
-                    ->assertInputValue('rota',$escola->rota)
-                    ->assertInputValue('periodo_atendimento',$escola->periodo_atendimento)
-                    ->assertInputValue('qtde_alunos',$escola->qtde_alunos)
-                    ->assertInputValue('gestor',$escola->gestor)
-                    ->assertInputValue('telefone',$escola->telefone)
+                    ->visit('/instituicao/listar')
+                    ->assertSee($instituicao->nome)
+                    ->visit('/instituicao/editar/'.$instituicao->id)
+                    ->assertInputValue('nome',$instituicao->nome)
+                    //->assertSelected('modalidade_ensino',$instituicao->modalidade_ensino)
+                    //->assertInputValue('endereco',$instituicao->endereco)
+                    ->assertInputValue('rota',$instituicao->rota)
+                    ->assertInputValue('periodo_atendimento',$instituicao->periodo_atendimento)
+                    ->assertInputValue('qtde_alunos',$instituicao->qtde_alunos)
+                    ->assertInputValue('gestor',$instituicao->gestor)
+                    ->assertInputValue('telefone',$instituicao->telefone)
                     ;
         });
     }
@@ -39,33 +39,33 @@ class EdicaoEscolaTest extends DuskTestCase
     public function testEdicaoValida()
     {
         $this->browse(function (Browser $browser) {
-            $escolas = Escola::all();
-            $escola = Escola::find(random_int(1,count($escolas)));
-            $escola_test = factory(Escola::class)->make();
+            $instituicaos = Instituicao::all();
+            $instituicao = Instituicao::find(random_int(1,count($instituicaos)));
+            $instituicao_test = factory(Instituicao::class)->make();
             $browser->loginAs(User::find(1))
-                    ->visit('/escola/listar')
-                    ->assertSee($escola->nome)
-                    ->visit('/escola/editar/'.$escola->id)
+                    ->visit('/instituicao/listar')
+                    ->assertSee($instituicao->nome)
+                    ->visit('/instituicao/editar/'.$instituicao->id)
                     ->clear('nome')
-                    ->type('nome',$escola_test->nome)
+                    ->type('nome',$instituicao_test->nome)
                     ->select('modalidade_ensino')
                     ->clear('endereco')
-                    ->type('endereco',$escola_test->endereco)
+                    ->type('endereco',$instituicao_test->endereco)
                     ->clear('rota')
-                    ->type('rota',$escola_test->rota)
+                    ->type('rota',$instituicao_test->rota)
                     ->clear('periodo_atendimento')
-                    ->type('periodo_atendimento',$escola_test->periodo_atendimento)
+                    ->type('periodo_atendimento',$instituicao_test->periodo_atendimento)
                     ->clear('qtde_alunos')
-                    ->type('qtde_alunos',$escola_test->qtde_alunos)
+                    ->type('qtde_alunos',$instituicao_test->qtde_alunos)
                     ->clear('gestor')
-                    ->type('gestor',$escola_test->gestor)
+                    ->type('gestor',$instituicao_test->gestor)
                     ->clear('telefone')
-                    ->type('telefone',$escola_test->telefone)
+                    ->type('telefone',$instituicao_test->telefone)
                     ->press('Salvar')
                     ->pause(1000)
-                    ->visit('/escola/listar')
+                    ->visit('/instituicao/listar')
                     ->pause(1000)
-                    ->assertSee($escola_test->nome)
+                    ->assertSee($instituicao_test->nome)
                     ->pause(2000)
                     ;
         });
@@ -74,28 +74,28 @@ class EdicaoEscolaTest extends DuskTestCase
     public function testEdicaoInvalida()
     {
         $this->browse(function (Browser $browser) {
-            $escolas = Escola::all();
-            $escola1 = Escola::find(random_int(1,count($escolas)));
-            $escola2 = Escola::find(random_int(1,count($escolas)));
+            $instituicaos = Instituicao::all();
+            $instituicao1 = Instituicao::find(random_int(1,count($instituicaos)));
+            $instituicao2 = Instituicao::find(random_int(1,count($instituicaos)));
             $browser->loginAs(User::find(1))
-                    ->visit('/escola/listar')
-                    ->assertSee($escola1->nome)
-                    ->visit('/escola/editar/'.$escola1->id)
+                    ->visit('/instituicao/listar')
+                    ->assertSee($instituicao1->nome)
+                    ->visit('/instituicao/editar/'.$instituicao1->id)
                     ->clear('nome')
-                    ->type('nome',$escola2->nome)
+                    ->type('nome',$instituicao2->nome)
                     //->select('modalidade_ensino','Selecione uma Modalidade de ensino')
                     ->clear('endereco')
-                    ->type('endereco',$escola1->endereco)
+                    ->type('endereco',$instituicao1->endereco)
                     ->clear('rota')
-                    ->type('rota',$escola1->rota)
+                    ->type('rota',$instituicao1->rota)
                     ->clear('periodo_atendimento')
-                    ->type('periodo_atendimento',$escola1->periodo_atendimento)
+                    ->type('periodo_atendimento',$instituicao1->periodo_atendimento)
                     ->clear('qtde_alunos')
-                    //->type('qtde_alunos',$escola1->qtde_alunos)
+                    //->type('qtde_alunos',$instituicao1->qtde_alunos)
                     ->clear('gestor')
-                    ->type('gestor',$escola1->gestor)
+                    ->type('gestor',$instituicao1->gestor)
                     ->clear('telefone')
-                    ->type('telefone','$escola1->telefone')
+                    ->type('telefone','$instituicao1->telefone')
                     ->press('Salvar')
                     ->pause(1000)
                     ->assertSee('O nome já está em uso')

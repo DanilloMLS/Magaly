@@ -10,7 +10,7 @@ class Endereco extends Model
       'rua', 'bairro', 'cep', 'numero'
     ];
 
-    public function escola(){
-      return $this->belongsTo(\App\Escola::class);
+    public function instituicao(){
+      return $this->belongsTo(\App\Instituicao::class);
     }
 }

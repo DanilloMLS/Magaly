@@ -28,11 +28,11 @@ class AdmMiddleware
               "contrato/removerItem/{id}",
               "contrato/finalizarContrato/{id}",
               ];
-              $rotas_escola = [
-              "escola/cadastrar",
-              "escola/editar/{id}",
-              "escola/salvar",
-              "escola/remover/{id}",
+              $rotas_instituicao = [
+              "instituicao/cadastrar",
+              "instituicao/editar/{id}",
+              "instituicao/salvar",
+              "instituicao/remover/{id}",
               ];
               $rotas_distribuicao = [
               "distribuicao/telaCadastrar",

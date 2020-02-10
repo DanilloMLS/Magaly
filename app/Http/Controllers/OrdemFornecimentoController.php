@@ -72,14 +72,14 @@ class OrdemFornecimentoController extends Controller
     public function telaCadastrar(Request $request)
     {
         $contrato = \App\Contrato::find($request->id);
-        $escolas = \App\Escola::all();
+        $instituicaos = \App\Instituicao::all();
 
-        $ids_escolas = [];
-        foreach ($escolas as $escola) {
-            $ids_escolas[] = $escola->estoque_id;
+        $ids_instituicaos = [];
+        foreach ($instituicaos as $instituicao) {
+            $ids_instituicaos[] = $instituicao->estoque_id;
         }
 
-        $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
+        $estoques = \App\Estoque::whereNotIn('id',$ids_instituicaos)->get();
 
         if (isset($contrato)) {
             return view("CadastrarOrdemFornecimento", [
@@ -270,14 +270,14 @@ class OrdemFornecimentoController extends Controller
     public function editarOrdem(Request $request)
     {
         $ordem_fornecimento = \App\OrdemFornecimento::find($request->id);
-        $escolas = \App\Escola::all();
+        $instituicaos = \App\Instituicao::all();
 
-        $ids_escolas = [];
-        foreach ($escolas as $escola) {
-            $ids_escolas[] = $escola->estoque_id;
+        $ids_instituicaos = [];
+        foreach ($instituicaos as $instituicao) {
+            $ids_instituicaos[] = $instituicao->estoque_id;
         }
 
-        $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
+        $estoques = \App\Estoque::whereNotIn('id',$ids_instituicaos)->get();
 
         if (isset($ordem_fornecimento) && $ordem_fornecimento->ehcompleta == FALSE) {
             return view("EditarOrdemFornecimento", [
