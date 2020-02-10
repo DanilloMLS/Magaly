@@ -43,13 +43,13 @@
                                     <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Instituicao</div></button>
                                     <div class="dropdown-content">
                                         <a class="dropdown-item" href="{{route('/instituicao/cadastrar')}}">
-                                            Adicionar Instituicao
+                                            Adicionar Instituição
                                         </a>
                                         <a class="dropdown-item" href="{{route('/instituicao/listar')}}">
-                                            Listagem Instituicaos
+                                            Listagem Instituições
                                         </a>
                                         <a class="dropdown-item" target="_blank" href="{{ route("/instituicao/RelatorioInstituicaos") }}">
-                                            Imprimir Instituicaos
+                                            Imprimir Instituições
                                         </a>
                                     </div>
                                 </div> 
@@ -155,7 +155,7 @@
                           <button class="dropbtn btn-Fornecedor"><img class="btn-img" src="/img/escol.png"><div class="titulo-botao">Instituicao</div></button>
                           <div class="dropdown-content">
                               <a class="dropdown-item" href="{{route('/instituicao/listar')}}">
-                                Listagem Instituicaos
+                                Listagem Instituições
                               </a>
                           </div>
                       </div>
