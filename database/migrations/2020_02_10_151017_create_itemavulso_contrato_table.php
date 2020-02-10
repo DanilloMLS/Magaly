@@ -13,7 +13,7 @@ class CreateItemavulsoContratoTable extends Migration
      */
     public function up()
     {
-        Schema::create('avulso_contratos', function (Blueprint $table) {
+        Schema::create('itemavulso_contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('marca');

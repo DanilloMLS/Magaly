@@ -21,8 +21,8 @@ class CreateSaidaItensTable extends Migration
             $table->boolean('sem_destino')->default(FALSE);
             $table->unsignedBigInteger('saida_avulsa_id');
             $table->foreign('saida_avulsa_id')->references('id')->on('saida_avulsas');
-            $table->unsignedBigInteger('avulso_estoque_id');
-            $table->foreign('avulso_estoque_id')->references('id')->on('avulso_estoques');
+            $table->unsignedBigInteger('itemavulso_estoque_id');
+            $table->foreign('itemavulso_estoque_id')->references('id')->on('itemavulso_estoques');
             $table->softDeletes();
             $table->timestamps();
         });

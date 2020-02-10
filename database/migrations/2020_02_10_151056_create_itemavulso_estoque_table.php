@@ -13,13 +13,13 @@ class CreateItemavulsoEstoqueTable extends Migration
      */
     public function up()
     {
-        Schema::create('avulso_estoques', function (Blueprint $table) {
+        Schema::create('itemavulso_estoques', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('quantidade');
             $table->unsignedBigInteger('estoque_id');
             $table->foreign('estoque_id')->references('id')->on('estoques');
             $table->unsignedBigInteger('avulso_contrato_id');
-            $table->foreign('avulso_contrato_id')->references('id')->on('avulso_contratos');
+            $table->foreign('avulso_contrato_id')->references('id')->on('itemavulso_contratos');
             $table->softDeletes();
             $table->timestamps();
         });
