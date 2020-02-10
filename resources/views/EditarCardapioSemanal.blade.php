@@ -24,7 +24,7 @@
                           $refeicao_x = 1;
                           if(strcmp($cardapio->modalidade_ensino, 'Creche Infantil Integral') == 0) $quant_ref = 3;
                           else if(strcmp($cardapio->modalidade_ensino, 'Creche Infantil Parcial') == 0) $quant_ref = 2;
-                          else if(strcmp($cardapio->modalidade_ensino, 'Infantil (Pré-escola)') == 0 || strcmp($cardapio->modalidade_ensino, 'Ensino Fundamental') == 0 || strcmp($cardapio->modalidade_ensino, 'EJA') == 0 || strcmp($cardapio->modalidade_ensino, 'Quilombola') == 0) $quant_ref = 1;
+                          else if(strcmp($cardapio->modalidade_ensino, 'Infantil (Pré-instituicao)') == 0 || strcmp($cardapio->modalidade_ensino, 'Ensino Fundamental') == 0 || strcmp($cardapio->modalidade_ensino, 'EJA') == 0 || strcmp($cardapio->modalidade_ensino, 'Quilombola') == 0) $quant_ref = 1;
 
                           $semana_x = 1;
                           for($semana_x=1; $semana_x<= 5; $semana_x++){

@@ -14,8 +14,8 @@ class Item extends Model
    ];
 
 
-  public function escolas(){
-    return $this->belongsToMany(\App\Escola::class);
+  public function instituicaos(){
+    return $this->belongsToMany(\App\Instituicao::class);
   }
 
   public function distribuicoes(){

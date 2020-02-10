@@ -23,7 +23,7 @@ Tel: (87)3762-7060
                 </td>
             </tr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">ESCOLAS</h1></td>
+                <td align="center" colspan=3><h1 size="80">INSTITUIÇÕES</h1></td>
             </tr>
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
@@ -39,15 +39,15 @@ Tel: (87)3762-7060
           </tr>
         </thead>
         <tbody>
-          @foreach ($escolas as $escola)
+          @foreach ($instituicaos as $instituicao)
             <tr>
-                <td bgcolor="#dfdfdf" data-title="nº" align="center">{{ $escola->id }}</td>
-                <td data-title="Nome" align="center">{{ $escola->nome }}</td>
-                <td data-title="Modalidade de Ensino" align="center">{{ $escola->modalidade_ensino }}</td>
-                <td data-title="Rota" align="center">{{ $escola->rota }}</td>
-                <td data-title="Endereco" align="center">{{ $escola->endereco }}</td>
-                <td data-title="Período de Atendimento" align="center">{{ $escola->periodo_atendimento }}</td>
-                <td data-title="Quantidade de Alunos" align="center">{{ $escola->qtde_alunos }}</td>
+                <td bgcolor="#dfdfdf" data-title="nº" align="center">{{ $instituicao->id }}</td>
+                <td data-title="Nome" align="center">{{ $instituicao->nome }}</td>
+                <td data-title="Modalidade de Ensino" align="center">{{ $instituicao->modalidade_ensino }}</td>
+                <td data-title="Rota" align="center">{{ $instituicao->rota }}</td>
+                <td data-title="Endereco" align="center">{{ $instituicao->endereco }}</td>
+                <td data-title="Período de Atendimento" align="center">{{ $instituicao->periodo_atendimento }}</td>
+                <td data-title="Quantidade de Alunos" align="center">{{ $instituicao->qtde_alunos }}</td>
             </tr>
           @endforeach
         </tbody>

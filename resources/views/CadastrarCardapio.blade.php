@@ -21,7 +21,7 @@
                                     <option value="">Selecione uma Modalidade de ensino</option>
                                     <option value="1" {{ old('modalidade_ensino') == 1 ? 'selected' : '' }}>Creche Infantil Integral</option>
                                     <option value="2" {{ old('modalidade_ensino') == 2 ? 'selected' : '' }}>Creche Infantil Parcial</option>
-                                    <option value="3" {{ old('modalidade_ensino') == 3 ? 'selected' : '' }}>Infantil (pré-escola)</option>
+                                    <option value="3" {{ old('modalidade_ensino') == 3 ? 'selected' : '' }}>Infantil (pré-instituicao)</option>
                                     <option value="4" {{ old('modalidade_ensino') == 4 ? 'selected' : '' }}>Ensino Fundamental</option>
                                     <option value="5" {{ old('modalidade_ensino') == 5 ? 'selected' : '' }}>EJA</option>
                                     <option value="6" {{ old('modalidade_ensino') == 6 ? 'selected' : '' }}>Quilombola</option>

@@ -11,17 +11,17 @@ class DistribuicaoController extends Controller
 {
 
   public function telaCadastrar() {
-    $escolas = \App\Escola::all();
+    $instituicaos = \App\Instituicao::all();
     $cardapios = \App\Cardapio_mensal::all();
 
-    $ids_escolas = [];
-    foreach ($escolas as $escola) {
-      $ids_escolas[] = $escola->estoque_id;
+    $ids_instituicaos = [];
+    foreach ($instituicaos as $instituicao) {
+      $ids_instituicaos[] = $instituicao->estoque_id;
     }
-    $estoques = \App\Estoque::whereNotIn('id',$ids_escolas)->get();
+    $estoques = \App\Estoque::whereNotIn('id',$ids_instituicaos)->get();
 
     return view("CadastrarDistribuicao", [
-        "escolas" => $escolas,
+        "instituicaos" => $instituicaos,
         "cardapios" => $cardapios,
         "estoques" => $estoques
     ]);
@@ -31,13 +31,13 @@ class DistribuicaoController extends Controller
     
     $validator = Validator::make($request->all(), [
       'observacao' =>   ['nullable', 'string', 'max:255'],
-      'escola_id' =>    ['required', 'integer', 'exists:escolas,id'],
+      'instituicao_id' =>    ['required', 'integer', 'exists:instituicaos,id'],
       'cardapio_id' =>  ['required', 'integer', 'exists:cardapio_mensals,id'],
       'estoque_id' =>   ['required', 'integer', 'exists:estoques,id'],
       ],[
 
       'observacao.max' => 'Observação deve ter no máximo 255 caracteres',
-      'escola_id.required' => 'Escolha uma escola',
+      'instituicao_id.required' => 'Escolha uma instituicao',
       'cardapio_id.required' => 'Escolha um cardápio',
       'estoque_id.required' => 'Escolha um estoque',
     ]);
@@ -53,7 +53,7 @@ class DistribuicaoController extends Controller
 
     $distribuicao = new \App\Distribuicao();
     $distribuicao->observacao = $request->observacao;
-    $distribuicao->escola_id = $request->escola_id;
+    $distribuicao->instituicao_id = $request->instituicao_id;
     $distribuicao->cardapio_id = $request->cardapio_id;
     $distribuicao->estoque_id = $request->estoque_id;
     $distribuicao->token =$uniqueString;
@@ -66,7 +66,7 @@ class DistribuicaoController extends Controller
         ']. Agent ['.$request->header('user-agent').
         ']. Url ['.$request->path().']');
 
-    $escola = \App\Escola::find($request->escola_id);
+    $instituicao = \App\Instituicao::find($request->instituicao_id);
 
     //todos os cardapios diários
     $cardapios_diarios = \App\Cardapio_diario::where('cardapio_mensal_id', '=', $request->cardapio_id)->get();
@@ -92,7 +92,7 @@ class DistribuicaoController extends Controller
             //cria nova distribuicao_item
             $distribuicao_item = new \App\Distribuicao_item();
             $distribuicao_item->quantidade = $i->quantidade;
-            $distribuicao_item->quantidade_total = ($i->quantidade * $escola->qtde_alunos) / ($item->gramatura);
+            $distribuicao_item->quantidade_total = ($i->quantidade * $instituicao->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->item_id = $i->item_id;
             $distribuicao_item->distribuicao_id = $distribuicao->id;
             $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total));
@@ -103,7 +103,7 @@ class DistribuicaoController extends Controller
             $distribuicao_item = \App\Distribuicao_item::where('item_id', '=', $i->item_id)->where('distribuicao_id', '=', $distribuicao->id)->first();
             $distribuicao_item->quantidade = $distribuicao_item->quantidade + $i->quantidade;
             //quantidade_total
-            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $escola->qtde_alunos) / ($item->gramatura);
+            $distribuicao_item->quantidade_total = ($distribuicao_item->quantidade * $instituicao->qtde_alunos) / ($item->gramatura);
             $distribuicao_item->quantidade_falta = intval(ceil($distribuicao_item->quantidade_total));
             $distribuicao_item->quantidade_danificados = 0;
             $distribuicao_item->save();
@@ -190,24 +190,24 @@ class DistribuicaoController extends Controller
           if ($qtde_restante <= 0) {
             break;
           }
-          $escola = \App\Escola::find($distribuicao->escola_id);
-          //adicionar ao estoque_escola (destino)
-          $estoque_escola_item = \App\Estoque_item::where('estoque_id','=',$escola->estoque_id)
+          $instituicao = \App\Instituicao::find($distribuicao->instituicao_id);
+          //adicionar ao estoque_instituicao (destino)
+          $estoque_instituicao_item = \App\Estoque_item::where('estoque_id','=',$instituicao->estoque_id)
                                                   ->where('item_id','=',$distribuicao_item->item_id)
                                                   ->first();
-          if (isset($estoque_escola_item)) {
-            $estoque_escola_item->quantidade += $distribuicao_item->quantidade_aceita;
-            $estoque_escola_item->save();
+          if (isset($estoque_instituicao_item)) {
+            $estoque_instituicao_item->quantidade += $distribuicao_item->quantidade_aceita;
+            $estoque_instituicao_item->save();
           } else {
-            $estoque_escola_item = new \App\Estoque_item();
-            $estoque_escola_item->quantidade = $distribuicao_item->quantidade_aceita;
-            $estoque_escola_item->quantidade_danificados = 0;
-            $estoque_escola_item->item_id = $distribuicao_item->item_id;
-            $estoque_escola_item->estoque_id = $escola->estoque_id;
-            $estoque_escola_item->contrato_id = $estoque_central_item->contrato_id;
-            $estoque_escola_item->n_lote = $estoque_central_item->n_lote;
-            $estoque_escola_item->data_validade = $estoque_central_item->data_validade;
-            $estoque_escola_item->save();
+            $estoque_instituicao_item = new \App\Estoque_item();
+            $estoque_instituicao_item->quantidade = $distribuicao_item->quantidade_aceita;
+            $estoque_instituicao_item->quantidade_danificados = 0;
+            $estoque_instituicao_item->item_id = $distribuicao_item->item_id;
+            $estoque_instituicao_item->estoque_id = $instituicao->estoque_id;
+            $estoque_instituicao_item->contrato_id = $estoque_central_item->contrato_id;
+            $estoque_instituicao_item->n_lote = $estoque_central_item->n_lote;
+            $estoque_instituicao_item->data_validade = $estoque_central_item->data_validade;
+            $estoque_instituicao_item->save();
           }
         }
 
@@ -284,7 +284,7 @@ class DistribuicaoController extends Controller
     if (count($distribuicao_itens) > 0) {
       $nova_distribuicao = new \App\Distribuicao();
       $nova_distribuicao->observacao = 'Complemento da GRR '.$distribuicao->id.', '.now()->format('d-m-Y');
-      $nova_distribuicao->escola_id = $distribuicao->escola_id;
+      $nova_distribuicao->instituicao_id = $distribuicao->instituicao_id;
       $nova_distribuicao->cardapio_id = $distribuicao->cardapio_id;
       $nova_distribuicao->estoque_id = $distribuicao->estoque_id;
       $sffledStr= str_shuffle('abscdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+');
@@ -348,10 +348,10 @@ class DistribuicaoController extends Controller
   public function editar(Request $request){
       $distribuicao = \App\Distribuicao::find($request->id);
       if (isset($distribuicao)) {
-        $escolas = \App\Escola::all();
+        $instituicaos = \App\Instituicao::all();
         return view("EditarDistribuicao", [
             "distribuicao" => $distribuicao,
-            "escolas" => $escolas,
+            "instituicaos" => $instituicaos,
         ]);
       }
       session()->flash('success', 'Distribuicao não existe.');
@@ -365,13 +365,13 @@ class DistribuicaoController extends Controller
       if (isset($distribuicao)) {
         $validator = Validator::make($request->all(), [
           'observacao' =>   ['nullable', 'string', 'max:max'],
-          'escola_id' =>    ['required', 'numeric', 'exists:escolas,id'],
+          'instituicao_id' =>    ['required', 'numeric', 'exists:instituicaos,id'],
           /* 'cardapio_id' =>  ['required', 'numeric', 'exists:cardapio,id'],
           'proxima' =>      ['nullable', 'numeric', 'exists:distribuicaos,id'],
           'estoque_id' =>   ['required', 'numeric', 'exists:estoques,id'], */
         ],[
           'observacao.max' => 'A observação deve ter no máximo 255 caracteres',
-          'escola_id.required' => 'A escola é obrigatória',
+          'instituicao_id.required' => 'A instituicao é obrigatória',
         ]);
     
         if ($validator->fails()) {
@@ -381,7 +381,7 @@ class DistribuicaoController extends Controller
         }
 
         $distribuicao->observacao = $request->observacao;
-        $distribuicao->escola_id = $request->escola_id;
+        $distribuicao->instituicao_id = $request->instituicao_id;
         $distribuicao->save();
         //LogActivity::addToLog('Alteração em Distribuição.');
 

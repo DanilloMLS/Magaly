@@ -41,7 +41,7 @@ function avisoDeletar(id){
                             <thead>
                               <tr>
                                   <th>Id</th>
-                                  <th>Escola</th>
+                                  <th>Instituicao</th>
                                   <th>Observação</th>
                               </tr>
                             </thead>
@@ -49,8 +49,8 @@ function avisoDeletar(id){
                               @foreach ($distribuicoes as $distribuicao)
                                 <tr>
                                     <td data-title="Id">{{ $distribuicao->id }}</td>
-                                    <?php $escola = \App\Escola::find($distribuicao->escola_id)?>
-                                    <td class="width15" data-title="Modalidade de Ensino">{{ $escola->nome }}</td>
+                                    <?php $instituicao = \App\Instituicao::find($distribuicao->instituicao_id)?>
+                                    <td class="width15" data-title="Modalidade de Ensino">{{ $instituicao->nome }}</td>
                                     <td data-title="Observação" align="justify">{{ $distribuicao->observacao }}</td>
 
                                     @if (Auth::guard()->check() && Auth::user()->tipo_user == 'adm')

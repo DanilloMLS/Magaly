@@ -52,16 +52,16 @@ Route::get('/fornecedor/Relatorio_Fornecedores', 'FornecedorController@gerarRela
 Route::get('/fornecedor/RelatorioContratos/{id}', 'FornecedorController@relatorioContratoItens')->name('/fornecedor/RelatorioContratos')->middleware('adm');
 
 
-//Escola
-Route::get('/escola/cadastrar', function(Request $request) {
-    return view('CadastrarEscola');
-})->name('/escola/cadastrar')->middleware('adm');
-Route::post('/escola/cadastrar', 'EscolaController@cadastrar')->name('/escola/cadastrar')->middleware('adm');
-Route::get('/escola/listar', 'EscolaController@listar')->name('/escola/listar')->middleware('auth');
-Route::get('/escola/editar/{id}', 'EscolaController@editar')->name('/escola/editar')->middleware('adm');
-Route::post('/escola/salvar', 'EscolaController@salvar')->name('/escola/salvar')->middleware('adm');
-Route::get('/escola/remover/{id}', 'EscolaController@remover')->name('/escola/remover')->middleware('adm');
-Route::get('/escola/Relatorio_Escolas', 'EscolaController@gerarRelatorio')->name('/escola/RelatorioEscolas')->middleware('auth');
+//Instituicao
+Route::get('/instituicao/cadastrar', function(Request $request) {
+    return view('CadastrarInstituicao');
+})->name('/instituicao/cadastrar')->middleware('adm');
+Route::post('/instituicao/cadastrar', 'InstituicaoController@cadastrar')->name('/instituicao/cadastrar')->middleware('adm');
+Route::get('/instituicao/listar', 'InstituicaoController@listar')->name('/instituicao/listar')->middleware('auth');
+Route::get('/instituicao/editar/{id}', 'InstituicaoController@editar')->name('/instituicao/editar')->middleware('adm');
+Route::post('/instituicao/salvar', 'InstituicaoController@salvar')->name('/instituicao/salvar')->middleware('adm');
+Route::get('/instituicao/remover/{id}', 'InstituicaoController@remover')->name('/instituicao/remover')->middleware('adm');
+Route::get('/instituicao/Relatorio_Instituicaos', 'InstituicaoController@gerarRelatorio')->name('/instituicao/RelatorioInstituicaos')->middleware('auth');
 
 //Distribuição
 Route::get('/distribuicao/telaCadastrar', 'DistribuicaoController@telaCadastrar')->name('/distribuicao/telaCadastrar')->middleware('adm');

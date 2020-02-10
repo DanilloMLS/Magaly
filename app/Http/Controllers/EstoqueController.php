@@ -56,9 +56,9 @@ class EstoqueController extends Controller
 
   public function remover(Request $request){
       $estoque = \App\Estoque::find($request->id);
-      $escola = \App\Escola::where('estoque_id', $estoque->id)->get()->first();
+      $instituicao = \App\Instituicao::where('estoque_id', $estoque->id)->get()->first();
       
-      if (!isset($escola)) {
+      if (!isset($instituicao)) {
         if (isset($estoque)) {
           $estoque->delete();
           session()->flash('success', 'Estoque removido com sucesso.');
@@ -69,15 +69,15 @@ class EstoqueController extends Controller
       }
       
 
-      session()->flash('success', 'O Estoque pertence a uma Escola, remova a Escola.');
+      session()->flash('success', 'O Estoque pertence a uma Instituicao, remova a Instituicao.');
       return redirect()->route('/estoque/listar');
   }
 
   public function editar(Request $request){
       $estoque = \App\Estoque::find($request->id);
-      $escola = \App\Escola::where('estoque_id', $estoque->id)->get()->first();
+      $instituicao = \App\Instituicao::where('estoque_id', $estoque->id)->get()->first();
 
-      if (!isset($escola)) {
+      if (!isset($instituicao)) {
         if (isset($estoque)) {
           return view("EditarEstoque", [
             "estoque" => $estoque,
@@ -88,7 +88,7 @@ class EstoqueController extends Controller
         return redirect()->route('/estoque/listar');
       }
       
-      session()->flash('success', 'O Estoque pertence a uma Escola, renomeie a Escola.');
+      session()->flash('success', 'O Estoque pertence a uma Instituicao, renomeie a Instituicao.');
       return redirect()->route('/estoque/listar');    
   }
 

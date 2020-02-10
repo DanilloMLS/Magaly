@@ -13,8 +13,8 @@ class Distribuicao extends Model
     'observacao','estoque_id'
   ];
 
-  public function escola(){
-    return $this->belongsTo(\App\Escola::class);
+  public function instituicao(){
+    return $this->belongsTo(\App\Instituicao::class);
   }
 
   public function itens(){

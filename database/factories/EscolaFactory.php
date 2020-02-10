@@ -5,7 +5,7 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Escola::class, function (Faker $faker) {
+$factory->define(\App\Instituicao::class, function (Faker $faker) {
     $modalidade = ['Creche Infantil Integral', 'Creche Infantil Parcial',
                    'Infantil', 'Ensino Fundamental', 'EJA', 'Quilombola'];
     $rota = ['Rota 01', 'Rota 02', 'Rota 03', 'Rota 04', 'Rota 05', 'Rota 06',
