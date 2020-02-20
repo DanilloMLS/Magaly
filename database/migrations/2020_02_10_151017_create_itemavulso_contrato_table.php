@@ -19,7 +19,7 @@ class CreateItemavulsoContratoTable extends Migration
             $table->string('marca');
             $table->string('descricao',1500);
             $table->unsignedBigInteger('contrato_id');
-            $table->foreing('contrato_id')->references('id')->on('contratos');
+            $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->softDeletes();
             $table->timestamps();
         });
