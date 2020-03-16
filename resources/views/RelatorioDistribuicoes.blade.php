@@ -61,14 +61,14 @@ Tel: (87)3762-7060
             </table>
             <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633">
                 <tr>
-                    <th bgcolor="#B0E0E6" colspan=6 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
+                    <th bgcolor="#B0E0E6" colspan=5 align="center"><font size="20px">ESPECIFICAÇÃO E DISTRIBUIÇÃO DOS GÊNEROS ALIMENTÍCIOS</font></th>
                 </tr>
                 <tbody>
                     <tr align="center" bgcolor="#dfdfdf">
                         <th>ID</th>
                         <th>ITEM</th>
                         <th>UNIDADE</th>
-                        <th>VALIDADE</th>
+                        {{-- <th>VALIDADE</th> --}}
                         <th>FALTA</th>
                         <th>DATA e ASSINATURA</th>
                     </tr>
@@ -78,14 +78,18 @@ Tel: (87)3762-7060
                             @php
                                 $item = \App\Item::find($item_distribuicao->item_id);
                                 $estoque_item = \App\Estoque_item::where('estoque_id', $distribuicao->estoque_id)
-                                ->where('item_id', $item->id)->first();
+                                                                 ->where('item_id', $item->id)->first();
                             @endphp
-                            <td data-title="Id" align="justify">{{ $item->id }}</td>
-                            <td width="25%" align="center" data-title="Nome">{{ $item->nome }}</td>
-                            <td data-title="Unidade" align="center">{{$item->gramatura . "" . $item->unidade }}</td>
-                            <td data-title="Validade" align="center">{{ date('d/m/Y', strtotime($estoque_item->data_validade)) }}</td>
-                            <td data-title="Qtde. Falta" align="center">{{ $item_distribuicao->quantidade_falta }}</td>
-                            <td></td>
+                            <td width="10%" data-title="ID" align="justify">{{ $item->id }}</td>
+                            <td width="30%" align="center" data-title="ITEM">{{ $item->nome }}</td>
+                            <td width="15%" data-title="UNIDADE" align="center">{{$item->gramatura . "" . $item->unidade }}</td>
+                            {{-- @if ($estoque_item)
+                                <td data-title="VALIDADE" align="center">{{ $estoque_item->data_validade }}</td>
+                            @else
+                                <td data-title="VALIDADE" align="center"></td>
+                            @endif --}}
+                            <td width="10%" data-title="FALTA" align="center">{{ $item_distribuicao->quantidade_falta }}</td>
+                            <td width="35%" data-title="DATA e ASSINATURA"td>
                             </td>
                         </tr>
                     @endforeach
@@ -94,7 +98,7 @@ Tel: (87)3762-7060
         @endforeach
         <br>
         <p style="text-align:justify;">
-            <b aligh="justify">Sr. Gestor, solicito que ao receber as mercadorias acima descriminadas, conferir quantidade e qualidade dos produtos,
+            <b aligh="justify">Sr. Gestor, solicito que ao receber as mercadorias acima discriminadas, conferir quantidade e qualidade dos produtos,
                 após atestar o recebimento, o senhor(a) está dando plena e irrevogável quitação da quantidade e qualidade dos produtos recebidos.</b>
         </p>
         <br>
