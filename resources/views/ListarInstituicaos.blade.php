@@ -75,6 +75,11 @@ function editar(id){
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
                                       </td>
+                                      <td align="left">
+                                        <a title="Ver estoque" class="btn btn-primary" href="{{ route ("/estoque/exibirItensEstoque", ['id' => $instituicao->id]) }}">
+                                          <img src="/img/estoq.png" class="tamIconsPadrao">
+                                        </a>
+                                      </td>
                                     @endif
                                 </tr>
                               @endforeach

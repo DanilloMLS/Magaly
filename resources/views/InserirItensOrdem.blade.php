@@ -84,10 +84,10 @@
                                   </div>
                                   <div class="col-md-2">
                                     {{ $item->gramatura }}
-                                    @if ($item->unidade == 'G')
+                                    @if ($item->unidade == 'g')
                                       g
                                     @endif
-                                    @if ($item->unidade == 'ML')
+                                    @if ($item->unidade == 'ml')
                                       ml
                                     @endif
                                   </div>

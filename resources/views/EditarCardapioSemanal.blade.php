@@ -79,7 +79,7 @@
                           @endphp
                         </div>
                         <div class="panel-footer">
-                            <center><a class="link" class="btn btn-primary" href="{{route ('/cardapioMensal/finalizarCardapio')}}">Concluir</a></center>
+                            <center><a class="btn btn-primary" href="{{route ('/cardapioMensal/finalizarCardapio')}}">Concluir</a></center>
                         </div>
                 </div>
             </div>

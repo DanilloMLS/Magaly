@@ -236,7 +236,7 @@ class CardapioController extends Controller
   }
 
   public function finalizarCardapioMensal(Request $request){
-    session()->flash('success', 'Cardápio cadastrado com sucesso.');
+    session()->flash('success', 'Cardápio cadastrado/atualizado com sucesso.');
     //$cardapios = \App\Cardapio_mensal::orderBy('id')->paginate(10);
     return redirect()->route('/cardapio/listar');
     //return view("ListarCardapios", ["cardapios" => $cardapios]);
