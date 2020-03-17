@@ -22,7 +22,7 @@ Tel: (87)3762-7060
                 </td>
             </tr>
             <tr align="">
-                <td align="center" colspan=3><h1 size="80">ESTOQUES</h1></td>
+                <td align="center" colspan=3><h1 size="80">ESTOQUE {{$estoque->nome}}</h1></td>
             </tr>
         </table>
         <table width="100%" class="table table-hover" border=1 cellspacing=0 cellpadding=0 bordercolor="666633"width="100%" class="table table-hover">
@@ -31,14 +31,13 @@ Tel: (87)3762-7060
                     <th>Id</th>
                     <th>Item</th>
                     <th>Unidade</th>
-                    <th>Estoque</th>
+                    {{-- <th>Estoque</th> --}}
                     <th>Data de validade</th>
                     <th>Nº lote</th>
                     <th>Gramatura</th>
                     <th>Descrição</th>
                 </tr>
-                @foreach ($estoques as $estoque)
-                  @foreach (\App\Estoque_item::where('estoque_id', '=', $estoque->id)->get() as $item_estoque)
+                @foreach (\App\Estoque_item::where('estoque_id', '=', $estoque->id)->get() as $item_estoque)
                       @php
                           $item = \App\Item::find($item_estoque->item_id);
                       @endphp
@@ -46,14 +45,16 @@ Tel: (87)3762-7060
                           <td bgcolor="#dfdfdf" data-title="Id">{{ $item->id }}</td>
                           <td data-title="Nome">{{ $item->nome }}</td>
                           <td data-title="Unidade">{{ $item->unidade }}</td>
-                          <td data-title="Nome">{{ $estoque->nome }}</td>
+                          {{-- <td data-title="Nome">{{ $estoque->nome }}</td> --}}
                           <td data-title="Data de validade">{{ $item_estoque->data_validade }}</td>
                           <td data-title="Nº lote">{{ $item_estoque->n_lote }}</td>
                           <td data-title="Gramatura">{{ $item->gramatura }}</td>
                           <td data-title="Descrição">{{ $item->descricao }}</td>
                       </tr>
-                  @endforeach
-              @endforeach
+                @endforeach
+                {{-- @foreach ($estoques as $estoque)
+                  
+              @endforeach --}}
             </tbody>
         </table>
     </body>

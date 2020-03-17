@@ -95,6 +95,9 @@
                                         <a class="dropdown-item" href="{{route('/estoque/listar')}}">
                                             Listagem Estoques
                                         </a>
+                                        <a class="dropdown-item" target="_blank" href="{{ route("/estoque/RelatorioEstoques") }}">
+                                            Imprimir Estoques
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="dropdown">

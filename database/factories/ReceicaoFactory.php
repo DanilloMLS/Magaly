@@ -9,7 +9,7 @@ $factory->define(\App\Refeicao::class, function (Faker $faker) {
     $ref = App\Refeicao::All();
     $quant_refeicoes = count($ref) + 1;
     return [
-        'nome' => "Refeição - ".$faker->text,
+        'nome' => "Refeição - ".$faker->text(25),
         'descricao' => $faker->text(100),
         'quantidade_total' => 0
     ];

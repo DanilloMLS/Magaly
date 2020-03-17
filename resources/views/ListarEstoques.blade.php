@@ -79,6 +79,9 @@ function listarItens(id){
                                         <a title="Renomear Estoque" class="btn btn-primary" onClick="renomear({{$estoque->id}});">
                                           <img src="/img/edit.png" class="tamIconsPadrao">
                                         </a>
+                                        <a title="Relatório" class="btn btn-primary" href="{{ route ("/estoque/RelatorioEstoqueEsp", ['id' => $estoque->id])}}">
+                                          <img src="/img/down.png" class="tamIconsPadrao">
+                                        </a>
                                       </td>
                                     @endif
                                 </tr>

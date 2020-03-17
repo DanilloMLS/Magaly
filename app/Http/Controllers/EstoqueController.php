@@ -44,15 +44,25 @@ class EstoqueController extends Controller
     return view("ListarEstoques", ["estoques" => $estoques]);
   }
 
-    public function gerarRelatorio(){
-        $estoques = \App\Estoque::all();
-        $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("VisualizarItensEstoque", ["itens" => $itens]);
-        //return view("ListarEstoques", ["estoques" => $estoques]);
+  public function gerarRelatorio(){
+      $estoques = \App\Estoque::all();
+      $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("VisualizarItensEstoque", ["itens" => $itens]);
+      //return view("ListarEstoques", ["estoques" => $estoques]);
 
-        return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
-            ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
-            ->stream('relatorio_Estoque_'.$data.'.pdf');
-    }
+      return  \PDF::loadView('RelatorioEstoques', compact('estoques'))
+          ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
+          ->stream('relatorio_Estoque_'.$data.'.pdf');
+  }
+
+  public function gerarRelatorioEstoque(Request $request){
+    $estoque = \App\Estoque::find($request->id);
+    $data = date("d") . "-" . date("m") . "-" . date("y").'_' . date("H") . "-" . date("i") . "-" . date("s");        //return view("VisualizarItensEstoque", ["itens" => $itens]);
+    //return view("ListarEstoques", ["estoques" => $estoques]);
+
+    return  \PDF::loadView('RelatorioEstoqueEsp', compact('estoque'))
+        ->setPaper('a4', 'landscape')// Se quiser que fique no formato a4 retrato: 
+        ->stream('relatorio_Estoque_'.$data.'.pdf');
+}
 
   public function remover(Request $request){
       $estoque = \App\Estoque::find($request->id);
